@@ -109,7 +109,7 @@ curl -s -X POST http://<host>:3002/soap \
   <soapenv:Header/>
   <soapenv:Body>
     <tns:LookupUserRequest>
-      <tns:id>john.smith</tns:id>
+      <tns:id>james.smith</tns:id>
     </tns:LookupUserRequest>
   </soapenv:Body>
 </soapenv:Envelope>'
