@@ -126,7 +126,7 @@ docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc \
 
 #### darkhorn-mq
 
-> ⚠️ The request/reply pattern is not yet fully implemented — the worker processes messages but does not send a response back. Use this backend to practice publishing; reply handling is pending.
+> ⚠️ The request/reply pattern is not yet fully implemented — the worker processes messages but does not send a response back.
 
 ```bash
 curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
