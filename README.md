@@ -151,15 +151,9 @@ docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 After pulling changes from GitHub:
 
 ```bash
-# darkhorn
-cd ~/ashfeld/darkhorn
-git pull
-docker compose up --build -d
-
-# hollowcrown
-cd ~/ashfeld/hollowcrown
-git pull
-docker compose up --build -d
+cd ~/ashfeld/darkhorn && git pull && docker compose up --build -d
+cd ~/ashfeld/hollowcrown && git pull && docker compose up --build -d
+cd ~
 ```
 
 ### Update — wipe data
@@ -167,17 +161,9 @@ docker compose up --build -d
 After pulling changes from GitHub, if you want to reset all data:
 
 ```bash
-# darkhorn
-cd ~/ashfeld/darkhorn
-git pull
-docker compose down -v
-docker compose up --build -d
-
-# hollowcrown
-cd ~/ashfeld/hollowcrown
-git pull
-docker compose down -v
-docker compose up --build -d
+cd ~/ashfeld/darkhorn && git pull && docker compose down -v && docker compose up --build -d
+cd ~/ashfeld/hollowcrown && git pull && docker compose down -v && docker compose up --build -d
+cd ~
 ```
 
 ### View logs
