@@ -160,7 +160,9 @@ sudo ufw enable
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 ```
 
-### Rebuild a project (after local code or config changes)
+### Rebuild a project
+
+> Tip: use this after pulling changes or editing code/config. Data is preserved.
 
 ```bash
 # darkhorn
