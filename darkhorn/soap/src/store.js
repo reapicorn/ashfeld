@@ -63,7 +63,7 @@ async function getUsers(filters = {}) {
 
 async function getUserById(id) {
   const { rows } = await getPool().query(
-    `SELECT * FROM users WHERE id = $1 OR username = $1 LIMIT 1`, [id]
+    `SELECT * FROM users WHERE id::text = $1 OR username = $1 LIMIT 1`, [id]
   );
   return rows.length ? dbToUser(rows[0]) : null;
 }
@@ -98,26 +98,26 @@ async function updateUser(id, updates) {
   if (!fields.length) return getUserById(id);
   fields.push(`updated_at = $${i++}`); values.push(new Date()); values.push(id);
   const { rows } = await pool.query(
-    `UPDATE users SET ${fields.join(', ')} WHERE id = $${i} OR username = $${i} RETURNING *`, values
+    `UPDATE users SET ${fields.join(', ')} WHERE id::text = $${i} OR username = $${i} RETURNING *`, values
   );
   return rows.length ? dbToUser(rows[0]) : null;
 }
 
 async function deleteUser(id) {
-  const { rowCount } = await getPool().query(`DELETE FROM users WHERE id = $1 OR username = $1`, [id]);
+  const { rowCount } = await getPool().query(`DELETE FROM users WHERE id::text = $1 OR username = $1`, [id]);
   return rowCount > 0;
 }
 
 async function setUserStatus(id, status) {
   const { rows } = await getPool().query(
-    `UPDATE users SET status = $1, updated_at = $2 WHERE id = $3 OR username = $3 RETURNING *`,
+    `UPDATE users SET status = $1, updated_at = $2 WHERE id::text = $3 OR username = $3 RETURNING *`,
     [status, new Date(), id]
   );
   return rows.length ? dbToUser(rows[0]) : null;
 }
 
 async function getUserPassword(id) {
-  const { rows } = await getPool().query(`SELECT password FROM users WHERE id = $1 OR username = $1 LIMIT 1`, [id]);
+  const { rows } = await getPool().query(`SELECT password FROM users WHERE id::text = $1 OR username = $1 LIMIT 1`, [id]);
   return rows.length ? rows[0].password : null;
 }
 
@@ -129,7 +129,7 @@ async function setUserPassword(id, password, extra = {}) {
   if (extra.passwordResetAt) { fields.push(`password_reset_at = $${i++}`); values.push(extra.passwordResetAt); }
   values.push(id);
   const { rows } = await pool.query(
-    `UPDATE users SET ${fields.join(', ')} WHERE id = $${i} OR username = $${i} RETURNING *`, values
+    `UPDATE users SET ${fields.join(', ')} WHERE id::text = $${i} OR username = $${i} RETURNING *`, values
   );
   return rows.length ? dbToUser(rows[0]) : null;
 }
@@ -142,7 +142,7 @@ async function getGroups() {
 }
 
 async function getGroupById(id) {
-  const { rows } = await getPool().query(`SELECT * FROM groups WHERE id = $1 OR name = $1 LIMIT 1`, [id]);
+  const { rows } = await getPool().query(`SELECT * FROM groups WHERE id::text = $1 OR name = $1 LIMIT 1`, [id]);
   return rows.length ? dbToGroup(rows[0]) : null;
 }
 
