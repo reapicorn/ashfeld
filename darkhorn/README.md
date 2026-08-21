@@ -115,6 +115,8 @@ curl -s -X POST http://<host>:3002/soap \
 </soapenv:Envelope>'
 ```
 
+> Pipe to `xmllint --format -` for readable output. Install with `sudo apt install libxml2-utils`.
+
 #### darkhorn-jdbc
 
 ```bash
