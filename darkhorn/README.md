@@ -46,8 +46,6 @@ The stack automatically brings up six backends:
 | `darkhorn-mq` | AMQP request/reply (RabbitMQ) | `5672` |
 | `darkhorn-ldap` | LDAP | `389` |
 
-All services, including LDAP, are seeded automatically on first boot. No manual steps required.
-
 **Re-seeding from scratch:**
 
 ```bash
