@@ -162,7 +162,22 @@ sudo ufw enable
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 ```
 
-### Rebuild a project (after code or config changes)
+### Updating from the repository
+
+If the repo was cloned with git, use the update scripts to pull the latest changes and rebuild in one step:
+
+```bash
+# Pull + rebuild both projects
+bash ~/ashfeld/update.sh
+
+# Rebuild only hollowcrown
+bash ~/ashfeld/update-hollowcrown.sh
+
+# Rebuild only darkhorn
+bash ~/ashfeld/update-darkhorn.sh
+```
+
+### Rebuild a project (after local code or config changes)
 
 ```bash
 # darkhorn
