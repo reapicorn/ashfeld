@@ -144,8 +144,6 @@ curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
 
 #### darkhorn-ldap
 
-Verify:
-
 ```bash
 docker exec -it darkhorn-ldap ldapsearch -x \
   -H ldap://localhost:389 \
