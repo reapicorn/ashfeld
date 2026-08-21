@@ -114,7 +114,7 @@ scp -r ./hollowcrown/. user@server:~/ashfeld/hollowcrown
 **Option B — git clone**
 
 ```bash
-git clone <repo-url> ~/ashfeld
+git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ```
 
 ---
