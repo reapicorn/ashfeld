@@ -99,7 +99,7 @@ sftp> get darkhorn/users.csv
 # WSDL
 curl -s 'http://<host>:3002/soap?wsdl' | head -10
 
-# LookupUser
+# LookupUser (pipe to xmllint for readable output)
 curl -s -X POST http://<host>:3002/soap \
   -H 'Content-Type: text/xml;charset=UTF-8' \
   -H 'SOAPAction: "LookupUser"' \
@@ -112,10 +112,8 @@ curl -s -X POST http://<host>:3002/soap \
       <tns:id>james.smith</tns:id>
     </tns:LookupUserRequest>
   </soapenv:Body>
-</soapenv:Envelope>'
+</soapenv:Envelope>' | xmllint --format -
 ```
-
-> Pipe to `xmllint --format -` for readable output.
 
 #### darkhorn-jdbc
 
