@@ -115,6 +115,16 @@ scp -r ./hollowcrown/. user@server:~/ashfeld/hollowcrown
 
 ```bash
 git clone https://github.com/reapicorn/ashfeld ~/ashfeld
+bash ~/ashfeld/ashfeld-setenv.sh
+source ~/.bashrc
+```
+
+This marks the update scripts executable and adds them to your PATH. After that you can call them from anywhere:
+
+```bash
+ashfeld-update.sh             # pull + rebuild both projects
+ashfeld-update-hollowcrown.sh # rebuild only hollowcrown
+ashfeld-update-darkhorn.sh    # rebuild only darkhorn
 ```
 
 ---
@@ -160,23 +170,6 @@ sudo ufw enable
 
 ```bash
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
-```
-
-### Updating from the repository
-
-Run `ashfeld-setenv.sh` once after cloning to mark the scripts executable and add them to your PATH:
-
-```bash
-bash ~/ashfeld/ashfeld-setenv.sh
-source ~/.bashrc
-```
-
-After that you can call the update scripts directly from anywhere:
-
-```bash
-ashfeld-update.sh             # pull + rebuild both projects
-ashfeld-update-hollowcrown.sh # rebuild only hollowcrown
-ashfeld-update-darkhorn.sh    # rebuild only darkhorn
 ```
 
 ### Rebuild a project (after local code or config changes)
