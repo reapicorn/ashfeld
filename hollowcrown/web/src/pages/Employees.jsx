@@ -35,7 +35,7 @@ export default function Employees() {
   function setParam(key, val) {
     const next = new URLSearchParams(searchParams);
     if (val) next.set(key, val); else next.delete(key);
-    next.delete('offset');
+    if (key !== 'offset') next.delete('offset');
     setSearchParams(next);
   }
 
