@@ -103,16 +103,6 @@ docker compose version
 
 ## Getting the files onto the server
 
-**Option A — SCP**
-
-```bash
-ssh user@server 'mkdir -p ~/ashfeld/darkhorn ~/ashfeld/hollowcrown'
-scp -r ./darkhorn/.    user@server:~/ashfeld/darkhorn
-scp -r ./hollowcrown/. user@server:~/ashfeld/hollowcrown
-```
-
-**Option B — git clone**
-
 ```bash
 git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ```
