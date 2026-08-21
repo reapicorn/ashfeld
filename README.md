@@ -162,7 +162,7 @@ docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 
 ### Rebuild a project
 
-> Tip: use this after pulling changes or editing code/config. Data is preserved.
+> Tip: use this after pulling an update from the repo. Data is preserved.
 
 ```bash
 # darkhorn
