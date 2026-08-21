@@ -112,7 +112,7 @@ router.get('/:id', async (req, res, next) => {
       `SELECT e.*, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
        FROM employees e
        LEFT JOIN employees m ON m.id = e.manager_id
-       WHERE e.id = $1 OR e.employee_id = $1`,
+       WHERE e.id::text = $1 OR e.employee_id = $1`,
       [req.params.id]
     );
     if (!rows.length) return res.status(404).json({ error: 'not_found', message: `Employee '${req.params.id}' not found.` });
@@ -126,7 +126,7 @@ router.put('/:id', async (req, res, next) => {
   try {
     const pool = getPool();
     const { rows: found } = await pool.query(
-      `SELECT id FROM employees WHERE id = $1 OR employee_id = $1`, [req.params.id]
+      `SELECT id FROM employees WHERE id::text = $1 OR employee_id = $1`, [req.params.id]
     );
     if (!found.length) return res.status(404).json({ error: 'not_found', message: `Employee '${req.params.id}' not found.` });
     const id = found[0].id;
@@ -161,7 +161,7 @@ router.post('/:id/terminate', async (req, res, next) => {
   try {
     const pool = getPool();
     const { rows: found } = await pool.query(
-      `SELECT id, status FROM employees WHERE id = $1 OR employee_id = $1`, [req.params.id]
+      `SELECT id, status FROM employees WHERE id::text = $1 OR employee_id = $1`, [req.params.id]
     );
     if (!found.length) return res.status(404).json({ error: 'not_found', message: `Employee '${req.params.id}' not found.` });
     if (found[0].status === 'terminated') return res.status(409).json({ error: 'already_terminated', message: 'Employee is already terminated.' });
@@ -185,7 +185,7 @@ router.post('/:id/set-status', async (req, res, next) => {
       return res.status(400).json({ error: 'invalid_status', message: 'status must be active or on-leave.' });
 
     const { rows: found } = await pool.query(
-      `SELECT id FROM employees WHERE id = $1 OR employee_id = $1`, [req.params.id]
+      `SELECT id FROM employees WHERE id::text = $1 OR employee_id = $1`, [req.params.id]
     );
     if (!found.length) return res.status(404).json({ error: 'not_found', message: `Employee '${req.params.id}' not found.` });
 
