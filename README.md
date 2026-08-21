@@ -180,8 +180,6 @@ docker compose up --build -d
 
 After pulling changes from GitHub, if you want to reset all data:
 
-> Tip: all data is re-seeded automatically on the next start.
-
 ```bash
 # darkhorn
 cd ~/ashfeld/darkhorn
