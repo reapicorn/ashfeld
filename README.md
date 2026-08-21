@@ -136,7 +136,7 @@ Both projects can run simultaneously on the same host without port conflicts.
 
 ---
 
-## Firewall (darkhorn ports)
+## Firewall
 
 ```bash
 sudo ufw allow 22/tcp       # SSH — always first
