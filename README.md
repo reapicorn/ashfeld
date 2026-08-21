@@ -131,8 +131,6 @@ cd ~/ashfeld/hollowcrown
 docker compose up --build -d
 ```
 
-All variables have built-in defaults — no `.env` required unless you want to override ports or credentials (see `.env.example` in each project).
-
 Both projects can run simultaneously on the same host without port conflicts.
 
 ---
