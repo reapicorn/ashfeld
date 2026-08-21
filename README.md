@@ -194,14 +194,6 @@ docker compose down -v
 
 > After `down -v`, the next `docker compose up -d` will re-seed from scratch automatically.
 
-### Uninstall completely
-
-```bash
-cd ~/ashfeld/darkhorn && docker compose down -v
-cd ~/ashfeld/hollowcrown && docker compose down -v
-cd ~ && sudo rm -rf ~/ashfeld
-```
-
 ### View logs
 
 ```bash
@@ -211,4 +203,14 @@ docker compose logs -f
 # Single service
 docker compose logs -f hollowcrown-api
 docker compose logs -f darkhorn-rest
+```
+
+---
+
+## Uninstalling
+
+```bash
+cd ~/ashfeld/darkhorn && docker compose down -v
+cd ~/ashfeld/hollowcrown && docker compose down -v
+cd ~ && sudo rm -rf ~/ashfeld
 ```
