@@ -4,6 +4,7 @@ set -e
 cd "$(dirname "$0")/.."
 
 echo "==> Pulling latest changes..."
+git checkout -- .
 git pull
 
 echo "==> Rebuilding darkhorn..."
