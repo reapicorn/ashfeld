@@ -1,6 +1,6 @@
-﻿# darkhorn
+# darkhorn
 
-Darkhorn is the southern district of Ashfeld, built around the old processing yards and the warehouses that outlasted them. The companies that moved in after the foundries closed brought their own ways of doing things â€” their own ledgers, their own couriers, their own gates. None of it was designed to connect. It just grew, one system at a time, until untangling it became someone else's problem.
+Darkhorn is the southern district of Ashfeld, built around the old processing yards and the warehouses that outlasted them. The companies that moved in after the foundries closed brought their own ways of doing things — their own ledgers, their own couriers, their own gates. None of it was designed to connect. It just grew, one system at a time, until untangling it became someone else's problem.
 
 Each backend in this project exposes the same set of 13 identity operations over a different protocol, making it possible to practice the same integration logic in different contexts.
 
@@ -14,7 +14,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 |---|---|
 | **Flat files (SFTP)** | Download/upload CSV files via SFTP, key-based and password authentication |
 | **JDBC** | Direct database connection, reconciliation queries |
-| **HTTP REST** | Full CRUD, pagination, suspend/restore, change/reset password â€” with Basic Auth, API Key and OIDC |
+| **HTTP REST** | Full CRUD, pagination, suspend/restore, change/reset password — with Basic Auth, API Key and OIDC |
 | **LDAP** | Search, attribute reading, group membership, bind with service account |
 | **SOAP** | WSDL, document/literal, WS-Security UsernameToken, fault handling |
 | **MQ** | AMQP request/reply, correlationId, replyTo, JSON message format |
@@ -27,7 +27,7 @@ Each section is a prerequisite for the next.
 
 ### 1. Deploy the backends
 
-**Step 1 â€” start the stack:**
+**Step 1 — start the stack:**
 
 ```bash
 cd ~/ashfeld/darkhorn
@@ -72,14 +72,14 @@ curl -s -u grimreaper:'Wh1sp3r0fD4rk!' \
 curl -s -H 'X-API-Key: sh4d0wh0rn-4p1-k3y-d4rkn3ss' \
   'http://<host>:3000/api/users?count=3'
 
-# OIDC â€” get token
+# OIDC — get token
 TOKEN=$(curl -s -X POST http://<host>:3000/oauth/token \
   -d 'grant_type=client_credentials' \
   -d 'client_id=voidhorn' \
   -d 'client_secret=v01dh0rn$3cr3t!' \
   | grep -o '"access_token":"[^"]*"' | cut -d'"' -f4)
 
-# OIDC â€” use token
+# OIDC — use token
 curl -s -H "Authorization: Bearer $TOKEN" \
   'http://<host>:3000/api/users?count=3'
 ```
@@ -126,7 +126,7 @@ docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc \
 
 #### darkhorn-mq
 
-> âš ï¸ The request/reply pattern is not yet fully implemented â€” the worker processes messages but does not send a response back.
+> ⚠️ The request/reply pattern is not yet fully implemented — the worker processes messages but does not send a response back.
 
 ```bash
 curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
@@ -160,10 +160,10 @@ docker exec -it darkhorn-ldap ldapsearch -x \
 
 Before building the connector, operate the backends manually to understand exactly what data is sent and received in each operation.
 
-#### darkhorn-rest â€” HTTP REST
+#### darkhorn-rest — HTTP REST
 
 ```bash
-# Search â€” return 3 users
+# Search — return 3 users
 curl -s -u grimreaper:'Wh1sp3r0fD4rk!' \
   'http://<host>:3000/api/users?count=3' | jq .
 
@@ -211,7 +211,7 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID/groups \
 curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!'
 ```
 
-#### darkhorn-sftp â€” SFTP
+#### darkhorn-sftp — SFTP
 
 ```bash
 # Connect and list files
@@ -230,7 +230,7 @@ head -4 users.csv
 sftp> put users.csv darkhorn/users.csv
 ```
 
-#### darkhorn-jdbc â€” PostgreSQL
+#### darkhorn-jdbc — PostgreSQL
 
 ```bash
 # Connect directly to the darkhorn_jdbc database
@@ -258,7 +258,7 @@ WHERE username = 'sql.user';
 DELETE FROM users WHERE username = 'sql.user';
 ```
 
-#### darkhorn-soap â€” SOAP/WSDL
+#### darkhorn-soap — SOAP/WSDL
 
 The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
 
@@ -275,7 +275,7 @@ AUTH='<soapenv:Header>
 ```
 
 ```bash
-# SearchUsers â€” return 3 users
+# SearchUsers — return 3 users
 curl -s -X POST http://<host>:3002/soap \
   -H 'Content-Type: text/xml;charset=UTF-8' \
   -H 'SOAPAction: "SearchUsers"' \
@@ -435,12 +435,12 @@ curl -s -X POST http://<host>:3002/soap \
 </soapenv:Envelope>"
 ```
 
-#### darkhorn-mq â€” AMQP request/reply
+#### darkhorn-mq — AMQP request/reply
 
 All messages are published to the `darkhorn.requests` queue. The worker processes them synchronously and writes the reply to the queue named in `replyTo`.
 
 ```bash
-# SearchUsers â€” return 3 users
+# SearchUsers — return 3 users
 rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='' routing_key='darkhorn.requests' \
   payload='{"operation":"SearchUsers","payload":{"count":3}}'
@@ -504,10 +504,10 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
 
 > To receive the reply, the published message must include `replyTo` (reply queue name) and `correlationId`. The Management UI at `http://<host>:15672` is the easiest way to inspect messages and responses during exploration.
 
-#### darkhorn-ldap â€” LDAP
+#### darkhorn-ldap — LDAP
 
 ```bash
-# Search â€” return 3 users (uid, cn, mail attributes)
+# Search — return 3 users (uid, cn, mail attributes)
 ldapsearch -x \
   -H ldap://<host>:389 \
   -D 'cn=svc-darkhorn,ou=People,dc=darkhorn,dc=local' \
@@ -650,7 +650,7 @@ With the backends validated and the data contract understood, build the connecto
 
 All backends implement the same set of 13 operations. Details by protocol below.
 
-### darkhorn-rest â€” HTTP REST (port 3000)
+### darkhorn-rest — HTTP REST (port 3000)
 
 | Method | Endpoint | Operation |
 |---|---|---|
@@ -673,33 +673,33 @@ All backends implement the same set of 13 operations. Details by protocol below.
 | `POST` | `/oauth/token` | Token (client_credentials / password) |
 | `GET` | `/oauth/userinfo` | Userinfo |
 
-### darkhorn-sftp â€” SFTP (port 2222)
+### darkhorn-sftp — SFTP (port 2222)
 
 Files available under the remote path `/darkhorn`:
 
 | File | Contents |
 |---|---|
-| `users.csv` | One row per user â€” `id`, `username`, `email`, `firstName`, `lastName`, `password`, `status`, `department`, `title`, `createdAt`, `updatedAt` |
-| `groups.csv` | One row per group â€” `id`, `name`, `description`, `createdAt` |
-| `user_groups.csv` | Membership â€” `userId`, `groupId` |
+| `users.csv` | One row per user — `id`, `username`, `email`, `firstName`, `lastName`, `password`, `status`, `department`, `title`, `createdAt`, `updatedAt` |
+| `groups.csv` | One row per group — `id`, `name`, `description`, `createdAt` |
+| `user_groups.csv` | Membership — `userId`, `groupId` |
 
 Each operation maps to a read-modify-write cycle on the relevant CSV file.
 
-### darkhorn-jdbc â€” Direct PostgreSQL (port 5432)
+### darkhorn-jdbc — Direct PostgreSQL (port 5432)
 
 Database: `darkhorn_jdbc`. Operations are implemented as SQL queries against the shared schema.
 
 | Table | Purpose |
 |---|---|
-| `users` | Users â€” Add, Modify, Delete, Lookup, Search, Suspend, Restore, Change/Reset Password |
-| `groups` | Groups â€” Get Groups |
-| `user_groups` | Membership â€” Get/Assign/Remove Groups |
+| `users` | Users — Add, Modify, Delete, Lookup, Search, Suspend, Restore, Change/Reset Password |
+| `groups` | Groups — Get Groups |
+| `user_groups` | Membership — Get/Assign/Remove Groups |
 
 Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `password`, `status` (`active`/`suspended`), `department`, `title`, `password_reset_at`, `created_at`, `updated_at`.
 
-### darkhorn-soap â€” SOAP/WSDL (port 3002)
+### darkhorn-soap — SOAP/WSDL (port 3002)
 
-Endpoint: `http://<host>:3002/soap` Â· WSDL: `http://<host>:3002/soap?wsdl`
+Endpoint: `http://<host>:3002/soap` · WSDL: `http://<host>:3002/soap?wsdl`
 
 | SOAP Operation | Key input parameters |
 |---|---|
@@ -712,12 +712,12 @@ Endpoint: `http://<host>:3002/soap` Â· WSDL: `http://<host>:3002/soap?wsdl`
 | `RestoreUser` | `id` |
 | `ChangePassword` | `id`, `currentPassword`, `newPassword` |
 | `ResetPassword` | `id`, `newPassword` |
-| `GetGroups` | â€” |
+| `GetGroups` | — |
 | `GetUserGroups` | `userId` |
 | `AssignGroups` | `userId`, `groupIds[]` / `groupNames[]` |
 | `RemoveGroups` | `userId`, `groupIds[]` / `groupNames[]` |
 
-### darkhorn-mq â€” AMQP request/reply (port 5672)
+### darkhorn-mq — AMQP request/reply (port 5672)
 
 Queue: `darkhorn.requests`. Message format:
 
@@ -737,22 +737,22 @@ Response delivered to the queue specified in `replyTo`, correlated via `correlat
 
 Operations and their `payload` fields are identical to the SOAP input parameters in the table above.
 
-### darkhorn-ldap â€” LDAP (port 389)
+### darkhorn-ldap — LDAP (port 389)
 
 | Operation | LDAP equivalent |
 |---|---|
-| Add | `ldapadd` â€” new `inetOrgPerson` entry under `ou=People` |
-| Modify | `ldapmodify` â€” attributes `cn`, `sn`, `givenName`, `mail`, `departmentNumber`, `title` |
-| Delete | `ldapdelete` â€” remove entry by DN |
-| Lookup | `ldapsearch` â€” filter `(uid=<username>)` |
-| Search / Reconcile | `ldapsearch` â€” filter `(objectClass=inetOrgPerson)` with optional attributes |
-| Suspend | `ldapmodify` â€” add `description: suspended` |
-| Restore | `ldapmodify` â€” remove `description` attribute |
-| Change / Reset Password | `ldapmodify` â€” replace `userPassword` |
-| Get Groups | `ldapsearch` â€” base `ou=Groups`, filter `(objectClass=groupOfNames)` |
-| Get User Groups | `ldapsearch` â€” filter `(member=uid=<user>,ou=People,...)` |
-| Assign Groups | `ldapmodify` â€” add `member` to group |
-| Remove Groups | `ldapmodify` â€” remove `member` from group |
+| Add | `ldapadd` — new `inetOrgPerson` entry under `ou=People` |
+| Modify | `ldapmodify` — attributes `cn`, `sn`, `givenName`, `mail`, `departmentNumber`, `title` |
+| Delete | `ldapdelete` — remove entry by DN |
+| Lookup | `ldapsearch` — filter `(uid=<username>)` |
+| Search / Reconcile | `ldapsearch` — filter `(objectClass=inetOrgPerson)` with optional attributes |
+| Suspend | `ldapmodify` — add `description: suspended` |
+| Restore | `ldapmodify` — remove `description` attribute |
+| Change / Reset Password | `ldapmodify` — replace `userPassword` |
+| Get Groups | `ldapsearch` — base `ou=Groups`, filter `(objectClass=groupOfNames)` |
+| Get User Groups | `ldapsearch` — filter `(member=uid=<user>,ou=People,...)` |
+| Assign Groups | `ldapmodify` — add `member` to group |
+| Remove Groups | `ldapmodify` — remove `member` from group |
 
 User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`, `description`.
 
@@ -762,46 +762,46 @@ User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`
 
 ```
 darkhorn/
-â”œâ”€â”€ docker-compose.yml
-â”œâ”€â”€ db/
-â”‚   â”œâ”€â”€ schema.sql             # Shared schema (users, groups, user_groups)
-â”‚   â”œâ”€â”€ init-db.sh             # Creates the 4 PostgreSQL databases and applies schema
-â”‚   â”œâ”€â”€ seed.js                # 150 users + 50 groups per database
-â”‚   â”œâ”€â”€ package.json
-â”‚   â””â”€â”€ Dockerfile.seed
-â”œâ”€â”€ rest/                      # darkhorn-rest  â€” HTTP REST + Basic/APIKey/OIDC
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â”œâ”€â”€ package.json
-â”‚   â”œâ”€â”€ config.json
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ index.js
-â”‚       â”œâ”€â”€ config.js
-â”‚       â”œâ”€â”€ auth/              # keys.js, oidc.js, middleware.js
-â”‚       â”œâ”€â”€ routes/            # users.js, passwords.js, groups.js
-â”‚       â”œâ”€â”€ middleware/        # errorHandler.js
-â”‚       â””â”€â”€ persistence/       # store.js (PostgreSQL)
-â”œâ”€â”€ sftp/                      # darkhorn-sftp â€” SFTP server (atmoz/sftp)
-â”‚   â”œâ”€â”€ Dockerfile.seed
-â”‚   â”œâ”€â”€ package.json
-â”‚   â””â”€â”€ seed.js                # Generates users.csv, groups.csv, user_groups.csv
-â”œâ”€â”€ soap/                      # darkhorn-soap  â€” SOAP/WSDL
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â”œâ”€â”€ package.json
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ index.js           # SOAP server + Express health endpoint
-â”‚       â”œâ”€â”€ store.js           # PostgreSQL
-â”‚       â””â”€â”€ service.wsdl       # Full WSDL with all 13 operations
-â”œâ”€â”€ mq/                        # darkhorn-mq    â€” RabbitMQ worker
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â”œâ”€â”€ package.json
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ worker.js          # AMQP consumer + dispatcher
-â”‚       â””â”€â”€ store.js           # PostgreSQL
-â”œâ”€â”€ ldap/
-â”‚   â””â”€â”€ bootstrap/
-â”‚       â”œâ”€â”€ 01-structure.ldif  # ou=People, ou=Groups, service account
-â”‚       â”œâ”€â”€ 02-users.ldif      # 150 inetOrgPerson
-â”‚       â””â”€â”€ 03-groups.ldif     # 50 groupOfNames
-â””â”€â”€ jdbc/
-    â””â”€â”€ jdbc.properties        # JDBC connection parameters
+├── docker-compose.yml
+├── db/
+│   ├── schema.sql             # Shared schema (users, groups, user_groups)
+│   ├── init-db.sh             # Creates the 4 PostgreSQL databases and applies schema
+│   ├── seed.js                # 150 users + 50 groups per database
+│   ├── package.json
+│   └── Dockerfile.seed
+├── rest/                      # darkhorn-rest  — HTTP REST + Basic/APIKey/OIDC
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── config.json
+│   └── src/
+│       ├── index.js
+│       ├── config.js
+│       ├── auth/              # keys.js, oidc.js, middleware.js
+│       ├── routes/            # users.js, passwords.js, groups.js
+│       ├── middleware/        # errorHandler.js
+│       └── persistence/       # store.js (PostgreSQL)
+├── sftp/                      # darkhorn-sftp — SFTP server (atmoz/sftp)
+│   ├── Dockerfile.seed
+│   ├── package.json
+│   └── seed.js                # Generates users.csv, groups.csv, user_groups.csv
+├── soap/                      # darkhorn-soap  — SOAP/WSDL
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
+│       ├── index.js           # SOAP server + Express health endpoint
+│       ├── store.js           # PostgreSQL
+│       └── service.wsdl       # Full WSDL with all 13 operations
+├── mq/                        # darkhorn-mq    — RabbitMQ worker
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
+│       ├── worker.js          # AMQP consumer + dispatcher
+│       └── store.js           # PostgreSQL
+├── ldap/
+│   └── bootstrap/
+│       ├── 01-structure.ldif  # ou=People, ou=Groups, service account
+│       ├── 02-users.ldif      # 150 inetOrgPerson
+│       └── 03-groups.ldif     # 50 groupOfNames
+└── jdbc/
+    └── jdbc.properties        # JDBC connection parameters
 ```
