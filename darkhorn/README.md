@@ -149,7 +149,7 @@ docker exec -it darkhorn-ldap ldapsearch -x \
   -H ldap://localhost:389 \
   -D 'cn=svc-darkhorn,dc=darkhorn,dc=local' \
   -w 'Sp3ctr3Qu13t!' \
-  -b 'ou=People,dc=darkhorn,dc=local' \
+  -b 'ou=Users,dc=darkhorn,dc=local' \
   '(objectClass=inetOrgPerson)' uid cn mail \
   | head -30
 ```
@@ -510,15 +510,15 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
 # Search — return 3 users (uid, cn, mail attributes)
 ldapsearch -x \
   -H ldap://<host>:389 \
-  -D 'cn=svc-darkhorn,ou=People,dc=darkhorn,dc=local' \
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
   -w 'Sp3ctr3Qu13t!' \
-  -b 'ou=People,dc=darkhorn,dc=local' \
+  -b 'ou=Users,dc=darkhorn,dc=local' \
   -z 3 \
   '(objectClass=inetOrgPerson)' uid cn mail
 
 # Add a user
 cat > /tmp/new-user.ldif << 'EOF'
-dn: uid=test.user,ou=People,dc=darkhorn,dc=local
+dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
@@ -539,7 +539,7 @@ ldapadd -x -H ldap://<host>:389 \
 # Suspend (add description attribute)
 ldapmodify -x -H ldap://<host>:389 \
   -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
-dn: uid=test.user,ou=People,dc=darkhorn,dc=local
+dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 add: description
 description: suspended
@@ -548,7 +548,7 @@ EOF
 # Restore (remove description attribute)
 ldapmodify -x -H ldap://<host>:389 \
   -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
-dn: uid=test.user,ou=People,dc=darkhorn,dc=local
+dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 delete: description
 EOF
@@ -556,7 +556,7 @@ EOF
 # Reset password
 ldapmodify -x -H ldap://<host>:389 \
   -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
-dn: uid=test.user,ou=People,dc=darkhorn,dc=local
+dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 replace: userPassword
 userPassword: N3wPassw0rd!
@@ -568,13 +568,13 @@ ldapmodify -x -H ldap://<host>:389 \
 dn: cn=admins,ou=Groups,dc=darkhorn,dc=local
 changetype: modify
 add: member
-member: uid=test.user,ou=People,dc=darkhorn,dc=local
+member: uid=test.user,ou=Users,dc=darkhorn,dc=local
 EOF
 
 # Delete
 ldapdelete -x -H ldap://<host>:389 \
   -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' \
-  'uid=test.user,ou=People,dc=darkhorn,dc=local'
+  'uid=test.user,ou=Users,dc=darkhorn,dc=local'
 ```
 
 ---
@@ -637,9 +637,9 @@ With the backends validated and the data contract understood, build the connecto
 | Parameter | Value |
 |---|---|
 | Base DN | `dc=darkhorn,dc=local` |
-| People DN | `ou=People,dc=darkhorn,dc=local` |
+| Users DN | `ou=Users,dc=darkhorn,dc=local` |
 | Groups DN | `ou=Groups,dc=darkhorn,dc=local` |
-| Service account | `cn=svc-darkhorn,ou=People,dc=darkhorn,dc=local` |
+| Service account | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
 | Service password | `Sp3ctr3Qu13t!` |
 | Admin DN | `uid=admin,dc=darkhorn,dc=local` |
 | Admin password | `Bl4ckTr33Admin!` |
@@ -741,7 +741,7 @@ Operations and their `payload` fields are identical to the SOAP input parameters
 
 | Operation | LDAP equivalent |
 |---|---|
-| Add | `ldapadd` — new `inetOrgPerson` entry under `ou=People` |
+| Add | `ldapadd` — new `inetOrgPerson` entry under `ou=Users` |
 | Modify | `ldapmodify` — attributes `cn`, `sn`, `givenName`, `mail`, `departmentNumber`, `title` |
 | Delete | `ldapdelete` — remove entry by DN |
 | Lookup | `ldapsearch` — filter `(uid=<username>)` |
@@ -750,7 +750,7 @@ Operations and their `payload` fields are identical to the SOAP input parameters
 | Restore | `ldapmodify` — remove `description` attribute |
 | Change / Reset Password | `ldapmodify` — replace `userPassword` |
 | Get Groups | `ldapsearch` — base `ou=Groups`, filter `(objectClass=groupOfNames)` |
-| Get User Groups | `ldapsearch` — filter `(member=uid=<user>,ou=People,...)` |
+| Get User Groups | `ldapsearch` — filter `(member=uid=<user>,ou=Users,...)` |
 | Assign Groups | `ldapmodify` — add `member` to group |
 | Remove Groups | `ldapmodify` — remove `member` from group |
 
@@ -799,7 +799,7 @@ darkhorn/
 │       └── store.js           # PostgreSQL
 ├── ldap/
 │   └── bootstrap/
-│       ├── 01-structure.ldif  # ou=People, ou=Groups, service account
+│       ├── 01-structure.ldif  # service account (ou=Users, ou=Groups created by image)
 │       ├── 02-users.ldif      # 150 inetOrgPerson
 │       └── 03-groups.ldif     # 50 groupOfNames
 └── jdbc/
