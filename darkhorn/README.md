@@ -115,7 +115,7 @@ curl -s -X POST http://<host>:3002/soap \
 </soapenv:Envelope>'
 ```
 
-> Tip: pipe to `xmllint --format -` for readable XML output.
+> Tip: append `| xmllint --format -` to any `curl` command for readable XML output.
 
 #### darkhorn-jdbc
 
