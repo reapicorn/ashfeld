@@ -82,8 +82,9 @@ export default function EmployeeDetail() {
   async function handleTerminate(date) {
     setSaving(true);
     try {
-      const updated = await api.terminate(id, { terminationDate: date });
-      setEmployee(updated); setModal(null);
+      await api.terminate(id, { terminationDate: date });
+      const fresh = await api.getEmployee(id);
+      setEmployee(fresh); setForm(fresh); setModal(null);
     } catch (e) { setError(e.message); }
     setSaving(false);
   }
@@ -91,8 +92,9 @@ export default function EmployeeDetail() {
   async function handleSetStatus(status) {
     setSaving(true);
     try {
-      const updated = await api.setStatus(id, { status });
-      setEmployee(updated); setModal(null);
+      await api.setStatus(id, { status });
+      const fresh = await api.getEmployee(id);
+      setEmployee(fresh); setForm(fresh); setModal(null);
     } catch (e) { setError(e.message); }
     setSaving(false);
   }
