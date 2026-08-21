@@ -153,30 +153,14 @@ export default function EmployeeDetail() {
               <EditableField label="Department"  name="department" value={form.department} onChange={handleChange} options={departments} />
               <EditableField label="Job title"   name="jobTitle"   value={form.jobTitle}   onChange={handleChange} />
               <EditableField label="Hire date"   name="hireDate"   value={form.hireDate?.split('T')[0]||''} onChange={handleChange} type="date" />
-              <div>
-                <label className="text-xs text-gray-500 block mb-0.5">Manager</label>
-                <input
-                  type="text"
-                  list="manager-list"
-                  value={managerQuery}
-                  placeholder="Search manager…"
-                  onChange={e => {
-                    const q = e.target.value;
-                    setManagerQuery(q);
-                    const match = allEmployees.find(
-                      emp => `${emp.firstName} ${emp.lastName}`.toLowerCase() === q.toLowerCase()
-                    );
-                    setForm(f => ({ ...f, managerId: match ? match.id : null }));
-                  }}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-crown-500"
-                />
-                <datalist id="manager-list">
-                  <option value="">— No manager —</option>
-                  {allEmployees.filter(e => e.id !== employee.id).map(e => (
-                    <option key={e.id} value={`${e.firstName} ${e.lastName}`} />
-                  ))}
-                </datalist>
-              </div>
+              <ManagerPicker
+                value={managerQuery}
+                employees={allEmployees.filter(e => e.id !== employee.id)}
+                onChange={(name, id) => {
+                  setManagerQuery(name);
+                  setForm(f => ({ ...f, managerId: id }));
+                }}
+              />
             </div>
             <div className="flex gap-2 pt-2">
               <button
@@ -286,5 +270,63 @@ function TerminateModal({ onConfirm, onClose, saving }) {
         </button>
       </div>
     </Modal>
+  );
+}
+
+function ManagerPicker({ value, employees, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState(value);
+  const ref = React.useRef(null);
+
+  // sync external value (e.g. on cancel)
+  React.useEffect(() => { setQuery(value); }, [value]);
+
+  // close on outside click
+  React.useEffect(() => {
+    function handler(e) { if (ref.current && !ref.current.contains(e.target)) setOpen(false); }
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const filtered = query.trim()
+    ? employees.filter(e => `${e.firstName} ${e.lastName}`.toLowerCase().includes(query.toLowerCase()))
+    : employees;
+
+  function select(name, id) {
+    setQuery(name);
+    setOpen(false);
+    onChange(name, id);
+  }
+
+  return (
+    <div ref={ref} className="relative">
+      <label className="text-xs text-gray-500 block mb-0.5">Manager</label>
+      <input
+        type="text"
+        value={query}
+        placeholder="Search manager…"
+        onFocus={() => setOpen(true)}
+        onChange={e => { setQuery(e.target.value); setOpen(true); onChange(e.target.value, null); }}
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-crown-500"
+      />
+      {open && (
+        <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto text-sm">
+          <li
+            onMouseDown={() => select('', null)}
+            className="px-3 py-2 cursor-pointer hover:bg-gray-50 text-gray-400"
+          >— No manager —</li>
+          {filtered.map(e => (
+            <li
+              key={e.id}
+              onMouseDown={() => select(`${e.firstName} ${e.lastName}`, e.id)}
+              className="px-3 py-2 cursor-pointer hover:bg-gray-50"
+            >{e.firstName} {e.lastName}</li>
+          ))}
+          {filtered.length === 0 && (
+            <li className="px-3 py-2 text-gray-400">No results</li>
+          )}
+        </ul>
+      )}
+    </div>
   );
 }
