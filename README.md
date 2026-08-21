@@ -188,16 +188,6 @@ docker compose down -v
 docker compose up --build -d
 ```
 
-### Stop
-
-```bash
-cd ~/ashfeld/darkhorn
-docker compose down
-
-cd ~/ashfeld/hollowcrown
-docker compose down
-```
-
 ### View logs
 
 ```bash
