@@ -1,4 +1,4 @@
-﻿dn: uid=james.smith,ou=People,dc=darkhorn,dc=local
+dn: uid=james.smith,ou=People,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person

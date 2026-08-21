@@ -1,4 +1,4 @@
-﻿dn: cn=admins,ou=Groups,dc=darkhorn,dc=local
+dn: cn=admins,ou=Groups,dc=darkhorn,dc=local
 objectClass: groupOfNames
 cn: admins
 description: admins group
