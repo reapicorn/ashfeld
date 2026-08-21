@@ -1,0 +1,10 @@
+{
+  "name": "darkhorn-seed",
+  "version": "1.0.0",
+  "description": "Seed script for darkhorn databases",
+  "main": "seed.js",
+  "dependencies": {
+    "pg": "^8.11.3",
+    "uuid": "^9.0.0"
+  }
+}

@@ -1,0 +1,179 @@
+# hollowcrown
+
+Hollowcrown was the name of the council that governed Ashfeld before it fell apart. When the council dissolved, the name passed to the bureau that kept its records — the registry of workers, departments, appointments and departures. It is the closest thing Ashfeld has to an official roster. Whether the data is accurate is a different question.
+
+This project is a fictional HR system. It provides a REST API and a web UI for managing employees across departments, and serves as the upstream identity feed for integration exercises against the darkhorn backends.
+
+---
+
+## Architecture
+
+```
++-----------------------------------------------+
+|                  hollowcrown                  |
+|                                               |
+|  +-----------+     +-----------+     +-----+  |
+|  |  Web UI   | --> |    API    | --> |  DB |  |
+|  |  :8080    |     |  :4000    |     |  PG |  |
+|  +-----------+     +-----------+     +-----+  |
++-----------------------------------------------+
+```
+
+| Service | Image | Port |
+|---|---|---|
+| `hollowcrown-web` | nginx (built from Vite) | `8080` |
+| `hollowcrown-api` | node:18-alpine | `4000` (internal) |
+| `hollowcrown-db` | postgres:15-alpine | internal only |
+
+---
+
+## Quick start
+
+```bash
+cp .env.example .env
+docker compose up --build -d
+```
+
+The web UI will be available at **http://localhost:8080** (or the host's IP on port 8080).
+
+The seed container runs once on first boot and populates 50 employees across 6 departments; subsequent restarts skip the seed automatically.
+
+---
+
+## Environment variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `POSTGRES_DB` | `hollowcrown` | Database name |
+| `POSTGRES_USER` | `crownkeeper` | PostgreSQL user |
+| `POSTGRES_PASSWORD` | `C0r0n4Kpr!` | PostgreSQL password |
+| `WEB_PORT` | `8080` | Host port for the web UI |
+
+---
+
+## API reference
+
+Base URL: `http://<host>:4000`
+
+### Employees
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/employees` | List employees (supports `search`, `department`, `status`, `page`, `limit`) |
+| `POST` | `/api/employees` | Create employee |
+| `GET` | `/api/employees/:id` | Get employee by UUID |
+| `PUT` | `/api/employees/:id` | Update employee |
+| `POST` | `/api/employees/:id/terminate` | Terminate employee (`termination_date` required) |
+| `POST` | `/api/employees/:id/set-status` | Change status (`active` / `on-leave`) |
+
+### Departments
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/departments` | List all departments |
+
+### Other
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/health` | Liveness check |
+| `GET` | `/api/stats` | Dashboard stats (counts, by-department, recent hires) |
+
+---
+
+## Employee model
+
+```json
+{
+  "id":               "uuid",
+  "employee_id":      "HC-00042",
+  "first_name":       "Jane",
+  "last_name":        "Doe",
+  "email":            "jane.doe@hollowcrown.local",
+  "phone":            "+1-555-8271",
+  "department":       "Engineering",
+  "job_title":        "Senior Engineer",
+  "manager_id":       "uuid | null",
+  "hire_date":        "2019-03-15",
+  "status":           "active | on-leave | terminated",
+  "termination_date": "2024-01-01 | null",
+  "created_at":       "ISO 8601",
+  "updated_at":       "ISO 8601"
+}
+```
+
+### Status lifecycle
+
+```
+active ──▶ on-leave ──▶ active
+active ──▶ terminated
+on-leave ──▶ terminated
+```
+
+> **Note:** Terminated employees are never deleted — their records remain for historical reference.
+
+---
+
+## Integration scenarios
+
+hollowcrown acts as the **upstream HR feed**. A typical integration exercise would:
+
+1. **Reconcile** — compare hollowcrown employees against accounts on a target system (e.g., `darkhorn-rest`)
+2. **Provision** — create accounts for `active` employees who have no account yet
+3. **Deprovision** — disable or remove accounts for `terminated` employees
+4. **Suspend** — manage `on-leave` employees according to policy
+5. **Sync** — keep attributes (name, email, department, title) up to date when hollowcrown records change
+
+---
+
+## Resetting to initial state
+
+Use these procedures depending on how much you want to roll back.
+
+### Wipe all employee data and re-seed
+
+Drops the database volume and re-creates it from scratch. All changes made through the UI or API are lost. The stack restarts with the original 50 employees.
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+The seed runs automatically on first boot and repopulates the data.
+
+### Delete specific employees via the UI
+
+Open the web UI at `http://<host>:8080`, navigate to the employee, and use the **Terminate** action. Terminated records are kept for history but are no longer active.
+
+If you need a hard delete (remove the row entirely), connect directly to the database:
+
+```bash
+docker exec -it hollowcrown-db psql -U crownkeeper -d hollowcrown
+
+-- Delete a specific employee by employee_id
+DELETE FROM employees WHERE employee_id = 'HC-00042';
+
+-- Delete all terminated employees
+DELETE FROM employees WHERE status = 'terminated';
+
+-- Delete ALL employees (data only, keeps schema intact)
+TRUNCATE employees;
+```
+
+After a `TRUNCATE`, the seed will not re-run automatically because the service is already up. Re-seed manually:
+
+```bash
+docker compose run --rm hollowcrown-seed
+```
+
+### Restore a terminated employee to active
+
+Termination is final in the UI — the Actions panel is hidden once an employee is terminated. The only way to revert it is directly in the database:
+
+```bash
+docker exec -it hollowcrown-db psql -U crownkeeper -d hollowcrown
+
+UPDATE employees
+SET status = 'active', termination_date = NULL, updated_at = NOW()
+WHERE employee_id = 'HC-00042';
+```

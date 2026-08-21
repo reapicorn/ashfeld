@@ -1,0 +1,9 @@
+{
+  "name": "darkhorn-sftp-seed",
+  "version": "1.0.0",
+  "description": "Seed script for darkhorn-sftp CSV files",
+  "main": "seed.js",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

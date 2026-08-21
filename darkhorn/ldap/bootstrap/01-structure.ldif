@@ -1,0 +1,18 @@
+dn: ou=People,dc=darkhorn,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=darkhorn,dc=local
+objectClass: organizationalUnit
+ou: Groups
+
+dn: cn=svc-darkhorn,ou=People,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: svc-darkhorn
+sn: ServiceAccount
+uid: svc-darkhorn
+mail: svc-darkhorn@darkhorn.local
+userPassword: Sp3ctr3Qu13t!
+description: LDAP service account for darkhorn adapter
