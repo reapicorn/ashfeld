@@ -106,14 +106,15 @@ docker compose version
 **Option A — SCP**
 
 ```bash
-scp -r ./darkhorn/.    user@server:~/darkhorn
-scp -r ./hollowcrown/. user@server:~/hollowcrown
+ssh user@server 'mkdir -p ~/ashfeld/darkhorn ~/ashfeld/hollowcrown'
+scp -r ./darkhorn/.    user@server:~/ashfeld/darkhorn
+scp -r ./hollowcrown/. user@server:~/ashfeld/hollowcrown
 ```
 
 **Option B — git clone**
 
 ```bash
-git clone <repo-url> ~/lab
+git clone <repo-url> ~/ashfeld
 ```
 
 ---
@@ -122,12 +123,12 @@ git clone <repo-url> ~/lab
 
 ```bash
 # darkhorn
-cd ~/darkhorn
+cd ~/ashfeld/darkhorn
 cp .env.example .env
 docker compose up -d
 
 # hollowcrown
-cd ~/hollowcrown
+cd ~/ashfeld/hollowcrown
 cp .env.example .env
 docker compose up --build -d
 ```
@@ -149,4 +150,59 @@ sudo ufw allow 15672/tcp    # RabbitMQ Management UI
 sudo ufw allow 389/tcp      # LDAP
 sudo ufw allow 8080/tcp     # hollowcrown web UI
 sudo ufw enable
+```
+
+---
+
+## Useful commands
+
+### Check running containers
+
+```bash
+docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+```
+
+### Rebuild a project (after code or config changes)
+
+```bash
+# darkhorn
+cd ~/ashfeld/darkhorn
+docker compose up --build -d
+
+# hollowcrown
+cd ~/ashfeld/hollowcrown
+docker compose up --build -d
+```
+
+### Stop a project
+
+```bash
+cd ~/ashfeld/darkhorn
+docker compose down
+
+cd ~/ashfeld/hollowcrown
+docker compose down
+```
+
+### Stop and wipe all data (volumes included)
+
+```bash
+cd ~/ashfeld/darkhorn
+docker compose down -v
+
+cd ~/ashfeld/hollowcrown
+docker compose down -v
+```
+
+> After `down -v`, the next `docker compose up -d` will re-seed from scratch automatically.
+
+### View logs
+
+```bash
+# All services
+docker compose logs -f
+
+# Single service
+docker compose logs -f hollowcrown-api
+docker compose logs -f darkhorn-rest
 ```
