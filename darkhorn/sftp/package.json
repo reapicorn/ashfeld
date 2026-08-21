@@ -4,6 +4,6 @@
   "description": "Seed script for darkhorn-sftp CSV files",
   "main": "seed.js",
   "dependencies": {
-    "uuid": "^9.0.0"
+    "uuid": "^14.0.2"
   }
 }
