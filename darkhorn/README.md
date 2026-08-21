@@ -757,7 +757,6 @@ User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`
 ```
 darkhorn/
 ├── docker-compose.yml
-├── .env.example
 ├── db/
 │   ├── schema.sql             # Shared schema (users, groups, user_groups)
 │   ├── init-db.sh             # Creates the 4 PostgreSQL databases and applies schema
