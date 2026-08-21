@@ -47,14 +47,19 @@ export default function EmployeeDetail() {
   const [employee, setEmployee] = useState(null);
   const [departments, setDepts] = useState([]);
   const [allEmployees, setAllEmployees] = useState([]);
-  const [editing, setEditing]   = useState(false);
-  const [form, setForm]         = useState({});
+  const [editing, setEditing]     = useState(false);
+  const [form, setForm]           = useState({});
+  const [managerQuery, setManagerQuery] = useState('');
   const [modal, setModal]       = useState(null); // 'terminate' | 'status'
   const [saving, setSaving]     = useState(false);
   const [error, setError]       = useState(null);
 
   useEffect(() => {
-    api.getEmployee(id).then(e => { setEmployee(e); setForm(e); }).catch(e => setError(e.message));
+    api.getEmployee(id).then(e => {
+      setEmployee(e);
+      setForm(e);
+      setManagerQuery(e.managerName || '');
+    }).catch(e => setError(e.message));
     api.getDepartments().then(setDepts);
     api.getEmployees({ limit: 100 }).then(d => setAllEmployees(d.resources));
   }, [id]);
@@ -74,7 +79,9 @@ export default function EmployeeDetail() {
         managerId: form.managerId || null,
       });
       const fresh = await api.getEmployee(id);
-      setEmployee(fresh); setForm(fresh); setEditing(false);
+      setEmployee(fresh); setForm(fresh);
+      setManagerQuery(fresh.managerName || '');
+      setEditing(false);
     } catch (e) { setError(e.message); }
     setSaving(false);
   }
@@ -148,17 +155,27 @@ export default function EmployeeDetail() {
               <EditableField label="Hire date"   name="hireDate"   value={form.hireDate?.split('T')[0]||''} onChange={handleChange} type="date" />
               <div>
                 <label className="text-xs text-gray-500 block mb-0.5">Manager</label>
-                <select
-                  name="managerId"
-                  value={form.managerId || ''}
-                  onChange={handleChange}
+                <input
+                  type="text"
+                  list="manager-list"
+                  value={managerQuery}
+                  placeholder="Search manager…"
+                  onChange={e => {
+                    const q = e.target.value;
+                    setManagerQuery(q);
+                    const match = allEmployees.find(
+                      emp => `${emp.firstName} ${emp.lastName}`.toLowerCase() === q.toLowerCase()
+                    );
+                    setForm(f => ({ ...f, managerId: match ? match.id : null }));
+                  }}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-crown-500"
-                >
+                />
+                <datalist id="manager-list">
                   <option value="">— No manager —</option>
                   {allEmployees.filter(e => e.id !== employee.id).map(e => (
-                    <option key={e.id} value={e.id}>{e.firstName} {e.lastName}</option>
+                    <option key={e.id} value={`${e.firstName} ${e.lastName}`} />
                   ))}
-                </select>
+                </datalist>
               </div>
             </div>
             <div className="flex gap-2 pt-2">
