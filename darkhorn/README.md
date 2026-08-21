@@ -120,7 +120,7 @@ curl -s -X POST http://<host>:3002/soap \
 #### darkhorn-jdbc
 
 ```bash
-docker exec -it darkhorn-postgres psql -U darkhorn -d darkhorn_jdbc \
+docker exec -it darkhorn-postgres psql -h localhost -U darkhorn -d darkhorn_jdbc \
   -c "SELECT username, email, status FROM users LIMIT 5;"
 ```
 
