@@ -177,6 +177,22 @@ bash ~/ashfeld/update-hollowcrown.sh
 bash ~/ashfeld/update-darkhorn.sh
 ```
 
+To run the scripts without `bash ~/ashfeld/` prefix, mark them executable and add the directory to your PATH:
+
+```bash
+chmod +x ~/ashfeld/update.sh ~/ashfeld/update-hollowcrown.sh ~/ashfeld/update-darkhorn.sh
+echo 'export PATH="$HOME/ashfeld:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+After that you can call them directly from anywhere:
+
+```bash
+update.sh
+update-hollowcrown.sh
+update-darkhorn.sh
+```
+
 ### Rebuild a project (after local code or config changes)
 
 ```bash
