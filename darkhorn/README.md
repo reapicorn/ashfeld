@@ -53,8 +53,14 @@ The PostgreSQL-backed services (REST, SOAP, MQ, JDBC) are seeded automatically o
 > OpenLDAP does not support automated seeding via Docker entrypoint the same way PostgreSQL does. After the containers are up, run the following three commands from the project root to generate and load the LDIF files.
 
 ```bash
-# Generate the LDIF files from the seed script (creates 02-users.ldif and 03-groups.ldif)
-node ldap/scripts/generate-seed-ldif.js
+bash ldap/scripts/seed-ldap.sh
+```
+
+Or step by step:
+
+```bash
+# Generate the LDIF files (creates 02-users.ldif and 03-groups.ldif)
+python3 ldap/scripts/generate-seed-ldif.py
 
 # Load users into the directory
 docker exec -i darkhorn-ldap ldapadd -x \
@@ -78,13 +84,7 @@ docker compose run --rm seed
 # LDAP — delete volume first, then re-seed
 docker compose down -v
 docker compose up -d
-node ldap/scripts/generate-seed-ldif.js
-docker exec -i darkhorn-ldap ldapadd -x \
-  -D 'cn=admin,dc=darkhorn,dc=local' \
-  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/02-users.ldif
-docker exec -i darkhorn-ldap ldapadd -x \
-  -D 'cn=admin,dc=darkhorn,dc=local' \
-  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/03-groups.ldif
+bash ldap/scripts/seed-ldap.sh
 ```
 
 ---
@@ -170,6 +170,29 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
 Or from the Management UI at `http://<host>:15672` (user: `darkhorn`, password: `Wr41thPuls3!`).
 
 #### darkhorn-ldap
+
+The LDAP directory starts with only the base structure (`ou=People`, `ou=Groups`, and the service account). Before testing, seed it with 150 users and 50 groups:
+
+```bash
+cd ~/ashfeld/darkhorn
+python3 ldap/scripts/generate-seed-ldif.py
+
+docker exec -i darkhorn-ldap ldapadd -x \
+  -D 'cn=admin,dc=darkhorn,dc=local' \
+  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/02-users.ldif
+
+docker exec -i darkhorn-ldap ldapadd -x \
+  -D 'cn=admin,dc=darkhorn,dc=local' \
+  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/03-groups.ldif
+```
+
+Or use the all-in-one script:
+
+```bash
+bash ldap/scripts/seed-ldap.sh
+```
+
+Then verify:
 
 ```bash
 ldapsearch -x \
@@ -831,8 +854,8 @@ darkhorn/
 │   │   ├── 02-users.ldif      # 150 inetOrgPerson (generated)
 │   │   └── 03-groups.ldif     # 50 groupOfNames (generated)
 │   └── scripts/
-│       ├── generate-seed-ldif.js
-│       └── seed-ldap.sh
+│       ├── generate-seed-ldif.py  # Generates 02-users.ldif and 03-groups.ldif (requires python3)
+│       └── seed-ldap.sh           # Runs the generator then imports into the container
 └── jdbc/
     └── jdbc.properties        # JDBC connection parameters
 ```
