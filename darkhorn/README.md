@@ -147,8 +147,8 @@ curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
 Verify:
 
 ```bash
-ldapsearch -x \
-  -H ldap://<host>:389 \
+docker exec -it darkhorn-ldap ldapsearch -x \
+  -H ldap://localhost:389 \
   -D 'cn=svc-darkhorn,dc=darkhorn,dc=local' \
   -w 'Sp3ctr3Qu13t!' \
   -b 'ou=People,dc=darkhorn,dc=local' \
