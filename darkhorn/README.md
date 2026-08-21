@@ -120,12 +120,6 @@ curl -s -X POST http://<host>:3002/soap \
 #### darkhorn-jdbc
 
 ```bash
-# From the VM
-psql -h localhost -p 5432 -U darkhorn -d darkhorn_jdbc \
-  -c "SELECT username, email, status FROM users LIMIT 5;"
-# password: darkhorn
-
-# From outside the VM
 psql -h <host> -p 5432 -U darkhorn -d darkhorn_jdbc \
   -c "SELECT username, email, status FROM users LIMIT 5;"
 # password: darkhorn
