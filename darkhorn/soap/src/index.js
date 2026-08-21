@@ -186,12 +186,10 @@ async function main() {
 
   // Attach SOAP server to /soap path
   const wsdl = require('fs').readFileSync(WSDL_PATH, 'utf8');
-  const soapServer = soap.listen(server, '/soap', serviceImpl, wsdl, () => {
+  soap.listen(server, '/soap', serviceImpl, wsdl, () => {
     console.log(`[darkhorn-soap] SOAP endpoint: http://0.0.0.0:${PORT}/soap`);
     console.log(`[darkhorn-soap] WSDL:          http://0.0.0.0:${PORT}/soap?wsdl`);
   });
-
-  soapServer.addSoapHeader(null); // noop — keeps soap happy
 
   // Optional: enforce WS-Security on all operations
   // Uncomment if you want header-level auth:
