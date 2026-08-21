@@ -184,7 +184,7 @@ cd ~/ashfeld/hollowcrown
 docker compose down
 ```
 
-### Stop and wipe all data (volumes included)
+### Stop and wipe all data
 
 ```bash
 cd ~/ashfeld/darkhorn
