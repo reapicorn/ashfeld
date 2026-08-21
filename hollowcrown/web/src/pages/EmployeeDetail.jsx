@@ -66,14 +66,15 @@ export default function EmployeeDetail() {
   async function handleSave() {
     setSaving(true);
     try {
-      const updated = await api.updateEmployee(id, {
+      await api.updateEmployee(id, {
         firstName: form.firstName, lastName: form.lastName,
         email: form.email, phone: form.phone,
         department: form.department, jobTitle: form.jobTitle,
         hireDate: form.hireDate,
         managerId: form.managerId || null,
       });
-      setEmployee(updated); setEditing(false);
+      const fresh = await api.getEmployee(id);
+      setEmployee(fresh); setForm(fresh); setEditing(false);
     } catch (e) { setError(e.message); }
     setSaving(false);
   }
