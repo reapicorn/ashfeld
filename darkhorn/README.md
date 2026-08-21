@@ -30,7 +30,7 @@ Each section is a prerequisite for the next.
 **Step 1 â€” start the stack:**
 
 ```bash
-cd ~/darkhorn
+cd ~/ashfeld/darkhorn
 docker compose up --build -d
 ```
 
