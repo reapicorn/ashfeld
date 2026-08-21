@@ -50,38 +50,17 @@ The PostgreSQL-backed services (REST, SOAP, MQ, JDBC) are seeded automatically o
 
 **Step 2 — seed LDAP manually (required, first time only):**
 
-> OpenLDAP does not support automated seeding via Docker entrypoint the same way PostgreSQL does. After the containers are up, run the following three commands from the project root to generate and load the LDIF files.
+> The base structure (OUs and service account) is loaded automatically on first boot. Users and groups must be seeded manually once after the container is up.
 
 ```bash
 bash ldap/scripts/seed-ldap.sh
 ```
 
-Or step by step:
-
-```bash
-# Generate the LDIF files (creates 02-users.ldif and 03-groups.ldif)
-python3 ldap/scripts/generate-seed-ldif.py
-
-# Load users into the directory
-docker exec -i darkhorn-ldap ldapadd -x \
-  -D 'cn=admin,dc=darkhorn,dc=local' \
-  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/02-users.ldif
-
-# Load groups into the directory
-docker exec -i darkhorn-ldap ldapadd -x \
-  -D 'cn=admin,dc=darkhorn,dc=local' \
-  -w 'Bl4ckTr33Admin!' < ldap/bootstrap/03-groups.ldif
-```
-
-This only needs to be done once. The LDAP data persists across restarts as long as the Docker volume is not deleted.
+The script waits for the container to be ready before importing. This only needs to be done once. The LDAP data persists across restarts as long as the Docker volume is not deleted.
 
 **Re-seeding from scratch:**
 
 ```bash
-# PostgreSQL (all backends)
-docker compose run --rm seed
-
-# LDAP — delete volume first, then re-seed
 docker compose down -v
 docker compose up -d
 bash ldap/scripts/seed-ldap.sh

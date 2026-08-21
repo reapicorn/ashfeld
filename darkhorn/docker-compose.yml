@@ -159,24 +159,21 @@ services:
 
   # ── OpenLDAP ──────────────────────────────────────────────────────────────────
   darkhorn-ldap:
-    image: osixia/openldap:1.5.0
+    image: bitnami/openldap:2
     container_name: darkhorn-ldap
     restart: unless-stopped
     environment:
-      LDAP_ORGANISATION:        "Darkhorn"
-      LDAP_DOMAIN:              "darkhorn.local"
+      LDAP_ROOT:                "dc=darkhorn,dc=local"
+      LDAP_ADMIN_USERNAME:      "admin"
       LDAP_ADMIN_PASSWORD:      ${LDAP_ADMIN_PASS:-Bl4ckTr33Admin!}
-      LDAP_READONLY_USER:       "true"
-      LDAP_READONLY_USER_USERNAME: ${LDAP_SVC_USER:-svc-darkhorn}
-      LDAP_READONLY_USER_PASSWORD: ${LDAP_SVC_PASS:-Sp3ctr3Qu13t!}
-      LDAP_TLS:                 "false"
+      LDAP_USERS:               ""
+      LDAP_PASSWORDS:           ""
+      LDAP_EXTRA_SCHEMAS:       "cosine,inetorgperson,nis"
     volumes:
-      - ldap_data:/var/lib/ldap
-      - ldap_config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
+      - ldap_data:/bitnami/openldap
+      - ./ldap/bootstrap:/ldifs
     ports:
-      - "${LDAP_PORT:-389}:389"
-    command: --loglevel warning
+      - "${LDAP_PORT:-389}:1389"
 
 volumes:
   postgres_data:
@@ -184,4 +181,3 @@ volumes:
   sftp_data:
   rabbitmq_data:
   ldap_data:
-  ldap_config:
