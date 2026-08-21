@@ -30,7 +30,6 @@ This project is a fictional HR system. It provides a REST API and a web UI for m
 ## Quick start
 
 ```bash
-cp .env.example .env
 docker compose up --build -d
 ```
 

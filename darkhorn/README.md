@@ -31,8 +31,7 @@ Each section is a prerequisite for the next.
 
 ```bash
 cd ~/darkhorn
-cp .env.example .env
-docker compose up -d
+docker compose up --build -d
 ```
 
 The stack automatically brings up six backends:
