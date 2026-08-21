@@ -162,28 +162,36 @@ docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 
 ### Update — keep data
 
+After pulling changes from GitHub:
+
 ```bash
 # darkhorn
 cd ~/ashfeld/darkhorn
+git pull
 docker compose up --build -d
 
 # hollowcrown
 cd ~/ashfeld/hollowcrown
+git pull
 docker compose up --build -d
 ```
 
 ### Update — wipe data
+
+After pulling changes from GitHub, if you want to reset all data:
 
 > Tip: all data is re-seeded automatically on the next start.
 
 ```bash
 # darkhorn
 cd ~/ashfeld/darkhorn
+git pull
 docker compose down -v
 docker compose up --build -d
 
 # hollowcrown
 cd ~/ashfeld/hollowcrown
+git pull
 docker compose down -v
 docker compose up --build -d
 ```
