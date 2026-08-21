@@ -127,13 +127,15 @@ docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc \
 #### darkhorn-mq
 
 ```bash
-rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
-  exchange='' \
-  routing_key='darkhorn.requests' \
+docker exec -it darkhorn-rabbitmq rabbitmqadmin \
+  -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
   payload='{"operation":"SearchUsers","payload":{"count":3}}'
 ```
 
 Or from the Management UI at `http://<host>:15672` (user: `darkhorn`, password: `Wr41thPuls3!`).
+
+> The adapter connects via AMQP on port `5672`.
 
 #### darkhorn-ldap
 
