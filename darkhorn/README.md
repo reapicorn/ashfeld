@@ -87,7 +87,7 @@ curl -s -H "Authorization: Bearer $TOKEN" \
 #### darkhorn-sftp
 
 ```bash
-sftp spectral@<host> -P 2222
+sftp -P 2222 spectral@<host>
 # password: Sp3ctr4lF1l3!
 sftp> ls darkhorn/
 sftp> get darkhorn/users.csv
