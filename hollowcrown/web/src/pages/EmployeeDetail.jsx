@@ -46,6 +46,7 @@ export default function EmployeeDetail() {
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
   const [departments, setDepts] = useState([]);
+  const [allEmployees, setAllEmployees] = useState([]);
   const [editing, setEditing]   = useState(false);
   const [form, setForm]         = useState({});
   const [modal, setModal]       = useState(null); // 'terminate' | 'status'
@@ -55,6 +56,7 @@ export default function EmployeeDetail() {
   useEffect(() => {
     api.getEmployee(id).then(e => { setEmployee(e); setForm(e); }).catch(e => setError(e.message));
     api.getDepartments().then(setDepts);
+    api.getEmployees({ limit: 100 }).then(d => setAllEmployees(d.resources));
   }, [id]);
 
   function handleChange(e) {
@@ -69,6 +71,7 @@ export default function EmployeeDetail() {
         email: form.email, phone: form.phone,
         department: form.department, jobTitle: form.jobTitle,
         hireDate: form.hireDate,
+        managerId: form.managerId || null,
       });
       setEmployee(updated); setEditing(false);
     } catch (e) { setError(e.message); }
@@ -140,6 +143,20 @@ export default function EmployeeDetail() {
               <EditableField label="Department"  name="department" value={form.department} onChange={handleChange} options={departments} />
               <EditableField label="Job title"   name="jobTitle"   value={form.jobTitle}   onChange={handleChange} />
               <EditableField label="Hire date"   name="hireDate"   value={form.hireDate?.split('T')[0]||''} onChange={handleChange} type="date" />
+              <div>
+                <label className="text-xs text-gray-500 block mb-0.5">Manager</label>
+                <select
+                  name="managerId"
+                  value={form.managerId || ''}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-crown-500"
+                >
+                  <option value="">— No manager —</option>
+                  {allEmployees.filter(e => e.id !== employee.id).map(e => (
+                    <option key={e.id} value={e.id}>{e.firstName} {e.lastName}</option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="flex gap-2 pt-2">
               <button
