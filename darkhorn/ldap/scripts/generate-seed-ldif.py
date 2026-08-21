@@ -4,11 +4,13 @@ generate-seed-ldif.py
 Generates 02-users.ldif and 03-groups.ldif for darkhorn-ldap.
 
 Usage:
-    python3 generate-seed-ldif.py
+    python3 generate-seed-ldif.py [--out <dir>]
 
-Output files are written to ldap/bootstrap/ (one level up from this script).
+Output files are written to ldap/bootstrap/ by default (one level up from this
+script), or to the directory specified by --out.
 """
 
+import argparse
 import os
 import random
 import sys
@@ -135,7 +137,13 @@ def build_groups_ldif(groups, users):
 
 
 def main():
-    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'bootstrap')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--out', default=None,
+                        help='Directory to write LDIF files (default: ../bootstrap)')
+    args = parser.parse_args()
+
+    out_dir = args.out if args.out else \
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'bootstrap')
 
     groups = generate_groups()
     users  = generate_users(groups)
