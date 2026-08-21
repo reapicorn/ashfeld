@@ -112,13 +112,9 @@ git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ## Starting each project
 
 ```bash
-# darkhorn
-cd ~/ashfeld/darkhorn
-docker compose up --build -d
-
-# hollowcrown
-cd ~/ashfeld/hollowcrown
-docker compose up --build -d
+cd ~/ashfeld/darkhorn && docker compose up --build -d
+cd ~/ashfeld/hollowcrown && docker compose up --build -d
+cd ~
 ```
 
 Both projects can run simultaneously on the same host without port conflicts.
