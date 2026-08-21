@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-cd "$(dirname "$0")/.."
+REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+BIN_DIR="$REPO_DIR/bin"
+
+cd "$REPO_DIR"
 
 echo "==> Pulling latest changes..."
 git checkout -- .
 git pull
+chmod +x "$BIN_DIR"/ashfeld-*.sh
 
 echo "==> Rebuilding hollowcrown..."
 cd hollowcrown
