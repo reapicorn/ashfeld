@@ -115,16 +115,6 @@ scp -r ./hollowcrown/. user@server:~/ashfeld/hollowcrown
 
 ```bash
 git clone https://github.com/reapicorn/ashfeld ~/ashfeld
-bash ~/ashfeld/ashfeld-setenv.sh
-source ~/.bashrc
-```
-
-This marks the update scripts executable and adds them to your PATH. After that you can call them from anywhere:
-
-```bash
-ashfeld-update.sh             # pull + rebuild both projects
-ashfeld-update-hollowcrown.sh # rebuild only hollowcrown
-ashfeld-update-darkhorn.sh    # rebuild only darkhorn
 ```
 
 ---
