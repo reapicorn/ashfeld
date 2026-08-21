@@ -125,7 +125,7 @@ git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 # darkhorn
 cd ~/ashfeld/darkhorn
 cp .env.example .env
-docker compose up -d
+docker compose up --build -d
 
 # hollowcrown
 cd ~/ashfeld/hollowcrown
