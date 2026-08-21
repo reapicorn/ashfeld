@@ -164,33 +164,19 @@ docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 
 ### Updating from the repository
 
-If the repo was cloned with git, use the update scripts to pull the latest changes and rebuild in one step:
+Run `ashfeld-setenv.sh` once after cloning to mark the scripts executable and add them to your PATH:
 
 ```bash
-# Pull + rebuild both projects
-bash ~/ashfeld/ashfeld-update.sh
-
-# Rebuild only hollowcrown
-bash ~/ashfeld/ashfeld-update-hollowcrown.sh
-
-# Rebuild only darkhorn
-bash ~/ashfeld/ashfeld-update-darkhorn.sh
-```
-
-To run the scripts without `bash ~/ashfeld/` prefix, mark them executable and add the directory to your PATH:
-
-```bash
-chmod +x ~/ashfeld/ashfeld-update.sh ~/ashfeld/ashfeld-update-hollowcrown.sh ~/ashfeld/ashfeld-update-darkhorn.sh
-echo 'export PATH="$HOME/ashfeld:$PATH"' >> ~/.bashrc
+bash ~/ashfeld/ashfeld-setenv.sh
 source ~/.bashrc
 ```
 
-After that you can call them directly from anywhere:
+After that you can call the update scripts directly from anywhere:
 
 ```bash
-ashfeld-update.sh
-ashfeld-update-hollowcrown.sh
-ashfeld-update-darkhorn.sh
+ashfeld-update.sh             # pull + rebuild both projects
+ashfeld-update-hollowcrown.sh # rebuild only hollowcrown
+ashfeld-update-darkhorn.sh    # rebuild only darkhorn
 ```
 
 ### Rebuild a project (after local code or config changes)
