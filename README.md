@@ -160,9 +160,7 @@ sudo ufw enable
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 ```
 
-### Rebuild a project
-
-> Tip: use this after pulling an update from the repo. Data is preserved.
+### Update — keep data
 
 ```bash
 # darkhorn
@@ -174,7 +172,23 @@ cd ~/ashfeld/hollowcrown
 docker compose up --build -d
 ```
 
-### Stop a project
+### Update — wipe data
+
+> Tip: all data is re-seeded automatically on the next start.
+
+```bash
+# darkhorn
+cd ~/ashfeld/darkhorn
+docker compose down -v
+docker compose up --build -d
+
+# hollowcrown
+cd ~/ashfeld/hollowcrown
+docker compose down -v
+docker compose up --build -d
+```
+
+### Stop
 
 ```bash
 cd ~/ashfeld/darkhorn
@@ -183,18 +197,6 @@ docker compose down
 cd ~/ashfeld/hollowcrown
 docker compose down
 ```
-
-### Stop and wipe all data
-
-```bash
-cd ~/ashfeld/darkhorn
-docker compose down -v
-
-cd ~/ashfeld/hollowcrown
-docker compose down -v
-```
-
-> After `down -v`, the next `docker compose up -d` will re-seed from scratch automatically.
 
 ### View logs
 
