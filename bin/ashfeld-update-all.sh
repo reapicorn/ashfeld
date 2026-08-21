@@ -6,8 +6,10 @@ BIN_DIR="$REPO_DIR/bin"
 
 cd "$REPO_DIR"
 
-echo "==> Pulling latest changes..."
+echo "==> Fixing permissions..."
 sudo chown -R "$USER" "$REPO_DIR/darkhorn/ldap/bootstrap" 2>/dev/null || true
+
+echo "==> Pulling latest changes..."
 git checkout -- .
 git pull
 chmod +x "$BIN_DIR"/ashfeld-*.sh
