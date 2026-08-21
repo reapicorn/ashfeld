@@ -124,14 +124,14 @@ git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ```bash
 # darkhorn
 cd ~/ashfeld/darkhorn
-cp .env.example .env
 docker compose up --build -d
 
 # hollowcrown
 cd ~/ashfeld/hollowcrown
-cp .env.example .env
 docker compose up --build -d
 ```
+
+All variables have built-in defaults — no `.env` required unless you want to override ports or credentials (see `.env.example` in each project).
 
 Both projects can run simultaneously on the same host without port conflicts.
 
