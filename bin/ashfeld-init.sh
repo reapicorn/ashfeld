@@ -20,8 +20,8 @@ until [ -z "$(docker ps --filter health=starting --filter health=unhealthy --for
     echo "Warning: timed out waiting for containers to become healthy."
     break
   fi
-  sleep 5
-  ELAPSED=$((ELAPSED + 5))
+  sleep 15
+  ELAPSED=$((ELAPSED + 15))
 done
 
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
