@@ -752,6 +752,11 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='' routing_key='darkhorn.requests' \
   payload='{"operation":"RestoreUser","payload":{"id":"mq.user"}}'
 
+# ChangePassword
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
+  payload='{"operation":"ChangePassword","payload":{"id":"mq.user","currentPassword":"Passw0rd!","newPassword":"N3wPassw0rd!"}}'
+
 # ResetPassword
 rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='' routing_key='darkhorn.requests' \
@@ -762,10 +767,20 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='' routing_key='darkhorn.requests' \
   payload='{"operation":"GetGroups","payload":{}}'
 
+# GetUserGroups
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
+  payload='{"operation":"GetUserGroups","payload":{"userId":"mq.user"}}'
+
 # AssignGroups
 rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='' routing_key='darkhorn.requests' \
   payload='{"operation":"AssignGroups","payload":{"userId":"mq.user","groupNames":["admins","developers"]}}'
+
+# RemoveGroups
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
+  payload='{"operation":"RemoveGroups","payload":{"userId":"mq.user","groupNames":["developers"]}}'
 
 # DeleteUser
 rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
