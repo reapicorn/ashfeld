@@ -25,15 +25,16 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 ## Service credentials
 
-### darkhorn-rest (port 3000)
+### darkhorn-rest
 
 | Method | Identifier | Credential |
 |---|---|---|
 | Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
 | API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
 | OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
+| Port | `3000` |
 
-### darkhorn-jdbc (port 5432)
+### darkhorn-jdbc
 
 | Parameter | Value |
 |---|---|
@@ -41,8 +42,9 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Driver | `org.postgresql.Driver` |
 | Username | `darkhorn` |
 | Password | `Sp3ct3r0fN1ght!` |
+| Port | `5432` |
 
-### darkhorn-ldap (port 389)
+### darkhorn-ldap
 
 | Parameter | Value |
 |---|---|
@@ -53,8 +55,9 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Service password | `Sp3ctr3Qu13t!` |
 | Admin DN | `uid=admin,dc=darkhorn,dc=local` |
 | Admin password | `Bl4ckTr33Admin!` |
+| Port | `389` |
 
-### darkhorn-sftp (port 2222)
+### darkhorn-sftp
 
 | Parameter | Value |
 |---|---|
@@ -64,7 +67,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Remote path | `/darkhorn` |
 | Files | `users.csv`, `groups.csv`, `user_groups.csv` |
 
-### darkhorn-soap (port 3002)
+### darkhorn-soap
 
 | Parameter | Value |
 |---|---|
@@ -72,14 +75,16 @@ Each backend in this project exposes the same set of 13 identity operations over
 | WSDL | `http://<host>:3002/soap?wsdl` |
 | WS-Security user | `banshee` |
 | WS-Security password | `B4nsh33Sc4ms!` |
+| Port | `3002` |
 
-### darkhorn-mq (AMQP port 5672)
+### darkhorn-mq
 
 | Parameter | Value |
 |---|---|
 | AMQP URL | `amqp://darkhorn:Wr41thPuls3!@<host>:5672` |
 | Queue | `darkhorn.requests` |
 | Management UI | `http://<host>:15672` |
+| Port | `5672` |
 
 ---
 
