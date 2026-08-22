@@ -84,7 +84,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 ### 1. Get familiar with the backends
 
-Confirm each backend is reachable and understand how it communicates before building against it.
+Before touching the code, walk the district. Each company runs its own system — learn the door, the handshake, the protocol. Confirm it responds before you try to build against it.
 
 #### darkhorn-rest
 
