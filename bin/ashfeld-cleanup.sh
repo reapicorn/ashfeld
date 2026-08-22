@@ -22,5 +22,6 @@ docker images --filter reference='hollowcrown-*' --quiet | xargs -r docker rmi -
 
 echo "Removing repo..."
 rm -rf "$INSTALL_DIR"
+cd ~
 
 echo "Done."
