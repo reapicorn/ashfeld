@@ -59,7 +59,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 | Parameter | Value |
 |---|---|
-| Connection | `sftp spectral@<host> -P 2222` |
+| Username | `spectral@<host>` |
 | Password | `Sp3ctr4lF1l3!` |
 | Remote path | `/darkhorn` |
 | Files | `users.csv`, `groups.csv`, `user_groups.csv` |
@@ -381,12 +381,12 @@ title: Engineer
 EOF
 
 ldapadd -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' \
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' \
   -f /tmp/new-user.ldif
 
 # Modify user
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 replace: title
@@ -398,7 +398,7 @@ EOF
 
 # Suspend (add description: suspended)
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 add: description
@@ -407,7 +407,7 @@ EOF
 
 # Restore (remove description attribute)
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 delete: description
@@ -423,7 +423,7 @@ ldappasswd -x \
 
 # Reset password (admin sets directly)
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 replace: userPassword
@@ -448,7 +448,7 @@ ldapsearch -x \
 
 # Assign to a group
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: cn=admins,ou=Groups,dc=darkhorn,dc=local
 changetype: modify
 add: member
@@ -457,7 +457,7 @@ EOF
 
 # Remove from a group
 ldapmodify -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' << 'EOF'
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: cn=admins,ou=Groups,dc=darkhorn,dc=local
 changetype: modify
 delete: member
@@ -466,7 +466,7 @@ EOF
 
 # Delete user
 ldapdelete -x -H ldap://<host>:389 \
-  -D 'uid=admin,dc=darkhorn,dc=local' -w 'Bl4ckTr33Admin!' \
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' \
   'uid=test.user,ou=Users,dc=darkhorn,dc=local'
 ```
 
