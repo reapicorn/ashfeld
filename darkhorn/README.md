@@ -147,7 +147,7 @@ curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
 ```bash
 docker exec -it darkhorn-ldap ldapsearch -x \
   -H ldap://localhost:389 \
-  -D 'cn=svc-darkhorn,dc=darkhorn,dc=local' \
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
   -w 'Sp3ctr3Qu13t!' \
   -b 'ou=Users,dc=darkhorn,dc=local' \
   '(objectClass=inetOrgPerson)' uid cn mail \
