@@ -33,7 +33,7 @@ Six backend services, each exposing the same 13 identity operations over a diffe
 
 ### hollowcrown
 
-A fictional HR system that acts as the upstream source of employee identity data. Includes a web UI for managing employees and a REST API that the adapter can poll.
+A fictional HR system that acts as the upstream source of employee data. Includes a web UI for managing employees and a REST API that the adapter can poll.
 
 → See [`hollowcrown/README.md`](hollowcrown/README.md) for the API reference and employee model.
 
@@ -43,15 +43,15 @@ A fictional HR system that acts as the upstream source of employee identity data
 
 ### VM requirements
 
+> **⚠️ DRAFT — needs validation against real lab usage before publishing.**
+
 The full stack (both projects) runs comfortably on a single VM.
 
 | Resource | Minimum | Recommended |
 |---|---|---|
-| CPU | 2 vCPU | 4 vCPU |
-| RAM | 4 GB | 8 GB |
-| Disk | 20 GB | 40 GB |
-
-If running only one project, the minimums are lower (2 GB RAM, 15 GB disk for darkhorn alone).
+| CPU | 1 vCPU | 2 vCPU |
+| RAM | 1 GB | 2 GB |
+| Disk | 15 GB | 20 GB |
 
 ### Operating system
 
@@ -140,6 +140,20 @@ sudo ufw enable
 
 ## Useful commands
 
+### View logs
+
+```bash
+# All services
+docker compose logs -f
+
+# Single service
+docker compose logs -f <service_name>
+```
+
+**darkhorn** service names: `darkhorn-rest` `darkhorn-soap` `darkhorn-mq` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-postgres` `darkhorn-rabbitmq`
+
+**hollowcrown** service names: `hollowcrown-api` `hollowcrown-web` `hollowcrown-db`
+
 ### Check running containers
 
 ```bash
@@ -164,17 +178,6 @@ After pulling changes from GitHub, if you want to reset all data:
 cd ~/ashfeld/darkhorn && git pull && docker compose down -v && docker compose up --build -d
 cd ~/ashfeld/hollowcrown && git pull && docker compose down -v && docker compose up --build -d
 cd ~
-```
-
-### View logs
-
-```bash
-# All services
-docker compose logs -f
-
-# Single service
-docker compose logs -f hollowcrown-api
-docker compose logs -f darkhorn-rest
 ```
 
 ---
