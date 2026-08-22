@@ -11,4 +11,4 @@ if ! grep -qF "$EXPORT_LINE" ~/.bashrc 2>/dev/null; then
   echo "$EXPORT_LINE" >> ~/.bashrc
 fi
 
-echo "Run 'source ~/.bashrc' or open a new shell to apply."
+echo "Run 'source ~/.bashrc' to apply."

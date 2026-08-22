@@ -6,7 +6,7 @@ REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 cd "$REPO_DIR"
 git pull
-chmod +x bin/ashfeld-*.sh
+chmod +x bin/ashfeld-*.sh 2>/dev/null || true
 
 wait_healthy() {
   local TIMEOUT=120 ELAPSED=0

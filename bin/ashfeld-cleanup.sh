@@ -15,6 +15,5 @@ docker volume ls --filter name=hollowcrown --quiet | xargs -r docker volume rm >
 docker images --filter reference='darkhorn-*' --quiet | xargs -r docker rmi -f > /dev/null 2>&1 || true
 docker images --filter reference='hollowcrown-*' --quiet | xargs -r docker rmi -f > /dev/null 2>&1 || true
 rm -rf "$INSTALL_DIR"
-cd ~
 
 echo "Done."
