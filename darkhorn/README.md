@@ -6,7 +6,7 @@ Every company in Darkhorn handles the same three things — who works here, what
 
 ---
 
-## Purpose
+## The district
 
 Six companies. Six ways of keeping records. None of them chose to be compatible — they just ended up in the same district, and now someone has to connect them.
 
@@ -22,65 +22,6 @@ The thirteen operations, across every backend: `Search users` · `Lookup user` �
 | **SFTP** | Download/upload CSV files via SFTP, key-based and password authentication |
 | **SOAP** | WSDL, document/literal, WS-Security UsernameToken, fault handling |
 | **MQ** | AMQP request/reply, correlationId, replyTo, JSON message format |
-
----
-
-## Service credentials
-
-Every door has a different lock. Same district, different rules.
-
-### darkhorn-rest
-
-| Method | Identifier | Credential |
-|---|---|---|
-| Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
-| API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
-| OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
-
-### darkhorn-jdbc
-
-| Parameter | Value |
-|---|---|
-| JDBC URL | `jdbc:postgresql://<host>:5432/darkhorn_jdbc` |
-| Driver | `org.postgresql.Driver` |
-| Username | `darkhorn` |
-| Password | `Sp3ct3r0fN1ght!` |
-
-### darkhorn-ldap
-
-| Parameter | Value |
-|---|---|
-| Base DN | `dc=darkhorn,dc=local` |
-| Users DN | `ou=Users,dc=darkhorn,dc=local` |
-| Groups DN | `ou=Groups,dc=darkhorn,dc=local` |
-| Bind DN | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
-| Password | `Sp3ctr3Qu13t!` |
-
-### darkhorn-sftp
-
-| Parameter | Value |
-|---|---|
-| Username | `spectral@<host>` |
-| Password | `Sp3ctr4lF1l3!` |
-| Remote path | `/darkhorn` |
-| Files | `users.csv`, `groups.csv`, `user_groups.csv` |
-
-### darkhorn-soap
-
-| Parameter | Value |
-|---|---|
-| Endpoint | `http://<host>:3002/soap` |
-| WSDL | `http://<host>:3002/soap?wsdl` |
-| WS-Security user | `banshee` |
-| WS-Security password | `B4nsh33Sc4ms!` |
-
-### darkhorn-mq
-
-| Parameter | Value |
-|---|---|
-| AMQP URL | `amqp://darkhorn:Wr41thPuls3!@<host>:5672` |
-| Queue | `darkhorn.requests` |
-| Management UI | `http://<host>:15672` |
 
 ---
 
@@ -224,7 +165,7 @@ Six companies. Six protocols. None of them picked the same one. With the backend
 
 The district doesn't come with a manual. Before building the adapter, operate each backend by hand — send the requests, read the responses, understand exactly what moves across the wire for every operation.
 
-#### darkhorn-rest — HTTP REST
+#### darkhorn-rest
 
 ```bash
 # Search users
@@ -299,7 +240,7 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID/groups \
 curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!'
 ```
 
-#### darkhorn-jdbc — PostgreSQL
+#### darkhorn-jdbc
 
 ```bash
 # Connect directly to the darkhorn_jdbc database
@@ -363,7 +304,7 @@ WHERE user_id = (SELECT id FROM users WHERE username = 'sql.user')
 DELETE FROM users WHERE username = 'sql.user';
 ```
 
-#### darkhorn-ldap — LDAP
+#### darkhorn-ldap
 
 ```bash
 # Search users
@@ -489,7 +430,7 @@ ldapdelete -x -H ldap://<host>:389 \
   'uid=test.user,ou=Users,dc=darkhorn,dc=local'
 ```
 
-#### darkhorn-sftp — SFTP
+#### darkhorn-sftp
 
 ```bash
 # Connect and list files
@@ -508,7 +449,7 @@ head -4 users.csv
 sftp> put users.csv darkhorn/users.csv
 ```
 
-#### darkhorn-soap — SOAP/WSDL
+#### darkhorn-soap
 
 > **Tip:** The WS-Security header — defined in the validation section above — is required on every request. Set `AUTH` before running any example below.
 
@@ -721,7 +662,7 @@ curl -s -X POST http://<host>:3002/soap \
 </soapenv:Envelope>"
 ```
 
-#### darkhorn-mq — AMQP request/reply
+#### darkhorn-mq
 
 ```bash
 # SearchUsers — return 3 users
@@ -809,7 +750,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 Same thirteen operations. Six different doors. This section maps each one to the exact call, query, or message that carries it across the wire.
 
-### darkhorn-rest — HTTP REST (port 3000)
+### darkhorn-rest
 
 | Method | Endpoint | Operation |
 |---|---|---|
@@ -832,9 +773,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 | `POST` | `/oauth/token` | Token (client_credentials / password) |
 | `GET` | `/oauth/userinfo` | Userinfo |
 
-### darkhorn-jdbc — Direct PostgreSQL (port 5432)
-
-Database: `darkhorn_jdbc`. Operations are implemented as SQL queries against the shared schema.
+### darkhorn-jdbc
 
 | Table | Purpose |
 |---|---|
@@ -844,7 +783,7 @@ Database: `darkhorn_jdbc`. Operations are implemented as SQL queries against the
 
 Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `password`, `status` (`active`/`suspended`), `department`, `title`, `password_reset_at`, `created_at`, `updated_at`.
 
-### darkhorn-ldap — LDAP (port 389)
+### darkhorn-ldap
 
 | Operation | LDAP equivalent |
 |---|---|
@@ -863,9 +802,7 @@ Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `p
 
 User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`, `description`.
 
-### darkhorn-sftp — SFTP (port 2222)
-
-Files available under the remote path `/darkhorn`:
+### darkhorn-sftp
 
 | File | Contents |
 |---|---|
@@ -875,9 +812,7 @@ Files available under the remote path `/darkhorn`:
 
 Each operation maps to a read-modify-write cycle on the relevant CSV file.
 
-### darkhorn-soap — SOAP/WSDL (port 3002)
-
-Endpoint: `http://<host>:3002/soap` · WSDL: `http://<host>:3002/soap?wsdl`
+### darkhorn-soap
 
 | SOAP Operation | Key input parameters |
 |---|---|
@@ -895,9 +830,7 @@ Endpoint: `http://<host>:3002/soap` · WSDL: `http://<host>:3002/soap?wsdl`
 | `AssignGroups` | `userId`, `groupIds[]` / `groupNames[]` |
 | `RemoveGroups` | `userId`, `groupIds[]` / `groupNames[]` |
 
-### darkhorn-mq — AMQP request/reply (port 5672)
-
-Queue: `darkhorn.requests`.
+### darkhorn-mq
 
 | Operation | `payload` fields |
 |---|---|
@@ -915,3 +848,74 @@ Queue: `darkhorn.requests`.
 | `AssignGroups` | `userId`, `groupNames[]` |
 | `RemoveGroups` | `userId`, `groupNames[]` |
 
+
+---
+
+## Service credentials
+
+Every door has a different lock. Same district, different rules.
+
+### darkhorn-rest
+
+The newest tenant in the district. They put up a proper interface — clean endpoints, three ways to authenticate. They wanted to look modern. Whether the data behind it is any more reliable than the others is a separate matter.
+
+| Method | Identifier | Credential |
+|---|---|---|
+| Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
+| API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
+| OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
+
+### darkhorn-jdbc
+
+No front desk. No interface. The ledgers live in the basement and the connection string is pinned to the wall. The old-timers call it the most honest system in Darkhorn — it doesn't pretend to be anything it isn't.
+
+| Parameter | Value |
+|---|---|
+| JDBC URL | `jdbc:postgresql://<host>:5432/darkhorn_jdbc` |
+| Driver | `org.postgresql.Driver` |
+| Username | `darkhorn` |
+| Password | `Sp3ct3r0fN1ght!` |
+
+### darkhorn-ldap
+
+The directory office. Every name, every floor, every door they're allowed through — it's all in the tree. One authorized account gets you in. The service account has been the same for years. Nobody changed it because nobody remembered who set it up.
+
+| Parameter | Value |
+|---|---|
+| Base DN | `dc=darkhorn,dc=local` |
+| Users DN | `ou=Users,dc=darkhorn,dc=local` |
+| Groups DN | `ou=Groups,dc=darkhorn,dc=local` |
+| Bind DN | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
+| Password | `Sp3ctr3Qu13t!` |
+
+### darkhorn-sftp
+
+Some offices never moved on from paper. Three files sit on a remote server: the roster, the groups, the memberships. You download, you edit, you upload. The system doesn't ask why. It doesn't ask anything.
+
+| Parameter | Value |
+|---|---|
+| Username | `spectral@<host>` |
+| Password | `Sp3ctr4lF1l3!` |
+| Remote path | `/darkhorn` |
+| Files | `users.csv`, `groups.csv`, `user_groups.csv` |
+
+### darkhorn-soap
+
+This company never dropped the formalities. Every request goes in an envelope, every envelope carries credentials in the header. The WSDL is the contract. Unsigned messages don't make it past the front desk.
+
+| Parameter | Value |
+|---|---|
+| Endpoint | `http://<host>:3002/soap` |
+| WSDL | `http://<host>:3002/soap?wsdl` |
+| WS-Security user | `banshee` |
+| WS-Security password | `B4nsh33Sc4ms!` |
+
+### darkhorn-mq
+
+One company in the district never upgraded their systems to accept direct connections. Requests arrive in the queue. Replies come back to whatever address the sender named. The district learned not to wait by the door.
+
+| Parameter | Value |
+|---|---|
+| AMQP URL | `amqp://darkhorn:Wr41thPuls3!@<host>:5672` |
+| Queue | `darkhorn.requests` |
+| Management UI | `http://<host>:15672` |

@@ -1,14 +1,12 @@
 # hollowcrown
 
-Hollowcrown was the name of the council that governed Ashfeld before it fell apart. When the council dissolved, the name passed to the bureau that kept its records — the registry of workers, departments, appointments and departures. It is the closest thing Ashfeld has to an official roster. Whether the data is accurate is a different question.
-
-This project is a fictional HR system. It provides a REST API and a web UI for managing employees across departments, and serves as the upstream identity feed for integration exercises against the darkhorn backends.
+Hollowcrown was the name of the council that governed Ashfeld before it fell apart. When the council dissolved, the name passed to the bureau that kept its records — the registry of workers, departments, appointments and departures. It is the source of truth for identity in the city. The web UI gives humans a way to manage that record. The API gives systems a way to read it.
 
 ---
 
 ## Integration scenarios
 
-hollowcrown is the **source of truth** for employee identity. The connector reads from hollowcrown and keeps accounts on the darkhorn backends in sync with it.
+What the Bureau records, the backends are expected to mirror. A joiner in Ashfeld means a new employee in every system in Darkhorn. A termination means the opposite.
 
 | JLM event | Business event | IAM action |
 |---|---|---|
@@ -17,11 +15,11 @@ hollowcrown is the **source of truth** for employee identity. The connector read
 | **Mover** | Leave of absence | Suspend (policy-dependent) |
 | **Mover** | Role, department or attribute change | Modify |
 
-A full reconciliation cycle: read all hollowcrown employees → compare against target accounts → apply delta.
-
 ---
 
 ## Employee model
+
+Every person in Ashfeld who was ever formally employed has an entry. The fields are standard. Whether they were filled in correctly is another matter.
 
 ```json
 {
@@ -44,19 +42,21 @@ A full reconciliation cycle: read all hollowcrown employees → compare against 
 
 ### Status lifecycle
 
+Three states. The city has a word for the third one but the Bureau just calls it terminated.
+
 ```
 active --> on-leave --> active
 active --> terminated
 on-leave --> terminated
 ```
 
-> **Note:** Terminated employees are never deleted — their records remain for historical reference.
+> **Note:** Terminated employees are never deleted. Hollowcrown was a record office before it was anything else — removing a name from the roster was considered worse than keeping a wrong one.
 
 ---
 
 ## API reference
 
-No authentication required.
+> The Bureau doesn't ask who's reading. Anyone with the address can pull the roster.
 
 Base URL: `http://<host>:4000`
 
@@ -77,22 +77,10 @@ Base URL: `http://<host>:4000`
 |---|---|---|
 | `GET` | `/api/departments` | List all departments |
 
-### Other
+### System
 
 | Method | Path | Description |
 |---|---|---|
 | `GET` | `/api/health` | Liveness check |
 | `GET` | `/api/stats` | Dashboard stats (counts, by-department, recent hires) |
 
----
-
-## Resetting to initial state
-
-Drops the database volume and re-seeds from scratch. All changes made through the UI or API are lost.
-
-```bash
-docker compose down -v
-docker compose up -d
-```
-
-The seed runs automatically on first boot and repopulates the data.
