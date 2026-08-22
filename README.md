@@ -24,7 +24,7 @@ The Hollowcrown Bureau is what remains of the council that once ran this city. I
 
 ### darkhorn
 
-Six companies settled in the Darkhorn district after the foundries closed. None of them inherited the same systems. None of them agreed to standardize. They each handle the same thirteen questions — who works here, what do they have access to, are they still active — and they each answer in a different language.
+Six companies settled in the Darkhorn district after the foundries closed. None of them inherited the same systems. None of them agreed to standardize. They each handle the same three questions — who works here, what do they have access to, are they still active — and they each answer in a different language.
 
 → See [`darkhorn/README.md`](darkhorn/README.md) — the six companies, their doors, and what moves across the wire.
 
