@@ -917,5 +917,19 @@ Response delivered to the queue specified in `replyTo`, correlated via `correlat
 { "status": "error", "error": { "code": "...", "message": "..." } }
 ```
 
-Operations and their `payload` fields are identical to the SOAP input parameters in the table above.
+| Operation | `payload` fields |
+|---|---|
+| `SearchUsers` | `username`, `email`, `firstName`, `lastName`, `status`, `startIndex`, `count` |
+| `LookupUser` | `id` |
+| `AddUser` | `username`, `email`, `firstName`, `lastName`, `password`, `department`, `title` |
+| `ModifyUser` | `id` + fields to update |
+| `DeleteUser` | `id` |
+| `SuspendUser` | `id` |
+| `RestoreUser` | `id` |
+| `ChangePassword` | `id`, `currentPassword`, `newPassword` |
+| `ResetPassword` | `id`, `newPassword` |
+| `GetGroups` | — |
+| `GetUserGroups` | `userId` |
+| `AssignGroups` | `userId`, `groupNames[]` |
+| `RemoveGroups` | `userId`, `groupNames[]` |
 
