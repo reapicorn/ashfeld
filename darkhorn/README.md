@@ -187,7 +187,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 # 3. Wait up to 60 s, then read the response
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
-  get queue=my-reply-queue ackmode=ack_requeue_false
+  get queue=my-reply-queue
 
 # 4. Delete the reply queue
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
@@ -759,7 +759,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 # 3. Wait for the response (worker delays 1–60 s)
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
-  get queue=my-reply-queue ackmode=ack_requeue_false
+  get queue=my-reply-queue
 ```
 
 > The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
