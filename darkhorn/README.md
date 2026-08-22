@@ -865,7 +865,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 | Assign Groups | `ldapmodify` — add `member` to group |
 | Remove Groups | `ldapmodify` — remove `member` from group |
 
-> User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`, `description`.
+User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`, `description`.
 
 ### darkhorn-sftp — SFTP (port 2222)
 
