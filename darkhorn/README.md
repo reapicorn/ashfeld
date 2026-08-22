@@ -910,13 +910,6 @@ Queue: `darkhorn.requests`. Message format:
 }
 ```
 
-Response delivered to the queue specified in `replyTo`, correlated via `correlationId`:
-
-```json
-{ "status": "ok",    "data":  { } }
-{ "status": "error", "error": { "code": "...", "message": "..." } }
-```
-
 | Operation | `payload` fields |
 |---|---|
 | `SearchUsers` | `username`, `email`, `firstName`, `lastName`, `status`, `startIndex`, `count` |
