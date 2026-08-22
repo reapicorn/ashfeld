@@ -58,7 +58,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 | Parameter | Value |
 |---|---|
-| Host | `<host>` |
 | Port | `2222` |
 | Username | `spectral` |
 | Password | `Sp3ctr4lF1l3!` |
