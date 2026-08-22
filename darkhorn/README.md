@@ -29,8 +29,6 @@ The thirteen operations, across every backend: `Search users` · `Lookup user` �
 
 ### darkhorn-rest
 
-Three locks on the same door. The first is a username and a password — old habit. The second is a key issued to systems that were never meant to have names. The third is a token, minted by the building's own authority and valid until it isn't.
-
 | Method | Identifier | Credential |
 |---|---|---|
 | Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
@@ -38,8 +36,6 @@ Three locks on the same door. The first is a username and a password — old hab
 | OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
 
 ### darkhorn-jdbc
-
-No receptionist. No handshake. A connection string and a password — that's the whole arrangement. The ledgers are in the basement and no one checks who's reading them, only whether the credentials are right.
 
 | Parameter | Value |
 |---|---|
@@ -49,8 +45,6 @@ No receptionist. No handshake. A connection string and a password — that's the
 | Password | `Sp3ct3r0fN1ght!` |
 
 ### darkhorn-ldap
-
-One authorized account. It doesn't own the register — it just has permission to read it, and to write when asked. Everything else in the tree belongs to someone else.
 
 | Parameter | Value |
 |---|---|
@@ -62,8 +56,6 @@ One authorized account. It doesn't own the register — it just has permission t
 
 ### darkhorn-sftp
 
-A remote shelf. Three files, always in the same place. The server doesn't ask what you're doing with them — it only checks that the password matches before it lets you take anything.
-
 | Parameter | Value |
 |---|---|
 | Username | `spectral@<host>` |
@@ -73,8 +65,6 @@ A remote shelf. Three files, always in the same place. The server doesn't ask wh
 
 ### darkhorn-soap
 
-Every message goes in a proper envelope. The credentials travel in the header, not the body — that's how it was designed, and no one has seen a reason to change it.
-
 | Parameter | Value |
 |---|---|
 | Endpoint | `http://<host>:3002/soap` |
@@ -83,8 +73,6 @@ Every message goes in a proper envelope. The credentials travel in the header, n
 | WS-Security password | `B4nsh33Sc4ms!` |
 
 ### darkhorn-mq
-
-No direct connection. Messages go into the queue and someone on the other side picks them up when they're ready. The reply comes back to whatever address you put in the envelope — if you remembered to put one.
 
 | Parameter | Value |
 |---|---|
