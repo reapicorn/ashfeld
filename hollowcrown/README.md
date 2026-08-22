@@ -123,7 +123,6 @@ hollowcrown is the **source of truth** for employee identity. The connector read
 |---|---|---|
 | **Joiner** | Employee is `active`, no account exists | Provision |
 | **Leaver** | Employee is `terminated` | Deprovision |
-| **Leaver** | Account exists but employee is not in hollowcrown | Deprovision (orphan) |
 | **Mover** | Employee is `on-leave` | Suspend (policy-dependent) |
 | **Mover** | Employee attributes changed (name, email, department, title) | Modify |
 
