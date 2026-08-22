@@ -52,7 +52,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Groups DN | `ou=Groups,dc=darkhorn,dc=local` |
 | Bind DN | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
 | Password | `Sp3ctr3Qu13t!` |
-| Port | `389` |
 
 ### darkhorn-sftp
 
