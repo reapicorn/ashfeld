@@ -7,7 +7,7 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 ```
 .
 ├── hollowcrown/     # the Bureau — employee records, the only list anyone agrees to use
-└── darkhorn/        # the district — six backends, six ways of keeping the same records
+└── darkhorn/        # the district — six companies, six ways of keeping the same records
 ```
 
 Each project has its own `docker-compose.yml` and runs independently.
