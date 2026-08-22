@@ -176,21 +176,21 @@ Validate the full request/reply cycle:
 
 ```bash
 # 1. Create a temporary reply queue
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   declare queue name=my-reply-queue durable=false
 
 # 2. Publish a request with reply_to and correlation_id
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   properties='{"reply_to":"my-reply-queue","correlation_id":"test-1"}' \
   payload='{"operation":"SearchUsers","payload":{"count":3}}'
 
 # 3. Wait up to 60 s, then read the response
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   get queue=my-reply-queue
 
 # 4. Delete the reply queue
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   delete queue name=my-reply-queue
 ```
 
@@ -748,17 +748,17 @@ Adapter                          darkhorn-mq worker
 
 ```bash
 # 1. Create a reply queue
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   declare queue name=my-reply-queue durable=false
 
 # 2. Publish with reply_to and correlation_id
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   properties='{"reply_to":"my-reply-queue","correlation_id":"test-1"}' \
   payload='{"operation":"SearchUsers","payload":{"count":3}}'
 
 # 3. Wait for the response (worker delays 1–60 s)
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   get queue=my-reply-queue
 ```
 
@@ -768,12 +768,12 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thP
 
 ```bash
 # SearchUsers — return 3 users
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"SearchUsers","payload":{"count":3}}'
 
 # AddUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{
     "operation": "AddUser",
@@ -789,57 +789,57 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thP
   }'
 
 # LookupUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"LookupUser","payload":{"id":"mq.user"}}'
 
 # ModifyUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"ModifyUser","payload":{"id":"mq.user","title":"Senior Engineer"}}'
 
 # SuspendUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"SuspendUser","payload":{"id":"mq.user"}}'
 
 # RestoreUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"RestoreUser","payload":{"id":"mq.user"}}'
 
 # ChangePassword
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"ChangePassword","payload":{"id":"mq.user","currentPassword":"Passw0rd!","newPassword":"N3wPassw0rd!"}}'
 
 # ResetPassword
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"ResetPassword","payload":{"id":"mq.user","newPassword":"N3wPassw0rd!"}}'
 
 # GetGroups
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"GetGroups","payload":{}}'
 
 # GetUserGroups
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"GetUserGroups","payload":{"userId":"mq.user"}}'
 
 # AssignGroups
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"AssignGroups","payload":{"userId":"mq.user","groupNames":["admins","developers"]}}'
 
 # RemoveGroups
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"RemoveGroups","payload":{"userId":"mq.user","groupNames":["developers"]}}'
 
 # DeleteUser
-docker exec darkhorn-rabbitmq rabbitmqadmin -H localhost -u darkhorn -p 'Wr41thPuls3!' publish \
+docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
   payload='{"operation":"DeleteUser","payload":{"id":"mq.user"}}'
 ```
