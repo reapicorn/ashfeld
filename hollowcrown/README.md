@@ -6,35 +6,18 @@ This project is a fictional HR system. It provides a REST API and a web UI for m
 
 ---
 
-## API reference
+## Integration scenarios
 
-No authentication required.
+hollowcrown is the **source of truth** for employee identity. The connector reads from hollowcrown and keeps accounts on the darkhorn backends in sync with it.
 
-Base URL: `http://<host>:4000`
-
-### Employees
-
-| Method | Path | Description |
+| JLM event | Business event | IAM action |
 |---|---|---|
-| `GET` | `/api/employees` | List employees (supports `search`, `department`, `status`, `page`, `limit`) |
-| `POST` | `/api/employees` | Create employee |
-| `GET` | `/api/employees/:id` | Get employee by UUID |
-| `PUT` | `/api/employees/:id` | Update employee |
-| `POST` | `/api/employees/:id/terminate` | Terminate employee (`termination_date` required) |
-| `POST` | `/api/employees/:id/set-status` | Change status (`active` / `on-leave`) |
+| **Joiner** | New hire | Provision |
+| **Leaver** | Resignation or termination | Deprovision |
+| **Mover** | Leave of absence | Suspend (policy-dependent) |
+| **Mover** | Role, department or attribute change | Modify |
 
-### Departments
-
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/api/departments` | List all departments |
-
-### Other
-
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/api/health` | Liveness check |
-| `GET` | `/api/stats` | Dashboard stats (counts, by-department, recent hires) |
+A full reconciliation cycle: read all hollowcrown employees → compare against target accounts → apply delta.
 
 ---
 
@@ -71,18 +54,35 @@ on-leave --> terminated
 
 ---
 
-## Integration scenarios
+## API reference
 
-hollowcrown is the **source of truth** for employee identity. The connector reads from hollowcrown and keeps accounts on the darkhorn backends in sync with it.
+No authentication required.
 
-| JLM event | Business event | IAM action |
+Base URL: `http://<host>:4000`
+
+### Employees
+
+| Method | Path | Description |
 |---|---|---|
-| **Joiner** | New hire | Provision |
-| **Leaver** | Resignation or termination | Deprovision |
-| **Mover** | Leave of absence | Suspend (policy-dependent) |
-| **Mover** | Role, department or attribute change | Modify |
+| `GET` | `/api/employees` | List employees (supports `search`, `department`, `status`, `page`, `limit`) |
+| `POST` | `/api/employees` | Create employee |
+| `GET` | `/api/employees/:id` | Get employee by UUID |
+| `PUT` | `/api/employees/:id` | Update employee |
+| `POST` | `/api/employees/:id/terminate` | Terminate employee (`termination_date` required) |
+| `POST` | `/api/employees/:id/set-status` | Change status (`active` / `on-leave`) |
 
-A full reconciliation cycle: read all hollowcrown employees → compare against target accounts → apply delta.
+### Departments
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/departments` | List all departments |
+
+### Other
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/health` | Liveness check |
+| `GET` | `/api/stats` | Dashboard stats (counts, by-department, recent hires) |
 
 ---
 
@@ -96,4 +96,3 @@ docker compose up -d
 ```
 
 The seed runs automatically on first boot and repopulates the data.
-
