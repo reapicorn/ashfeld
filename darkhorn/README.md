@@ -27,6 +27,8 @@ The thirteen operations, across every backend: `Search users` Â· `Lookup user` Â
 
 ## Service credentials
 
+Every door has a different lock. Same district, different rules.
+
 ### darkhorn-rest
 
 | Method | Identifier | Credential |
