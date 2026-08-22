@@ -596,6 +596,23 @@ curl -s -X POST http://<host>:3002/soap \
   </soapenv:Body>
 </soapenv:Envelope>"
 
+# ChangePassword
+curl -s -X POST http://<host>:3002/soap \
+  -H 'Content-Type: text/xml;charset=UTF-8' \
+  -H 'SOAPAction: "ChangePassword"' \
+  -d "<?xml version=\"1.0\"?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+                  xmlns:tns=\"http://darkhorn.local/userservice\">
+  ${AUTH}
+  <soapenv:Body>
+    <tns:ChangePasswordRequest>
+      <tns:id>soap.user</tns:id>
+      <tns:currentPassword>Passw0rd!</tns:currentPassword>
+      <tns:newPassword>N3wPassw0rd!</tns:newPassword>
+    </tns:ChangePasswordRequest>
+  </soapenv:Body>
+</soapenv:Envelope>"
+
 # ResetPassword
 curl -s -X POST http://<host>:3002/soap \
   -H 'Content-Type: text/xml;charset=UTF-8' \
@@ -625,6 +642,21 @@ curl -s -X POST http://<host>:3002/soap \
   </soapenv:Body>
 </soapenv:Envelope>"
 
+# GetUserGroups
+curl -s -X POST http://<host>:3002/soap \
+  -H 'Content-Type: text/xml;charset=UTF-8' \
+  -H 'SOAPAction: "GetUserGroups"' \
+  -d "<?xml version=\"1.0\"?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+                  xmlns:tns=\"http://darkhorn.local/userservice\">
+  ${AUTH}
+  <soapenv:Body>
+    <tns:GetUserGroupsRequest>
+      <tns:userId>soap.user</tns:userId>
+    </tns:GetUserGroupsRequest>
+  </soapenv:Body>
+</soapenv:Envelope>"
+
 # AssignGroups
 curl -s -X POST http://<host>:3002/soap \
   -H 'Content-Type: text/xml;charset=UTF-8' \
@@ -639,6 +671,22 @@ curl -s -X POST http://<host>:3002/soap \
       <tns:groupNames>admins</tns:groupNames>
       <tns:groupNames>developers</tns:groupNames>
     </tns:AssignGroupsRequest>
+  </soapenv:Body>
+</soapenv:Envelope>"
+
+# RemoveGroups
+curl -s -X POST http://<host>:3002/soap \
+  -H 'Content-Type: text/xml;charset=UTF-8' \
+  -H 'SOAPAction: "RemoveGroups"' \
+  -d "<?xml version=\"1.0\"?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+                  xmlns:tns=\"http://darkhorn.local/userservice\">
+  ${AUTH}
+  <soapenv:Body>
+    <tns:RemoveGroupsRequest>
+      <tns:userId>soap.user</tns:userId>
+      <tns:groupNames>developers</tns:groupNames>
+    </tns:RemoveGroupsRequest>
   </soapenv:Body>
 </soapenv:Envelope>"
 
