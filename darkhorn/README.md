@@ -277,7 +277,7 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!
 
 ```bash
 # Connect directly to the darkhorn_jdbc database
-docker exec -it darkhorn-postgres psql -U darkhorn -d darkhorn_jdbc
+psql -h <host> -p 5432 -U darkhorn -d darkhorn_jdbc
 ```
 
 ```sql
