@@ -206,6 +206,8 @@ Before building the connector, operate the backends manually to understand exact
 
 #### darkhorn-rest — HTTP REST
 
+The new tenants put up a proper front door. Three locks — Basic Auth for the ones who know the password, an API key for the systems that were never meant to be people, and an OIDC token for whoever convinced someone to issue them one. Pick the lock that fits.
+
 ```bash
 # Search users
 curl -s -u grimreaper:'Wh1sp3r0fD4rk!' \
@@ -281,6 +283,8 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!
 
 #### darkhorn-jdbc — PostgreSQL
 
+No receptionist. No interface. The ledgers are in the basement and the connection string is on the wall. Some of the old-timers say it's the most honest system in the district — it doesn't pretend to be anything other than a database.
+
 ```bash
 # Connect directly to the darkhorn_jdbc database
 docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc
@@ -344,6 +348,8 @@ DELETE FROM users WHERE username = 'sql.user';
 ```
 
 #### darkhorn-ldap — LDAP
+
+The district keeps a register. Names, titles, which floor they work on, which doors they're allowed through. One authorized account gets you in. Ask for what you need — it's all in the tree.
 
 ```bash
 # Search users
@@ -471,6 +477,8 @@ ldapdelete -x -H ldap://<host>:389 \
 
 #### darkhorn-sftp — SFTP
 
+Some offices still run on paper — or the closest thing to it. Three files sit on a remote server: users, groups, memberships. Download, edit, upload. The system doesn't ask why. It doesn't ask anything.
+
 ```bash
 # Connect and list files
 sftp -P 2222 spectral@<host>
@@ -489,6 +497,8 @@ sftp> put users.csv darkhorn/users.csv
 ```
 
 #### darkhorn-soap — SOAP/WSDL
+
+This company never dropped the formalities. Every request goes in a proper envelope, every envelope carries credentials in the header. The format is rigid, the WSDL is the contract, and unsigned messages don't make it past the front desk.
 
 The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
 
