@@ -709,7 +709,52 @@ curl -s -X POST http://<host>:3002/soap \
 
 #### darkhorn-mq — AMQP request/reply
 
-All messages are published to the `darkhorn.requests` queue. The worker processes them synchronously and writes the reply to the queue named in `replyTo`.
+All messages are published to the `darkhorn.requests` queue. The worker processes each message after a **random delay of 1–60 seconds**, then sends the response to the queue named in `replyTo`.
+
+This simulates a real asynchronous target system — the adapter must not block waiting for a response, and must correlate replies using `correlationId`.
+
+### Request/reply pattern
+
+```
+Adapter                          darkhorn-mq worker
+  │                                      │
+  ├─ assert reply queue ─────────────────┤
+  ├─ publish to darkhorn.requests ───────▶│
+  │   replyTo: "my-reply-queue"          │  (waits 1–60 s)
+  │   correlationId: "abc-123"           │
+  │                                      ├─ processes operation
+  │◀─ response in my-reply-queue ────────┤
+  │   correlationId: "abc-123"           │
+```
+
+**Message properties** (set by the adapter, not in the payload):
+
+| Property | Description |
+|---|---|
+| `reply_to` | Name of the queue where the response will be sent |
+| `correlation_id` | Arbitrary string — echoed back in the response for matching |
+
+**Validate the full cycle:**
+
+```bash
+# 1. Create a reply queue
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
+  declare queue name=my-reply-queue durable=false
+
+# 2. Publish with reply_to and correlation_id
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
+  properties='{"reply_to":"my-reply-queue","correlation_id":"test-1"}' \
+  payload='{"operation":"SearchUsers","payload":{"count":3}}'
+
+# 3. Wait for the response (worker delays 1–60 s)
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
+  get queue=my-reply-queue
+```
+
+> The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
+
+### Operation examples
 
 ```bash
 # SearchUsers — return 3 users
@@ -789,7 +834,7 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   payload='{"operation":"DeleteUser","payload":{"id":"mq.user"}}'
 ```
 
-> To receive the reply, the published message must include `replyTo` (reply queue name) and `correlationId`. The Management UI at `http://<host>:15672` is the easiest way to inspect messages and responses during exploration.
+> The examples above omit `reply_to` and `correlation_id` for brevity. In a real adapter, both properties must be set on every message to receive the response.
 
 ---
 
