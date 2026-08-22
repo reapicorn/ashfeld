@@ -10,6 +10,8 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 ## Purpose
 
+Six companies. Six ways of keeping records. None of them chose to be compatible — they just ended up in the same district, and now someone has to connect them.
+
 ### Practice areas
 
 | Area | What you practice |
