@@ -170,21 +170,27 @@ curl -s -X POST http://<host>:3002/soap \
 
 #### darkhorn-mq
 
-> ⚠️ The request/reply pattern is not yet fully implemented — the worker processes messages but does not send a response back.
+The worker accepts messages on `darkhorn.requests` and replies to the queue named in `reply_to`. It processes each message after a random delay of 1–60 seconds.
+
+Validate the full request/reply cycle:
 
 ```bash
-curl -s -u darkhorn:'Wr41thPuls3!' -X POST \
-  http://<host>:15672/api/exchanges/%2F/amq.default/publish \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "properties": {},
-    "routing_key": "darkhorn.requests",
-    "payload": "{\"operation\":\"SearchUsers\",\"payload\":{\"count\":3}}",
-    "payload_encoding": "string"
-  }'
+# 1. Create a temporary reply queue
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
+  declare queue name=my-reply-queue durable=false
+
+# 2. Publish a request with reply_to and correlation_id
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
+  exchange='' routing_key='darkhorn.requests' \
+  properties='{"reply_to":"my-reply-queue","correlation_id":"test-1"}' \
+  payload='{"operation":"SearchUsers","payload":{"count":3}}'
+
+# 3. Wait up to 60 s, then read the response
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
+  get queue=my-reply-queue
 ```
 
-> The adapter connects via AMQP on port `5672`. The Management UI is available at `http://<host>:15672`.
+> The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
 
 ---
 
