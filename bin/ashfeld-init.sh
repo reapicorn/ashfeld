@@ -9,17 +9,9 @@ if [ -d "$INSTALL_DIR" ]; then
   exit 1
 fi
 
-echo "Cloning repo..."
-git clone "$REPO" "$INSTALL_DIR"
-
-echo "Starting darkhorn..."
+git clone -q "$REPO" "$INSTALL_DIR"
 docker compose -f "$INSTALL_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
-
-echo "Starting hollowcrown..."
 docker compose -f "$INSTALL_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
-
-echo "Waiting for containers to settle..."
 sleep 60
 
-echo ""
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
