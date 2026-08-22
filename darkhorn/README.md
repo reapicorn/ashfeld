@@ -869,7 +869,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 
 ### darkhorn-sftp — SFTP (port 2222)
 
-Files available under the remote path `/darkhorn`:
+> Files available under the remote path `/darkhorn`:
 
 | File | Contents |
 |---|---|
