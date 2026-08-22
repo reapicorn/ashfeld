@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TARGET="${1:-all}"
 ASHFELD_DIR=~/ashfeld
+TARGET="${1:-all}"
 
 wait_healthy() {
   local TIMEOUT=120 ELAPSED=0
