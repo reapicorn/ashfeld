@@ -901,14 +901,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 
 ### darkhorn-mq — AMQP request/reply (port 5672)
 
-Queue: `darkhorn.requests`. Message format:
-
-```json
-{
-  "operation": "<name>",
-  "payload":   { }
-}
-```
+Queue: `darkhorn.requests`.
 
 | Operation | `payload` fields |
 |---|---|
