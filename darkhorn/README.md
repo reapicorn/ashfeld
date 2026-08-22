@@ -32,7 +32,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
 | API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
 | OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
-| Port | `3000` |
 
 ### darkhorn-jdbc
 
