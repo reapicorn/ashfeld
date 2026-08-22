@@ -500,8 +500,6 @@ sftp> put users.csv darkhorn/users.csv
 
 #### darkhorn-soap — SOAP/WSDL
 
-This company never dropped the formalities. Every request goes in a proper envelope, every envelope carries credentials in the header. The format is rigid, the WSDL is the contract, and unsigned messages don't make it past the front desk.
-
 The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
 
 ```bash
