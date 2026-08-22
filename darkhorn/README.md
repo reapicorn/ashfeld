@@ -881,7 +881,7 @@ Files available under the remote path `/darkhorn`:
 
 ### darkhorn-soap — SOAP/WSDL (port 3002)
 
-Endpoint: `http://<host>:3002/soap` · WSDL: `http://<host>:3002/soap?wsdl`
+> Endpoint: `http://<host>:3002/soap` · WSDL: `http://<host>:3002/soap?wsdl`
 
 | SOAP Operation | Key input parameters |
 |---|---|
