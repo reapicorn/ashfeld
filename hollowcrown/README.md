@@ -6,8 +6,6 @@ This project is a fictional HR system. It provides a REST API and a web UI for m
 
 ---
 
----
-
 ## API reference
 
 No authentication required.
