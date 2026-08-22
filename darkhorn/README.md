@@ -502,7 +502,7 @@ sftp> put users.csv darkhorn/users.csv
 
 #### darkhorn-soap — SOAP/WSDL
 
-The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
+> **Tip:** The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
 
 ```bash
 # Shared WS-Security header fragment (used in all examples below)
