@@ -50,10 +50,9 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Base DN | `dc=darkhorn,dc=local` |
 | Users DN | `ou=Users,dc=darkhorn,dc=local` |
 | Groups DN | `ou=Groups,dc=darkhorn,dc=local` |
-| Service account | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
-| Service password | `Sp3ctr3Qu13t!` |
-| Admin DN | `uid=admin,dc=darkhorn,dc=local` |
-| Admin password | `Bl4ckTr33Admin!` |
+| Bind DN | `cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local` |
+| Password | `Sp3ctr3Qu13t!` |
+| Port | `389` |
 
 ### darkhorn-sftp
 
