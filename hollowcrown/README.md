@@ -132,11 +132,7 @@ A full reconciliation cycle: read all hollowcrown employees → compare against 
 
 ## Resetting to initial state
 
-Use these procedures depending on how much you want to roll back.
-
-### Wipe all employee data and re-seed
-
-Drops the database volume and re-creates it from scratch. All changes made through the UI or API are lost. The stack restarts with the original 50 employees.
+Drops the database volume and re-seeds from scratch. All changes made through the UI or API are lost.
 
 ```bash
 docker compose down -v
