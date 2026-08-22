@@ -6,7 +6,7 @@ Hollowcrown was the name of the council that governed Ashfeld before it fell apa
 
 ## Integration scenarios
 
-What the Bureau records, the backends are expected to mirror. A joiner in Ashfeld means a new employee in every system in Darkhorn. A termination means the opposite.
+What the Bureau records, the backends are expected to mirror. A new citizen joining the city means a new entry in the system. A termination means the opposite.
 
 | JLM event | Business event | IAM action |
 |---|---|---|
@@ -19,7 +19,7 @@ What the Bureau records, the backends are expected to mirror. A joiner in Ashfel
 
 ## Employee model
 
-Every person in Ashfeld who was ever formally employed has an entry. The fields are standard. Whether they were filled in correctly is another matter.
+Every citizen who was ever part of the city has an entry. The fields are standard. Whether they were filled in correctly is another matter.
 
 ```json
 {
@@ -50,7 +50,7 @@ active --> terminated
 on-leave --> terminated
 ```
 
-> **Note:** Terminated employees are never deleted. Hollowcrown was a record office before it was anything else — removing a name from the roster was considered worse than keeping a wrong one.
+> **Note:** Terminated citizens are never deleted. Hollowcrown was a record office before it was anything else — removing a name from the roster was considered worse than keeping a wrong one.
 
 ---
 

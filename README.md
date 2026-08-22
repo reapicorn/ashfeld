@@ -6,7 +6,7 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 
 ```
 .
-├── hollowcrown/     # the Bureau — employee records, the only list anyone agrees to use
+├── hollowcrown/     # the Bureau — citizen records, the only list anyone agrees to use
 └── darkhorn/        # the district — six companies, six ways of keeping the same records
 ```
 
