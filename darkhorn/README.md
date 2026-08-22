@@ -838,7 +838,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 
 ### darkhorn-jdbc — Direct PostgreSQL (port 5432)
 
-Database: `darkhorn_jdbc`. Operations are implemented as SQL queries against the shared schema.
+> Database: `darkhorn_jdbc`. Operations are implemented as SQL queries against the shared schema.
 
 | Table | Purpose |
 |---|---|
