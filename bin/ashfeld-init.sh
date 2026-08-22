@@ -10,6 +10,7 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 git clone -q "$REPO" "$INSTALL_DIR"
+bash "$INSTALL_DIR/bin/ashfeld-setenv.sh"
 docker compose -f "$INSTALL_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
 docker compose -f "$INSTALL_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
 
