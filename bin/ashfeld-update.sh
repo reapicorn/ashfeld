@@ -2,11 +2,7 @@
 set -euo pipefail
 
 TARGET="${1:-all}"
-ASHFELD_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-
-cd "$ASHFELD_DIR"
-git pull
-chmod +x "$ASHFELD_DIR/bin/ashfeld-*.sh" 2>/dev/null || true
+ASHFELD_DIR=~/ashfeld
 
 wait_healthy() {
   local TIMEOUT=120 ELAPSED=0
@@ -20,6 +16,10 @@ wait_healthy() {
   done
   docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 }
+
+cd "$ASHFELD_DIR"
+git pull
+chmod +x "$ASHFELD_DIR"/bin/ashfeld-*.sh 2>/dev/null || true
 
 case "$TARGET" in
   darkhorn)

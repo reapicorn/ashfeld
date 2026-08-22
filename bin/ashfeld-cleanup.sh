@@ -8,12 +8,12 @@ if [ ! -d "$ASHFELD_DIR" ]; then
   exit 0
 fi
 
-docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" down -v > /dev/null 2>&1 || true
-docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" down -v > /dev/null 2>&1 || true
-docker volume ls --filter name=darkhorn --quiet | xargs -r docker volume rm > /dev/null 2>&1 || true
-docker volume ls --filter name=hollowcrown --quiet | xargs -r docker volume rm > /dev/null 2>&1 || true
-docker images --filter reference='darkhorn-*' --quiet | xargs -r docker rmi -f > /dev/null 2>&1 || true
-docker images --filter reference='hollowcrown-*' --quiet | xargs -r docker rmi -f > /dev/null 2>&1 || true
+docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" down -v 2>/dev/null || true
+docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" down -v 2>/dev/null || true
+docker volume ls --filter name=darkhorn --quiet | xargs -r docker volume rm 2>/dev/null || true
+docker volume ls --filter name=hollowcrown --quiet | xargs -r docker volume rm 2>/dev/null || true
+docker images --filter reference='darkhorn-*' --quiet | xargs -r docker rmi -f 2>/dev/null || true
+docker images --filter reference='hollowcrown-*' --quiet | xargs -r docker rmi -f 2>/dev/null || true
 rm -rf "$ASHFELD_DIR"
 
 echo "Done."

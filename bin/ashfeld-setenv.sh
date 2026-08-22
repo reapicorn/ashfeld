@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ASHFELD_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ASHFELD_DIR=~/ashfeld
 BIN_DIR="$ASHFELD_DIR/bin"
 
 chmod +x "$BIN_DIR"/ashfeld-*.sh
