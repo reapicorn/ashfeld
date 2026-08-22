@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="https://github.com/reapicorn/ashfeld"
-INSTALL_DIR=~/ashfeld
+ASHFELD_DIR=~/ashfeld
 
 wait_healthy() {
   local TIMEOUT=120 ELAPSED=0
@@ -17,14 +17,14 @@ wait_healthy() {
   docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 }
 
-if [ -d "$INSTALL_DIR" ]; then
-  echo "Error: $INSTALL_DIR already exists. Run ashfeld-cleanup.sh first."
+if [ -d "$ASHFELD_DIR" ]; then
+  echo "Error: $ASHFELD_DIR already exists. Run ashfeld-cleanup.sh first."
   exit 1
 fi
 
-git clone -q "$REPO" "$INSTALL_DIR"
-bash "$INSTALL_DIR/bin/ashfeld-setenv.sh"
-docker compose -f "$INSTALL_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
-docker compose -f "$INSTALL_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
+git clone -q "$REPO" "$ASHFELD_DIR"
+bash "$ASHFELD_DIR/bin/ashfeld-setenv.sh"
+docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
+docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
 
 wait_healthy

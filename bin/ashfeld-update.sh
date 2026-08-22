@@ -2,11 +2,11 @@
 set -euo pipefail
 
 TARGET="${1:-all}"
-REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ASHFELD_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
-cd "$REPO_DIR"
+cd "$ASHFELD_DIR"
 git pull
-chmod +x bin/ashfeld-*.sh 2>/dev/null || true
+chmod +x "$ASHFELD_DIR/bin/ashfeld-*.sh" 2>/dev/null || true
 
 wait_healthy() {
   local TIMEOUT=120 ELAPSED=0
@@ -23,14 +23,14 @@ wait_healthy() {
 
 case "$TARGET" in
   darkhorn)
-    docker compose -f darkhorn/docker-compose.yml up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
     ;;
   hollowcrown)
-    docker compose -f hollowcrown/docker-compose.yml up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
     ;;
   all)
-    docker compose -f hollowcrown/docker-compose.yml up --build -d 2>/dev/null
-    docker compose -f darkhorn/docker-compose.yml up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
     ;;
   *)
     echo "Usage: ashfeld-update.sh [darkhorn|hollowcrown|all]"
