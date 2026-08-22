@@ -32,12 +32,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
 | API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
 | OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
-
-| URL | |
-|---|---|
-| Base | `http://<host>:3000` |
-| OIDC token | `http://<host>:3000/oauth/token` |
-| OIDC discovery | `http://<host>:3000/.well-known/openid-configuration` |
+| Port | `3000` |
 
 ### darkhorn-jdbc
 
@@ -64,8 +59,7 @@ Each backend in this project exposes the same set of 13 identity operations over
 
 | Parameter | Value |
 |---|---|
-| Port | `2222` |
-| Username | `spectral` |
+| Connection | `sftp spectral@<host> -P 2222` |
 | Password | `Sp3ctr4lF1l3!` |
 | Remote path | `/darkhorn` |
 | Files | `users.csv`, `groups.csv`, `user_groups.csv` |
