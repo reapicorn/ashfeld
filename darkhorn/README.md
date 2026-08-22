@@ -4,13 +4,13 @@ Darkhorn is the southern district of Ashfeld, built around the old processing ya
 
 Every company in Darkhorn handles the same thirteen things — who works here, what they're allowed to do, whether they're still active. The paperwork is identical. The process is not.
 
-`Search users` · `Lookup user` · `Create user` · `Modify user` · `Delete user` · `Suspend user` · `Restore user` · `Change password` · `Reset password` · `Get groups` · `Get user groups` · `Assign groups` · `Remove groups`
-
 ---
 
 ## Purpose
 
 Six companies. Six ways of keeping records. None of them chose to be compatible — they just ended up in the same district, and now someone has to connect them.
+
+The thirteen operations, across every backend: `Search users` · `Lookup user` · `Create user` · `Modify user` · `Delete user` · `Suspend user` · `Restore user` · `Change password` · `Reset password` · `Get groups` · `Get user groups` · `Assign groups` · `Remove groups`
 
 ### Practice areas
 
