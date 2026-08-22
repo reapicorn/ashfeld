@@ -4,7 +4,7 @@ Darkhorn is the southern district of Ashfeld, built around the old processing ya
 
 Each backend in this project exposes the same set of 13 identity operations over a different protocol, making it possible to practice the same integration logic in different contexts:
 
-Search users · Lookup user · Create user · Modify user · Delete user · Suspend user · Restore user · Change password · Reset password · Get groups · Get user groups · Assign groups · Remove groups
+`Search users` · `Lookup user` · `Create user` · `Modify user` · `Delete user` · `Suspend user` · `Restore user` · `Change password` · `Reset password` · `Get groups` · `Get user groups` · `Assign groups` · `Remove groups`
 
 ---
 
@@ -278,7 +278,7 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!
 ```bash
 # Connect directly to the darkhorn_jdbc database
 docker exec -it darkhorn-postgres psql \
-  -U darkhorn -d darkhorn_jdbc
+  -h localhost -U darkhorn -d darkhorn_jdbc
 ```
 
 ```sql
