@@ -811,7 +811,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 ## Endpoint and operation reference
 
-All backends implement the same set of 13 operations — Search users, Lookup user, Create user, Modify user, Delete user, Suspend user, Restore user, Change password, Reset password, Get groups, Get user groups, Assign groups, Remove groups. Details by protocol below.
+Same thirteen operations. Six different doors. This section maps each one to the exact call, query, or message that carries it across the wire.
 
 ### darkhorn-rest — HTTP REST (port 3000)
 
