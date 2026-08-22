@@ -715,7 +715,7 @@ curl -s -X POST http://<host>:3002/soap \
 
 All messages are published to the `darkhorn.requests` queue. The worker processes each message after a **random delay of 1–60 seconds**, then sends the response to the queue named in `replyTo`.
 
-This simulates a real asynchronous target system — the adapter must not block waiting for a response, and must correlate replies using `correlationId`.
+One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back when they're ready. The district learned not to wait by the door.
 
 ### Request/reply pattern
 
