@@ -7,7 +7,7 @@ This lab reproduces that environment. It is a self-contained infrastructure for 
 ```
 .
 ├── hollowcrown/     # HR source system — employee records, web UI
-└── darkhorn/        # Target systems — REST, SOAP, MQ, JDBC, SFTP, LDAP
+└── darkhorn/        # Target systems — REST, JDBC, LDAP, SFTP, SOAP, MQ
 ```
 
 Each project has its own `docker-compose.yml` and runs independently.
@@ -143,7 +143,7 @@ docker compose logs -f <service_name>
 
 **hollowcrown** service names: `hollowcrown-api` `hollowcrown-web` `hollowcrown-db`
 
-**darkhorn** service names: `darkhorn-rest` `darkhorn-soap` `darkhorn-mq` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-postgres` `darkhorn-rabbitmq`
+**darkhorn** service names: `darkhorn-rest` `darkhorn-postgres` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-soap` `darkhorn-mq` `darkhorn-rabbitmq`
 
 ### Check running containers
 
