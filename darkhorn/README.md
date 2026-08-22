@@ -166,7 +166,9 @@ curl -s -X POST http://<host>:3002/soap \
 
 #### darkhorn-mq
 
-The worker accepts messages on `darkhorn.requests` and replies to the queue named in `reply_to`. It processes each message after a random delay of 1–60 seconds.
+One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back when they're ready. The district learned not to wait by the door.
+
+Messages drop into `darkhorn.requests`. Replies surface in whatever queue the sender named. Nobody promises how long it takes.
 
 Validate the full request/reply cycle:
 
@@ -712,51 +714,6 @@ curl -s -X POST http://<host>:3002/soap \
 ```
 
 #### darkhorn-mq — AMQP request/reply
-
-All messages are published to the `darkhorn.requests` queue. The worker processes each message after a **random delay of 1–60 seconds**, then sends the response to the queue named in `replyTo`.
-
-One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back when they're ready. The district learned not to wait by the door.
-
-### Request/reply pattern
-
-```
-Adapter                          darkhorn-mq worker
-  │                                      │
-  ├─ assert reply queue ─────────────────┤
-  ├─ publish to darkhorn.requests ───────▶│
-  │   replyTo: "my-reply-queue"          │  (waits 1–60 s)
-  │   correlationId: "abc-123"           │
-  │                                      ├─ processes operation
-  │◀─ response in my-reply-queue ────────┤
-  │   correlationId: "abc-123"           │
-```
-
-**Message properties** (set by the adapter, not in the payload):
-
-| Property | Description |
-|---|---|
-| `reply_to` | Name of the queue where the response will be sent |
-| `correlation_id` | Arbitrary string — echoed back in the response for matching |
-
-**Validate the full cycle:**
-
-```bash
-# 1. Create a reply queue
-docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
-  declare queue name=my-reply-queue durable=false
-
-# 2. Publish with reply_to and correlation_id
-docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
-  exchange='amq.default' routing_key='darkhorn.requests' \
-  properties='{"reply_to":"my-reply-queue","correlation_id":"test-1"}' \
-  payload='{"operation":"SearchUsers","payload":{"count":3}}'
-
-# 3. Wait for the response (worker delays 1–60 s)
-docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
-  get queue=my-reply-queue
-```
-
-### Operation examples
 
 ```bash
 # SearchUsers — return 3 users
