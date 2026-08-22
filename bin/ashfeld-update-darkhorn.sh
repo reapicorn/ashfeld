@@ -2,17 +2,11 @@
 set -e
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-BIN_DIR="$REPO_DIR/bin"
 
 cd "$REPO_DIR"
-
-echo "==> Pulling latest changes..."
-git checkout -- .
 git pull
-chmod +x "$BIN_DIR"/ashfeld-*.sh
+chmod +x bin/ashfeld-*.sh
 
-echo "==> Rebuilding darkhorn..."
-cd darkhorn
-docker compose up --build -d
+docker compose -f darkhorn/docker-compose.yml up --build -d > /dev/null 2>&1
 
-echo "==> Done."
+echo "Done."
