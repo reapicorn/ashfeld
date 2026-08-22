@@ -8,6 +8,19 @@ cd "$REPO_DIR"
 git pull
 chmod +x bin/ashfeld-*.sh
 
+wait_healthy() {
+  local TIMEOUT=120 ELAPSED=0
+  until [ -z "$(docker ps --filter health=starting --filter health=unhealthy --format '{{.Names}}')" ]; do
+    if [ "$ELAPSED" -ge "$TIMEOUT" ]; then
+      echo "Warning: timed out waiting for containers to become healthy."
+      break
+    fi
+    sleep 15
+    ELAPSED=$((ELAPSED + 15))
+  done
+  docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+}
+
 case "$TARGET" in
   darkhorn)
     docker compose -f darkhorn/docker-compose.yml up --build -d 2>/dev/null
@@ -25,4 +38,4 @@ case "$TARGET" in
     ;;
 esac
 
-echo "Done."
+wait_healthy
