@@ -19,7 +19,7 @@ The thirteen operations, across every backend: `Search users` · `Lookup user` �
 | **HTTP REST** | Full CRUD, pagination, suspend/restore, change/reset password — with Basic Auth, API Key and OIDC |
 | **JDBC** | Direct database connection, reconciliation queries |
 | **LDAP** | Search, attribute reading, group membership, bind with service account |
-| **Flat files (SFTP)** | Download/upload CSV files via SFTP, key-based and password authentication |
+| **SFTP** | Download/upload CSV files via SFTP, key-based and password authentication |
 | **SOAP** | WSDL, document/literal, WS-Security UsernameToken, fault handling |
 | **MQ** | AMQP request/reply, correlationId, replyTo, JSON message format |
 
@@ -86,7 +86,7 @@ Every door has a different lock. Same district, different rules.
 
 ## The challenge
 
-### 1. Get familiar with the backends
+### 1. Walk the district
 
 Before touching the code, walk the district. Each company runs its own system — learn the door, the handshake, the protocol. Confirm it responds before you try to build against it.
 
@@ -160,20 +160,30 @@ This company never dropped the formalities. Every request goes in a proper envel
 # WSDL
 curl -s 'http://<host>:3002/soap?wsdl' | head -10
 
+# Define the WS-Security header — required on every request
+AUTH='<soapenv:Header>
+  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+    <wsse:UsernameToken>
+      <wsse:Username>banshee</wsse:Username>
+      <wsse:Password>B4nsh33Sc4ms!</wsse:Password>
+    </wsse:UsernameToken>
+  </wsse:Security>
+</soapenv:Header>'
+
 # LookupUser
 curl -s -X POST http://<host>:3002/soap \
   -H 'Content-Type: text/xml;charset=UTF-8' \
   -H 'SOAPAction: "LookupUser"' \
-  -d '<?xml version="1.0"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:tns="http://darkhorn.local/userservice">
-  <soapenv:Header/>
+  -d "<?xml version=\"1.0\"?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+                  xmlns:tns=\"http://darkhorn.local/userservice\">
+  ${AUTH}
   <soapenv:Body>
     <tns:LookupUserRequest>
       <tns:id>james.smith</tns:id>
     </tns:LookupUserRequest>
   </soapenv:Body>
-</soapenv:Envelope>'
+</soapenv:Envelope>"
 ```
 
 > Tip: append `'| xmllint --format -'` to any `curl` command for readable XML output.
@@ -181,8 +191,6 @@ curl -s -X POST http://<host>:3002/soap \
 #### darkhorn-mq
 
 One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back in whatever queue the sender named in reply_to. The district learned not to wait by the door.
-
-Validate the full request/reply cycle:
 
 ```bash
 # 1. Create a temporary reply queue
@@ -502,19 +510,7 @@ sftp> put users.csv darkhorn/users.csv
 
 #### darkhorn-soap — SOAP/WSDL
 
-> **Tip:** The WS-Security header is required on every request. A reusable helper variable makes the examples shorter:
-
-```bash
-# Shared WS-Security header fragment (used in all examples below)
-AUTH='<soapenv:Header>
-  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
-    <wsse:UsernameToken>
-      <wsse:Username>banshee</wsse:Username>
-      <wsse:Password>B4nsh33Sc4ms!</wsse:Password>
-    </wsse:UsernameToken>
-  </wsse:Security>
-</soapenv:Header>'
-```
+> **Tip:** The WS-Security header — defined in the validation section above — is required on every request. Set `AUTH` before running any example below.
 
 ```bash
 # SearchUsers — return 3 users
