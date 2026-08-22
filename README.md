@@ -6,8 +6,8 @@ This lab reproduces that environment. It is a self-contained infrastructure for 
 
 ```
 .
-├── darkhorn/        # Target systems — REST, SOAP, MQ, JDBC, SFTP, LDAP
-└── hollowcrown/     # HR source system — employee records, web UI
+├── hollowcrown/     # HR source system — employee records, web UI
+└── darkhorn/        # Target systems — REST, SOAP, MQ, JDBC, SFTP, LDAP
 ```
 
 Each project has its own `docker-compose.yml` and runs independently.
@@ -16,26 +16,17 @@ Each project has its own `docker-compose.yml` and runs independently.
 
 ## Projects
 
-### darkhorn
-
-Six backend services, each exposing the same 13 identity operations over a different protocol:
-
-| Backend | Protocol | Port |
-|---|---|---|
-| `darkhorn-rest` | HTTP REST + Basic Auth / API Key / OIDC | `3000` |
-| `darkhorn-soap` | SOAP/WSDL + WS-Security | `3002` |
-| `darkhorn-mq` | AMQP request/reply (RabbitMQ) | `5672` |
-| `darkhorn-jdbc` | Direct PostgreSQL | `5432` |
-| `darkhorn-sftp` | SFTP with CSV files | `2222` |
-| `darkhorn-ldap` | OpenLDAP | `389` |
-
-→ See [`darkhorn/README.md`](darkhorn/README.md) for credentials, endpoint reference and data contract examples.
-
 ### hollowcrown
 
 A fictional HR system that acts as the upstream source of employee data. Includes a web UI for managing employees and a REST API that the adapter can poll.
 
 → See [`hollowcrown/README.md`](hollowcrown/README.md) for the API reference and employee model.
+
+### darkhorn
+
+Six backend services (REST, SOAP, MQ, JDBC, SFTP, LDAP), each exposing the same 13 identity operations over a different protocol.
+
+→ See [`darkhorn/README.md`](darkhorn/README.md) for credentials, endpoint reference and data contract examples.
 
 ---
 
@@ -112,8 +103,8 @@ git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ## Starting each project
 
 ```bash
-cd ~/ashfeld/darkhorn && docker compose up --build -d
 cd ~/ashfeld/hollowcrown && docker compose up --build -d
+cd ~/ashfeld/darkhorn && docker compose up --build -d
 cd ~
 ```
 
@@ -125,14 +116,14 @@ Both projects can run simultaneously on the same host without port conflicts.
 
 ```bash
 sudo ufw allow 22/tcp       # SSH — always first
+sudo ufw allow 8080/tcp     # hollowcrown web UI
 sudo ufw allow 3000/tcp     # REST
+sudo ufw allow 5432/tcp     # JDBC / PostgreSQL
+sudo ufw allow 389/tcp      # LDAP
 sudo ufw allow 2222/tcp     # SFTP
 sudo ufw allow 3002/tcp     # SOAP
-sudo ufw allow 5432/tcp     # JDBC / PostgreSQL
 sudo ufw allow 5672/tcp     # AMQP
 sudo ufw allow 15672/tcp    # RabbitMQ Management UI
-sudo ufw allow 389/tcp      # LDAP
-sudo ufw allow 8080/tcp     # hollowcrown web UI
 sudo ufw enable
 ```
 
@@ -150,9 +141,9 @@ docker compose logs -f
 docker compose logs -f <service_name>
 ```
 
-**darkhorn** service names: `darkhorn-rest` `darkhorn-soap` `darkhorn-mq` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-postgres` `darkhorn-rabbitmq`
-
 **hollowcrown** service names: `hollowcrown-api` `hollowcrown-web` `hollowcrown-db`
+
+**darkhorn** service names: `darkhorn-rest` `darkhorn-soap` `darkhorn-mq` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-postgres` `darkhorn-rabbitmq`
 
 ### Check running containers
 
@@ -165,8 +156,8 @@ docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 After pulling changes from GitHub:
 
 ```bash
-cd ~/ashfeld/darkhorn && git pull && docker compose up --build -d
 cd ~/ashfeld/hollowcrown && git pull && docker compose up --build -d
+cd ~/ashfeld/darkhorn && git pull && docker compose up --build -d
 cd ~
 ```
 
@@ -175,8 +166,8 @@ cd ~
 After pulling changes from GitHub, if you want to reset all data:
 
 ```bash
-cd ~/ashfeld/darkhorn && git pull && docker compose down -v && docker compose up --build -d
 cd ~/ashfeld/hollowcrown && git pull && docker compose down -v && docker compose up --build -d
+cd ~/ashfeld/darkhorn && git pull && docker compose down -v && docker compose up --build -d
 cd ~
 ```
 
@@ -185,7 +176,7 @@ cd ~
 ## Uninstalling
 
 ```bash
-cd ~/ashfeld/darkhorn && docker compose down -v
 cd ~/ashfeld/hollowcrown && docker compose down -v
+cd ~/ashfeld/darkhorn && docker compose down -v
 cd ~ && sudo rm -rf ~/ashfeld
 ```
