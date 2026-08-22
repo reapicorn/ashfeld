@@ -2,7 +2,7 @@
 
 Darkhorn is the southern district of Ashfeld, built around the old processing yards and the warehouses that outlasted them. The companies that moved in after the foundries closed brought their own ways of doing things — their own ledgers, their own couriers, their own gates. None of it was designed to connect. It just grew, one system at a time, until untangling it became someone else's problem.
 
-Every company in Darkhorn handles the same thirteen things — who works here, what they're allowed to do, whether they're still active. The paperwork is identical. The process is not.
+Every company in Darkhorn handles the same three things — who works here, what they can access, and whether they're still active. The paperwork is identical. The process is not.
 
 ---
 
