@@ -208,13 +208,13 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 ### 2. Build the connector
 
-Six companies. Six protocols. None of them picked the same one. With the backends validated and the data contract understood, build the connector against each — HTTP/REST for standard web APIs, JDBC for direct database access, SOAP for contract-first XML services, MQ for asynchronous request/reply over AMQP, and LDAP for directory-based identity. Same thirteen operations. Six different ways to wire them up.
+Six companies. Six protocols. None of them picked the same one. With the backends validated and the data contract understood, build the connector against each — HTTP/REST for standard web APIs, JDBC for direct database access, LDAP for directory-based identity, SFTP for file-based read/write, SOAP for contract-first XML services, and MQ for asynchronous request/reply over AMQP. Same thirteen operations. Six different ways to wire them up.
 
 ---
 
 ## Data contract examples
 
-The district doesn't come with a manual. Before building the connector, operate each backend by hand — send the requests, read the responses, understand exactly what moves across the wire for every operation.
+Before building the connector, operate the backends manually to understand exactly what data is sent and received in each operation.
 
 #### darkhorn-rest — HTTP REST
 
