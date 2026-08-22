@@ -805,7 +805,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
   payload='{"operation":"DeleteUser","payload":{"id":"mq.user"}}'
 ```
 
-> The examples above omit `reply_to` and `correlation_id` for brevity. In a real adapter, both properties must be set on every message to receive the response.
+> **Tip:** The examples above omit `reply_to` and `correlation_id` for brevity. In a real adapter, both properties must be set on every message to receive the response.
 
 ---
 
