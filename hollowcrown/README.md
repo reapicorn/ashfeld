@@ -119,13 +119,13 @@ on-leave --> terminated
 
 hollowcrown is the **source of truth** for employee identity. The connector reads from hollowcrown and keeps accounts on the darkhorn backends in sync with it.
 
-| hollowcrown | IAM action |
-|---|---|
-| Employee is `active`, no account exists | Provision |
-| Employee is `terminated` | Deprovision |
-| Employee is `on-leave` | Suspend (policy-dependent) |
-| Employee attributes changed (name, email, department, title) | Modify |
-| Account exists but employee is not in hollowcrown | Deprovision (orphan) |
+| JLM event | hollowcrown | IAM action |
+|---|---|---|
+| **Joiner** | Employee is `active`, no account exists | Provision |
+| **Leaver** | Employee is `terminated` | Deprovision |
+| **Leaver** | Account exists but employee is not in hollowcrown | Deprovision (orphan) |
+| **Mover** | Employee is `on-leave` | Suspend (policy-dependent) |
+| **Mover** | Employee attributes changed (name, email, department, title) | Modify |
 
 A full reconciliation cycle: read all hollowcrown employees → compare against target accounts → apply delta.
 
