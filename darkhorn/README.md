@@ -88,6 +88,8 @@ Confirm each backend is reachable and understand how it communicates before buil
 
 #### darkhorn-rest
 
+The new tenants put up a proper front door. Three locks — Basic Auth for the ones who know the password, an API key for the systems that were never meant to be people, and an OIDC token for whoever convinced someone to issue them one. Pick the lock that fits.
+
 ```bash
 # Health (no auth)
 curl -s http://<host>:3000/api/health
@@ -114,12 +116,16 @@ curl -s -H "Authorization: Bearer $TOKEN" \
 
 #### darkhorn-jdbc
 
+No receptionist. No interface. The ledgers are in the basement and the connection string is on the wall. Some of the old-timers say it's the most honest system in the district — it doesn't pretend to be anything other than a database.
+
 ```bash
 docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc \
   -c "SELECT username, email, status FROM users LIMIT 5;"
 ```
 
 #### darkhorn-ldap
+
+The district keeps a register. Names, titles, which floor they work on, which doors they're allowed through. One authorized account gets you in. Ask for what you need — it's all in the tree.
 
 ```bash
 docker exec -it darkhorn-ldap ldapsearch -x \
@@ -133,6 +139,8 @@ docker exec -it darkhorn-ldap ldapsearch -x \
 
 #### darkhorn-sftp
 
+Some offices still run on paper — or the closest thing to it. Three files sit on a remote server: users, groups, memberships. Download, edit, upload. The system doesn't ask why. It doesn't ask anything.
+
 ```bash
 sftp -P 2222 spectral@<host>
 # password: Sp3ctr4lF1l3!
@@ -141,6 +149,8 @@ sftp> get darkhorn/users.csv
 ```
 
 #### darkhorn-soap
+
+This company never dropped the formalities. Every request goes in a proper envelope, every envelope carries credentials in the header. The format is rigid, the WSDL is the contract, and unsigned messages don't make it past the front desk.
 
 ```bash
 # WSDL
@@ -205,8 +215,6 @@ With the backends validated and the data contract understood, build the connecto
 Before building the connector, operate the backends manually to understand exactly what data is sent and received in each operation.
 
 #### darkhorn-rest — HTTP REST
-
-The new tenants put up a proper front door. Three locks — Basic Auth for the ones who know the password, an API key for the systems that were never meant to be people, and an OIDC token for whoever convinced someone to issue them one. Pick the lock that fits.
 
 ```bash
 # Search users
@@ -283,8 +291,6 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!
 
 #### darkhorn-jdbc — PostgreSQL
 
-No receptionist. No interface. The ledgers are in the basement and the connection string is on the wall. Some of the old-timers say it's the most honest system in the district — it doesn't pretend to be anything other than a database.
-
 ```bash
 # Connect directly to the darkhorn_jdbc database
 docker exec -it darkhorn-postgres psql -h <host> -U darkhorn -d darkhorn_jdbc
@@ -348,8 +354,6 @@ DELETE FROM users WHERE username = 'sql.user';
 ```
 
 #### darkhorn-ldap — LDAP
-
-The district keeps a register. Names, titles, which floor they work on, which doors they're allowed through. One authorized account gets you in. Ask for what you need — it's all in the tree.
 
 ```bash
 # Search users
@@ -476,8 +480,6 @@ ldapdelete -x -H ldap://<host>:389 \
 ```
 
 #### darkhorn-sftp — SFTP
-
-Some offices still run on paper — or the closest thing to it. Three files sit on a remote server: users, groups, memberships. Download, edit, upload. The system doesn't ask why. It doesn't ask anything.
 
 ```bash
 # Connect and list files
