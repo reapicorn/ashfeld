@@ -188,6 +188,10 @@ rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
 # 3. Wait up to 60 s, then read the response
 rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   get queue=my-reply-queue
+
+# 4. Delete the reply queue
+rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
+  delete queue name=my-reply-queue
 ```
 
 > The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
