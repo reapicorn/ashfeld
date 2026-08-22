@@ -12,6 +12,9 @@ fi
 git clone -q "$REPO" "$INSTALL_DIR"
 docker compose -f "$INSTALL_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
 docker compose -f "$INSTALL_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
-sleep 60
+
+until [ -z "$(docker ps --filter health=starting --filter health=unhealthy --format '{{.Names}}')" ]; do
+  sleep 5
+done
 
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
