@@ -277,25 +277,62 @@ curl -s -X DELETE http://<host>:3000/api/users/$ID -u grimreaper:'Wh1sp3r0fD4rk!
 # Connect directly to the darkhorn_jdbc database
 docker exec -it darkhorn-postgres psql \
   -U darkhorn -d darkhorn_jdbc
+```
 
--- Reconcile: list all active users
+```sql
+-- Search users
 SELECT id, username, email, first_name, last_name, status, department FROM users
-WHERE status = 'active' ORDER BY last_name LIMIT 10;
+ORDER BY last_name LIMIT 10;
+
+-- Lookup user
+SELECT * FROM users WHERE username = 'sql.user';
 
 -- Add a user
 INSERT INTO users (id, username, email, first_name, last_name, password, status, department, title)
 VALUES (gen_random_uuid(), 'sql.user', 'sql.user@darkhorn.local',
         'SQL', 'User', crypt('Passw0rd!', gen_salt('bf')), 'active', 'IT', 'Engineer');
 
+-- Modify user
+UPDATE users SET title = 'Senior Engineer', department = 'DevOps', updated_at = NOW()
+WHERE username = 'sql.user';
+
 -- Suspend
 UPDATE users SET status = 'suspended', updated_at = NOW()
 WHERE username = 'sql.user';
 
--- Change password
+-- Restore
+UPDATE users SET status = 'active', updated_at = NOW()
+WHERE username = 'sql.user';
+
+-- Change password (requires current password check in application logic — SQL sets directly)
 UPDATE users SET password = crypt('N3wPassw0rd!', gen_salt('bf')), updated_at = NOW()
 WHERE username = 'sql.user';
 
--- Delete
+-- Reset password
+UPDATE users SET password = crypt('N3wPassw0rd!', gen_salt('bf')), password_reset_at = NOW(), updated_at = NOW()
+WHERE username = 'sql.user';
+
+-- Get groups
+SELECT id, name, description FROM groups ORDER BY name;
+
+-- Get user groups
+SELECT g.id, g.name FROM groups g
+JOIN user_groups ug ON ug.group_id = g.id
+JOIN users u ON u.id = ug.user_id
+WHERE u.username = 'sql.user';
+
+-- Assign groups
+INSERT INTO user_groups (user_id, group_id)
+SELECT u.id, g.id FROM users u, groups g
+WHERE u.username = 'sql.user' AND g.name IN ('admins', 'developers')
+ON CONFLICT DO NOTHING;
+
+-- Remove groups
+DELETE FROM user_groups
+WHERE user_id = (SELECT id FROM users WHERE username = 'sql.user')
+  AND group_id IN (SELECT id FROM groups WHERE name IN ('developers'));
+
+-- Delete user
 DELETE FROM users WHERE username = 'sql.user';
 ```
 
