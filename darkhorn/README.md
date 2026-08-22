@@ -846,7 +846,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 | `groups` | Groups — Get Groups |
 | `user_groups` | Membership — Get/Assign/Remove Groups |
 
-Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `password`, `status` (`active`/`suspended`), `department`, `title`, `password_reset_at`, `created_at`, `updated_at`.
+> Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `password`, `status` (`active`/`suspended`), `department`, `title`, `password_reset_at`, `created_at`, `updated_at`.
 
 ### darkhorn-ldap — LDAP (port 389)
 
