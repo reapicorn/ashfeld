@@ -23,7 +23,7 @@ fi
 
 git clone -q "https://github.com/reapicorn/ashfeld" "$ASHFELD_DIR"
 bash "$ASHFELD_DIR/bin/ashfeld-setenv.sh"
-docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
-docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
+docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
+docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
 
 wait_healthy

@@ -23,14 +23,14 @@ chmod +x "$ASHFELD_DIR"/bin/ashfeld-*.sh 2>/dev/null || true
 
 case "$TARGET" in
   darkhorn)
-    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
     ;;
   hollowcrown)
-    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
     ;;
   all)
-    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d 2>/dev/null
-    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d 2>/dev/null
+    docker compose -f "$ASHFELD_DIR/hollowcrown/docker-compose.yml" up --build -d > /dev/null 2>&1
+    docker compose -f "$ASHFELD_DIR/darkhorn/docker-compose.yml" up --build -d > /dev/null 2>&1
     ;;
   *)
     echo "Usage: ashfeld-update.sh [darkhorn|hollowcrown|all]"
