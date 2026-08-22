@@ -194,8 +194,6 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
   delete queue name=my-reply-queue
 ```
 
-> The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
-
 ---
 
 ### 2. Build the connector
@@ -761,8 +759,6 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' \
   get queue=my-reply-queue
 ```
-
-> The Management UI at `http://<host>:15672` → Queues → `my-reply-queue` → **Get messages** can also be used to inspect the response.
 
 ### Operation examples
 
