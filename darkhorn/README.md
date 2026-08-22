@@ -176,9 +176,7 @@ curl -s -X POST http://<host>:3002/soap \
 
 #### darkhorn-mq
 
-One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back when they're ready. The district learned not to wait by the door.
-
-Messages drop into `darkhorn.requests`. Replies surface in whatever queue the sender named in `reply_to`. Nobody promises how long it takes.
+One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back in whatever queue the sender named in reply_to. The district learned not to wait by the door.
 
 Validate the full request/reply cycle:
 
