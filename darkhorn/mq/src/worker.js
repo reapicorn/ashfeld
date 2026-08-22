@@ -6,6 +6,9 @@
  * Replies to:        message.properties.replyTo  (per-message reply queue)
  * Correlation:       message.properties.correlationId  (echoed back)
  *
+ * Simulates an asynchronous target system — each message is processed after a
+ * random delay between 1 and 60 seconds before the response is sent.
+ *
  * Message format (JSON):
  * {
  *   "operation": "AddUser" | "ModifyUser" | "DeleteUser" | "LookupUser" |
@@ -36,7 +39,15 @@ const MQ_URL      = process.env.MQ_URL      || 'amqp://darkhorn:Wr41thPuls3!@loc
 const MQ_QUEUE    = process.env.MQ_QUEUE    || 'darkhorn.requests';
 const MQ_API_KEY  = process.env.MQ_API_KEY  || null; // optional payload-level key
 
-const RETRY_DELAY_MS = 5000;
+const RETRY_DELAY_MS  = 5000;
+const ASYNC_MIN_MS    = 1000;
+const ASYNC_MAX_MS    = 60000;
+
+function randomDelay() {
+  const ms = Math.floor(Math.random() * (ASYNC_MAX_MS - ASYNC_MIN_MS + 1)) + ASYNC_MIN_MS;
+  console.log(`[darkhorn-mq] Processing in ${(ms / 1000).toFixed(1)}s...`);
+  return new Promise(r => setTimeout(r, ms));
+}
 
 // ── Handlers ──────────────────────────────────────────────────────────────────
 
@@ -197,6 +208,8 @@ async function startWorker() {
     try {
       const body = JSON.parse(msg.content.toString());
       const { operation, payload = {}, apiKey } = body;
+
+      await randomDelay();
 
       // Optional API key check
       if (MQ_API_KEY && apiKey !== MQ_API_KEY) {
