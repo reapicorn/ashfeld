@@ -6,48 +6,6 @@ This project is a fictional HR system. It provides a REST API and a web UI for m
 
 ---
 
-## Architecture
-
-```
-+-----------------------------------------------+
-|                  hollowcrown                  |
-|                                               |
-|  +-----------+     +-----------+     +-----+  |
-|  |  Web UI   | --> |    API    | --> |  DB |  |
-|  |  :8080    |     |  :4000    |     |  PG |  |
-|  +-----------+     +-----------+     +-----+  |
-+-----------------------------------------------+
-```
-
-| Service | Image | Port |
-|---|---|---|
-| `hollowcrown-web` | nginx (built from Vite) | `8080` |
-| `hollowcrown-api` | node:18-alpine | `4000` (internal) |
-| `hollowcrown-db` | postgres:15-alpine | internal only |
-
----
-
-## Quick start
-
-```bash
-docker compose up --build -d
-```
-
-The web UI will be available at **http://localhost:8080** (or the host's IP on port 8080).
-
-The seed container runs once on first boot and populates 50 employees across 6 departments; subsequent restarts skip the seed automatically.
-
----
-
-## Environment variables
-
-| Variable | Default | Description |
-|---|---|---|
-| `POSTGRES_DB` | `hollowcrown` | Database name |
-| `POSTGRES_USER` | `crownkeeper` | PostgreSQL user |
-| `POSTGRES_PASSWORD` | `C0r0n4Kpr!` | PostgreSQL password |
-| `WEB_PORT` | `8080` | Host port for the web UI |
-
 ---
 
 ## API reference
