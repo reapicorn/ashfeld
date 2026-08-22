@@ -877,7 +877,7 @@ Same thirteen operations. Six different doors. This section maps each one to the
 | `groups.csv` | One row per group — `id`, `name`, `description`, `createdAt` |
 | `user_groups.csv` | Membership — `userId`, `groupId` |
 
-> Each operation maps to a read-modify-write cycle on the relevant CSV file.
+Each operation maps to a read-modify-write cycle on the relevant CSV file.
 
 ### darkhorn-soap — SOAP/WSDL (port 3002)
 
