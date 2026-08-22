@@ -52,6 +52,8 @@ The seed container runs once on first boot and populates 50 employees across 6 d
 
 ## API reference
 
+No authentication required.
+
 Base URL: `http://<host>:4000`
 
 ### Employees
@@ -104,9 +106,9 @@ Base URL: `http://<host>:4000`
 ### Status lifecycle
 
 ```
-active ──▶ on-leave ──▶ active
-active ──▶ terminated
-on-leave ──▶ terminated
+active --> on-leave --> active
+active --> terminated
+on-leave --> terminated
 ```
 
 > **Note:** Terminated employees are never deleted — their records remain for historical reference.
@@ -140,39 +142,3 @@ docker compose up -d
 
 The seed runs automatically on first boot and repopulates the data.
 
-### Delete specific employees via the UI
-
-Open the web UI at `http://<host>:8080`, navigate to the employee, and use the **Terminate** action. Terminated records are kept for history but are no longer active.
-
-If you need a hard delete (remove the row entirely), connect directly to the database:
-
-```bash
-docker exec -it hollowcrown-db psql -U crownkeeper -d hollowcrown
-
--- Delete a specific employee by employee_id
-DELETE FROM employees WHERE employee_id = 'HC-00042';
-
--- Delete all terminated employees
-DELETE FROM employees WHERE status = 'terminated';
-
--- Delete ALL employees (data only, keeps schema intact)
-TRUNCATE employees;
-```
-
-After a `TRUNCATE`, the seed will not re-run automatically because the service is already up. Re-seed manually:
-
-```bash
-docker compose run --rm hollowcrown-seed
-```
-
-### Restore a terminated employee to active
-
-Termination is final in the UI — the Actions panel is hidden once an employee is terminated. The only way to revert it is directly in the database:
-
-```bash
-docker exec -it hollowcrown-db psql -U crownkeeper -d hollowcrown
-
-UPDATE employees
-SET status = 'active', termination_date = NULL, updated_at = NOW()
-WHERE employee_id = 'HC-00042';
-```
