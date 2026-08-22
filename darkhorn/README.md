@@ -208,7 +208,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 
 ### 2. Build the connector
 
-With the backends validated and the data contract understood, build the connector against each backend. Each service is designed to exercise a different connector type — HTTP/REST for standard web APIs, JDBC for direct database access, SOAP for contract-first XML services, MQ for asynchronous request/reply over AMQP, and LDAP for directory-based identity. Same thirteen operations. Six different ways to wire them up.
+Six companies. Six protocols. None of them picked the same one. With the backends validated and the data contract understood, build the connector against each — HTTP/REST for standard web APIs, JDBC for direct database access, SOAP for contract-first XML services, MQ for asynchronous request/reply over AMQP, and LDAP for directory-based identity. Same thirteen operations. Six different ways to wire them up.
 
 ---
 
