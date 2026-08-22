@@ -117,13 +117,17 @@ on-leave --> terminated
 
 ## Integration scenarios
 
-hollowcrown acts as the **upstream HR feed**. A typical integration exercise would:
+hollowcrown is the **source of truth** for employee identity. The connector reads from hollowcrown and keeps accounts on the darkhorn backends in sync with it.
 
-1. **Reconcile** — compare hollowcrown employees against accounts on a target system (e.g., `darkhorn-rest`)
-2. **Provision** — create accounts for `active` employees who have no account yet
-3. **Deprovision** — disable or remove accounts for `terminated` employees
-4. **Suspend** — manage `on-leave` employees according to policy
-5. **Sync** — keep attributes (name, email, department, title) up to date when hollowcrown records change
+| hollowcrown | IAM action |
+|---|---|
+| Employee is `active`, no account exists | Provision |
+| Employee is `terminated` | Deprovision |
+| Employee is `on-leave` | Suspend (policy-dependent) |
+| Employee attributes changed (name, email, department, title) | Modify |
+| Account exists but employee is not in hollowcrown | Deprovision (orphan) |
+
+A full reconciliation cycle: read all hollowcrown employees → compare against target accounts → apply delta.
 
 ---
 
