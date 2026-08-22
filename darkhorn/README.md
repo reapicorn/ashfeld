@@ -32,7 +32,12 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Basic Auth | `grimreaper` | `Wh1sp3r0fD4rk!` |
 | API Key | `shadowhorn-key` | `sh4d0wh0rn-4p1-k3y-d4rkn3ss` |
 | OIDC client_id | `voidhorn` | `v01dh0rn$3cr3t!` |
-| Port | `3000` |
+
+| URL | |
+|---|---|
+| Base | `http://<host>:3000` |
+| OIDC token | `http://<host>:3000/oauth/token` |
+| OIDC discovery | `http://<host>:3000/.well-known/openid-configuration` |
 
 ### darkhorn-jdbc
 
@@ -42,7 +47,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Driver | `org.postgresql.Driver` |
 | Username | `darkhorn` |
 | Password | `Sp3ct3r0fN1ght!` |
-| Port | `5432` |
 
 ### darkhorn-ldap
 
@@ -55,7 +59,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | Service password | `Sp3ctr3Qu13t!` |
 | Admin DN | `uid=admin,dc=darkhorn,dc=local` |
 | Admin password | `Bl4ckTr33Admin!` |
-| Port | `389` |
 
 ### darkhorn-sftp
 
@@ -75,7 +78,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | WSDL | `http://<host>:3002/soap?wsdl` |
 | WS-Security user | `banshee` |
 | WS-Security password | `B4nsh33Sc4ms!` |
-| Port | `3002` |
 
 ### darkhorn-mq
 
@@ -84,7 +86,6 @@ Each backend in this project exposes the same set of 13 identity operations over
 | AMQP URL | `amqp://darkhorn:Wr41thPuls3!@<host>:5672` |
 | Queue | `darkhorn.requests` |
 | Management UI | `http://<host>:15672` |
-| Port | `5672` |
 
 ---
 
