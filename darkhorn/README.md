@@ -214,7 +214,7 @@ Six companies. Six protocols. None of them picked the same one. With the backend
 
 ## Data contract examples
 
-Before building the connector, operate the backends manually to understand exactly what data is sent and received in each operation.
+The district doesn't come with a manual. Before building the connector, operate each backend by hand — send the requests, read the responses, understand exactly what moves across the wire for every operation.
 
 #### darkhorn-rest — HTTP REST
 
