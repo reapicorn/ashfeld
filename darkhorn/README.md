@@ -725,10 +725,6 @@ curl -s -X POST http://<host>:3002/soap \
 
 #### darkhorn-mq — AMQP request/reply
 
-One of the companies in Darkhorn never upgraded their systems to accept direct connections. They process requests on their own schedule — messages arrive in their queue, and replies come back when they're ready. The district learned not to wait by the door.
-
-Messages drop into `darkhorn.requests`. Replies surface in whatever queue the sender named in `reply_to`. Nobody promises how long it takes.
-
 ```bash
 # SearchUsers — return 3 users
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
