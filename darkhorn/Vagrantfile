@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
     vmware.vmx["memsize"]  = "2048"
     vmware.vmx["numvcpus"] = "2"
     vmware.gui = false
+    # Store VM files outside OneDrive to avoid sync conflicts and VMDK locks.
+    vmware.clone_directory = "C:/vagrant-vms/darkhorn"
   end
 
   # ── Provisioning ──────────────────────────────────────────────────────────────

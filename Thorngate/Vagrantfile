@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
     vmware.vmx["memsize"]     = "16384"
     vmware.vmx["numvcpus"]    = "4"
     vmware.vmx["gui"]         = "false"
+    # Store VM files outside OneDrive to avoid sync conflicts and VMDK locks.
+    vmware.clone_directory = "C:/vagrant-vms/thorngate"
   end
 
   # ── Provisioning ──────────────────────────────────────────────
