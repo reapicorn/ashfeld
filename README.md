@@ -30,13 +30,13 @@ The HR system. Every identity in Ashfeld starts here — hired, transferred, ter
 
 ### Ironhold
 
-The vault. Privileged credentials, service accounts, infrastructure secrets — all of it locked behind Delinea Secret Server. If something has a password that matters, Ironhold is where it lives.
+The vault. Privileged credentials, service accounts, infrastructure secrets. If something has a password that matters, Ironhold is where it lives.
 
 → See [`Ironhold/README.md`](Ironhold/README.md)
 
 ### Thorngate
 
-The gate. IBM Verify Identity Governance — lifecycle management, role governance, provisioning policies. Thorngate decides who gets access, to what, and under what conditions.
+The gate. Lifecycle management, role governance, provisioning policies. Thorngate decides who gets access, to what, and under what conditions.
 
 → See [`Thorngate/README.md`](Thorngate/README.md)
 
@@ -135,11 +135,11 @@ vagrant destroy -f && vagrant up
 
 ## Ironhold
 
-Windows Server 2025 VM running Delinea Secret Server.
+Windows Server 2025 VM.
 
 ### Before starting
 
-The installer is not included. Get it from Delinea and place it in `Ironhold/installer/` (any filename, `.exe` or `.zip`).
+The installer is not included. Obtain it separately and place it in `Ironhold/installer/` (any filename, `.exe` or `.zip`).
 
 ### Start
 
@@ -148,13 +148,13 @@ cd Ironhold
 vagrant up
 ```
 
-Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and installs and configures Delinea Secret Server. First run: ~15 minutes. Subsequent starts: ~2 minutes.
+Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and provisions the vault. First run: ~15 minutes. Subsequent starts: ~2 minutes.
 
 ### Access
 
 | | |
 |---|---|
-| Secret Server URL | `http://10.10.10.10/SecretServer` |
+| URL | `http://10.10.10.10/SecretServer` |
 | Username | `admin` |
 | Password | `Passw0rd!` |
 | RDP | `10.10.10.10:3389` — `vagrant` / `vagrant` |
@@ -191,11 +191,11 @@ vagrant destroy -f && vagrant up
 
 ## Thorngate
 
-Ubuntu Server 24.04 VM running IBM Verify Identity Governance (IVIG) 11.0.2 on k3s.
+Ubuntu Server 24.04 VM running an identity governance stack on k3s.
 
 ### Before starting
 
-The IVIG starter kit and license keys are not included. Obtain them from IBM and place them in `Thorngate/` before running `vagrant up`.
+The installer kit and license keys are not included. Obtain them separately and place them in `Thorngate/` before running `vagrant up`.
 
 ### Start
 
@@ -208,7 +208,7 @@ vagrant up
 
 | | |
 |---|---|
-| IVIG Console | `https://10.10.10.40:30943/itim/console` |
+| Console | `https://10.10.10.40:30943/itim/console` |
 | Username | `itim manager` |
 | Password | `secret` |
 | Tenant | `Acme` |
@@ -247,4 +247,4 @@ vagrant destroy -f && vagrant up
 | Disk | 100 GB |
 | OS | Ubuntu Server 24.04 LTS (x86_64) |
 
-> ARM is not supported directly. IVIG images are `amd64`-only.
+> ARM is not supported directly. Container images are `amd64`-only.

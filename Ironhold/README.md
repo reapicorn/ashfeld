@@ -2,7 +2,7 @@
 
 Before the foundries closed, Ironhold was the district's most secure facility — a fortified records vault where the guilds kept what they could not afford to lose. Master keys. Payroll ciphers. The names behind the accounts. Nothing left that building without a signature and a witness.
 
-The guilds are gone. The building is still standing. Today, Ironhold runs IBM Verify Privilege Vault — the vault where privileged credentials live. Every service account, every admin password, every infrastructure secret in Ashfeld is checked in here. If something has a password that matters, it goes through Ironhold.
+The guilds are gone. The building is still standing. The vault where privileged credentials live. Every service account, every admin password, every infrastructure secret in Ashfeld is checked in here. If something has a password that matters, it goes through Ironhold.
 
 ---
 

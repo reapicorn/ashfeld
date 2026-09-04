@@ -2,7 +2,7 @@
 
 Ashfeld was always a city where nobody agreed on who had access to what. The old guilds kept their own lists, their own rules, their own definitions of who counted as a member. When the guilds dissolved, the access went with them — or didn't. Nobody could say for certain.
 
-Thorngate was built to answer that question. It is the city's governance layer — the gate that decides who gets access, to what, and under what conditions. Not because the organizations asked for it, but because the city had become impossible to audit without it. IBM Verify Identity Governance runs here. Lifecycle management, role governance, provisioning policies — Thorngate is the engine behind every identity decision in Ashfeld.
+Thorngate was built to answer that question. It is the city's governance layer — the gate that decides who gets access, to what, and under what conditions. Not because the organizations asked for it, but because the city had become impossible to audit without it. Lifecycle management, role governance, provisioning policies — Thorngate is the engine behind every identity decision in Ashfeld.
 
 ---
 
