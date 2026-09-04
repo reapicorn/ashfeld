@@ -19,6 +19,7 @@
 #    sql_db              Create SecretServer DB + login + db_owner
 #    sqlcmd              Install sqlcmd command-line tools
 #    ssms                [removed - not needed for the lab]
+#    tools               Install Firefox and VS Code
 #    iis_features        Install IIS / ASP.NET / WCF Windows features
 #    iis_cert            Create self-signed cert + HTTPS binding on Default Web Site
 #    secretserver        Print manual install instructions (status check)
@@ -87,6 +88,7 @@ $allSteps = @(
     "serviceaccount","serviceaccount_admin","choco",
     "sql_install","sql_auth","sql_db",
     "sqlcmd","ssms",
+    "tools",
     "iis_features","iis_cert"
 ) + $ssSteps + @("firewall")
 $plannedSteps  = if ($runAll) { $allSteps } else { $stepList | Where-Object { $_ -notmatch "^uninstall_" } }
@@ -253,6 +255,24 @@ if (ShouldRun "sqlcmd") {
 }
 
 # ssms step removed - not needed for the lab (Secret Server has its own web UI)
+
+# -- tools: Install Firefox and VS Code ------------------------
+if (ShouldRun "tools") {
+    Step "Tools - Firefox and VS Code"
+    if (-not (Test-Path "$env:ProgramFiles\Mozilla Firefox\firefox.exe")) {
+        RunSilent { choco install firefox -y --no-progress 2>&1 }
+        Log "Firefox installed."
+    } else {
+        Log "Firefox already installed."
+    }
+    if (-not (Test-Path "$env:ProgramFiles\Microsoft VS Code\Code.exe")) {
+        RunSilent { choco install vscode -y --no-progress 2>&1 }
+        Log "VS Code installed."
+    } else {
+        Log "VS Code already installed."
+    }
+    Done "tools"
+}
 
 # -- iis_features: Install IIS / ASP.NET / WCF features -------
 if (ShouldRun "iis_features") {
