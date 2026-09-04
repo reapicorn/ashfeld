@@ -919,3 +919,56 @@ One company in the district never upgraded their systems to accept direct connec
 | AMQP URL | `amqp://darkhorn:Wr41thPuls3!@<host>:5672` |
 | Queue | `darkhorn.requests` |
 | Management UI | `http://<host>:15672` |
+
+---
+
+## Vagrant
+
+### Start
+
+```bash
+cd darkhorn
+vagrant up
+```
+
+### Access
+
+| Service | URL |
+|---|---|
+| REST | `http://10.10.10.20:3000` |
+| SOAP | `http://10.10.10.20:3002` |
+| JDBC | `10.10.10.20:5432` |
+| LDAP | `10.10.10.20:389` |
+| SFTP | `10.10.10.20:2222` |
+| MQ (AMQP) | `10.10.10.20:5672` |
+| RabbitMQ mgmt | `http://10.10.10.20:15672` |
+
+### Day-to-day
+
+```bash
+# Stop
+vagrant halt
+
+# Start
+vagrant up
+
+# Shell into the VM
+vagrant ssh
+
+# Container status
+vagrant ssh -c "docker ps"
+
+# Logs
+vagrant ssh -c "docker compose -f /vagrant/docker-compose.yml logs -f"
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
+```
+
+### Machine requirements
+
+| Resource | Minimum | Recommended |
+|---|---|---|
+| CPU | 1 vCPU | 2 vCPU |
+| RAM | 1 GB | 2 GB |
+| Disk | 15 GB | 20 GB |

@@ -6,18 +6,55 @@ The guilds are gone. The building is still standing. The vault where privileged 
 
 ---
 
-## Access
+## Vagrant
 
-| Service | URL |
-|---|---|
-| Secret Server | `http://localhost:8080/SecretServer` |
+### Before starting
 
-| Field | Value |
+The installer is not included. Obtain it separately and place it in `installer/` (any filename, `.exe` or `.zip`).
+
+### Start
+
+```bash
+vagrant up
+```
+
+Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and provisions the vault. First run: ~15 minutes. Subsequent starts: ~2 minutes.
+
+### Access
+
+| | |
 |---|---|
+| URL | `http://10.10.10.10/SecretServer` |
 | Username | `admin` |
 | Password | `Passw0rd!` |
+| RDP | `10.10.10.10:3389` — `vagrant` / `vagrant` |
 
-VM credentials (RDP): `vagrant` / `vagrant`
+### Day-to-day
+
+```bash
+# Stop
+vagrant halt
+
+# Start
+vagrant up
+
+# RDP into the VM
+vagrant rdp
+
+# Re-run provisioning (if it failed mid-way)
+vagrant provision
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
+```
+
+### Machine requirements
+
+| Resource | Value |
+|---|---|
+| CPU | 2 vCPU |
+| RAM | 4 GB |
+| Disk | 25 GB |
 
 ---
 

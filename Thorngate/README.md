@@ -6,18 +6,62 @@ Thorngate was built to answer that question. It is the city's governance layer â
 
 ---
 
-## Access
+## Vagrant
 
-| Service | URL |
-|---|---|
-| IVIG Console | `https://<SERVER_IP>:30943/itim/console` |
+### Before starting
 
-| Field | Value |
+The installer kit and license keys are not included. Obtain them separately and place them in the `Thorngate/` folder before running `vagrant up`.
+
+### Start
+
+```bash
+vagrant up
+```
+
+### Access
+
+| | |
 |---|---|
+| Console | `https://10.10.10.40:30943/itim/console` |
 | Username | `itim manager` |
 | Password | `secret` |
+| Tenant | `Acme` |
 
-Default tenant: `Acme` / org name: `Acme Inc.`
+### Day-to-day
+
+```bash
+# Stop
+vagrant halt
+
+# Start
+vagrant up
+
+# Shell into the VM
+vagrant ssh
+
+# Pod status
+vagrant ssh -c "kubectl -n ivig get pods"
+
+# Services
+vagrant ssh -c "kubectl -n ivig get svc"
+
+# Full uninstall / reset
+vagrant ssh -c "cd ~/ivig_starter_kit_11.0.2/bin && ./sys/cleanup.sh -force"
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
+```
+
+### Machine requirements
+
+| Resource | Value |
+|---|---|
+| CPU | 4 vCPUs |
+| RAM | 16 GB |
+| Disk | 100 GB |
+| OS | Ubuntu Server 24.04 LTS (x86_64) |
+
+> ARM is not supported directly. Container images are `amd64`-only.
 
 ---
 
@@ -27,7 +71,7 @@ Default tenant: `Acme` / org name: `Acme Inc.`
 
 | Parameter | Value |
 |---|---|
-| Host | `<SERVER_IP>` |
+| Host | `10.10.10.40` |
 | Port | `30543` |
 | Database | `ivig` |
 | User | `ivig` |
@@ -37,7 +81,7 @@ Default tenant: `Acme` / org name: `Acme Inc.`
 
 | Parameter | Value |
 |---|---|
-| Host | `<SERVER_IP>` |
+| Host | `10.10.10.40` |
 | Port | `30636` |
 | Protocol | LDAPS |
 | Base DN | `dc=ivig` |

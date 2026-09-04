@@ -84,3 +84,51 @@ Base URL: `http://<host>:4000`
 | `GET` | `/api/health` | Liveness check |
 | `GET` | `/api/stats` | Dashboard stats (counts, by-department, recent hires) |
 
+---
+
+## Vagrant
+
+### Start
+
+```bash
+cd hollowcrown
+vagrant up
+```
+
+### Access
+
+| Service | URL |
+|---|---|
+| Web UI | `http://10.10.10.30:8080` |
+| API | `http://10.10.10.30:4000` |
+
+### Day-to-day
+
+```bash
+# Stop
+vagrant halt
+
+# Start
+vagrant up
+
+# Shell into the VM
+vagrant ssh
+
+# Container status
+vagrant ssh -c "docker ps"
+
+# Logs
+vagrant ssh -c "docker compose -f /vagrant/docker-compose.yml logs -f"
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
+```
+
+### Machine requirements
+
+| Resource | Value |
+|---|---|
+| CPU | 1 vCPU |
+| RAM | 1 GB |
+| Disk | 15 GB |
+
