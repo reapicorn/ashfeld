@@ -271,6 +271,39 @@ if (ShouldRun "tools") {
     } else {
         Log "VS Code already installed."
     }
+
+    # Firefox bookmark: Secret Server
+    # Drop a bookmarks.html in the Firefox distribution folder so it is imported
+    # on first launch for every new profile (Firefox looks for bookmarks.html there).
+    $ffDistDir = "$env:ProgramFiles\Mozilla Firefox\distribution"
+    New-Item -ItemType Directory -Force -Path $ffDistDir | Out-Null
+    $bookmarksHtml = @"
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks Toolbar</H1>
+<DL><p>
+    <DT><A HREF="http://localhost/SecretServer">Secret Server</A>
+</DL><p>
+"@
+    $bookmarksHtml | Set-Content -Path "$ffDistDir\bookmarks.html" -Encoding UTF8
+    Log "Firefox bookmark configured: http://localhost/SecretServer"
+
+    # Taskbar: disable Search and Task View for all users via registry
+    $explorerKey = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
+    if (-not (Test-Path $explorerKey)) {
+        New-Item -Path $explorerKey -Force | Out-Null
+    }
+    Set-ItemProperty -Path $explorerKey -Name "HideTaskViewButton" -Value 1 -Type DWord
+    Log "Task View button hidden."
+
+    $searchKey = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search"
+    if (-not (Test-Path $searchKey)) {
+        New-Item -Path $searchKey -Force | Out-Null
+    }
+    Set-ItemProperty -Path $searchKey -Name "SearchboxTaskbarMode" -Value 0 -Type DWord
+    Log "Taskbar search box hidden."
+
     Done "tools"
 }
 
