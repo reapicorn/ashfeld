@@ -6,7 +6,10 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 
 ```
 .
-└── darkhorn/        # the district — six companies, six ways of keeping the same records
+├── darkhorn/        # the district — six companies, six ways of keeping the same records
+├── hollowcrown/     # HR source system — the identity source of truth
+├── Ironhold/        # PAM vault — privileged credentials, checkout, rotation
+└── Thorngate/       # Identity governance — lifecycle, roles, provisioning policies
 ```
 
 ---
@@ -19,15 +22,108 @@ Six companies settled in the Darkhorn district after the foundries closed. None 
 
 → See [`darkhorn/README.md`](darkhorn/README.md) — the six companies, their doors, and what moves across the wire.
 
+### hollowcrown
+
+The HR system. Every identity in Ashfeld starts here — hired, transferred, terminated. Hollowcrown is the source of truth that the rest of the city is supposed to reflect.
+
+→ See [`hollowcrown/README.md`](hollowcrown/README.md)
+
+### Ironhold
+
+The vault. Privileged credentials, service accounts, infrastructure secrets — all of it locked behind Delinea Secret Server. If something has a password that matters, Ironhold is where it lives.
+
+→ See [`Ironhold/README.md`](Ironhold/README.md)
+
+### Thorngate
+
+The gate. IBM Verify Identity Governance — lifecycle management, role governance, provisioning policies. Thorngate decides who gets access, to what, and under what conditions.
+
+→ See [`Thorngate/README.md`](Thorngate/README.md)
+
 ---
 
-## Standing it up
+## Prerequisites
 
-### The machine
+Vagrant and a VMware hypervisor are required for all components.
 
-> **⚠️ DRAFT — needs validation against real lab usage before publishing.**
+**Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
 
-The full stack runs on a single machine. Ashfeld never had much to work with — neither does this lab.
+| Machine | Hypervisor |
+|---|---|
+| Windows | VMware Workstation Pro |
+| Mac Intel | VMware Fusion |
+| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
+| Linux | VMware Workstation |
+
+**Install the Vagrant VMware plugin (one-time):**
+
+```bash
+vagrant plugin install vagrant-vmware-desktop
+```
+
+Download and install the VMware Utility Service for your OS: [developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility)
+
+---
+
+## Clone
+
+```bash
+git clone https://github.com/reapicorn/ashfeld ~/ashfeld
+```
+
+---
+
+## darkhorn + hollowcrown
+
+Both run on Docker in a Debian 12 VM. Each has its own `Vagrantfile`.
+
+### Start
+
+```bash
+# darkhorn
+cd ~/ashfeld/darkhorn && vagrant up
+
+# hollowcrown
+cd ~/ashfeld/hollowcrown && vagrant up
+```
+
+### Access
+
+| Component | URL |
+|---|---|
+| darkhorn REST | `http://10.10.10.20:3000` |
+| darkhorn SOAP | `http://10.10.10.20:3002` |
+| darkhorn JDBC | `10.10.10.20:5432` |
+| darkhorn LDAP | `10.10.10.20:389` |
+| darkhorn SFTP | `10.10.10.20:2222` |
+| darkhorn MQ (AMQP) | `10.10.10.20:5672` |
+| RabbitMQ mgmt | `http://10.10.10.20:15672` |
+| hollowcrown Web UI | `http://10.10.10.30:8080` |
+| hollowcrown API | `http://10.10.10.30:4000` |
+
+### Day-to-day
+
+```bash
+# Stop
+vagrant halt
+
+# Start
+vagrant up
+
+# Shell into the VM
+vagrant ssh
+
+# Container status
+vagrant ssh -c "docker ps"
+
+# Logs
+vagrant ssh -c "docker compose -f /vagrant/docker-compose.yml logs -f"
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
+```
+
+### darkhorn machine requirements
 
 | Resource | Minimum | Recommended |
 |---|---|---|
@@ -35,31 +131,42 @@ The full stack runs on a single machine. Ashfeld never had much to work with —
 | RAM | 1 GB | 2 GB |
 | Disk | 15 GB | 20 GB |
 
-### Choose your ground
+---
 
-Windows Server 2025 VM running IBM Verify Privilege Vault.
+## Ironhold
+
+Windows Server 2025 VM running Delinea Secret Server.
 
 ### Before starting
 
-The installer is not included. Get it from the IBM source and place it in `Ironhold/installer/` (any filename, `.exe` or `.zip`).
+The installer is not included. Get it from Delinea and place it in `Ironhold/installer/` (any filename, `.exe` or `.zip`).
 
 ### Start
 
-```powershell
+```bash
 cd Ironhold
-vagrant up --provider=vmware_desktop
+vagrant up
 ```
 
-Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and installs and configures IBM Verify Privilege Vault. First run: ~15 minutes. Subsequent starts: ~2 minutes.
+Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and installs and configures Delinea Secret Server. First run: ~15 minutes. Subsequent starts: ~2 minutes.
+
+### Access
+
+| | |
+|---|---|
+| Secret Server URL | `http://10.10.10.10/SecretServer` |
+| Username | `admin` |
+| Password | `Passw0rd!` |
+| RDP | `10.10.10.10:3389` — `vagrant` / `vagrant` |
 
 ### Day-to-day
 
-```powershell
+```bash
 # Stop
 vagrant halt
 
 # Start
-vagrant up --provider=vmware_desktop
+vagrant up
 
 # RDP into the VM
 vagrant rdp
@@ -69,7 +176,7 @@ vagrant rdp
 vagrant provision
 
 # Destroy and start fresh
-vagrant destroy -f && vagrant up --provider=vmware_desktop
+vagrant destroy -f && vagrant up
 ```
 
 ### Machine requirements
@@ -80,87 +187,64 @@ vagrant destroy -f && vagrant up --provider=vmware_desktop
 | RAM | 4 GB |
 | Disk | 25 GB |
 
-Two options. One is leaner and expects you to know what you're doing. The other is more forgiving. Pick the one that fits.
-
 ---
 
 ## Thorngate
 
-The script below detects the distribution and installs everything needed. Run it once and don't think about it again.
+Ubuntu Server 24.04 VM running IBM Verify Identity Governance (IVIG) 11.0.2 on k3s.
+
+### Before starting
+
+The IVIG starter kit and license keys are not included. Obtain them from IBM and place them in `Thorngate/` before running `vagrant up`.
+
+### Start
 
 ```bash
 cd Thorngate
-vagrant up --provider=vmware_desktop
+vagrant up
 ```
 
-If it installed correctly:
+### Access
+
+| | |
+|---|---|
+| IVIG Console | `https://10.10.10.40:30943/itim/console` |
+| Username | `itim manager` |
+| Password | `secret` |
+| Tenant | `Acme` |
+
+### Day-to-day
 
 ```bash
 # Stop
 vagrant halt
 
 # Start
-vagrant up --provider=vmware_desktop
+vagrant up
 
-## Clone the archive
+# Shell into the VM
+vagrant ssh
 
-```bash
-git clone https://github.com/reapicorn/ashfeld ~/ashfeld
+# Pod status
+vagrant ssh -c "kubectl -n ivig get pods"
+
+# Services
+vagrant ssh -c "kubectl -n ivig get svc"
+
+# Full uninstall / reset
+vagrant ssh -c "cd ~/ivig_starter_kit_11.0.2/bin && ./sys/cleanup.sh -force"
+
+# Destroy and start fresh
+vagrant destroy -f && vagrant up
 ```
 
----
+### Machine requirements
 
-## Starting the city
+| Resource | Value |
+|---|---|
+| CPU | 4 vCPUs |
+| RAM | 16 GB |
+| Disk | 100 GB |
+| OS | Ubuntu Server 24.04 LTS (x86_64) |
 
-```bash
-cd ~/ashfeld/darkhorn && docker compose up --build -d
-```
-
----
-
-## The gates
-
-```bash
-sudo ufw allow 22/tcp       # SSH — always first
-sudo ufw allow 3000/tcp     # REST
-sudo ufw allow 5432/tcp     # JDBC / PostgreSQL
-sudo ufw allow 389/tcp      # LDAP
-sudo ufw allow 2222/tcp     # SFTP
-sudo ufw allow 3002/tcp     # SOAP
-sudo ufw allow 5672/tcp     # AMQP
-sudo ufw allow 15672/tcp    # RabbitMQ Management UI
-sudo ufw enable
-```
-
----
-
-## Working in the city
-
-### The logs
-
-```bash
-# All services
-docker compose logs -f
-
-# Single service
-docker compose logs -f <service_name>
-```
-
-**darkhorn** service names: `darkhorn-rest` `darkhorn-postgres` `darkhorn-ldap` `darkhorn-sftp` `darkhorn-soap` `darkhorn-mq` `darkhorn-rabbitmq`
-
-### Status
-
-```bash
-docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
-```
-
----
-
-## Shutting it down
-
-> **⚠️** This removes everything — containers, volumes, and the files themselves. Ashfeld will be gone. There is no undo.
-
-```bash
-cd ~/ashfeld/darkhorn && docker compose down -v
-cd ~ && sudo rm -rf ~/ashfeld
-```
+> ARM is not supported directly. IVIG images are `amd64`-only.
