@@ -6,10 +6,10 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 
 ```
 .
-├── darkhorn/        # target systems — six backends, six protocols, thirteen operations each
-├── hollowcrown/     # HR source system — the identity source of truth
-├── Ironhold/        # PAM vault — privileged credentials, checkout, rotation
-└── Thorngate/       # identity governance — lifecycle, roles, provisioning policies
+├── darkhorn/        # the district — six companies, six protocols, none of them compatible
+├── hollowcrown/     # the bureau — citizen records, the only list anyone agrees to use
+├── Ironhold/        # the vault — privileged credentials, locked below the city
+└── Thorngate/       # the gate — who gets access, to what, and under what conditions
 ```
 
 ---
