@@ -24,19 +24,19 @@ Six companies settled in the Darkhorn district after the foundries closed. None 
 
 ### hollowcrown
 
-The HR system. Every identity in Ashfeld starts here — hired, transferred, terminated. Hollowcrown is the source of truth that the rest of the city is supposed to reflect.
+Hollowcrown was the council that governed Ashfeld before it dissolved. The name passed to the bureau that kept its records. Every citizen who was ever hired, transferred, or terminated has an entry here. What the bureau records, the rest of the city is supposed to reflect.
 
 → See [`hollowcrown/README.md`](hollowcrown/README.md)
 
 ### Ironhold
 
-The vault. Privileged credentials, service accounts, infrastructure secrets. If something has a password that matters, Ironhold is where it lives.
+Before the foundries closed, Ironhold was the most secure facility in the district. The guilds kept what they could not afford to lose there. The guilds are gone. The building is still standing. If something has a password that matters, it goes through Ironhold.
 
 → See [`Ironhold/README.md`](Ironhold/README.md)
 
 ### Thorngate
 
-The gate. Lifecycle management, role governance, provisioning policies. Thorngate decides who gets access, to what, and under what conditions.
+Ashfeld was always a city where nobody agreed on who had access to what. Thorngate was built to answer that question — the gate that decides who gets access, to what, and under what conditions. Not because anyone asked for it, but because the city had become impossible to audit without it.
 
 → See [`Thorngate/README.md`](Thorngate/README.md)
 
