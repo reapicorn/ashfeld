@@ -1,0 +1,1961 @@
+dn: uid=james.smith,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: james.smith
+cn: James Smith
+sn: Smith
+givenName: James
+mail: james.smith@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+description: suspended
+
+dn: uid=mary.johnson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mary.johnson
+cn: Mary Johnson
+sn: Johnson
+givenName: Mary
+mail: mary.johnson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=john.williams,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: john.williams
+cn: John Williams
+sn: Williams
+givenName: John
+mail: john.williams@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=patricia.brown,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: patricia.brown
+cn: Patricia Brown
+sn: Brown
+givenName: Patricia
+mail: patricia.brown@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=robert.jones,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: robert.jones
+cn: Robert Jones
+sn: Jones
+givenName: Robert
+mail: robert.jones@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=jennifer.garcia,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jennifer.garcia
+cn: Jennifer Garcia
+sn: Garcia
+givenName: Jennifer
+mail: jennifer.garcia@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=michael.miller,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michael.miller
+cn: Michael Miller
+sn: Miller
+givenName: Michael
+mail: michael.miller@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=linda.davis,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: linda.davis
+cn: Linda Davis
+sn: Davis
+givenName: Linda
+mail: linda.davis@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=william.rodriguez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: william.rodriguez
+cn: William Rodriguez
+sn: Rodriguez
+givenName: William
+mail: william.rodriguez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=barbara.martinez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: barbara.martinez
+cn: Barbara Martinez
+sn: Martinez
+givenName: Barbara
+mail: barbara.martinez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=david.hernandez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: david.hernandez
+cn: David Hernandez
+sn: Hernandez
+givenName: David
+mail: david.hernandez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=susan.lopez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: susan.lopez
+cn: Susan Lopez
+sn: Lopez
+givenName: Susan
+mail: susan.lopez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=richard.gonzalez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: richard.gonzalez
+cn: Richard Gonzalez
+sn: Gonzalez
+givenName: Richard
+mail: richard.gonzalez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=jessica.wilson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jessica.wilson
+cn: Jessica Wilson
+sn: Wilson
+givenName: Jessica
+mail: jessica.wilson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+description: suspended
+
+dn: uid=joseph.anderson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joseph.anderson
+cn: Joseph Anderson
+sn: Anderson
+givenName: Joseph
+mail: joseph.anderson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=sarah.thomas,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sarah.thomas
+cn: Sarah Thomas
+sn: Thomas
+givenName: Sarah
+mail: sarah.thomas@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=thomas.taylor,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: thomas.taylor
+cn: Thomas Taylor
+sn: Taylor
+givenName: Thomas
+mail: thomas.taylor@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=karen.moore,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: karen.moore
+cn: Karen Moore
+sn: Moore
+givenName: Karen
+mail: karen.moore@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=charles.jackson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: charles.jackson
+cn: Charles Jackson
+sn: Jackson
+givenName: Charles
+mail: charles.jackson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=lisa.martin,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: lisa.martin
+cn: Lisa Martin
+sn: Martin
+givenName: Lisa
+mail: lisa.martin@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=christopher.lee,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: christopher.lee
+cn: Christopher Lee
+sn: Lee
+givenName: Christopher
+mail: christopher.lee@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=nancy.perez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: nancy.perez
+cn: Nancy Perez
+sn: Perez
+givenName: Nancy
+mail: nancy.perez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=daniel.thompson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: daniel.thompson
+cn: Daniel Thompson
+sn: Thompson
+givenName: Daniel
+mail: daniel.thompson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=betty.white,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: betty.white
+cn: Betty White
+sn: White
+givenName: Betty
+mail: betty.white@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=matthew.harris,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: matthew.harris
+cn: Matthew Harris
+sn: Harris
+givenName: Matthew
+mail: matthew.harris@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=margaret.sanchez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: margaret.sanchez
+cn: Margaret Sanchez
+sn: Sanchez
+givenName: Margaret
+mail: margaret.sanchez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=anthony.clark,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: anthony.clark
+cn: Anthony Clark
+sn: Clark
+givenName: Anthony
+mail: anthony.clark@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+description: suspended
+
+dn: uid=sandra.ramirez,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sandra.ramirez
+cn: Sandra Ramirez
+sn: Ramirez
+givenName: Sandra
+mail: sandra.ramirez@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=mark.lewis,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mark.lewis
+cn: Mark Lewis
+sn: Lewis
+givenName: Mark
+mail: mark.lewis@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=ashley.robinson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: ashley.robinson
+cn: Ashley Robinson
+sn: Robinson
+givenName: Ashley
+mail: ashley.robinson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=donald.walker,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donald.walker
+cn: Donald Walker
+sn: Walker
+givenName: Donald
+mail: donald.walker@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=dorothy.young,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: dorothy.young
+cn: Dorothy Young
+sn: Young
+givenName: Dorothy
+mail: dorothy.young@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=steven.allen,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: steven.allen
+cn: Steven Allen
+sn: Allen
+givenName: Steven
+mail: steven.allen@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=kimberly.king,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kimberly.king
+cn: Kimberly King
+sn: King
+givenName: Kimberly
+mail: kimberly.king@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=paul.wright,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: paul.wright
+cn: Paul Wright
+sn: Wright
+givenName: Paul
+mail: paul.wright@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=emily.scott,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: emily.scott
+cn: Emily Scott
+sn: Scott
+givenName: Emily
+mail: emily.scott@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=andrew.torres,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: andrew.torres
+cn: Andrew Torres
+sn: Torres
+givenName: Andrew
+mail: andrew.torres@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=donna.nguyen,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donna.nguyen
+cn: Donna Nguyen
+sn: Nguyen
+givenName: Donna
+mail: donna.nguyen@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=joshua.hill,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joshua.hill
+cn: Joshua Hill
+sn: Hill
+givenName: Joshua
+mail: joshua.hill@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=michelle.flores,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michelle.flores
+cn: Michelle Flores
+sn: Flores
+givenName: Michelle
+mail: michelle.flores@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+description: suspended
+
+dn: uid=kenneth.green,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kenneth.green
+cn: Kenneth Green
+sn: Green
+givenName: Kenneth
+mail: kenneth.green@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=carol.adams,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: carol.adams
+cn: Carol Adams
+sn: Adams
+givenName: Carol
+mail: carol.adams@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=kevin.nelson,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kevin.nelson
+cn: Kevin Nelson
+sn: Nelson
+givenName: Kevin
+mail: kevin.nelson@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=amanda.baker,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: amanda.baker
+cn: Amanda Baker
+sn: Baker
+givenName: Amanda
+mail: amanda.baker@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=brian.hall,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: brian.hall
+cn: Brian Hall
+sn: Hall
+givenName: Brian
+mail: brian.hall@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=melissa.rivera,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: melissa.rivera
+cn: Melissa Rivera
+sn: Rivera
+givenName: Melissa
+mail: melissa.rivera@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=george.campbell,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: george.campbell
+cn: George Campbell
+sn: Campbell
+givenName: George
+mail: george.campbell@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=deborah.mitchell,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: deborah.mitchell
+cn: Deborah Mitchell
+sn: Mitchell
+givenName: Deborah
+mail: deborah.mitchell@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=timothy.carter,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: timothy.carter
+cn: Timothy Carter
+sn: Carter
+givenName: Timothy
+mail: timothy.carter@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=stephanie.roberts,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: stephanie.roberts
+cn: Stephanie Roberts
+sn: Roberts
+givenName: Stephanie
+mail: stephanie.roberts@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=james.smith50,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: james.smith50
+cn: James Smith 50
+sn: Smith
+givenName: James
+mail: james.smith50@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=mary.johnson51,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mary.johnson51
+cn: Mary Johnson 51
+sn: Johnson
+givenName: Mary
+mail: mary.johnson51@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=john.williams52,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: john.williams52
+cn: John Williams 52
+sn: Williams
+givenName: John
+mail: john.williams52@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+description: suspended
+
+dn: uid=patricia.brown53,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: patricia.brown53
+cn: Patricia Brown 53
+sn: Brown
+givenName: Patricia
+mail: patricia.brown53@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=robert.jones54,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: robert.jones54
+cn: Robert Jones 54
+sn: Jones
+givenName: Robert
+mail: robert.jones54@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=jennifer.garcia55,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jennifer.garcia55
+cn: Jennifer Garcia 55
+sn: Garcia
+givenName: Jennifer
+mail: jennifer.garcia55@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=michael.miller56,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michael.miller56
+cn: Michael Miller 56
+sn: Miller
+givenName: Michael
+mail: michael.miller56@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=linda.davis57,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: linda.davis57
+cn: Linda Davis 57
+sn: Davis
+givenName: Linda
+mail: linda.davis57@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=william.rodriguez58,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: william.rodriguez58
+cn: William Rodriguez 58
+sn: Rodriguez
+givenName: William
+mail: william.rodriguez58@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=barbara.martinez59,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: barbara.martinez59
+cn: Barbara Martinez 59
+sn: Martinez
+givenName: Barbara
+mail: barbara.martinez59@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=david.hernandez60,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: david.hernandez60
+cn: David Hernandez 60
+sn: Hernandez
+givenName: David
+mail: david.hernandez60@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=susan.lopez61,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: susan.lopez61
+cn: Susan Lopez 61
+sn: Lopez
+givenName: Susan
+mail: susan.lopez61@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=richard.gonzalez62,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: richard.gonzalez62
+cn: Richard Gonzalez 62
+sn: Gonzalez
+givenName: Richard
+mail: richard.gonzalez62@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=jessica.wilson63,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jessica.wilson63
+cn: Jessica Wilson 63
+sn: Wilson
+givenName: Jessica
+mail: jessica.wilson63@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=joseph.anderson64,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joseph.anderson64
+cn: Joseph Anderson 64
+sn: Anderson
+givenName: Joseph
+mail: joseph.anderson64@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=sarah.thomas65,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sarah.thomas65
+cn: Sarah Thomas 65
+sn: Thomas
+givenName: Sarah
+mail: sarah.thomas65@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+description: suspended
+
+dn: uid=thomas.taylor66,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: thomas.taylor66
+cn: Thomas Taylor 66
+sn: Taylor
+givenName: Thomas
+mail: thomas.taylor66@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=karen.moore67,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: karen.moore67
+cn: Karen Moore 67
+sn: Moore
+givenName: Karen
+mail: karen.moore67@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=charles.jackson68,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: charles.jackson68
+cn: Charles Jackson 68
+sn: Jackson
+givenName: Charles
+mail: charles.jackson68@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=lisa.martin69,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: lisa.martin69
+cn: Lisa Martin 69
+sn: Martin
+givenName: Lisa
+mail: lisa.martin69@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=christopher.lee70,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: christopher.lee70
+cn: Christopher Lee 70
+sn: Lee
+givenName: Christopher
+mail: christopher.lee70@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=nancy.perez71,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: nancy.perez71
+cn: Nancy Perez 71
+sn: Perez
+givenName: Nancy
+mail: nancy.perez71@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=daniel.thompson72,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: daniel.thompson72
+cn: Daniel Thompson 72
+sn: Thompson
+givenName: Daniel
+mail: daniel.thompson72@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=betty.white73,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: betty.white73
+cn: Betty White 73
+sn: White
+givenName: Betty
+mail: betty.white73@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=matthew.harris74,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: matthew.harris74
+cn: Matthew Harris 74
+sn: Harris
+givenName: Matthew
+mail: matthew.harris74@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=margaret.sanchez75,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: margaret.sanchez75
+cn: Margaret Sanchez 75
+sn: Sanchez
+givenName: Margaret
+mail: margaret.sanchez75@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=anthony.clark76,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: anthony.clark76
+cn: Anthony Clark 76
+sn: Clark
+givenName: Anthony
+mail: anthony.clark76@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=sandra.ramirez77,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sandra.ramirez77
+cn: Sandra Ramirez 77
+sn: Ramirez
+givenName: Sandra
+mail: sandra.ramirez77@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=mark.lewis78,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mark.lewis78
+cn: Mark Lewis 78
+sn: Lewis
+givenName: Mark
+mail: mark.lewis78@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+description: suspended
+
+dn: uid=ashley.robinson79,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: ashley.robinson79
+cn: Ashley Robinson 79
+sn: Robinson
+givenName: Ashley
+mail: ashley.robinson79@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=donald.walker80,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donald.walker80
+cn: Donald Walker 80
+sn: Walker
+givenName: Donald
+mail: donald.walker80@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=dorothy.young81,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: dorothy.young81
+cn: Dorothy Young 81
+sn: Young
+givenName: Dorothy
+mail: dorothy.young81@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=steven.allen82,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: steven.allen82
+cn: Steven Allen 82
+sn: Allen
+givenName: Steven
+mail: steven.allen82@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=kimberly.king83,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kimberly.king83
+cn: Kimberly King 83
+sn: King
+givenName: Kimberly
+mail: kimberly.king83@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=paul.wright84,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: paul.wright84
+cn: Paul Wright 84
+sn: Wright
+givenName: Paul
+mail: paul.wright84@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=emily.scott85,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: emily.scott85
+cn: Emily Scott 85
+sn: Scott
+givenName: Emily
+mail: emily.scott85@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=andrew.torres86,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: andrew.torres86
+cn: Andrew Torres 86
+sn: Torres
+givenName: Andrew
+mail: andrew.torres86@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=donna.nguyen87,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donna.nguyen87
+cn: Donna Nguyen 87
+sn: Nguyen
+givenName: Donna
+mail: donna.nguyen87@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=joshua.hill88,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joshua.hill88
+cn: Joshua Hill 88
+sn: Hill
+givenName: Joshua
+mail: joshua.hill88@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=michelle.flores89,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michelle.flores89
+cn: Michelle Flores 89
+sn: Flores
+givenName: Michelle
+mail: michelle.flores89@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=kenneth.green90,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kenneth.green90
+cn: Kenneth Green 90
+sn: Green
+givenName: Kenneth
+mail: kenneth.green90@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=carol.adams91,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: carol.adams91
+cn: Carol Adams 91
+sn: Adams
+givenName: Carol
+mail: carol.adams91@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+description: suspended
+
+dn: uid=kevin.nelson92,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kevin.nelson92
+cn: Kevin Nelson 92
+sn: Nelson
+givenName: Kevin
+mail: kevin.nelson92@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=amanda.baker93,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: amanda.baker93
+cn: Amanda Baker 93
+sn: Baker
+givenName: Amanda
+mail: amanda.baker93@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=brian.hall94,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: brian.hall94
+cn: Brian Hall 94
+sn: Hall
+givenName: Brian
+mail: brian.hall94@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=melissa.rivera95,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: melissa.rivera95
+cn: Melissa Rivera 95
+sn: Rivera
+givenName: Melissa
+mail: melissa.rivera95@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=george.campbell96,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: george.campbell96
+cn: George Campbell 96
+sn: Campbell
+givenName: George
+mail: george.campbell96@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=deborah.mitchell97,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: deborah.mitchell97
+cn: Deborah Mitchell 97
+sn: Mitchell
+givenName: Deborah
+mail: deborah.mitchell97@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=timothy.carter98,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: timothy.carter98
+cn: Timothy Carter 98
+sn: Carter
+givenName: Timothy
+mail: timothy.carter98@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=stephanie.roberts99,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: stephanie.roberts99
+cn: Stephanie Roberts 99
+sn: Roberts
+givenName: Stephanie
+mail: stephanie.roberts99@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=james.smith100,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: james.smith100
+cn: James Smith 100
+sn: Smith
+givenName: James
+mail: james.smith100@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=mary.johnson101,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mary.johnson101
+cn: Mary Johnson 101
+sn: Johnson
+givenName: Mary
+mail: mary.johnson101@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=john.williams102,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: john.williams102
+cn: John Williams 102
+sn: Williams
+givenName: John
+mail: john.williams102@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=patricia.brown103,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: patricia.brown103
+cn: Patricia Brown 103
+sn: Brown
+givenName: Patricia
+mail: patricia.brown103@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=robert.jones104,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: robert.jones104
+cn: Robert Jones 104
+sn: Jones
+givenName: Robert
+mail: robert.jones104@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+description: suspended
+
+dn: uid=jennifer.garcia105,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jennifer.garcia105
+cn: Jennifer Garcia 105
+sn: Garcia
+givenName: Jennifer
+mail: jennifer.garcia105@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=michael.miller106,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michael.miller106
+cn: Michael Miller 106
+sn: Miller
+givenName: Michael
+mail: michael.miller106@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=linda.davis107,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: linda.davis107
+cn: Linda Davis 107
+sn: Davis
+givenName: Linda
+mail: linda.davis107@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=william.rodriguez108,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: william.rodriguez108
+cn: William Rodriguez 108
+sn: Rodriguez
+givenName: William
+mail: william.rodriguez108@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=barbara.martinez109,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: barbara.martinez109
+cn: Barbara Martinez 109
+sn: Martinez
+givenName: Barbara
+mail: barbara.martinez109@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=david.hernandez110,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: david.hernandez110
+cn: David Hernandez 110
+sn: Hernandez
+givenName: David
+mail: david.hernandez110@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=susan.lopez111,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: susan.lopez111
+cn: Susan Lopez 111
+sn: Lopez
+givenName: Susan
+mail: susan.lopez111@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=richard.gonzalez112,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: richard.gonzalez112
+cn: Richard Gonzalez 112
+sn: Gonzalez
+givenName: Richard
+mail: richard.gonzalez112@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=jessica.wilson113,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: jessica.wilson113
+cn: Jessica Wilson 113
+sn: Wilson
+givenName: Jessica
+mail: jessica.wilson113@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=joseph.anderson114,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joseph.anderson114
+cn: Joseph Anderson 114
+sn: Anderson
+givenName: Joseph
+mail: joseph.anderson114@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=sarah.thomas115,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sarah.thomas115
+cn: Sarah Thomas 115
+sn: Thomas
+givenName: Sarah
+mail: sarah.thomas115@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=thomas.taylor116,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: thomas.taylor116
+cn: Thomas Taylor 116
+sn: Taylor
+givenName: Thomas
+mail: thomas.taylor116@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=karen.moore117,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: karen.moore117
+cn: Karen Moore 117
+sn: Moore
+givenName: Karen
+mail: karen.moore117@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+description: suspended
+
+dn: uid=charles.jackson118,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: charles.jackson118
+cn: Charles Jackson 118
+sn: Jackson
+givenName: Charles
+mail: charles.jackson118@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=lisa.martin119,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: lisa.martin119
+cn: Lisa Martin 119
+sn: Martin
+givenName: Lisa
+mail: lisa.martin119@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=christopher.lee120,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: christopher.lee120
+cn: Christopher Lee 120
+sn: Lee
+givenName: Christopher
+mail: christopher.lee120@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=nancy.perez121,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: nancy.perez121
+cn: Nancy Perez 121
+sn: Perez
+givenName: Nancy
+mail: nancy.perez121@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=daniel.thompson122,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: daniel.thompson122
+cn: Daniel Thompson 122
+sn: Thompson
+givenName: Daniel
+mail: daniel.thompson122@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=betty.white123,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: betty.white123
+cn: Betty White 123
+sn: White
+givenName: Betty
+mail: betty.white123@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=matthew.harris124,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: matthew.harris124
+cn: Matthew Harris 124
+sn: Harris
+givenName: Matthew
+mail: matthew.harris124@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=margaret.sanchez125,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: margaret.sanchez125
+cn: Margaret Sanchez 125
+sn: Sanchez
+givenName: Margaret
+mail: margaret.sanchez125@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=anthony.clark126,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: anthony.clark126
+cn: Anthony Clark 126
+sn: Clark
+givenName: Anthony
+mail: anthony.clark126@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=sandra.ramirez127,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: sandra.ramirez127
+cn: Sandra Ramirez 127
+sn: Ramirez
+givenName: Sandra
+mail: sandra.ramirez127@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=mark.lewis128,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: mark.lewis128
+cn: Mark Lewis 128
+sn: Lewis
+givenName: Mark
+mail: mark.lewis128@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+
+dn: uid=ashley.robinson129,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: ashley.robinson129
+cn: Ashley Robinson 129
+sn: Robinson
+givenName: Ashley
+mail: ashley.robinson129@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=donald.walker130,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donald.walker130
+cn: Donald Walker 130
+sn: Walker
+givenName: Donald
+mail: donald.walker130@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+description: suspended
+
+dn: uid=dorothy.young131,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: dorothy.young131
+cn: Dorothy Young 131
+sn: Young
+givenName: Dorothy
+mail: dorothy.young131@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=steven.allen132,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: steven.allen132
+cn: Steven Allen 132
+sn: Allen
+givenName: Steven
+mail: steven.allen132@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=kimberly.king133,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kimberly.king133
+cn: Kimberly King 133
+sn: King
+givenName: Kimberly
+mail: kimberly.king133@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=paul.wright134,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: paul.wright134
+cn: Paul Wright 134
+sn: Wright
+givenName: Paul
+mail: paul.wright134@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive
+
+dn: uid=emily.scott135,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: emily.scott135
+cn: Emily Scott 135
+sn: Scott
+givenName: Emily
+mail: emily.scott135@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Engineering
+title: Engineer
+
+dn: uid=andrew.torres136,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: andrew.torres136
+cn: Andrew Torres 136
+sn: Torres
+givenName: Andrew
+mail: andrew.torres136@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: IT
+title: Analyst
+
+dn: uid=donna.nguyen137,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: donna.nguyen137
+cn: Donna Nguyen 137
+sn: Nguyen
+givenName: Donna
+mail: donna.nguyen137@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Finance
+title: Manager
+
+dn: uid=joshua.hill138,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: joshua.hill138
+cn: Joshua Hill 138
+sn: Hill
+givenName: Joshua
+mail: joshua.hill138@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: HR
+title: Director
+
+dn: uid=michelle.flores139,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: michelle.flores139
+cn: Michelle Flores 139
+sn: Flores
+givenName: Michelle
+mail: michelle.flores139@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Marketing
+title: Specialist
+
+dn: uid=kenneth.green140,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kenneth.green140
+cn: Kenneth Green 140
+sn: Green
+givenName: Kenneth
+mail: kenneth.green140@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Sales
+title: Coordinator
+
+dn: uid=carol.adams141,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: carol.adams141
+cn: Carol Adams 141
+sn: Adams
+givenName: Carol
+mail: carol.adams141@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Legal
+title: Consultant
+
+dn: uid=kevin.nelson142,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: kevin.nelson142
+cn: Kevin Nelson 142
+sn: Nelson
+givenName: Kevin
+mail: kevin.nelson142@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Operations
+title: Administrator
+
+dn: uid=amanda.baker143,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: amanda.baker143
+cn: Amanda Baker 143
+sn: Baker
+givenName: Amanda
+mail: amanda.baker143@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Research
+title: Developer
+description: suspended
+
+dn: uid=brian.hall144,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: brian.hall144
+cn: Brian Hall 144
+sn: Hall
+givenName: Brian
+mail: brian.hall144@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Support
+title: Architect
+
+dn: uid=melissa.rivera145,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: melissa.rivera145
+cn: Melissa Rivera 145
+sn: Rivera
+givenName: Melissa
+mail: melissa.rivera145@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Security
+title: Lead
+
+dn: uid=george.campbell146,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: george.campbell146
+cn: George Campbell 146
+sn: Campbell
+givenName: George
+mail: george.campbell146@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: DevOps
+title: Advisor
+
+dn: uid=deborah.mitchell147,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: deborah.mitchell147
+cn: Deborah Mitchell 147
+sn: Mitchell
+givenName: Deborah
+mail: deborah.mitchell147@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Product
+title: Officer
+
+dn: uid=timothy.carter148,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: timothy.carter148
+cn: Timothy Carter 148
+sn: Carter
+givenName: Timothy
+mail: timothy.carter148@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Design
+title: Associate
+
+dn: uid=stephanie.roberts149,ou=Users,dc=darkhorn,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+uid: stephanie.roberts149
+cn: Stephanie Roberts 149
+sn: Roberts
+givenName: Stephanie
+mail: stephanie.roberts149@darkhorn.local
+userPassword: Passw0rd!
+departmentNumber: Procurement
+title: Executive

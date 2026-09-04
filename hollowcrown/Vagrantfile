@@ -1,0 +1,54 @@
+ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/debian-12"
+  config.vm.hostname = "hollowcrown"
+
+  # ── Network — private, fixed IP ───────────────────────────────────────────────
+  # Visible to the host and other VMs on the 10.10.10.0/24 segment.
+  config.vm.network "private_network", ip: "10.10.10.30"
+
+  # ── VMware Desktop (Fusion / Workstation) ─────────────────────────────────────
+  config.vm.provider "vmware_desktop" do |vmware|
+    vmware.vmx["memsize"]  = "1024"
+    vmware.vmx["numvcpus"] = "1"
+    vmware.gui = false
+  end
+
+  # ── Provisioning ──────────────────────────────────────────────────────────────
+  # /vagrant is automatically shared — contains all project files
+  config.vm.provision "shell", inline: <<-SHELL
+    set -euo pipefail
+
+    # Docker
+    apt-get update -qq
+    apt-get install -y -qq ca-certificates curl
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg \
+      -o /etc/apt/keyrings/docker.asc
+    chmod a+r /etc/apt/keyrings/docker.asc
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+      https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+      > /etc/apt/sources.list.d/docker.list
+    apt-get update -qq
+    apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+    usermod -aG docker vagrant
+
+    # Start the stack from the shared folder
+    sudo -u vagrant bash -c '
+      docker compose -f /vagrant/docker-compose.yml up --build -d
+    '
+
+    echo ""
+    echo "======================================================"
+    echo "  Hollowcrown — Ready"
+    echo "======================================================"
+    echo "  Web UI:  http://10.10.10.30:8080"
+    echo "  API:     http://10.10.10.30:4000"
+    echo "======================================================"
+    echo ""
+  SHELL
+
+end

@@ -1,0 +1,139 @@
+# =============================================================
+#  Ironhold — Vagrantfile
+#  Provider: VMware Desktop (Fusion / Workstation / Player)
+#  Requires: vagrant-vmware-desktop plugin + VMware Utility Service
+#
+#  Usage:   vagrant up
+#  Access:  https://localhost:8443/SecretServer (port-forwarded)
+#           http://localhost:18080              (HTTP, port-forwarded)
+#           https://10.10.10.10/SecretServer    (direct, from host or other VMs)
+#  RDP:     localhost:53389  (vagrant / vagrant)
+# =============================================================
+
+ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
+
+Vagrant.configure("2") do |config|
+
+  # Windows Server 2025 Evaluation (free, no license required)
+  # Box source: https://app.vagrantup.com/gusztavvargadr/boxes/windows-server-2025-standard
+  config.vm.box = "gusztavvargadr/windows-server-2025-standard"
+
+  config.vm.hostname = "ironhold"
+
+  # ── Boot & WinRM timeouts (Windows 2025 is slow; Hyper-V/VBS on host makes it slower)
+  config.vm.boot_timeout     = 600   # seconds to wait for the VM to boot
+  config.winrm.timeout       = 300   # seconds per WinRM operation
+  config.winrm.retry_limit   = 30    # number of WinRM connection retries
+  config.winrm.retry_delay   = 10    # seconds between retries
+
+  # Disable Vagrant's default /vagrant shared folder.
+  # Provisioning files are transferred explicitly with file provisioners.
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # ── Network ───────────────────────────────────────────────────
+  # VMware Desktop on Windows does not configure secondary adapters
+  # automatically, so we declare the network and set the IP manually
+  # via a provisioner below.
+  config.vm.network "private_network", ip: "10.10.10.10", auto_config: false
+
+  # Port forwarding: convenient shortcuts from the host
+  config.vm.network "forwarded_port", guest: 80,   host: 18080  # HTTP
+  config.vm.network "forwarded_port", guest: 443,  host: 8443   # HTTPS
+  config.vm.network "forwarded_port", guest: 3389, host: 53389  # RDP
+
+  # ── VMware Desktop provider (Fusion / Workstation / Player) ──
+  config.vm.provider "vmware_desktop" do |vmware|
+    vmware.vmx["displayName"]  = "SecretServer-Lab"
+    vmware.vmx["memsize"]      = "4096"
+    vmware.vmx["numvcpus"]     = "2"
+    vmware.vmx["gui"]          = "false"   # Headless
+    # Clipboard sharing (handy for copying credentials)
+    vmware.vmx["isolation.tools.copy.disable"]  = "false"
+    vmware.vmx["isolation.tools.paste.disable"] = "false"
+    # VHV — needed when Hyper-V / VBS / WSL2 is active on the host.
+    # Lets VMware run nested inside the Windows hypervisor without crashing Tools.
+    vmware.vmx["vhv.enable"]             = "TRUE"
+    vmware.vmx["vhv.allow"]              = "TRUE"
+    vmware.vmx["featMask.vm.hv.capable"] = "Min:1"
+  end
+
+  # ── Configure private network adapter manually ────────────────
+  # Finds the adapter without a gateway (the non-NAT one) and
+  # assigns it the fixed lab IP.
+  config.vm.provision "shell", run: "always", inline: <<-'SHELL'
+    $up = Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
+    $adapter = $up | ForEach-Object {
+      $gw = (Get-NetIPConfiguration -InterfaceIndex $_.InterfaceIndex
+            ).IPv4DefaultGateway
+      [PSCustomObject]@{ A = $_; GW = $gw }
+    } | Where-Object { $_.GW -eq $null } |
+      Select-Object -First 1 -ExpandProperty A
+
+    if ($adapter) {
+      $idx = $adapter.InterfaceIndex
+      $cur = Get-NetIPAddress -InterfaceIndex $idx `
+               -AddressFamily IPv4 -ErrorAction SilentlyContinue
+      if (-not $cur -or $cur.IPAddress -notmatch '^10\.10\.10\.') {
+        if ($cur) {
+          Remove-NetIPAddress -InterfaceIndex $idx `
+            -AddressFamily IPv4 -Confirm:$false `
+            -ErrorAction SilentlyContinue
+        }
+        New-NetIPAddress -InterfaceIndex $idx `
+          -AddressFamily IPv4 -IPAddress "10.10.10.10" `
+          -PrefixLength 24 | Out-Null
+        Write-Host "Lab IP set: 10.10.10.10 on $($adapter.Name)"
+      } else {
+        Write-Host "Lab IP already set: $($cur.IPAddress)"
+      }
+    } else {
+      Write-Host "WARN: could not find private adapter"
+    }
+  SHELL
+
+  # ── Provisioning — copy files into the VM ────────────────────
+
+  # Lab configuration (passwords, db name, etc.)
+  config.vm.provision "file",
+    source:      "configs/lab.env",
+    destination: "C:\\sslab\\lab.env"
+
+  # Copy the official EXE installer into the VM
+  installer_exe = Dir.glob("installer/*.exe").first
+
+  if installer_exe
+    config.vm.provision "file",
+      source:      installer_exe,
+      destination: "C:\\sslab\\installer\\#{File.basename(installer_exe)}"
+  end
+
+  # Installation script
+  config.vm.provision "file",
+    source:      "scripts/install.ps1",
+    destination: "C:\\sslab\\install.ps1"
+
+  # Run the installer (~10 minutes on first provision)
+  # To run only specific steps:  SS_STEPS="sql" vagrant provision
+  # Valid step names: choco, sql, sqltools, iis, install, iisconfig, dbconfig, firewall
+  # Default (empty): runs all steps
+  config.vm.provision "shell",
+    privileged:  true,
+    path:        "scripts/install.ps1",
+    powershell_elevated_interactive: false,
+    args:        ENV.fetch("SS_STEPS", "")
+
+  # ── Print VM IP at the end of provisioning ───────────────────
+  config.vm.provision "shell", run: "always", inline: <<-'SHELL'
+    Write-Host ""
+    Write-Host "----------------------------------------"
+    Write-Host "  Ironhold - Ready"
+    Write-Host "----------------------------------------"
+    Write-Host "  URL:      https://localhost:8443/SecretServer"
+    Write-Host "  Username: admin"
+    Write-Host "  Password: Passw0rd!"
+    Write-Host "  RDP:      localhost:53389  (vagrant / vagrant)"
+    Write-Host "----------------------------------------"
+    Write-Host ""
+  SHELL
+
+end

@@ -1,0 +1,138 @@
+# =============================================================
+#  Thorngate — Vagrantfile
+#  IBM Verify Identity Governance (IVIG) on k3s / Ubuntu 24.04
+#  Provider: VMware Desktop (vmware_desktop)
+#
+#  Usage:   vagrant up
+#  Access:  https://10.10.10.40:30943/itim/console
+# =============================================================
+
+ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.hostname = "thorngate"
+
+  # ── Network — private, fixed IP ───────────────────────────────
+  # Visible to the host and other VMs on the 10.10.10.0/24 segment.
+  config.vm.network "private_network", ip: "10.10.10.40"
+
+  # ── VMware Desktop provider ───────────────────────────────────
+  config.vm.provider "vmware_desktop" do |vmware|
+    vmware.vmx["displayName"] = "Thorngate-IVIG"
+    vmware.vmx["memsize"]     = "16384"
+    vmware.vmx["numvcpus"]    = "4"
+    vmware.vmx["gui"]         = "false"
+  end
+
+  # ── Provisioning ──────────────────────────────────────────────
+  config.vm.provision "shell", inline: <<-SHELL
+    set -euo pipefail
+
+    echo "==> [1/6] Installing base packages and dependencies..."
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update -qq
+    apt-get install -y -qq curl wget git tar unzip jq
+
+    echo "==> [2/6] Installing k3s..."
+    curl -sfL https://get.k3s.io | sh -
+
+    # Configure kubeconfig for root and vagrant user
+    mkdir -p /root/.kube /home/vagrant/.kube
+    cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
+    cp /etc/rancher/k3s/k3s.yaml /home/vagrant/.kube/config
+    chown -R vagrant:vagrant /home/vagrant/.kube
+    chmod 600 /root/.kube/config /home/vagrant/.kube/config
+
+    grep -q 'KUBECONFIG' /home/vagrant/.bashrc || echo 'export KUBECONFIG=~/.kube/config' >> /home/vagrant/.bashrc
+
+    # Wait for k3s node to be ready
+    echo "Waiting for k3s node to be Ready..."
+    until kubectl get nodes | grep -q ' Ready'; do
+      sleep 2
+    done
+
+    echo "==> [3/6] Installing Helm..."
+    curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+    echo "==> [4/6] Setting up IVIG starter kit and license keys..."
+    # Copy starter kit and license keys from /vagrant to home directory
+    TARGET_DIR="/home/vagrant/ivig_starter_kit_11.0.2"
+    rm -rf "$TARGET_DIR"
+    cp -r /vagrant/ivig_starter_kit_11.0.2 "$TARGET_DIR"
+    cp -f /vagrant/*.txt /home/vagrant/ 2>/dev/null || true
+    chmod -R +x "$TARGET_DIR/bin/"
+    chown -R vagrant:vagrant /home/vagrant/
+
+    # Check if local preloaded image tar exists
+    if [ -f /vagrant/ivig-images.tar ]; then
+      echo "Importing pre-loaded images into k3s containerd..."
+      k3s ctr images import /vagrant/ivig-images.tar
+    fi
+
+    echo "==> [5/6] Configuring config.yaml..."
+    CFG="$TARGET_DIR/config/config.yaml"
+
+    # Fixed values
+    sed -i 's/^    storageclass:$/    storageclass: local-path/' "$CFG"
+    sed -i 's/^    accepted:$/    accepted: true/' "$CFG"
+    sed -i 's/^  keypass:$/  keypass: Passw0rd!/' "$CFG"
+    sed -i 's/^  user:$/  user: ivig/' "$CFG"
+    sed -i 's/^  password:$/  password: Passw0rd!/' "$CFG"
+    sed -i 's/^  ip:$/  ip: postgres/' "$CFG"
+    sed -i 's/^  port:$/  port: 5432/' "$CFG"
+    sed -i 's/^  security\\.principal:$/  security.principal: cn=root/' "$CFG"
+    sed -i 's/^  security\\.credentials:$/  security.credentials: Passw0rd!/' "$CFG"
+    sed -i 's/^  defaulttenant\\.id:$/  defaulttenant.id: Acme/' "$CFG"
+    sed -i 's/^  organization\\.name:$/  organization.name: Acme Inc./' "$CFG"
+    sed -i 's/^  ldapserver\\.ip:$/  ldapserver.ip: isvd-replica-1/' "$CFG"
+    sed -i 's/^  ldapserver\\.port:$/  ldapserver.port: 9636/' "$CFG"
+
+    # License keys from files
+    if [ -f /vagrant/ivig_activation_key_11.0.2.txt ]; then
+      ACTIVATION_KEY=$(grep -v '^#' /vagrant/ivig_activation_key_11.0.2.txt | tr -d '[:space:]')
+      sed -i "s/^    activationKey:$/    activationKey: $ACTIVATION_KEY/" "$CFG"
+    fi
+
+    if [ -f /vagrant/ivd-11.0.0_license_key_limited.txt ]; then
+      LDAP_KEY=$(grep -v '^#' /vagrant/ivd-11.0.0_license_key_limited.txt | tr -d '[:space:]')
+      sed -i "s/^    ldapKey:$/    ldapKey: $LDAP_KEY/" "$CFG"
+    fi
+
+    if [ -f /vagrant/SVDI_11.0_Con_Lic_Key_ML.txt ]; then
+      ISVDI_KEY=$(grep -v '^#' /vagrant/SVDI_11.0_Con_Lic_Key_ML.txt | tr -d '[:space:]')
+      sed -i "s/^    isvdiKey:$/    isvdiKey: $ISVDI_KEY/" "$CFG"
+    fi
+
+    if [ -f /vagrant/ivig_Enterprise_CT_key_11.0.2.txt ]; then
+      ISVART_KEY=$(grep -v '^#' /vagrant/ivig_Enterprise_CT_key_11.0.2.txt | tr -d '[:space:]')
+      sed -i "s/^    isvartKey:$/    isvartKey: $ISVART_KEY/" "$CFG"
+    fi
+
+    echo "==> [6/6] Executing IVIG installer..."
+    cd "$TARGET_DIR/bin"
+    ./install.sh
+
+    echo "==> Configuration complete."
+  SHELL
+
+  # ── Print access info at the end ──────────────────────────────
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+    echo ""
+    echo "======================================================"
+    echo "  Thorngate (IVIG) — Ready"
+    echo "======================================================"
+    echo "  IVIG Console:  https://10.10.10.40:30943/itim/console"
+    echo "  Username:      itim manager"
+    echo "  Password:      secret"
+    echo "  Tenant:        Acme (Acme Inc.)"
+    echo "------------------------------------------------------"
+    echo "  PostgreSQL:    10.10.10.40:30543  (db: ivig, user: ivig, pass: Passw0rd!)"
+    echo "  LDAP / LDAPS:  10.10.10.40:30636  (dc=ivig, cn=root, pass: Passw0rd!)"
+    echo "  SSH:           vagrant@10.10.10.40  (vagrant / vagrant)"
+    echo "======================================================"
+    echo ""
+  SHELL
+
+end

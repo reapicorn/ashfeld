@@ -1,0 +1,91 @@
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  hollowcrown-db:
+    image: postgres:15-alpine
+    container_name: hollowcrown-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${POSTGRES_DB:-hollowcrown}
+      POSTGRES_USER:     ${POSTGRES_USER:-crownkeeper}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-C0r0n4Kpr!}
+    volumes:
+      - hollowcrown-db-data:/var/lib/postgresql/data
+      - ./api/src/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crownkeeper} -d ${POSTGRES_DB:-hollowcrown}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hollowcrown-net
+
+  # ── Seed (runs once, then exits) ─────────────────────────────────────────────
+  hollowcrown-seed:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: hollowcrown-seed
+    restart: "no"
+    depends_on:
+      hollowcrown-db:
+        condition: service_healthy
+    command: ["node", "src/db/seed.js"]
+    environment:
+      PGHOST:     hollowcrown-db
+      PGPORT:     5432
+      PGDATABASE: ${POSTGRES_DB:-hollowcrown}
+      PGUSER:     ${POSTGRES_USER:-crownkeeper}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-C0r0n4Kpr!}
+    networks:
+      - hollowcrown-net
+
+  # ── API ──────────────────────────────────────────────────────────────────────
+  hollowcrown-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: hollowcrown-api
+    restart: unless-stopped
+    depends_on:
+      hollowcrown-db:
+        condition: service_healthy
+      hollowcrown-seed:
+        condition: service_completed_successfully
+    environment:
+      PORT:       4000
+      PGHOST:     hollowcrown-db
+      PGPORT:     5432
+      PGDATABASE: ${POSTGRES_DB:-hollowcrown}
+      PGUSER:     ${POSTGRES_USER:-crownkeeper}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-C0r0n4Kpr!}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:4000/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    networks:
+      - hollowcrown-net
+
+  # ── Web UI ───────────────────────────────────────────────────────────────────
+  hollowcrown-web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: hollowcrown-web
+    restart: unless-stopped
+    depends_on:
+      hollowcrown-api:
+        condition: service_healthy
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    networks:
+      - hollowcrown-net
+
+volumes:
+  hollowcrown-db-data:
+
+networks:
+  hollowcrown-net:
+    driver: bridge

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashfeld — Identity Provisioning Lab</title>
+  <style>
+    :root {
+      --bg:       #0e0e0e;
+      --surface:  #161616;
+      --border:   #2a2a2a;
+      --text:     #d4d0c8;
+      --muted:    #888;
+      --accent:   #c8a96e;
+      --code-bg:  #1c1c1c;
+      --red:      #c0392b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── layout ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .site-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+    }
+    .site-header p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+      max-width: 620px;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    main { max-width: 860px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+    section { margin-bottom: 4rem; }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 1.75rem 0 0.5rem; color: #e0dbd0; }
+    p  { margin-bottom: 0.9rem; }
+
+    /* ── cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+    }
+    .card h3 { margin-top: 0; font-size: 1rem; }
+    .card p  { font-size: 0.88rem; color: var(--muted); margin-bottom: 0; }
+
+    /* ── badge row ── */
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+    .badge {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.78rem;
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+      color: var(--accent);
+    }
+
+    /* ── tables ── */
+    .table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    td code, th code {
+      background: var(--code-bg);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+    }
+
+    /* ── code blocks ── */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+      line-height: 1.6;
+      margin: 0.75rem 0 1.25rem;
+    }
+    code {
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+      font-size: 0.88em;
+      background: var(--code-bg);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+    }
+    pre code { background: none; padding: 0; font-size: inherit; }
+
+    /* ── callout ── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      padding: 0.75rem 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.88rem;
+      margin: 1rem 0;
+    }
+    .callout.warn { border-color: var(--red); }
+
+    /* ── port table highlight ── */
+    .port { color: #8ec9f5; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Ashfeld</h1>
+  <p>A decaying industrial city. Real backends, live protocols, data already waiting. You are not reading about identity provisioning — you are doing it.</p>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#hollowcrown">Hollowcrown</a>
+    <a href="#darkhorn">Darkhorn</a>
+    <a href="https://github.com/reapicorn/ashfeld" target="_blank">GitHub →</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── OVERVIEW ── -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>Ashfeld is a lab that puts you inside a fictional industrial city and gives you the keys. The backends are real, the protocols are live, and the data is already there waiting.</p>
+    <p>Nobody agrees on who is in charge. Nobody agrees on who still works here.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>hollowcrown</h3>
+        <p>The Bureau — citizen records. The only list anyone agrees to use. A web UI for clerks, an API for systems.</p>
+      </div>
+      <div class="card">
+        <h3>darkhorn</h3>
+        <p>Six companies, six protocols. HTTP REST, JDBC, LDAP, SFTP, SOAP, and MQ — same thirteen operations, six different doors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOLLOWCROWN ── -->
+  <section id="hollowcrown">
+    <h2>Hollowcrown</h2>
+    <p>Hollowcrown was the name of the council that governed Ashfeld before it fell apart. When the council dissolved, the name passed to the bureau that kept its records — the registry of workers, departments, appointments and departures.</p>
+    <p>It is the source of truth for identity in the city. The web UI gives humans a way to manage that record. The API gives systems a way to read it.</p>
+    <p>What the Bureau records, the backends are expected to mirror. A new citizen joining the city means a new entry in the system. A termination means the opposite.</p>
+    <div class="callout">Terminated citizens are never deleted. Removing a name from the roster was considered worse than keeping a wrong one.</div>
+  </section>
+
+  <!-- ── DARKHORN ── -->
+  <section id="darkhorn">
+    <h2>Darkhorn</h2>
+    <p>Darkhorn is the southern district of Ashfeld, built around the old processing yards and the warehouses that outlasted them. The companies that moved in after the foundries closed brought their own ways of doing things — their own ledgers, their own couriers, their own gates.</p>
+    <p>None of it was designed to connect. It just grew, one system at a time, until untangling it became someone else's problem.</p>
+    <div class="badge-row">
+      <span class="badge">HTTP REST</span>
+      <span class="badge">JDBC</span>
+      <span class="badge">LDAP</span>
+      <span class="badge">SFTP</span>
+      <span class="badge">SOAP</span>
+      <span class="badge">AMQP / MQ</span>
+    </div>
+    <p>Every company handles the same three things — who works here, what they can access, and whether they're still active. The paperwork is identical. The process is not.</p>
+  </section>
+
+</main>
+
+<footer>
+  <a href="https://github.com/reapicorn/ashfeld" style="color: var(--muted); text-decoration: none;">github.com/reapicorn/ashfeld</a>
+</footer>
+
+</body>
+</html>
