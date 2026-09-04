@@ -46,12 +46,14 @@ The gate. Lifecycle management, role governance, provisioning policies. Thorngat
 
 Vagrant and a VMware hypervisor are required for all components.
 
-| Machine | Hypervisor | Download |
-|---|---|---|
-| Windows | VMware Workstation Pro | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
-| Mac Intel | VMware Fusion | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
-| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
-| Linux | VMware Workstation | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
+**Install VMware:** [vmware.com/products/desktop-hypervisor](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
+
+| Machine | Hypervisor |
+|---|---|
+| Windows | VMware Workstation Pro |
+| Mac Intel | VMware Fusion |
+| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
+| Linux | VMware Workstation |
 
 **Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
 
