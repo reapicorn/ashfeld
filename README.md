@@ -46,14 +46,14 @@ The gate. Lifecycle management, role governance, provisioning policies. Thorngat
 
 Vagrant and a VMware hypervisor are required for all components.
 
-**Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
+| Machine | Hypervisor | Download |
+|---|---|---|
+| Windows | VMware Workstation Pro | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
+| Mac Intel | VMware Fusion | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
+| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
+| Linux | VMware Workstation | [vmware.com](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) |
 
-| Machine | Hypervisor |
-|---|---|
-| Windows | VMware Workstation Pro |
-| Mac Intel | VMware Fusion |
-| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
-| Linux | VMware Workstation |
+**Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
 
 **Install the Vagrant VMware plugin (one-time):**
 
@@ -61,7 +61,7 @@ Vagrant and a VMware hypervisor are required for all components.
 vagrant plugin install vagrant-vmware-desktop
 ```
 
-Download and install the VMware Utility Service for your OS: [developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility)
+**Install the VMware Utility Service:** [developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility)
 
 ---
 
