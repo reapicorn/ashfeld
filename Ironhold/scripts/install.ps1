@@ -304,6 +304,36 @@ if (ShouldRun "tools") {
     Set-ItemProperty -Path $searchKey -Name "SearchboxTaskbarMode" -Value 0 -Type DWord
     Log "Taskbar search box hidden."
 
+    # Taskbar pins: VS Code, IIS Manager, Firefox (unpin Edge)
+    # Uses LayoutModification.xml applied via user shell folders policy.
+    # Takes effect on next logon.
+    $layoutXml = @"
+<?xml version="1.0" encoding="utf-8"?>
+<LayoutModificationTemplate
+    xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification"
+    xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout"
+    xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout"
+    xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout"
+    Version="1">
+  <CustomTaskbarLayoutCollection PinListPlacement="Replace">
+    <defaultlayout:TaskbarLayout>
+      <taskbar:TaskbarPinList>
+        <taskbar:DesktopApp DesktopApplicationLinkPath="%ProgramFiles%\Mozilla Firefox\firefox.exe" />
+        <taskbar:DesktopApp DesktopApplicationLinkPath="%windir%\system32\inetsrv\InetMgr.exe" />
+        <taskbar:DesktopApp DesktopApplicationLinkPath="%ProgramFiles%\Microsoft VS Code\Code.exe" />
+      </taskbar:TaskbarPinList>
+    </defaultlayout:TaskbarLayout>
+  </CustomTaskbarLayoutCollection>
+</LayoutModificationTemplate>
+"@
+    $layoutPath = "C:\Windows\System32\LayoutModification.xml"
+    $layoutXml | Set-Content -Path $layoutPath -Encoding UTF8
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" `
+        -Name "LockedStartLayout" -Value 0 -Type DWord -ErrorAction SilentlyContinue
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" `
+        -Name "StartLayoutFile" -Value $layoutPath -Type String -ErrorAction SilentlyContinue
+    Log "Taskbar pins configured (Firefox, IIS Manager, VS Code). Takes effect on next logon."
+
     Done "tools"
 }
 
