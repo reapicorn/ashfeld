@@ -13,18 +13,31 @@
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
 ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/ironhold/.vagrant", __dir__)
 
+# ── Pre-flight checks ─────────────────────────────────────────────────────────
+installer_dir = File.expand_path("installer", __dir__)
+[
+  { file: "ISVPsetup.exe",  hint: "Download from the Delinea portal and place in Ironhold/installer/" },
+  { file: "ss_update.zip",  hint: "Download from the Delinea portal and place in Ironhold/installer/" },
+].each do |req|
+  path = File.join(installer_dir, req[:file])
+  unless File.exist?(path)
+    abort "\n[Ironhold] Missing required file: installer/#{req[:file]}\n          #{req[:hint]}\n"
+  end
+end
+
 Vagrant.configure("2") do |config|
 
   # Windows Server 2022 Evaluation (free, no license required)
   # Box source: https://app.vagrantup.com/gusztavvargadr/boxes/windows-server-2022-standard
   config.vm.box = "gusztavvargadr/windows-server-2022-standard"
+  # hostname is set manually in the provisioner below to avoid a mid-provision reboot
+  # config.vm.hostname = "ironhold"
 
-  config.vm.hostname = "ironhold"
 
   # ── Boot & WinRM timeouts (first boot includes sysprep; Hyper-V/VBS on host makes it slower)
   # After the hostname-change reboot, WinRM takes 2-3 min to recover.
   # retry_limit * retry_delay must cover that window.
-  config.vm.boot_timeout     = 900   # seconds to wait for the VM to boot
+  config.vm.boot_timeout     = 1800  # seconds to wait for the VM to boot
   config.winrm.timeout       = 60    # seconds per individual WinRM operation
   config.winrm.retry_limit   = 60    # number of WinRM connection retries
   config.winrm.retry_delay   = 15    # seconds between retries (60*15 = 15 min window)
@@ -62,6 +75,8 @@ Vagrant.configure("2") do |config|
     vmware.vmx["vhv.enable"]             = "TRUE"
     vmware.vmx["vhv.allow"]              = "TRUE"
     vmware.vmx["featMask.vm.hv.capable"] = "Min:1"
+    vmware.vmx["ethernet0.pcislotnumber"] = "192"
+    vmware.vmx["ethernet1.pcislotnumber"] = "224"
   end
 
   # ── Configure private network adapter, timezone and keyboard ─────
@@ -118,6 +133,9 @@ Vagrant.configure("2") do |config|
   SHELL
 
   # ── Provisioning ─────────────────────────────────────────────
+
+  # Wait for WinRM to be fully stable before copying files
+  config.vm.provision "shell", run: "always", inline: "Start-Sleep -Seconds 10; Write-Host 'WinRM ready'"
 
   # Installation script
   config.vm.provision "file",

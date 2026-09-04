@@ -1,28 +1,11 @@
-Before running `vagrant up`, place the Secret Server installer in this folder.
+Place the following files in this folder before running `vagrant up`:
 
-Expected filename (either format works):
-  - ThycoticSetup.exe (preferred)
-  - SecretServerSetup.exe
-  - SecretServer.zip
+  ISVPsetup.exe    - Secret Server installer (IBM Security Verify Privilege Vault)
+  ss_update.zip    - Secret Server web application package
 
-If both an EXE and ZIP are present, the provisioning script uses the EXE.
+Both files are required. The provisioning script will fail with a clear message if either is missing.
 
-HOW TO GET THE INSTALLER
-─────────────────────────
-The installer is NOT included in this repository.
-Obtain it through one of the following channels:
-
-  1. IBM / Delinea partner portal (preferred for licensed customers)
-  2. Delinea free trial:
-       https://delinea.com/products/secret-server/free-trial
-  3. Internal shared drive — ask your team lead for the link
-
-Do NOT download from unofficial sources.
-
-ONCE YOU HAVE IT
-─────────────────
-Copy the file here:
-  installer/ThycoticSetup.exe   (or SecretServer.zip)
-
-Then run:
-  vagrant up --provider=vmware_desktop
+HOW TO GET THEM
+---------------
+Obtain from the Delinea / IBM partner portal or your team lead.
+Do NOT commit these files to the repository.
