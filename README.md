@@ -44,6 +44,12 @@ Ashfeld was always a city where nobody agreed on who had access to what. Thornga
 
 ---
 
+## Project tasks
+
+See [`TODO.md`](TODO.md) for pending validation, compatibility, documentation, and site work.
+
+---
+
 ## Prerequisites
 
 Vagrant and a VMware hypervisor are required for all components.

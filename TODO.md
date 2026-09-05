@@ -1,5 +1,10 @@
 # TODO
 
+## Site
+
+- [ ] Update the site to make its repository URL clear: `https://reapicorn.github.io/ashfeld/`.
+- [ ] Generate project artwork for the site and project documentation.
+
 ## Darkhorn
 
 - [x] Validate the complete provisioning and smoke test.
@@ -11,6 +16,7 @@
 
 ## Thorngate
 
+- [ ] Create a `docs/` exercise guide series for Thorngate, following the Ironhold documentation structure.
 - [x] Validate IVIG workload readiness and HTTPS console availability after provisioning.
 - [ ] Validate Thorngate with 12 GiB RAM through a clean provision or `vagrant reload`.
 - [ ] Test Thorngate ARM64 on VMware Fusion/Rosetta with the full IVIG deployment.
