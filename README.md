@@ -18,13 +18,13 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 
 ## Projects
 
-### darkhorn
+### Darkhorn
 
 Six companies settled in the Darkhorn district after the foundries closed. None of them inherited the same systems. None of them agreed to standardize. They each handle the same three questions — who works here, what do they have access to, are they still active — and they each answer in a different language.
 
 → See [`darkhorn/README.md`](darkhorn/README.md) — the six companies, their doors, and what moves across the wire.
 
-### hollowcrown
+### Hollowcrown
 
 Hollowcrown was the council that governed Ashfeld before it dissolved. The name passed to the bureau that kept its records. Every citizen who was ever hired, transferred, or terminated has an entry here. What the bureau records, the rest of the city is supposed to reflect.
 
@@ -61,8 +61,7 @@ Vagrant and a VMware hypervisor are required for all components.
 | Machine | Hypervisor |
 |---|---|
 | Windows | VMware Workstation Pro |
-| Mac Intel | VMware Fusion |
-| Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
+| Mac (Intel or Apple Silicon) | VMware Fusion 13+ |
 | Linux | VMware Workstation |
 
 > **Apple Silicon compatibility:** Compatibility varies by project.
