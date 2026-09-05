@@ -1,5 +1,7 @@
 # ashfeld
 
+> **This is a fictional lab environment.** Ashfeld, its districts, organizations, and all data within are entirely invented. Any resemblance to real companies, people, or systems is coincidental. Credentials and secrets committed to this repository are for lab use only and have no value outside of it.
+
 Ashfeld is a decaying industrial city, once known for its foundries and its archives. Today it is a city in transition — its old guilds dissolved, its districts repurposed, its remaining organizations held together by paperwork and habit. Nobody agrees on who is in charge. Nobody agrees on who still works here.
 
 This lab puts you in the city and gives you the keys. The backends are real, the protocols are live, and the data is already there waiting. You are not reading about identity provisioning — you are doing it, against systems that behave the way systems behave in the real world: inconsistently, on their own terms, without a common standard in sight.
