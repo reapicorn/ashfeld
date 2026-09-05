@@ -271,6 +271,12 @@ if (ShouldRun "tools") {
     } else {
         Log "VS Code already installed."
     }
+    if (-not (Get-Command pwsh -ErrorAction SilentlyContinue)) {
+        RunSilent { choco install powershell-core -y --no-progress 2>&1 }
+        Log "PowerShell 7 installed."
+    } else {
+        Log "PowerShell 7 already installed."
+    }
 
     # Firefox bookmark: Secret Server
     # Drop a bookmarks.html in the Firefox distribution folder so it is imported
@@ -321,6 +327,7 @@ if (ShouldRun "tools") {
         <taskbar:DesktopApp DesktopApplicationLinkPath="%ProgramFiles%\Mozilla Firefox\firefox.exe" />
         <taskbar:DesktopApp DesktopApplicationLinkPath="%windir%\system32\inetsrv\InetMgr.exe" />
         <taskbar:DesktopApp DesktopApplicationLinkPath="%ProgramFiles%\Microsoft VS Code\Code.exe" />
+        <taskbar:DesktopApp DesktopApplicationLinkPath="%ProgramFiles%\PowerShell\7\pwsh.exe" />
       </taskbar:TaskbarPinList>
     </defaultlayout:TaskbarLayout>
   </CustomTaskbarLayoutCollection>
