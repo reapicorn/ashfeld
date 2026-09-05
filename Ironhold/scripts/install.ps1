@@ -10,6 +10,7 @@
 #    C:\sslab\install.ps1 -Steps "ss_extract,ss_apppool,ss_iisapp"
 #
 #  Install steps (run automatically on vagrant up):
+#    sysconfig           Set timezone (E. South America) and keyboard (es-419)
 #    sync_installer      Copy installer files from shared folder to C:\sslab\installer\
 #    serviceaccount      Create local service account svc_ss
 #    serviceaccount_admin  Add svc_ss to Administrators
@@ -85,6 +86,7 @@ $ssSteps = if ($SS_INSTALL_MODE -eq "extract") {
     @("secretserver")
 }
 $allSteps = @(
+    "sysconfig",
     "sync_installer",
     "serviceaccount","serviceaccount_admin","choco",
     "sql_install","sql_auth","sql_db",
@@ -114,6 +116,28 @@ PrintPlan
 # ==============================================================
 # INSTALL STEPS
 # ==============================================================
+
+# -- sysconfig: Timezone and keyboard --------------------------
+if (ShouldRun "sysconfig") {
+    Step "System config - timezone and keyboard"
+    $tz = "E. South America Standard Time"
+    if ((Get-TimeZone).Id -ne $tz) {
+        Set-TimeZone -Id $tz
+        Log "Timezone set: $tz"
+    } else {
+        Log "Timezone already set: $tz"
+    }
+    $langTag = "es-419"
+    $current = Get-WinUserLanguageList
+    if (-not ($current | Where-Object { $_.LanguageTag -eq $langTag })) {
+        $list = New-WinUserLanguageList $langTag
+        Set-WinUserLanguageList $list -Force
+        Log "Keyboard set: $langTag (Spanish Latin America)"
+    } else {
+        Log "Keyboard already set: $langTag"
+    }
+    Done "sysconfig"
+}
 
 # -- sync_installer: Copy installer files from shared folder ---
 if (ShouldRun "sync_installer") {
