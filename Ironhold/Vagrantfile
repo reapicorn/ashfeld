@@ -86,13 +86,15 @@ Vagrant.configure("2") do |config|
     source:      "scripts/install.ps1",
     destination: "C:\\sslab\\install.ps1"
 
-  # Run the installer
-  # To run only specific steps: SS_STEPS="sql_db" vagrant provision
-  # Default (empty): runs all steps
-  config.vm.provision "shell",
-    privileged:  true,
-    path:        "scripts/install.ps1",
-    powershell_elevated_interactive: false,
-    args:        ENV.fetch("SS_STEPS", "")
+  # Run the installer manually via RDP after vagrant up:
+  #   C:\sslab\install.ps1
+  # To run only specific steps:
+  #   C:\sslab\install.ps1 -Steps "sql_auth,sql_db,iis_features,..."
+  #
+  # config.vm.provision "shell",
+  #   privileged:  true,
+  #   path:        "scripts/install.ps1",
+  #   powershell_elevated_interactive: false,
+  #   args:        ENV.fetch("SS_STEPS", "")
 
 end
