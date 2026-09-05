@@ -339,26 +339,29 @@ if (ShouldRun "ss_install") {
     } elseif (-not (Test-Path $installer)) {
         throw "ISVPsetup.exe not found at $installer. Place it in Ironhold/installer/ and re-run: vagrant provision"
     } else {
-        $installLog = "$LabDir\install-ss.log"
+        # Note: /l path must be separate from install.log - the installer's internal
+        # Launcher.ps1 opens the same log file and conflicts if it's already open.
+        $prereqLog = "C:\sslab-prereqs.log"
+        $appLog    = "C:\sslab-install.log"
 
         # Stage 1: install prerequisites (IIS, IIS components, WCF)
         # INSTALL_NetFx48 omitted - .NET 4.8 is already present on Windows Server 2025
         # INSTALL_HTTPS_BINDING omitted - we configure the cert separately via iis_cert
-        Log "Stage 1: installing prerequisites..."
+        Log "Stage 1: installing prerequisites... (log: $prereqLog)"
         $proc = Start-Process -FilePath $installer -Wait -PassThru -ArgumentList @(
             "-q", "-s",
             "InstallPreReqs=1",
             "PRE_REQS_TO_INSTALL=INSTALL_IIS,INSTALL_IIS_COMPS,INSTALL_NET_WCF",
-            "/l", "$LabDir\install-prereqs.log"
+            "/l", $prereqLog
         )
         if ($proc.ExitCode -ne 0) {
-            Log "WARN: Prerequisites installer exited with code $($proc.ExitCode). Check $LabDir\install-prereqs.log"
+            Log "WARN: Prerequisites installer exited with code $($proc.ExitCode). Check $prereqLog"
         } else {
             Log "Prerequisites installed (exit 0)."
         }
 
         # Stage 2: install the application
-        Log "Stage 2: installing application..."
+        Log "Stage 2: installing application... (log: $appLog)"
         $proc = Start-Process -FilePath $installer -Wait -PassThru -ArgumentList @(
             "-q", "-s", "/nodetect",
             "InstallSecretServer=1",
@@ -367,10 +370,10 @@ if (ShouldRun "ss_install") {
             "SqlServer=localhost\SQLEXPRESS",
             "SqlDatabase=$DbName",
             "SqlUseSvcAccount=1",
-            "/l", $installLog
+            "/l", $appLog
         )
         if ($proc.ExitCode -ne 0) {
-            Log "WARN: Application installer exited with code $($proc.ExitCode). Check $installLog"
+            Log "WARN: Application installer exited with code $($proc.ExitCode). Check $appLog"
         } else {
             Log "Application installed (exit 0)."
         }
@@ -502,23 +505,23 @@ Log "========================================================"
 Log "  Ironhold - Provisioning Complete"
 Log "========================================================"
 Log ""
-Log "  NEXT STEP - Database Setup (required):"
-Log "  Open this URL from inside the VM:"
+Log "  NEXT STEP - Complete setup wizard from inside the VM:"
 Log ""
+Log "  Step 1 - Database setup:"
 Log "    http://localhost/SecretServer/Setup/Database?FreshInstall=true"
+Log "    SQL Server:   localhost\SQLEXPRESS"
+Log "    Database:     $DbName"
+Log "    Auth:         Windows Authentication"
 Log ""
-Log "  SQL Server:   localhost"
-Log "  Database:     $DbName"
-Log "  Auth:         Windows Auth ($ServiceAccount)"
+Log "  Step 2 - Create initial administrator:"
+Log "    Username:     admin"
+Log "    Display name: Admin"
+Log "    Email:        admin@lab.local"
+Log "    Password:     $ServicePass"
 Log ""
-Log "  After DB setup, complete the wizard to create"
-Log "  the admin account:"
-Log "    Username: admin"
-Log "    Password: $ServicePass"
-Log ""
-Log "  Access:"
-Log "    HTTP:   http://localhost/SecretServer"
-Log "    RDP:    localhost:53389  (vagrant / vagrant)"
+Log "  Access (from host):"
+Log "    HTTP:   http://localhost:8010/SecretServer"
+Log "    HTTPS:  https://localhost:4430/SecretServer"
 Log "========================================================"
 Log ""
 
