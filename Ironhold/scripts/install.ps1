@@ -245,9 +245,13 @@ if (ShouldRun "sql_install") {
 }
 
 # -- sql_auth: Enable mixed-mode authentication ----------------
-# PATH for sqlcmd bundled with SQL Server Express (available immediately after install)
-$env:Path += ";C:\Program Files\Microsoft SQL Server\160\Tools\Binn"
-$env:Path += ";C:\Program Files\Microsoft SQL Server\150\Tools\Binn"
+# PATH for sqlcmd - discover dynamically across all installed SQL Server versions
+Get-ChildItem "C:\Program Files\Microsoft SQL Server" -ErrorAction SilentlyContinue |
+    Where-Object { $_.PSIsContainer } |
+    ForEach-Object {
+        $bin = Join-Path $_.FullName "Tools\Binn"
+        if (Test-Path $bin) { $env:Path += ";$bin" }
+    }
 
 if (ShouldRun "sql_auth") {
     Step "SQL Server - mixed-mode auth"
