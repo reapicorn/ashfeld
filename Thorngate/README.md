@@ -59,7 +59,7 @@ vagrant destroy -f && vagrant up
 | CPU | 4 vCPUs |
 | RAM | 16 GB |
 | Disk | 100 GB |
-| OS | Ubuntu Server 24.04 LTS (x86_64) |
+| OS | Debian 12 (x86_64) |
 
 > ARM is not supported directly. Container images are `amd64`-only.
 

@@ -1,4 +1,4 @@
-# Installing IVIG 11.0.2 with k3s on Ubuntu Server
+# Installing IVIG 11.0.2 with k3s on Debian 12
 
 ## System Requirements
 
@@ -7,7 +7,7 @@
 | CPU | 4 vCPUs |
 | RAM | 16 GB |
 | Disk | 100 GB |
-| OS | Ubuntu Server 24.04 LTS (or latest) |
+| OS | Debian 12 (bookworm) |
 | Architecture | x86_64 (amd64) only — **ARM is not supported** |
 
 > **On ARM hardware (Apple Silicon, Raspberry Pi, etc.):** check your architecture before creating the VM. See [Running on ARM hardware](#running-on-arm-hardware).
@@ -98,8 +98,9 @@ curl -k https://<VM_IP>:30943/itim/console
 ## 1. Prepare the OS
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget git tar unzip jq
+sudo apt-get update -qq
+sudo apt-get upgrade -y
+sudo apt-get install -y curl wget git tar unzip jq
 ```
 
 ---
@@ -150,9 +151,9 @@ podman machine init && podman machine start
 winget install RedHat.Podman
 ```
 
-**Linux (Ubuntu/Debian):**
+**Linux (Debian):**
 ```bash
-sudo apt update && sudo apt install -y podman
+sudo apt-get update && sudo apt-get install -y podman
 ```
 
 **1. Log in to the IBM Container Registry — on your local machine:**
@@ -376,6 +377,8 @@ Login at `https://<SERVER_IP>:30943/itim/console`
 ### Open firewall ports
 
 ```bash
+# Debian uses nftables/iptables by default — install ufw first if needed
+sudo apt-get install -y ufw
 sudo ufw allow 22/tcp
 sudo ufw allow 30943/tcp
 sudo ufw allow 30543/tcp
