@@ -21,8 +21,8 @@ Place the following files in the `installer/` folder before running `vagrant up`
 
 | File | How to obtain |
 |------|---------------|
-| `ISVPsetup.exe` | Download from the Delinea portal |
-| `ss_update.zip` | Extract from `Version_12_0_000022.zip` (inside the downloaded package) |
+| `ISVPsetup.exe` | Obtain the installer package from your authorized software source |
+| `ss_update.zip` | Extract from `Version_12_0_000022.zip` inside the downloaded package |
 
 ## Setup
 
@@ -32,7 +32,7 @@ Place the following files in the `installer/` folder before running `vagrant up`
 vagrant up
 ```
 
-Provisions SQL Server Express, IIS, ASP.NET, service account, and Secret Server files (~20 min).
+Provisions SQL Server Express, IIS, ASP.NET, the service account, and the application files (~20 min).
 
 ### Step 2 - Complete the database setup wizard
 
@@ -73,7 +73,7 @@ After the DB wizard completes, the setup wizard will prompt for the admin accoun
 
 | What | Value |
 |------|-------|
-| Secret Server admin | `admin` / `Ir0nhold#Lab!` |
+| Application admin | `admin` / `Ir0nhold#Lab!` |
 | RDP / VM | `vagrant` / `vagrant` |
 | Service account | `IRONHOLD\svc_ss` / `Ir0nhold#Lab!` |
 | Database | `SecretServer` on `localhost\SQLEXPRESS` (Windows Auth) |
@@ -91,7 +91,7 @@ C:\sslab\install.ps1 -Steps "ss_install,ss_apppool,ss_iisapp"
 C:\sslab\install.ps1 -InstallMode extract -Steps "ss_extract,ss_apppool,ss_iisapp"
 ```
 
-## Uninstall Secret Server
+## Uninstall the application
 
 From RDP on the VM:
 

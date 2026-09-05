@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
   # ── VMware Desktop provider ───────────────────────────────────
   config.vm.provider "vmware_desktop" do |vmware|
     vmware.vmx["displayName"]              = "Thorngate-IVIG"
-    vmware.vmx["memsize"]                  = "16384"
+    vmware.vmx["memsize"]                  = "12288"
     vmware.vmx["numvcpus"]                 = "4"
     vmware.vmx["gui"]                      = "false"
     vmware.vmx["ethernet0.pcislotnumber"]  = "160"
@@ -46,8 +46,8 @@ Vagrant.configure("2") do |config|
     vmware.clone_directory = File.expand_path("../vagrant/thorngate/vm", __dir__)
 
     if ARM_HOST
-      # Run ARM64 VM with Rosetta so amd64 container images are emulated
-      # transparently by VMware Fusion's x86_64 translation layer.
+      # ARM64 guest settings for VMware Fusion. amd64 IVIG image execution relies
+      # on Fusion's Rosetta translation support in the guest environment.
       vmware.vmx["virtualhw.version"]              = "21"
       vmware.vmx["vhv.enable"]                     = "TRUE"
       vmware.vmx["ulm.disableMitigations"]         = "TRUE"
@@ -59,16 +59,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     set -euo pipefail
 
-    # On ARM64 VMs running under VMware Fusion Rosetta, configure
-    # containerd / k3s to pull and run amd64 images.
+    # ARM64 k3s and containerd run natively. amd64 IVIG image execution relies
+    # on VMware Fusion Rosetta translation in the guest environment.
     if [ "$(uname -m)" = "aarch64" ]; then
-      echo "==> [ARM] Configuring amd64 platform override for containerd..."
+      echo "==> [ARM] Configuring containerd for the ARM64 guest..."
       mkdir -p /etc/rancher/k3s
       cat > /etc/rancher/k3s/config.yaml <<'EOF'
-# Force amd64 image pulls so IVIG images (amd64-only) are emulated via Rosetta
+# IVIG images are amd64-only; Fusion Rosetta translation is required to run them.
 snapshotter: overlayfs
 EOF
-      # Tell containerd to prefer linux/amd64 when no arm64 manifest exists
+      # Keep the standard containerd runtime for the ARM64 guest.
       mkdir -p /etc/containerd
       cat > /etc/containerd/config.toml <<'EOF'
 version = 2
@@ -84,16 +84,17 @@ EOF
     echo "==> [1/6] Installing base packages and dependencies..."
     export DEBIAN_FRONTEND=noninteractive
     apt-get update -qq
-    apt-get install -y -qq curl wget git tar unzip jq
+    apt-get install -y -qq curl wget git python3 tar unzip jq
 
     echo "==> [2/6] Installing k3s..."
-    # On aarch64 under Rosetta we still want amd64 k3s binaries so the entire
-    # stack (kubelet, containerd, etc.) runs as x86_64 alongside the images.
+    # k3s runs natively as ARM64 on ARM hosts; only IVIG workload images require
+    # Fusion Rosetta translation.
     if [ "$(uname -m)" = "aarch64" ]; then
-      curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--kubelet-arg=node-status-update-frequency=5s" \
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.36.4+k3s1" \
+        INSTALL_K3S_EXEC="--kubelet-arg=node-status-update-frequency=5s" \
         K3S_RESOLV_CONF=/etc/resolv.conf sh -
     else
-      curl -sfL https://get.k3s.io | sh -
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.36.4+k3s1" sh -
     fi
 
     # Configure kubeconfig for root and vagrant user
@@ -112,7 +113,7 @@ EOF
     done
 
     echo "==> [3/6] Installing Helm..."
-    curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | DESIRED_VERSION="v3.21.4" bash
 
     echo "==> [4/6] Setting up IVIG starter kit and license keys..."
     # Copy starter kit and license keys from /vagrant to home directory
@@ -171,6 +172,15 @@ with open(path, 'w') as f: f.write(content)
     echo "==> [6/6] Executing IVIG installer..."
     cd "$TARGET_DIR/bin"
     ./install.sh
+
+    echo "Waiting for IVIG workloads to become ready..."
+    kubectl -n ivig rollout status deployment/isvd-replica-1 --timeout=15m
+    kubectl -n ivig rollout status deployment/isvdi --timeout=15m
+    kubectl -n ivig rollout status deployment/mqshare --timeout=15m
+    kubectl -n ivig rollout status deployment/postgres --timeout=15m
+    kubectl -n ivig rollout status statefulset/isvgim --timeout=15m
+    curl -kfsS --retry 30 --retry-delay 10 --retry-connrefused \
+      -o /dev/null https://localhost:30943/itim/console/main
 
     echo "==> Configuration complete."
   SHELL

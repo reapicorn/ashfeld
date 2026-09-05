@@ -2,7 +2,7 @@ services:
 
   # ── PostgreSQL ───────────────────────────────────────────────────────────────
   postgres:
-    image: postgres:16-alpine
+    image: postgres:16-alpine@sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685
     container_name: darkhorn-postgres
     restart: unless-stopped
     environment:
@@ -79,7 +79,7 @@ services:
 
   # ── darkhorn-sftp ─────────────────────────────────────────────────────────────
   darkhorn-sftp:
-    image: atmoz/sftp:latest
+    image: atmoz/sftp@sha256:0960390462a4441dbb63698d7c185b76a41ffcee7b78ff4adf275f3e66f9c475
     container_name: darkhorn-sftp
     restart: unless-stopped
     depends_on:
@@ -121,7 +121,7 @@ services:
 
   # ── RabbitMQ ──────────────────────────────────────────────────────────────────
   rabbitmq:
-    image: rabbitmq:3.13-management-alpine
+    image: rabbitmq:3.13-management-alpine@sha256:606d8c0d6b3c18d1da9afc53bc7cdb2a8d5486df91b5a9830e9e07626c9ae281
     container_name: darkhorn-rabbitmq
     restart: unless-stopped
     environment:
@@ -161,7 +161,7 @@ services:
 
   # ── OpenLDAP ──────────────────────────────────────────────────────────────────
   darkhorn-ldap:
-    image: vegardit/openldap:latest
+    image: vegardit/openldap@sha256:e19683621703b4cf35f1ef0a6dfbc2bca4a4cf08db7b6fd0ba31d18266edb853
     container_name: darkhorn-ldap
     restart: unless-stopped
     environment:

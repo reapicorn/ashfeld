@@ -50,12 +50,16 @@ Vagrant and a VMware hypervisor are required for all components.
 
 **Install VMware:** [vmware.com/products/desktop-hypervisor](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
 
+> VMware Workstation Pro and VMware Fusion downloads are provided through the Broadcom Support Portal and may require a free Broadcom account and sign-in.
+
 | Machine | Hypervisor |
 |---|---|
 | Windows | VMware Workstation Pro |
 | Mac Intel | VMware Fusion |
 | Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
 | Linux | VMware Workstation |
+
+> **Apple Silicon compatibility:** VMware Fusion 13+ runs ARM64 guest operating systems. [`Ironhold`](Ironhold/README.md) uses an x86_64 Windows Server box and requires an Intel/AMD host. [`Thorngate`](Thorngate/README.md) is experimental on Apple Silicon because its IVIG images are amd64-only and rely on Fusion Rosetta translation. See each project README for its requirements.
 
 **Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
 

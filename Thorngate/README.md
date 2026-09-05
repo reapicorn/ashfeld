@@ -69,25 +69,25 @@ vagrant destroy -f && vagrant up
 | Resource | Value |
 |---|---|
 | CPU | 4 vCPUs |
-| RAM | 16 GB |
-| Disk | 100 GB |
+| RAM | 12 GB |
+| Disk | Default box disk (64 GiB virtual capacity) |
 | OS | Debian 12 (x86_64) |
 | Provider | VMware Fusion / Workstation |
 
-**Apple Silicon (ARM64)**
+**Apple Silicon (ARM64, experimental — not validated)**
 
 | Resource | Value |
 |---|---|
 | CPU | 4 vCPUs |
-| RAM | 16 GB |
-| Disk | 100 GB |
+| RAM | 12 GB |
+| Disk | Default box disk (capacity depends on the ARM box version) |
 | OS | Debian 12 (arm64) |
 | Provider | VMware Fusion 13.5+ |
 | macOS | 13 Ventura or later |
 
-The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `bento/debian-12-arm64` box and enables VMware Fusion's Rosetta / x86_64 emulation layer so that the `amd64`-only IVIG container images run transparently inside the VM.
+The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `bento/debian-12-arm64` box and runs k3s natively on ARM64. IVIG images are amd64-only, so their execution relies on VMware Fusion's Rosetta translation support being available in the guest environment. This configuration has not been validated on Apple Silicon and is not a supported deployment path.
 
-No manual configuration is required — `vagrant up` handles everything.
+Run `vagrant up` and verify that all `ivig` pods are Ready and that the console is reachable before using the lab.
 
 ---
 
