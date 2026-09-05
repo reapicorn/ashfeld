@@ -10,11 +10,24 @@ PASS=0
 FAIL=0
 
 ok()   { echo "  [OK]   $1"; PASS=$((PASS+1)); }
-fail() { echo "  [FAIL] $1"; FAIL=$((FAIL+1)); }
+fail() { echo "  [FAIL] $1" | head -c 200; echo; FAIL=$((FAIL+1)); }
+
+# Wait for a service to respond (max 60s)
+wait_for() {
+  local url=$1 retries=12
+  while [ $retries -gt 0 ]; do
+    curl -sf "$url" -o /dev/null 2>/dev/null && return 0
+    retries=$((retries-1))
+    sleep 5
+  done
+  return 1
+}
 
 # ── REST ──────────────────────────────────────────────────────────────────────
 echo ""
 echo "REST  http://$IP:3000"
+
+wait_for "http://$IP:3000/api/health" || { fail "REST not reachable after 60s"; }
 
 out=$(curl -sf "http://$IP:3000/api/health" 2>&1) || true
 if echo "$out" | grep -q '"status".*"ok"'; then ok "GET /api/health -> ok"
@@ -26,7 +39,8 @@ if echo "$out" | grep -q "access_token"; then ok "POST /oauth/token -> token obt
 else fail "POST /oauth/token: $out"; fi
 
 out=$(curl -sf "http://$IP:3000/api/users" -u 'grimreaper:Wh1sp3r0fD4rk!' 2>&1) || true
-if echo "$out" | grep -q '"total"'; then ok "GET /api/users (Basic Auth) -> ok"
+count=$(echo "$out" | grep -o '"totalResults":[0-9]*' | grep -o '[0-9]*')
+if [ -n "$count" ]; then ok "GET /api/users -> $count users"
 else fail "GET /api/users: $out"; fi
 
 # ── JDBC ──────────────────────────────────────────────────────────────────────
@@ -41,6 +55,18 @@ else fail "psql: $out"; fi
 # ── LDAP ──────────────────────────────────────────────────────────────────────
 echo ""
 echo "LDAP  $IP:389"
+
+# Wait for LDAP to finish loading LDIFs (vegardit loads them on first start)
+retries=12
+until ldapsearch -x -H "ldap://$IP:389" \
+  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
+  -w 'Sp3ctr3Qu13t!' \
+  -b 'ou=Users,dc=darkhorn,dc=local' \
+  '(objectClass=inetOrgPerson)' dn 2>/dev/null | grep -q '^dn:'; do
+  retries=$((retries-1))
+  [ $retries -eq 0 ] && break
+  sleep 5
+done
 
 count=$(ldapsearch -x -H "ldap://$IP:389" \
   -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
@@ -62,6 +88,8 @@ else fail "sftp: $out"; fi
 # ── SOAP ──────────────────────────────────────────────────────────────────────
 echo ""
 echo "SOAP  http://$IP:3002"
+
+wait_for "http://$IP:3002/soap?wsdl" || { fail "SOAP not reachable after 60s"; }
 
 out=$(curl -sf "http://$IP:3002/soap?wsdl" 2>&1) || true
 if echo "$out" | grep -qi "wsdl"; then ok "GET /soap?wsdl -> WSDL reachable"
