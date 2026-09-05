@@ -18,6 +18,7 @@ SS_DB            = "SecretServer"
 SS_TIMEZONE      = "E. South America Standard Time"
 SS_KEYBOARD      = "es-419"
 SS_INSTALL_MODE  = "installer"   # "installer" = ISVPsetup.exe silent | "extract" = ss_update.zip
+SS_HOSTNAME      = "ironhold"
 
 # -- Pre-flight checks -----------------------------------------
 installer_dir = File.expand_path("installer", __dir__)
@@ -33,9 +34,10 @@ end
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box         = "gusztavvargadr/windows-server-2022-standard"
+  config.vm.box          = "gusztavvargadr/windows-server-2025-standard"
   config.vm.communicator = "winssh"
   config.vm.boot_timeout = 1800
+  config.rdp.username    = ".\\vagrant"
 
   # Disable default /vagrant share
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -45,8 +47,8 @@ Vagrant.configure("2") do |config|
 
   # -- Network ---------------------------------------------------
   config.vm.network "private_network", ip: "10.10.10.10"
-  config.vm.network "forwarded_port", guest: 80,   host: 8080   # HTTP
-  config.vm.network "forwarded_port", guest: 443,  host: 8443   # HTTPS
+  config.vm.network "forwarded_port", guest: 80,   host: 8010   # HTTP
+  config.vm.network "forwarded_port", guest: 443,  host: 4430   # HTTPS
   config.vm.network "forwarded_port", guest: 3389, host: 53389  # RDP
 
   # -- VMware Desktop provider -----------------------------------
@@ -67,7 +69,7 @@ Vagrant.configure("2") do |config|
 
   # -- Provisioning ----------------------------------------------
 
-  # 1. Timezone and keyboard
+  # 1. Timezone, keyboard and hostname
   config.vm.provision "shell", name: "sysconfig", inline: <<-PS
     $tz = "#{SS_TIMEZONE}"
     if ((Get-TimeZone).Id -ne $tz) { Set-TimeZone -Id $tz; Write-Host "Timezone set: $tz" }
@@ -78,27 +80,34 @@ Vagrant.configure("2") do |config|
       Set-WinUserLanguageList (New-WinUserLanguageList $lang) -Force
       Write-Host "Keyboard set: $lang"
     } else { Write-Host "Keyboard already set: $lang" }
+    $hn = "#{SS_HOSTNAME}"
+    if ($env:COMPUTERNAME -ne $hn.ToUpper()) {
+      Rename-Computer -NewName $hn -Force
+      Write-Host "Hostname set: $hn (takes effect after reboot)"
+    } else { Write-Host "Hostname already set: $hn" }
   PS
 
-  # 2. IIS features
-  config.vm.provision "shell", name: "iis_features", inline: <<-PS
-    $features = @(
-      "Web-Server","Web-Mgmt-Console","Web-Scripting-Tools",
-      "NET-Framework-45-Features","NET-Framework-45-Core","NET-Framework-45-ASPNET",
-      "Web-Asp-Net45","Web-Net-Ext45","NET-WCF-Services45",
-      "NET-WCF-HTTP-Activation45","NET-WCF-TCP-Activation45","NET-WCF-TCP-PortSharing45",
-      "WAS","WAS-Process-Model","Web-ISAPI-Ext","Web-ISAPI-Filter","Web-AppInit",
-      "Web-Default-Doc","Web-Dir-Browsing","Web-Http-Errors","Web-Http-Redirect",
-      "Web-Static-Content","Web-Http-Logging","Web-Dyn-Compression","Web-Stat-Compression",
-      "Web-Filtering","Web-Windows-Auth"
-    )
-    $missing = $features | Where-Object { -not (Get-WindowsFeature -Name $_).Installed }
-    if ($missing) { Install-WindowsFeature -Name $missing -IncludeManagementTools | Out-Null; Write-Host "IIS features installed." }
-    else          { Write-Host "IIS features already installed." }
-    Set-Service NetTcpActivator   -StartupType Automatic; Start-Service NetTcpActivator
-    Set-Service NetTcpPortSharing -StartupType Automatic; Start-Service NetTcpPortSharing
-    Write-Host "WCF services started."
-  PS
+  # 2. IIS features - only when using extract mode (installer mode handles this itself)
+  if SS_INSTALL_MODE == "extract"
+    config.vm.provision "shell", name: "iis_features", inline: <<-PS
+      $features = @(
+        "Web-Server","Web-Mgmt-Console","Web-Scripting-Tools",
+        "NET-Framework-45-Features","NET-Framework-45-Core","NET-Framework-45-ASPNET",
+        "Web-Asp-Net45","Web-Net-Ext45","NET-WCF-Services45",
+        "NET-WCF-HTTP-Activation45","NET-WCF-TCP-Activation45","NET-WCF-TCP-PortSharing45",
+        "WAS","WAS-Process-Model","Web-ISAPI-Ext","Web-ISAPI-Filter","Web-AppInit",
+        "Web-Default-Doc","Web-Dir-Browsing","Web-Http-Errors","Web-Http-Redirect",
+        "Web-Static-Content","Web-Http-Logging","Web-Dyn-Compression","Web-Stat-Compression",
+        "Web-Filtering","Web-Windows-Auth"
+      )
+      $missing = $features | Where-Object { -not (Get-WindowsFeature -Name $_).Installed }
+      if ($missing) { Install-WindowsFeature -Name $missing -IncludeManagementTools | Out-Null; Write-Host "IIS features installed." }
+      else          { Write-Host "IIS features already installed." }
+      Set-Service NetTcpActivator   -StartupType Automatic; Start-Service NetTcpActivator
+      Set-Service NetTcpPortSharing -StartupType Automatic; Start-Service NetTcpPortSharing
+      Write-Host "WCF services started."
+    PS
+  end
 
   # 3. Firewall rules
   config.vm.provision "shell", name: "firewall", inline: <<-PS

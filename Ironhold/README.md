@@ -6,6 +6,8 @@ Today Ironhold is the privileged access vault for Ashfeld. If something has a pa
 
 > **WARNING: This is a fictional lab environment. Do not use in production.**
 
+Runs on Windows Server 2025.
+
 ## Requirements
 
 - [Vagrant](https://www.vagrantup.com/)

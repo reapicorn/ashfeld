@@ -15,7 +15,6 @@
 #    sql_install           Install SQL Server Express
 #    sql_auth              Enable mixed-mode authentication
 #    sql_db                Create SecretServer DB + login + db_owner
-#    sqlcmd                Install sqlcmd command-line tools
 #    tools                 Install Firefox, VS Code, PowerShell 7
 #    iis_cert              Create self-signed cert + HTTPS binding
 #    ss_install            Run ISVPsetup.exe silent install (default)
@@ -28,7 +27,6 @@
 #    uninstall_iis            Remove IIS features, HTTPS binding, cert
 #    uninstall_sql_db         Drop SecretServer DB and login only
 #    uninstall_sql            Uninstall SQL Server Express
-#    uninstall_sqlcmd         Uninstall sqlcmd
 #    uninstall_choco          Uninstall Chocolatey
 #    uninstall_serviceaccount Remove svc_ss from Administrators and delete user
 #    uninstall_firewall       Remove SecretServer firewall rules
@@ -68,13 +66,22 @@ $ssSteps = if ($InstallMode -eq "extract") {
 } else {
     @("ss_install","ss_apppool","ss_iisapp")
 }
-$allSteps = @(
-    "serviceaccount","serviceaccount_admin",
-    "choco",
-    "sql_install","sqlcmd","sql_auth","sql_db",
-    "tools",
-    "iis_cert"
-) + $ssSteps
+$allSteps = if ($InstallMode -eq "extract") {
+    @(
+        "serviceaccount","serviceaccount_admin",
+        "choco",
+        "sql_install","sql_auth","sql_db",
+        "tools",
+        "iis_cert"
+    ) + $ssSteps
+} else {
+    @(
+        "serviceaccount","serviceaccount_admin",
+        "choco",
+        "sql_install","sql_auth","sql_db",
+        "tools"
+    ) + $ssSteps + @("iis_cert")
+}
 $plannedSteps   = if ($runAll) { $allSteps } else { $stepList | Where-Object { $_ -notmatch "^uninstall_" } }
 $completedSteps = @()
 
@@ -150,19 +157,6 @@ if (ShouldRun "sql_install") {
     Done "sql_install"
 }
 
-# -- sqlcmd: Install sqlcmd command-line tools -----------------
-if (ShouldRun "sqlcmd") {
-    Step "sqlcmd"
-    $found = Get-ChildItem "C:\Program Files\Microsoft SQL Server" -Recurse -Filter "sqlcmd.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
-    if (-not $found) {
-        RunSilent { choco install sqlserver-cmdlineutils -y --no-progress 2>&1 }
-        Log "sqlcmd installed."
-    } else {
-        Log "sqlcmd already installed: $($found.FullName)"
-    }
-    Done "sqlcmd"
-}
-
 # -- Discover sqlcmd path across all SQL Server versions -------
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 Get-ChildItem "C:\Program Files\Microsoft SQL Server" -ErrorAction SilentlyContinue |
@@ -191,14 +185,15 @@ GO
         $sql | sqlcmd -S "localhost\SQLEXPRESS" -E 2>&1 | Add-Content -Path $LogFile
         Restart-Service -Name "MSSQL`$SQLEXPRESS" -Force
         # Wait until SQL Server is ready to accept connections
-        $timeout = 60
+        $timeout = 180
         $elapsed = 0
         do {
-            Start-Sleep -Seconds 3
-            $elapsed += 3
+            Start-Sleep -Seconds 5
+            $elapsed += 5
             $ready = sqlcmd -S "localhost\SQLEXPRESS" -E -Q "SELECT 1" 2>&1
-        } while ($ready -notmatch "1" -and $elapsed -lt $timeout)
+        } while ($ready -notmatch "---" -and $elapsed -lt $timeout)
         if ($elapsed -ge $timeout) { Log "WARN: SQL Server did not respond within $timeout seconds." }
+        else { Log "SQL Server ready after $elapsed seconds." }
         Log "Mixed-mode auth enabled and SQL Server restarted."
     } else {
         Log "Mixed-mode auth already enabled."
@@ -334,36 +329,6 @@ Unregister-ScheduledTask -TaskName "IronholdFirstLogon" -Confirm:$false -ErrorAc
     Done "tools"
 }
 
-# -- iis_cert: Self-signed cert + HTTPS binding ----------------
-if (ShouldRun "iis_cert") {
-    Step "IIS HTTPS certificate"
-    Import-Module WebAdministration
-    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=ironhold" } | Select-Object -First 1
-    if (-not $cert) {
-        $cert = New-SelfSignedCertificate -DnsName "ironhold" -CertStoreLocation "Cert:\LocalMachine\My"
-        Log "Self-signed certificate created: $($cert.Thumbprint)"
-    } else {
-        Log "Self-signed certificate already exists: $($cert.Thumbprint)"
-    }
-    $existingBinding = Get-WebBinding -Name "Default Web Site" -Protocol "https" -ErrorAction SilentlyContinue
-    if (-not $existingBinding) {
-        New-WebBinding -Name "Default Web Site" -Protocol "https" -Port 443 -IPAddress "*"
-        $binding = Get-WebBinding -Name "Default Web Site" -Protocol "https"
-        $binding.AddSslCertificate($cert.Thumbprint, "My")
-        Log "HTTPS binding added to Default Web Site."
-    } else {
-        $sslCert = Get-ChildItem "IIS:\SslBindings\0.0.0.0!443" -ErrorAction SilentlyContinue
-        if (-not $sslCert) {
-            $binding = Get-WebBinding -Name "Default Web Site" -Protocol "https"
-            $binding.AddSslCertificate($cert.Thumbprint, "My")
-            Log "Certificate assigned to existing HTTPS binding."
-        } else {
-            Log "HTTPS binding already exists with certificate."
-        }
-    }
-    Done "iis_cert"
-}
-
 # -- ss_install: Silent install via ISVPsetup.exe --------------
 if (ShouldRun "ss_install") {
     Step "Vault - silent install"
@@ -377,7 +342,7 @@ if (ShouldRun "ss_install") {
         $installLog = "$LabDir\install-ss.log"
 
         # Stage 1: install prerequisites (IIS, IIS components, WCF)
-        # INSTALL_NetFx48 omitted - .NET 4.8 is already present on Windows Server 2022
+        # INSTALL_NetFx48 omitted - .NET 4.8 is already present on Windows Server 2025
         # INSTALL_HTTPS_BINDING omitted - we configure the cert separately via iis_cert
         Log "Stage 1: installing prerequisites..."
         $proc = Start-Process -FilePath $installer -Wait -PassThru -ArgumentList @(
@@ -449,6 +414,36 @@ if (ShouldRun "ss_extract") {
         }
     }
     Done "ss_extract"
+}
+
+# -- iis_cert: Self-signed cert + HTTPS binding ----------------
+if (ShouldRun "iis_cert") {
+    Step "IIS HTTPS certificate"
+    Import-Module WebAdministration
+    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=ironhold" } | Select-Object -First 1
+    if (-not $cert) {
+        $cert = New-SelfSignedCertificate -DnsName "ironhold" -CertStoreLocation "Cert:\LocalMachine\My"
+        Log "Self-signed certificate created: $($cert.Thumbprint)"
+    } else {
+        Log "Self-signed certificate already exists: $($cert.Thumbprint)"
+    }
+    $existingBinding = Get-WebBinding -Name "Default Web Site" -Protocol "https" -ErrorAction SilentlyContinue
+    if (-not $existingBinding) {
+        New-WebBinding -Name "Default Web Site" -Protocol "https" -Port 443 -IPAddress "*"
+        $binding = Get-WebBinding -Name "Default Web Site" -Protocol "https"
+        $binding.AddSslCertificate($cert.Thumbprint, "My")
+        Log "HTTPS binding added to Default Web Site."
+    } else {
+        $sslCert = Get-ChildItem "IIS:\SslBindings\0.0.0.0!443" -ErrorAction SilentlyContinue
+        if (-not $sslCert) {
+            $binding = Get-WebBinding -Name "Default Web Site" -Protocol "https"
+            $binding.AddSslCertificate($cert.Thumbprint, "My")
+            Log "Certificate assigned to existing HTTPS binding."
+        } else {
+            Log "HTTPS binding already exists with certificate."
+        }
+    }
+    Done "iis_cert"
 }
 
 # -- ss_apppool: Create and configure SecretServer App Pool ----
@@ -694,15 +689,6 @@ if (ShouldRun "uninstall_sql") {
     }
     Stop-Service -Name "MSSQL`$SQLEXPRESS" -Force -ErrorAction SilentlyContinue
     Log "SQL Server Express uninstalled."
-}
-
-# -- uninstall_sqlcmd ------------------------------------------
-if (ShouldRun "uninstall_sqlcmd") {
-    Step "Uninstall - sqlcmd"
-    if (Get-Command choco -ErrorAction SilentlyContinue) {
-        choco uninstall sqlserver-cmdlineutils -y --no-progress 2>&1 | Add-Content -Path $LogFile
-        Log "sqlcmd uninstalled."
-    } else { Log "Chocolatey not available." }
 }
 
 # -- uninstall_choco -------------------------------------------
