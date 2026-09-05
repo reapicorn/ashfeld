@@ -1,14 +1,14 @@
-# Vagrant runtime state (VMs, metadata — all centralized under vagrant/)
+ï»¿# Vagrant runtime state (VMs, metadata ï¿½ all centralized under vagrant/)
 vagrant/
 
-# Ironhold — Secret Server installer binary (obtain separately)
+# Ironhold ï¿½ Secret Server installer binary (obtain separately)
 Ironhold/installer/*.exe
 Ironhold/installer/*.zip
 
-# Thorngate — IVIG starter kit (obtain separately from IBM)
+# Thorngate ï¿½ IVIG starter kit (obtain separately from IBM)
 Thorngate/ivig_starter_kit_11.0.2/
 
-# Thorngate — license key files (obtain separately)
+# Thorngate ï¿½ license key files (obtain separately)
 Thorngate/*.txt
 
 # OS
@@ -23,7 +23,7 @@ Thumbs.db
 # Bob context (local tool config, not part of the lab)
 .bob/
 
-# Setup guides — manual installation notes, not part of the lab repo
+# Setup guides ï¿½ manual installation notes, not part of the lab repo
 setup-guides/
 
 # VS Code workspace file (local only)
