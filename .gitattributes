@@ -1,0 +1,15 @@
+# Force LF for files that run on Linux (shell scripts, Node.js sources)
+*.sh    text eol=lf
+*.js    text eol=lf
+*.py    text eol=lf
+*.sql   text eol=lf
+*.json  text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.md    text eol=lf
+*.rb    text eol=lf
+
+# Force CRLF for Windows-only files
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
