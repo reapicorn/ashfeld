@@ -10,6 +10,7 @@
 #    C:\sslab\install.ps1 -Steps "ss_extract,ss_apppool,ss_iisapp"
 #
 #  Install steps (run automatically on vagrant up):
+#    netconfig           Set private network adapter IP to 10.10.10.10
 #    sysconfig           Set timezone (E. South America) and keyboard (es-419)
 #    sync_installer      Copy installer files from shared folder to C:\sslab\installer\
 #    serviceaccount      Create local service account svc_ss
@@ -86,6 +87,7 @@ $ssSteps = if ($SS_INSTALL_MODE -eq "extract") {
     @("secretserver")
 }
 $allSteps = @(
+    "netconfig",
     "sysconfig",
     "sync_installer",
     "serviceaccount","serviceaccount_admin","choco",
@@ -116,6 +118,33 @@ PrintPlan
 # ==============================================================
 # INSTALL STEPS
 # ==============================================================
+
+# -- netconfig: Set private network adapter IP -----------------
+if (ShouldRun "netconfig") {
+    Step "Network config - private adapter IP"
+    $up = Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
+    $adapter = $up | ForEach-Object {
+        $gw = (Get-NetIPConfiguration -InterfaceIndex $_.InterfaceIndex).IPv4DefaultGateway
+        [PSCustomObject]@{ A = $_; GW = $gw }
+    } | Where-Object { $_.GW -eq $null } | Select-Object -First 1 -ExpandProperty A
+
+    if ($adapter) {
+        $idx = $adapter.InterfaceIndex
+        $cur = Get-NetIPAddress -InterfaceIndex $idx -AddressFamily IPv4 -ErrorAction SilentlyContinue
+        if (-not $cur -or $cur.IPAddress -notmatch '^10\.10\.10\.') {
+            if ($cur) {
+                Remove-NetIPAddress -InterfaceIndex $idx -AddressFamily IPv4 -Confirm:$false -ErrorAction SilentlyContinue
+            }
+            New-NetIPAddress -InterfaceIndex $idx -AddressFamily IPv4 -IPAddress "10.10.10.10" -PrefixLength 24 | Out-Null
+            Log "Lab IP set: 10.10.10.10 on $($adapter.Name)"
+        } else {
+            Log "Lab IP already set: $($cur.IPAddress)"
+        }
+    } else {
+        Log "WARN: could not find private adapter"
+    }
+    Done "netconfig"
+}
 
 # -- sysconfig: Timezone and keyboard --------------------------
 if (ShouldRun "sysconfig") {
