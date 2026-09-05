@@ -95,7 +95,7 @@ out=$(curl -sf "http://$IP:3002/soap?wsdl" 2>&1) || true
 if echo "$out" | grep -qi "wsdl"; then ok "GET /soap?wsdl -> WSDL reachable"
 else fail "GET /soap?wsdl: $out"; fi
 
-envelope='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dark="http://darkhorn.local/soap"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken><wsse:Username>banshee</wsse:Username><wsse:Password>B4nsh33Sc4ms!</wsse:Password></wsse:UsernameToken></wsse:Security></soapenv:Header><soapenv:Body><dark:GetGroups/></soapenv:Body></soapenv:Envelope>'
+envelope='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://darkhorn.local/userservice"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken><wsse:Username>banshee</wsse:Username><wsse:Password>B4nsh33Sc4ms!</wsse:Password></wsse:UsernameToken></wsse:Security></soapenv:Header><soapenv:Body><tns:GetGroupsRequest/></soapenv:Body></soapenv:Envelope>'
 out=$(curl -sf -X POST "http://$IP:3002/soap" \
   -H 'Content-Type: text/xml' \
   -H 'SOAPAction: ""' \
