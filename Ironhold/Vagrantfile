@@ -1,23 +1,29 @@
 # =============================================================
-#  Ironhold — Vagrantfile
+#  Ironhold - Vagrantfile
 #  Provider: VMware Desktop (Fusion / Workstation / Player)
-#  Requires: vagrant-vmware-desktop plugin + VMware Utility Service
+#  Communicator: winssh (SSH - no WinRM)
 #
 #  Usage:   vagrant up
-#  Access:  https://localhost:8443/SecretServer (port-forwarded)
-#           http://localhost:8080/SecretServer  (HTTP, port-forwarded)
-#           https://10.10.10.10/SecretServer    (direct, from host or other VMs)
+#  Access:  http://localhost/SecretServer  (from host, port-forwarded)
 #  RDP:     localhost:53389  (vagrant / vagrant)
 # =============================================================
 
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
 ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/ironhold/.vagrant", __dir__)
 
-# ── Pre-flight checks ─────────────────────────────────────────────────────────
+# -- Configurable parameters -----------------------------------
+SS_SERVICE_USER  = "svc_ss"
+SS_SERVICE_PASS  = "Ir0nhold#Lab!"
+SS_DB            = "SecretServer"
+SS_TIMEZONE      = "E. South America Standard Time"
+SS_KEYBOARD      = "es-419"
+SS_INSTALL_MODE  = "installer"   # "installer" = ISVPsetup.exe silent | "extract" = ss_update.zip
+
+# -- Pre-flight checks -----------------------------------------
 installer_dir = File.expand_path("installer", __dir__)
 [
-  { file: "ISVPsetup.exe",  hint: "Download from the Delinea portal and place in Ironhold/installer/" },
-  { file: "ss_update.zip",  hint: "Download from the Delinea portal and place in Ironhold/installer/" },
+  { file: "ISVPsetup.exe", hint: "Download from the Delinea portal and place in Ironhold/installer/" },
+  { file: "ss_update.zip", hint: "Download from the Delinea portal and place in Ironhold/installer/" },
 ].each do |req|
   path = File.join(installer_dir, req[:file])
   unless File.exist?(path)
@@ -27,44 +33,31 @@ end
 
 Vagrant.configure("2") do |config|
 
-  # Windows Server 2022 Evaluation (free, no license required)
-  # Box source: https://app.vagrantup.com/gusztavvargadr/boxes/windows-server-2022-standard
-  config.vm.box = "gusztavvargadr/windows-server-2022-standard"
+  config.vm.box         = "gusztavvargadr/windows-server-2022-standard"
   config.vm.communicator = "winssh"
-
-  # ── Boot timeout ──────────────────────────────────────────────
   config.vm.boot_timeout = 1800
 
-  # Disable Vagrant's default /vagrant shared folder.
+  # Disable default /vagrant share
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
-  # Mount the installer/ folder as a read-only shared folder.
-  # The install.ps1 script copies files from here to C:\sslab\installer\.
+  # Installer files (read-only) - script reads directly from here
   config.vm.synced_folder "installer", "C:\\sslab\\installer_src"
 
-  # ── Network ───────────────────────────────────────────────────
-  # VMware Desktop on Windows does not configure secondary adapters
-  # automatically, so we declare the network and set the IP manually
-  # via a provisioner below.
-  config.vm.network "private_network", ip: "10.10.10.10", auto_config: false
-
-  # Port forwarding: convenient shortcuts from the host
+  # -- Network ---------------------------------------------------
+  config.vm.network "private_network", ip: "10.10.10.10"
   config.vm.network "forwarded_port", guest: 80,   host: 8080   # HTTP
   config.vm.network "forwarded_port", guest: 443,  host: 8443   # HTTPS
   config.vm.network "forwarded_port", guest: 3389, host: 53389  # RDP
 
-  # ── VMware Desktop provider (Fusion / Workstation / Player) ──
+  # -- VMware Desktop provider -----------------------------------
   config.vm.provider "vmware_desktop" do |vmware|
-    vmware.vmx["displayName"]  = "SecretServer-Lab"
-    vmware.vmx["memsize"]      = "4096"
-    vmware.vmx["numvcpus"]     = "2"
-    vmware.vmx["gui"]          = "false"   # Headless
-    vmware.clone_directory = File.expand_path("../vagrant/ironhold/vm", __dir__)
-    # Clipboard sharing (handy for copying credentials)
+    vmware.vmx["displayName"] = "SecretServer-Lab"
+    vmware.vmx["memsize"]     = "4096"
+    vmware.vmx["numvcpus"]    = "2"
+    vmware.vmx["gui"]         = "false"
+    vmware.clone_directory    = File.expand_path("../vagrant/ironhold/vm", __dir__)
     vmware.vmx["isolation.tools.copy.disable"]  = "false"
     vmware.vmx["isolation.tools.paste.disable"] = "false"
-    # VHV — needed when Hyper-V / VBS / WSL2 is active on the host.
-    # Lets VMware run nested inside the Windows hypervisor without crashing Tools.
     vmware.vmx["vhv.enable"]             = "TRUE"
     vmware.vmx["vhv.allow"]              = "TRUE"
     vmware.vmx["featMask.vm.hv.capable"] = "Min:1"
@@ -72,22 +65,62 @@ Vagrant.configure("2") do |config|
     vmware.vmx["ethernet1.pcislotnumber"] = "224"
   end
 
-  # ── Provisioning ─────────────────────────────────────────────
+  # -- Provisioning ----------------------------------------------
 
-  # Installation script
-  config.vm.provision "file",
-    source:      "scripts/install.ps1",
-    destination: "C:\\sslab\\install.ps1"
+  # 1. Timezone and keyboard
+  config.vm.provision "shell", name: "sysconfig", inline: <<-PS
+    $tz = "#{SS_TIMEZONE}"
+    if ((Get-TimeZone).Id -ne $tz) { Set-TimeZone -Id $tz; Write-Host "Timezone set: $tz" }
+    else { Write-Host "Timezone already set: $tz" }
+    $lang = "#{SS_KEYBOARD}"
+    $cur = Get-WinUserLanguageList
+    if (-not ($cur | Where-Object { $_.LanguageTag -eq $lang })) {
+      Set-WinUserLanguageList (New-WinUserLanguageList $lang) -Force
+      Write-Host "Keyboard set: $lang"
+    } else { Write-Host "Keyboard already set: $lang" }
+  PS
 
-  # Run the installer manually via RDP after vagrant up:
-  #   C:\sslab\install.ps1
-  # To run only specific steps:
-  #   C:\sslab\install.ps1 -Steps "sql_auth,sql_db,iis_features,..."
-  #
-  # config.vm.provision "shell",
-  #   privileged:  true,
-  #   path:        "scripts/install.ps1",
-  #   powershell_elevated_interactive: false,
-  #   args:        ENV.fetch("SS_STEPS", "")
+  # 2. IIS features
+  config.vm.provision "shell", name: "iis_features", inline: <<-PS
+    $features = @(
+      "Web-Server","Web-Mgmt-Console","Web-Scripting-Tools",
+      "NET-Framework-45-Features","NET-Framework-45-Core","NET-Framework-45-ASPNET",
+      "Web-Asp-Net45","Web-Net-Ext45","NET-WCF-Services45",
+      "NET-WCF-HTTP-Activation45","NET-WCF-TCP-Activation45","NET-WCF-TCP-PortSharing45",
+      "WAS","WAS-Process-Model","Web-ISAPI-Ext","Web-ISAPI-Filter","Web-AppInit",
+      "Web-Default-Doc","Web-Dir-Browsing","Web-Http-Errors","Web-Http-Redirect",
+      "Web-Static-Content","Web-Http-Logging","Web-Dyn-Compression","Web-Stat-Compression",
+      "Web-Filtering","Web-Windows-Auth"
+    )
+    $missing = $features | Where-Object { -not (Get-WindowsFeature -Name $_).Installed }
+    if ($missing) { Install-WindowsFeature -Name $missing -IncludeManagementTools | Out-Null; Write-Host "IIS features installed." }
+    else          { Write-Host "IIS features already installed." }
+    Set-Service NetTcpActivator   -StartupType Automatic; Start-Service NetTcpActivator
+    Set-Service NetTcpPortSharing -StartupType Automatic; Start-Service NetTcpPortSharing
+    Write-Host "WCF services started."
+  PS
+
+  # 3. Firewall rules
+  config.vm.provision "shell", name: "firewall", inline: <<-PS
+    foreach ($r in @(@{Name="SecretServer-HTTP";Port=80},@{Name="SecretServer-HTTPS";Port=443})) {
+      $ex = netsh advfirewall firewall show rule name=$($r.Name) 2>&1
+      if ($ex -notmatch $r.Name) {
+        netsh advfirewall firewall add rule name=$($r.Name) protocol=TCP dir=in localport=$($r.Port) action=allow | Out-Null
+        Write-Host "Firewall rule added: $($r.Name)"
+      } else { Write-Host "Firewall rule already exists: $($r.Name)" }
+    }
+  PS
+
+  # 4. Main install script
+  config.vm.provision "shell",
+    name:        "install",
+    path:        "scripts/install.ps1",
+    privileged:  true,
+    args:        [
+      "-ServiceUser",  SS_SERVICE_USER,
+      "-ServicePass",  SS_SERVICE_PASS,
+      "-DbName",       SS_DB,
+      "-InstallMode",  SS_INSTALL_MODE,
+    ]
 
 end

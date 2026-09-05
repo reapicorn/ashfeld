@@ -1,83 +1,93 @@
-# Ironhold
+# Ironhold - The Vault
 
-Before the foundries closed, Ironhold was the district's most secure facility — a fortified records vault where the guilds kept what they could not afford to lose. Master keys. Payroll ciphers. The names behind the accounts. Nothing left that building without a signature and a witness.
+Before the foundries closed, Ironhold was the most secure facility in the district. The guilds kept what they could not afford to lose there — signing keys, access codes, the credentials for systems that had no other documentation. The guilds are gone. The building is still standing. The vault was never decommissioned.
 
-The guilds are gone. The building is still standing. The vault where privileged credentials live. Every service account, every admin password, every infrastructure secret in Ashfeld is checked in here. If something has a password that matters, it goes through Ironhold.
+Today Ironhold is the privileged access vault for Ashfeld. If something has a password that matters, it goes through here.
 
----
+> **WARNING: This is a fictional lab environment. Do not use in production.**
 
-## Vagrant
+## Requirements
 
-### Before starting
+- [Vagrant](https://www.vagrantup.com/)
+- [VMware Workstation](https://www.vmware.com/products/workstation-pro.html) or [Fusion](https://www.vmware.com/products/fusion.html)
+- [vagrant-vmware-desktop](https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation) plugin
+- Installer files in `installer/` (see below)
 
-The installer is not included. Obtain it separately and place it in `installer/` (any filename, `.exe` or `.zip`).
+### Installer files
 
-### Start
+Place the following files in the `installer/` folder before running `vagrant up`:
 
-```bash
+| File | How to obtain |
+|------|---------------|
+| `ISVPsetup.exe` | Download from the Delinea portal |
+| `ss_update.zip` | Extract from `Version_12_0_000022.zip` (inside the downloaded package) |
+
+## Setup
+
+### Step 1 - Start the VM
+
+```powershell
 vagrant up
 ```
 
-Vagrant downloads a Windows Server 2025 VM (~7 GB, first time only), installs SQL Server Express, and provisions the vault. First run: ~15 minutes. Subsequent starts: ~2 minutes.
+Provisions SQL Server Express, IIS, ASP.NET, service account, and Secret Server files (~20 min).
 
-### Access
+### Step 2 - Complete the database setup wizard
 
-| | |
-|---|---|
-| URL | `http://10.10.10.10/SecretServer` |
+Connect to the VM via RDP (`localhost:53389`, credentials: `vagrant` / `vagrant`), open Firefox and navigate to:
+
+```
+http://localhost/SecretServer/Setup/Database?FreshInstall=true
+```
+
+Fill in the wizard fields:
+
+| Field | Value |
+|-------|-------|
+| Database Server | `localhost\SQLEXPRESS` |
+| Database Name | `SecretServer` |
+| Authentication | Windows Authentication |
+
+### Step 3 - Create the admin account
+
+After the DB wizard completes, the setup wizard will prompt for the admin account:
+
+| Field | Value |
+|-------|-------|
 | Username | `admin` |
-| Password | `Passw0rd!` |
-| RDP | `10.10.10.10:3389` — `vagrant` / `vagrant` |
+| Password | `Ir0nhold#Lab!` |
 
-### Day-to-day
+## Access
 
-```bash
-# Stop
-vagrant halt
+| URL | Description |
+|-----|-------------|
+| `http://localhost/SecretServer` | From inside the VM |
+| `http://localhost:8080/SecretServer` | From the host (port-forwarded) |
+| `https://localhost:8443/SecretServer` | HTTPS from the host (self-signed cert) |
 
-# Start
-vagrant up
+## Credentials
 
-# RDP into the VM
-vagrant rdp
+| What | Value |
+|------|-------|
+| Secret Server admin | `admin` / `Ir0nhold#Lab!` |
+| RDP / VM | `vagrant` / `vagrant` |
+| Service account | `IRONHOLD\svc_ss` / `Ir0nhold#Lab!` |
+| Database | `SecretServer` on `localhost\SQLEXPRESS` (Windows Auth) |
 
-# Re-run provisioning (if it failed mid-way)
+## Re-provisioning
+
+```powershell
+# Re-run all steps
 vagrant provision
 
-# Destroy and start fresh
-vagrant destroy -f && vagrant up
+# Re-run only specific steps (from inside the VM via RDP)
+C:\sslab\install.ps1 -Steps "ss_extract,ss_apppool,ss_iisapp"
 ```
 
-### Machine requirements
+## Uninstall Secret Server
 
-| Resource | Value |
-|---|---|
-| CPU | 2 vCPU |
-| RAM | 4 GB |
-| Disk | 25 GB |
+From RDP on the VM:
 
----
-
-## Secret structure
-
-Secrets are organized in folders by category:
-
+```powershell
+C:\sslab\install.ps1 -Steps "uninstall_secretserver"
 ```
-Ashfeld/
-├── Infrastructure/      ← servers, network devices
-├── Databases/           ← service accounts for DB access
-├── Applications/        ← app-level credentials
-└── Privileged Accounts/ ← admin and break-glass accounts
-```
-
----
-
-## Exercises
-
-| # | Topic | Time |
-|---|---|---|
-| [01 — First steps](docs/01-first-steps.md) | UI, initial wizard, first user | 20 min |
-| [02 — Basic secrets](docs/02-basic-secrets.md) | Folders, secret types, audit trail | 30 min |
-| [03 — Groups & users](docs/03-groups-and-users.md) | Roles, groups, folder permissions | 30 min |
-| [04 — Access policies](docs/04-access-policies.md) | Checkout, approval workflow, auto-rotation | 45 min |
-| [05 — Audit & reports](docs/05-audit-and-reports.md) | Logs, reports, alerts, incident simulation | 30 min |

@@ -1,5 +1,8 @@
-﻿# Vagrant runtime state (VMs, metadata - all centralized under vagrant/)
+# Vagrant runtime state (VMs, metadata - all centralized under vagrant/)
 vagrant/
+
+# Vagrant metadata (inside project subdirectories)
+**/.vagrant/
 
 # Ironhold - Secret Server installer binary (obtain separately)
 Ironhold/installer/*.exe
