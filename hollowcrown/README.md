@@ -99,8 +99,8 @@ vagrant up
 
 | Service | URL |
 |---|---|
-| Web UI | `http://10.10.10.30:8080` |
-| API | `http://10.10.10.30:4000` |
+| Web UI | `http://localhost:8030` |
+| API | `http://localhost:4000` |
 
 ### Day-to-day
 
