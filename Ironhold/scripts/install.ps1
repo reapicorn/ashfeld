@@ -607,6 +607,20 @@ if (ShouldRun "firewall") {
     Done "firewall"
 }
 
+# -- Banner ----------------------------------------------------
+Log ""
+Log "----------------------------------------"
+Log "  Ironhold - Ready"
+Log "----------------------------------------"
+Log "  HTTP:     http://localhost:8080/SecretServer"
+Log "  HTTPS:    https://localhost:8443/SecretServer"
+Log "  Direct:   http://10.10.10.10/SecretServer"
+Log "  Username: admin"
+Log "  Password: Passw0rd!"
+Log "  RDP:      localhost:53389  (vagrant / vagrant)"
+Log "----------------------------------------"
+Log ""
+
 # ==============================================================
 # UNINSTALL STEPS
 # ==============================================================
