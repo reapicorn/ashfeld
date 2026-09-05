@@ -54,8 +54,8 @@ Vagrant.configure("2") do |config|
     echo "======================================================"
     echo "  Hollowcrown — Ready"
     echo "======================================================"
-    echo "  Web UI:  http://localhost:8030  (or http://10.10.10.30:8080 from other VMs)"
-    echo "  API:     http://localhost:4000  (or http://10.10.10.30:4000 from other VMs)"
+    echo "  Web UI:  http://localhost:8030"
+    echo "  API:     http://localhost:4000"
     echo "======================================================"
     echo ""
   SHELL
