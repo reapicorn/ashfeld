@@ -456,6 +456,23 @@ if (ShouldRun "ss_extract") {
             Log "SS files extracted successfully."
         }
     }
+
+    # Generate database.config for IWA connection (skips the DB setup wizard)
+    $dbConfig = "$InstallDir\database.config"
+    if (-not (Test-Path $dbConfig)) {
+        $dbXml = @"
+<?xml version="1.0"?>
+<database>
+    <Server>localhost\SQLEXPRESS</Server>
+    <Database>$SS_DB</Database>
+    <UseAuthentication>true</UseAuthentication>
+</database>
+"@
+        $dbXml | Set-Content -Path $dbConfig -Encoding UTF8
+        Log "database.config written: localhost\SQLEXPRESS / $SS_DB (IWA)"
+    } else {
+        Log "database.config already exists - skipping."
+    }
     Done "ss_extract"
 }
 
