@@ -10,7 +10,18 @@ Thorngate was built to answer that question. It is the city's governance layer �
 
 ### Before starting
 
-The installer kit and license keys are not included. Obtain them separately and place them in the `Thorngate/` folder before running `vagrant up`.
+The installer kit and license keys are not included. Obtain them separately and place them in the appropriate folders before running `vagrant up`:
+
+```
+Thorngate/
+├── starter_kit/
+│   └── ivig_starter_kit_11.0.2/   ← starter kit folder from IBM
+└── license_files/
+    ├── ivig_activation_key_11.0.2.txt
+    ├── ivig_Enterprise_CT_key_11.0.2.txt
+    ├── ivd-11.0.0_license_key_limited.txt
+    └── SVDI_11.0_Con_Lic_Key_ML.txt
+```
 
 ### Start
 
@@ -22,10 +33,9 @@ vagrant up
 
 | | |
 |---|---|
-| Console | `https://10.10.10.40:30943/itim/console` |
+| Console | `https://localhost:30943/itim/console/main` |
 | Username | `itim manager` |
 | Password | `secret` |
-| Tenant | `Acme` |
 
 ### Day-to-day
 
@@ -54,14 +64,30 @@ vagrant destroy -f && vagrant up
 
 ### Machine requirements
 
+**Intel / AMD (x86_64)**
+
 | Resource | Value |
 |---|---|
 | CPU | 4 vCPUs |
 | RAM | 16 GB |
 | Disk | 100 GB |
 | OS | Debian 12 (x86_64) |
+| Provider | VMware Fusion / Workstation |
 
-> ARM is not supported directly. Container images are `amd64`-only.
+**Apple Silicon (ARM64)**
+
+| Resource | Value |
+|---|---|
+| CPU | 4 vCPUs |
+| RAM | 16 GB |
+| Disk | 100 GB |
+| OS | Debian 12 (arm64) |
+| Provider | VMware Fusion 13.5+ |
+| macOS | 13 Ventura or later |
+
+The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `bento/debian-12-arm64` box and enables VMware Fusion's Rosetta / x86_64 emulation layer so that the `amd64`-only IVIG container images run transparently inside the VM.
+
+No manual configuration is required — `vagrant up` handles everything.
 
 ---
 
@@ -71,7 +97,7 @@ vagrant destroy -f && vagrant up
 
 | Parameter | Value |
 |---|---|
-| Host | `10.10.10.40` |
+| Host | `localhost` |
 | Port | `30543` |
 | Database | `ivig` |
 | User | `ivig` |
@@ -81,7 +107,7 @@ vagrant destroy -f && vagrant up
 
 | Parameter | Value |
 |---|---|
-| Host | `10.10.10.40` |
+| Host | `localhost` |
 | Port | `30636` |
 | Protocol | LDAPS |
 | Base DN | `dc=ivig` |
@@ -91,7 +117,7 @@ vagrant destroy -f && vagrant up
 The installer generates self-signed certificates. Import the root CA in your LDAP client if needed:
 
 ```bash
-cat ~/ivig_starter_kit_11.0.2/config/certs/isvgimRootCA.crt
+vagrant ssh -c "cat ~/ivig_starter_kit_11.0.2/config/certs/isvgimRootCA.crt"
 ```
 
 ---

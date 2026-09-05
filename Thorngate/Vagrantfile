@@ -4,33 +4,82 @@
 #  Provider: VMware Desktop (vmware_desktop)
 #
 #  Usage:   vagrant up
-#  Access:  https://10.10.10.40:30943/itim/console
+#  Access:  https://localhost:30943/itim/console/main
+#
+#  ARM (Apple Silicon) notes:
+#    Uses bento/debian-12-arm64 with VMware Fusion Rosetta to
+#    emulate amd64.  All IVIG container images remain amd64-only;
+#    Rosetta provides the transparent x86_64 layer inside the VM.
+#    Requires VMware Fusion 13.5+ and macOS 13+.
 # =============================================================
 
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
 ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/thorngate/.vagrant", __dir__)
 
+# Detect host CPU architecture
+HOST_ARCH = `uname -m`.strip rescue "x86_64"
+ARM_HOST   = HOST_ARCH == "arm64" || HOST_ARCH == "aarch64"
+
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "bento/debian-12"
+  config.vm.box      = ARM_HOST ? "bento/debian-12-arm64" : "bento/debian-12"
   config.vm.hostname = "thorngate"
 
   # ── Network — private, fixed IP ───────────────────────────────
   # Visible to the host and other VMs on the 10.10.10.0/24 segment.
   config.vm.network "private_network", ip: "10.10.10.40"
 
+  # ── Port forwards — host access via localhost ─────────────────
+  # Fallback for when the private network (VMnet) is not reachable from the host.
+  config.vm.network "forwarded_port", guest: 30943, host: 30943   # IVIG Console (HTTPS)
+  config.vm.network "forwarded_port", guest: 30543, host: 30543   # PostgreSQL
+  config.vm.network "forwarded_port", guest: 30636, host: 30636   # LDAP / LDAPS
+
   # ── VMware Desktop provider ───────────────────────────────────
   config.vm.provider "vmware_desktop" do |vmware|
-    vmware.vmx["displayName"] = "Thorngate-IVIG"
-    vmware.vmx["memsize"]     = "16384"
-    vmware.vmx["numvcpus"]    = "4"
-    vmware.vmx["gui"]         = "false"
+    vmware.vmx["displayName"]              = "Thorngate-IVIG"
+    vmware.vmx["memsize"]                  = "16384"
+    vmware.vmx["numvcpus"]                 = "4"
+    vmware.vmx["gui"]                      = "false"
+    vmware.vmx["ethernet0.pcislotnumber"]  = "160"
+    vmware.vmx["ethernet1.pcislotnumber"]  = "224"
     vmware.clone_directory = File.expand_path("../vagrant/thorngate/vm", __dir__)
+
+    if ARM_HOST
+      # Run ARM64 VM with Rosetta so amd64 container images are emulated
+      # transparently by VMware Fusion's x86_64 translation layer.
+      vmware.vmx["virtualhw.version"]              = "21"
+      vmware.vmx["vhv.enable"]                     = "TRUE"
+      vmware.vmx["ulm.disableMitigations"]         = "TRUE"
+      vmware.vmx["featMask.vm.hv.capable"]         = "Min:1"
+    end
   end
 
   # ── Provisioning ──────────────────────────────────────────────
   config.vm.provision "shell", inline: <<-SHELL
     set -euo pipefail
+
+    # On ARM64 VMs running under VMware Fusion Rosetta, configure
+    # containerd / k3s to pull and run amd64 images.
+    if [ "$(uname -m)" = "aarch64" ]; then
+      echo "==> [ARM] Configuring amd64 platform override for containerd..."
+      mkdir -p /etc/rancher/k3s
+      cat > /etc/rancher/k3s/config.yaml <<'EOF'
+# Force amd64 image pulls so IVIG images (amd64-only) are emulated via Rosetta
+snapshotter: overlayfs
+EOF
+      # Tell containerd to prefer linux/amd64 when no arm64 manifest exists
+      mkdir -p /etc/containerd
+      cat > /etc/containerd/config.toml <<'EOF'
+version = 2
+[plugins."io.containerd.grpc.v1.cri".containerd]
+  default_runtime_name = "runc"
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+  runtime_type = "io.containerd.runc.v2"
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+  SystemdCgroup = true
+EOF
+    fi
 
     echo "==> [1/6] Installing base packages and dependencies..."
     export DEBIAN_FRONTEND=noninteractive
@@ -38,7 +87,14 @@ Vagrant.configure("2") do |config|
     apt-get install -y -qq curl wget git tar unzip jq
 
     echo "==> [2/6] Installing k3s..."
-    curl -sfL https://get.k3s.io | sh -
+    # On aarch64 under Rosetta we still want amd64 k3s binaries so the entire
+    # stack (kubelet, containerd, etc.) runs as x86_64 alongside the images.
+    if [ "$(uname -m)" = "aarch64" ]; then
+      curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--kubelet-arg=node-status-update-frequency=5s" \
+        K3S_RESOLV_CONF=/etc/resolv.conf sh -
+    else
+      curl -sfL https://get.k3s.io | sh -
+    fi
 
     # Configure kubeconfig for root and vagrant user
     mkdir -p /root/.kube /home/vagrant/.kube
@@ -62,15 +118,15 @@ Vagrant.configure("2") do |config|
     # Copy starter kit and license keys from /vagrant to home directory
     TARGET_DIR="/home/vagrant/ivig_starter_kit_11.0.2"
     rm -rf "$TARGET_DIR"
-    cp -r /vagrant/ivig_starter_kit_11.0.2 "$TARGET_DIR"
-    cp -f /vagrant/*.txt /home/vagrant/ 2>/dev/null || true
+    cp -r /vagrant/starter_kit/ivig_starter_kit_11.0.2 "$TARGET_DIR"
+    cp -f /vagrant/license_files/*.txt /home/vagrant/ 2>/dev/null || true
     chmod -R +x "$TARGET_DIR/bin/"
     chown -R vagrant:vagrant /home/vagrant/
 
     # Check if local preloaded image tar exists
-    if [ -f /vagrant/ivig-images.tar ]; then
+    if [ -f /vagrant/starter_kit/ivig-images.tar ]; then
       echo "Importing pre-loaded images into k3s containerd..."
-      k3s ctr images import /vagrant/ivig-images.tar
+      k3s ctr images import /vagrant/starter_kit/ivig-images.tar
     fi
 
     echo "==> [5/6] Configuring config.yaml..."
@@ -91,26 +147,26 @@ Vagrant.configure("2") do |config|
     sed -i 's/^  ldapserver\\.ip:$/  ldapserver.ip: isvd-replica-1/' "$CFG"
     sed -i 's/^  ldapserver\\.port:$/  ldapserver.port: 9636/' "$CFG"
 
-    # License keys from files
-    if [ -f /vagrant/ivig_activation_key_11.0.2.txt ]; then
-      ACTIVATION_KEY=$(grep -v '^#' /vagrant/ivig_activation_key_11.0.2.txt | tr -d '[:space:]')
-      sed -i "s/^    activationKey:$/    activationKey: $ACTIVATION_KEY/" "$CFG"
-    fi
+    # License keys from files — use python3 to avoid sed delimiter conflicts with key characters
+    set_key() {
+      local file="$1" field="$2"
+      if [ -f "$file" ]; then
+        local value
+        value=$(grep -v '^#' "$file" | tr -d '[:space:]')
+        python3 -c "
+import sys
+field, value, path = sys.argv[1], sys.argv[2], sys.argv[3]
+with open(path) as f: content = f.read()
+content = content.replace('    ' + field + ':', '    ' + field + ': ' + value, 1)
+with open(path, 'w') as f: f.write(content)
+" "$field" "$value" "$CFG"
+      fi
+    }
 
-    if [ -f /vagrant/ivd-11.0.0_license_key_limited.txt ]; then
-      LDAP_KEY=$(grep -v '^#' /vagrant/ivd-11.0.0_license_key_limited.txt | tr -d '[:space:]')
-      sed -i "s/^    ldapKey:$/    ldapKey: $LDAP_KEY/" "$CFG"
-    fi
-
-    if [ -f /vagrant/SVDI_11.0_Con_Lic_Key_ML.txt ]; then
-      ISVDI_KEY=$(grep -v '^#' /vagrant/SVDI_11.0_Con_Lic_Key_ML.txt | tr -d '[:space:]')
-      sed -i "s/^    isvdiKey:$/    isvdiKey: $ISVDI_KEY/" "$CFG"
-    fi
-
-    if [ -f /vagrant/ivig_Enterprise_CT_key_11.0.2.txt ]; then
-      ISVART_KEY=$(grep -v '^#' /vagrant/ivig_Enterprise_CT_key_11.0.2.txt | tr -d '[:space:]')
-      sed -i "s/^    isvartKey:$/    isvartKey: $ISVART_KEY/" "$CFG"
-    fi
+    set_key /vagrant/license_files/ivig_activation_key_11.0.2.txt    activationKey
+    set_key /vagrant/license_files/ivd-11.0.0_license_key_limited.txt ldapKey
+    set_key /vagrant/license_files/SVDI_11.0_Con_Lic_Key_ML.txt       isvdiKey
+    set_key /vagrant/license_files/ivig_Enterprise_CT_key_11.0.2.txt  isvartKey
 
     echo "==> [6/6] Executing IVIG installer..."
     cd "$TARGET_DIR/bin"
@@ -125,14 +181,9 @@ Vagrant.configure("2") do |config|
     echo "======================================================"
     echo "  Thorngate (IVIG) — Ready"
     echo "======================================================"
-    echo "  IVIG Console:  https://10.10.10.40:30943/itim/console"
+    echo "  IVIG Console:  https://localhost:30943/itim/console/main"
     echo "  Username:      itim manager"
     echo "  Password:      secret"
-    echo "  Tenant:        Acme (Acme Inc.)"
-    echo "------------------------------------------------------"
-    echo "  PostgreSQL:    10.10.10.40:30543  (db: ivig, user: ivig, pass: Passw0rd!)"
-    echo "  LDAP / LDAPS:  10.10.10.40:30636  (dc=ivig, cn=root, pass: Passw0rd!)"
-    echo "  SSH:           vagrant@10.10.10.40  (vagrant / vagrant)"
     echo "======================================================"
     echo ""
   SHELL

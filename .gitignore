@@ -9,10 +9,10 @@ Ironhold/installer/*.exe
 Ironhold/installer/*.zip
 
 # Thorngate - IVIG starter kit (obtain separately from IBM)
-Thorngate/ivig_starter_kit_11.0.2/
+Thorngate/starter_kit/
 
 # Thorngate - license key files (obtain separately)
-Thorngate/*.txt
+Thorngate/license_files/
 
 # OS
 .DS_Store
