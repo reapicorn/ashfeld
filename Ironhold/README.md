@@ -57,6 +57,8 @@ After the DB wizard completes, the setup wizard will prompt for the admin accoun
 | Field | Value |
 |-------|-------|
 | Username | `admin` |
+| Display name | `Admin` |
+| Email | `admin@lab.local` |
 | Password | `Ir0nhold#Lab!` |
 
 ## Access
@@ -64,8 +66,8 @@ After the DB wizard completes, the setup wizard will prompt for the admin accoun
 | URL | Description |
 |-----|-------------|
 | `http://localhost/SecretServer` | From inside the VM |
-| `http://localhost:8080/SecretServer` | From the host (port-forwarded) |
-| `https://localhost:8443/SecretServer` | HTTPS from the host (self-signed cert) |
+| `http://localhost:8010/SecretServer` | From the host (port-forwarded) |
+| `https://localhost:4430/SecretServer` | HTTPS from the host (self-signed cert) |
 
 ## Credentials
 
@@ -83,7 +85,10 @@ After the DB wizard completes, the setup wizard will prompt for the admin accoun
 vagrant provision
 
 # Re-run only specific steps (from inside the VM via RDP)
-C:\sslab\install.ps1 -Steps "ss_extract,ss_apppool,ss_iisapp"
+C:\sslab\install.ps1 -Steps "ss_install,ss_apppool,ss_iisapp"
+
+# Use zip extraction instead of installer
+C:\sslab\install.ps1 -InstallMode extract -Steps "ss_extract,ss_apppool,ss_iisapp"
 ```
 
 ## Uninstall Secret Server
