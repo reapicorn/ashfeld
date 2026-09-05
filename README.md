@@ -65,7 +65,13 @@ Vagrant and a VMware hypervisor are required for all components.
 | Mac Apple Silicon (M1/M2/M3) | VMware Fusion 13+ |
 | Linux | VMware Workstation |
 
-> **Apple Silicon compatibility:** VMware Fusion 13+ runs ARM64 guest operating systems. [`Ironhold`](Ironhold/README.md) uses an x86_64 Windows Server box and requires an Intel/AMD host. [`Thorngate`](Thorngate/README.md) is experimental on Apple Silicon because its IVIG images are amd64-only and rely on Fusion Rosetta translation. See each project README for its requirements.
+> **Apple Silicon compatibility:** Compatibility varies by project.
+>
+> - ❗ [`Ironhold`](Ironhold/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
+> - ⚠️ [`Thorngate`](Thorngate/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
+> - ⚠️ [`Hollowcrown`](hollowcrown/README.md) and [`darkhorn`](darkhorn/README.md) also require validation on Apple Silicon.
+>
+> See each project README for its requirements.
 
 **Install Vagrant:** [developer.hashicorp.com/vagrant/downloads](https://developer.hashicorp.com/vagrant/downloads)
 
