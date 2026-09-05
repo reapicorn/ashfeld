@@ -24,6 +24,7 @@
 #    iis_cert            Create self-signed cert + HTTPS binding on Default Web Site
 #    secretserver        Print manual install instructions (status check)
 #    ss_extract          Extract ss_update.zip to C:\inetpub\wwwroot\SecretServer
+#    ss_dbconfig         Write database.config (IWA connection, skips setup wizard)
 #    ss_apppool          Create and configure SecretServer App Pool (svc_ss identity)
 #    ss_iisapp           Register /SecretServer as IIS application under Default Web Site
 #    firewall            Open ports 80 and 443
@@ -79,7 +80,7 @@ function RunSilent { param([scriptblock]$sb) & $sb 2>&1 | Add-Content -Path $Log
 
 # -- Progress tracking -----------------------------------------
 $ssSteps = if ($SS_INSTALL_MODE -eq "extract") {
-    @("ss_extract","ss_apppool","ss_iisapp")
+    @("ss_extract","ss_dbconfig","ss_apppool","ss_iisapp")
 } else {
     @("secretserver")
 }
@@ -456,8 +457,12 @@ if (ShouldRun "ss_extract") {
             Log "SS files extracted successfully."
         }
     }
+    Done "ss_extract"
+}
 
-    # Generate database.config for IWA connection (skips the DB setup wizard)
+# -- ss_dbconfig: Write database.config (IWA, skips wizard) ---
+if (ShouldRun "ss_dbconfig") {
+    Step "Secret Server - database.config"
     $dbConfig = "$InstallDir\database.config"
     if (-not (Test-Path $dbConfig)) {
         $dbXml = @"
@@ -473,7 +478,7 @@ if (ShouldRun "ss_extract") {
     } else {
         Log "database.config already exists - skipping."
     }
-    Done "ss_extract"
+    Done "ss_dbconfig"
 }
 
 # -- ss_apppool: Create and configure SecretServer App Pool ----
