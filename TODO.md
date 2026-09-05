@@ -4,15 +4,19 @@
 
 - [ ] Update the site to make its repository URL clear: `https://reapicorn.github.io/ashfeld/`.
 - [ ] Generate project artwork for the site and project documentation.
-
-## Darkhorn
-
-- [x] Validate the complete provisioning and smoke test.
+- [ ] Reorder the project cards and sections as Hollowcrown, Darkhorn, Thorngate, and Ironhold.
+- [ ] Reorder the project sections in `README.md` as Hollowcrown, Darkhorn, Thorngate, and Ironhold.
 
 ## Hollowcrown
 
+- [ ] Test Hollowcrown on Apple Silicon with VMware Fusion.
 - [x] Validate Hollowcrown after VM recreation.
 - [ ] Add a post-provision smoke test for the API, web UI, and PostgreSQL availability.
+
+## Darkhorn
+
+- [ ] Test Darkhorn on Apple Silicon with VMware Fusion.
+- [x] Validate the complete provisioning and smoke test.
 
 ## Thorngate
 
