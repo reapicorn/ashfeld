@@ -28,3 +28,6 @@ setup-guides/
 
 # VS Code workspace file (local only)
 *.code-workspace
+
+# Vagrant debug logs (local only)
+**/vagrant.log
