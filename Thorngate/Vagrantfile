@@ -7,7 +7,7 @@
 #  Access:  https://localhost:30943/itim/console/main
 #
 #  ARM (Apple Silicon) notes:
-#    Uses bento/debian-12-arm64 with VMware Fusion Rosetta to
+#    Uses debian/bookworm64 with VMware Fusion Rosetta to
 #    emulate amd64.  All IVIG container images remain amd64-only;
 #    Rosetta provides the transparent x86_64 layer inside the VM.
 #    Requires VMware Fusion 13.5+ and macOS 13+.
@@ -22,7 +22,7 @@ ARM_HOST   = HOST_ARCH == "arm64" || HOST_ARCH == "aarch64"
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box      = ARM_HOST ? "bento/debian-12-arm64" : "bento/debian-12"
+  config.vm.box      = ARM_HOST ? "debian/bookworm64" : "bento/debian-12"
   config.vm.hostname = "thorngate"
 
   # ── Network — private, fixed IP ───────────────────────────────
@@ -122,6 +122,26 @@ EOF
     cp -r /vagrant/starter_kit/ivig_starter_kit_11.0.2 "$TARGET_DIR"
     cp -f /vagrant/license_files/*.txt /home/vagrant/ 2>/dev/null || true
     chmod -R +x "$TARGET_DIR/bin/"
+
+    # Patch install.sh: inject a sleep before ldapConfig.sh to allow ISVD SSL to fully
+    # initialize. The stock starter kit does not include this delay, which causes LDAP
+    # configuration failures on slow or emulated environments (e.g. UTM on Apple Silicon).
+    INSTALL_SH="$TARGET_DIR/bin/install.sh"
+    if grep -q './sys/ldapConfig.sh install' "$INSTALL_SH" && ! grep -q 'sleep 120' "$INSTALL_SH"; then
+      python3 -c "
+path = '$TARGET_DIR/bin/install.sh'
+with open(path) as f: content = f.read()
+patch = (
+    'printf \"Waiting 120s for ISVD SSL to fully initialize'
+    ' (may be needed on low-resource VMs or ARM emulating x86_64)...\\\\n\"\n'
+    'sleep 120\n'
+    'printf \"Done waiting, proceeding with LDAP configuration...\\\\n\"\n'
+)
+content = content.replace('./sys/ldapConfig.sh install\n', patch + './sys/ldapConfig.sh install\n', 1)
+with open(path, 'w') as f: f.write(content)
+"
+    fi
+
     chown -R vagrant:vagrant /home/vagrant/
 
     # Check if local preloaded image tar exists
@@ -136,13 +156,13 @@ EOF
     # Fixed values
     sed -i 's/^    storageclass:$/    storageclass: local-path/' "$CFG"
     sed -i 's/^    accepted:$/    accepted: true/' "$CFG"
-    sed -i 's/^  keypass:$/  keypass: Passw0rd!/' "$CFG"
+    sed -i 's/^  keypass:$/  keypass: Thr0ng4t3DB!/' "$CFG"
     sed -i 's/^  user:$/  user: ivig/' "$CFG"
-    sed -i 's/^  password:$/  password: Passw0rd!/' "$CFG"
+    sed -i 's/^  password:$/  password: Thr0ng4t3DB!/' "$CFG"
     sed -i 's/^  ip:$/  ip: postgres/' "$CFG"
     sed -i 's/^  port:$/  port: 5432/' "$CFG"
     sed -i 's/^  security\\.principal:$/  security.principal: cn=root/' "$CFG"
-    sed -i 's/^  security\\.credentials:$/  security.credentials: Passw0rd!/' "$CFG"
+    sed -i 's/^  security\\.credentials:$/  security.credentials: Thr0ng4t3LD!/' "$CFG"
     sed -i 's/^  defaulttenant\\.id:$/  defaulttenant.id: Acme/' "$CFG"
     sed -i 's/^  organization\\.name:$/  organization.name: Acme Inc./' "$CFG"
     sed -i 's/^  ldapserver\\.ip:$/  ldapserver.ip: isvd-replica-1/' "$CFG"

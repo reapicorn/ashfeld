@@ -85,7 +85,7 @@ vagrant destroy -f && vagrant up
 | Provider | VMware Fusion 13.5+ |
 | macOS | 13 Ventura or later |
 
-The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `bento/debian-12-arm64` box and runs k3s natively on ARM64. IVIG images are amd64-only, so their execution relies on VMware Fusion's Rosetta translation support being available in the guest environment. This configuration has not been validated on Apple Silicon and is not a supported deployment path.
+The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `debian/bookworm64` box and runs k3s natively on ARM64. IVIG images are amd64-only, so their execution relies on VMware Fusion's Rosetta translation support being available in the guest environment. This configuration has not been validated on Apple Silicon and is not a supported deployment path.
 
 Run `vagrant up` and verify that all `ivig` pods are Ready and that the console is reachable before using the lab.
 
@@ -101,7 +101,7 @@ Run `vagrant up` and verify that all `ivig` pods are Ready and that the console 
 | Port | `30543` |
 | Database | `ivig` |
 | User | `ivig` |
-| Password | `Passw0rd!` |
+| Password | `Thr0ng4t3DB!` |
 
 ### LDAP
 
@@ -112,7 +112,7 @@ Run `vagrant up` and verify that all `ivig` pods are Ready and that the console 
 | Protocol | LDAPS |
 | Base DN | `dc=ivig` |
 | Bind DN | `cn=root` |
-| Password | `Passw0rd!` |
+| Password | `Thr0ng4t3LD!` |
 
 The installer generates self-signed certificates. Import the root CA in your LDAP client if needed:
 
