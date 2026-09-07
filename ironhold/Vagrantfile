@@ -23,8 +23,8 @@ SS_HOSTNAME      = "ironhold"
 # -- Pre-flight checks -----------------------------------------
 installer_dir = File.expand_path("installer", __dir__)
 [
-  { file: "ISVPsetup.exe", hint: "Download from the Delinea portal and place in Ironhold/installer/" },
-  { file: "ss_update.zip", hint: "Download from the Delinea portal and place in Ironhold/installer/" },
+  { file: "ISVPsetup.exe", hint: "Download from the Delinea portal and place in ironhold/installer/" },
+  { file: "ss_update.zip", hint: "Download from the Delinea portal and place in ironhold/installer/" },
 ].each do |req|
   path = File.join(installer_dir, req[:file])
   unless File.exist?(path)

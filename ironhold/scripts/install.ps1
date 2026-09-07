@@ -337,7 +337,7 @@ if (ShouldRun "ss_install") {
     if (Test-Path "$InstallDir\web.config") {
         Log "Files already present - skipping install."
     } elseif (-not (Test-Path $installer)) {
-        throw "ISVPsetup.exe not found at $installer. Place it in Ironhold/installer/ and re-run: vagrant provision"
+        throw "ISVPsetup.exe not found at $installer. Place it in ironhold/installer/ and re-run: vagrant provision"
     } else {
         # Note: /l path must be separate from install.log - the installer's internal
         # Launcher.ps1 opens the same log file and conflicts if it's already open.
@@ -389,7 +389,7 @@ if (ShouldRun "ss_extract") {
     if (Test-Path "$InstallDir\web.config") {
         Log "SS files already present - skipping extraction."
     } elseif (-not (Test-Path $ssUpdateZip)) {
-        throw "ss_update.zip not found at $ssUpdateZip. Place it in Ironhold/installer/ and re-run: vagrant provision"
+        throw "ss_update.zip not found at $ssUpdateZip. Place it in ironhold/installer/ and re-run: vagrant provision"
     } else {
         $extractTemp = "$LabDir\ss_extract_temp"
         Remove-Item $extractTemp -Recurse -Force -ErrorAction SilentlyContinue

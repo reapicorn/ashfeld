@@ -73,13 +73,13 @@ Create the following groups:
 ### User: `infra01`
 1. **Admin > Users > Create New**
 2. Username: `infra01` / Display: `Infrastructure 01`
-3. Password: `Passw0rd!`
+3. Password: `Infr4str4!`
 4. Under **Groups**: add `Infrastructure`
 5. **Save**
 
 ### User: `dba01`
 1. Username: `dba01` / Display: `DBA 01`
-2. Password: `Passw0rd!`
+2. Password: `DB4dm1n0l!`
 3. Group: `DBAs`
 4. **Save**
 

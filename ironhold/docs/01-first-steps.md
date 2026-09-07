@@ -16,7 +16,7 @@ Get familiar with the Secret Server interface, complete the initial configuratio
 1. Open your browser and go to: `http://localhost:8080/SecretServer`
 2. Log in with the admin credentials:
    - **Username:** `admin`
-   - **Password:** `Passw0rd!`
+   - **Password:** `Ir0nh0ldAdm!`
 
 ---
 
@@ -68,7 +68,7 @@ Once inside, take note of the main sections:
    - Username: `consultant01`
    - Display Name: `Consultant 01`
    - Email: `consultant01@lab.local`
-   - Password: `Passw0rd!`
+   - Password: `C0nsult4nt!`
 4. **Save**
 
 ---

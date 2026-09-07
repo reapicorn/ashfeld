@@ -79,7 +79,7 @@ Before creating secrets, set up the organization:
    - **Server:** `sqlserver`
    - **Database:** `SecretServer`
    - **Username:** `sa`
-   - **Password:** `Passw0rd!`
+   - **Password:** `S3cr3tS3rv3r!`
 4. **Save**
 
 ---

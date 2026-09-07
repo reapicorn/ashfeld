@@ -8,7 +8,14 @@ Vagrant.configure("2") do |config|
 
   # ── Network ───────────────────────────────────────────────────────────────────
   config.vm.network "private_network",  ip: "10.10.10.20"
-  config.vm.network "forwarded_port",   guest: 22, host: 2220, id: "ssh"
+  config.vm.network "forwarded_port",   guest: 22,   host: 2220,  id: "ssh"
+  config.vm.network "forwarded_port",   guest: 3000, host: 3000
+  config.vm.network "forwarded_port",   guest: 3002, host: 3002
+  config.vm.network "forwarded_port",   guest: 5432, host: 5432
+  config.vm.network "forwarded_port",   guest: 389,  host: 389
+  config.vm.network "forwarded_port",   guest: 2222, host: 2222
+  config.vm.network "forwarded_port",   guest: 5672, host: 5672
+  config.vm.network "forwarded_port",   guest: 15672, host: 15672
 
   # ── VMware Desktop (Fusion / Workstation) ─────────────────────────────────────
   config.vm.provider "vmware_desktop" do |vmware|
@@ -48,13 +55,13 @@ Vagrant.configure("2") do |config|
     echo "======================================================"
     echo "  Darkhorn - Ready"
     echo "======================================================"
-    echo "  REST:          http://10.10.10.20:3000"
-    echo "  SOAP:          http://10.10.10.20:3002"
-    echo "  JDBC:          10.10.10.20:5432"
-    echo "  LDAP:          10.10.10.20:389"
-    echo "  SFTP:          10.10.10.20:2222"
-    echo "  MQ (AMQP):     10.10.10.20:5672"
-    echo "  RabbitMQ mgmt: http://10.10.10.20:15672"
+    echo "  REST:          http://localhost:3000"
+    echo "  SOAP:          http://localhost:3002"
+    echo "  JDBC:          localhost:5432"
+    echo "  LDAP:          localhost:389"
+    echo "  SFTP:          localhost:2222"
+    echo "  MQ (AMQP):     localhost:5672"
+    echo "  RabbitMQ mgmt: http://localhost:15672"
     echo "======================================================"
     echo ""
   SHELL

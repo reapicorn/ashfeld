@@ -4,15 +4,15 @@ vagrant/
 # Vagrant metadata (inside project subdirectories)
 **/.vagrant/
 
-# Ironhold - Secret Server installer binary (obtain separately)
-Ironhold/installer/*.exe
-Ironhold/installer/*.zip
+# ironhold - Secret Server installer binary (obtain separately)
+ironhold/installer/*.exe
+ironhold/installer/*.zip
 
-# Thorngate - IVIG starter kit (obtain separately from IBM)
-Thorngate/starter_kit/
+# thorngate - IVIG starter kit (obtain separately from IBM)
+thorngate/starter_kit/
 
-# Thorngate - license key files (obtain separately)
-Thorngate/license_files/
+# thorngate - license key files (obtain separately)
+thorngate/license_files/
 
 # OS
 .DS_Store

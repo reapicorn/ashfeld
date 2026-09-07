@@ -10,8 +10,8 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 .
 ├── darkhorn/        # the district — six companies, six protocols, none of them compatible
 ├── hollowcrown/     # the bureau — citizen records, the only list anyone agrees to use
-├── Ironhold/        # the vault — privileged credentials, locked below the city
-└── Thorngate/       # the gate — who gets access, to what, and under what conditions
+├── ironhold/        # the vault — privileged credentials, locked below the city
+└── thorngate/       # the gate — who gets access, to what, and under what conditions
 ```
 
 ---
@@ -34,13 +34,13 @@ Hollowcrown was the council that governed Ashfeld before it dissolved. The name 
 
 Before the foundries closed, Ironhold was the most secure facility in the district. The guilds kept what they could not afford to lose there. The guilds are gone. The building is still standing. If something has a password that matters, it goes through Ironhold.
 
-→ See [`Ironhold/README.md`](Ironhold/README.md)
+→ See [`ironhold/README.md`](ironhold/README.md)
 
 ### Thorngate
 
 Ashfeld was always a city where nobody agreed on who had access to what. Thorngate was built to answer that question — the gate that decides who gets access, to what, and under what conditions. Not because anyone asked for it, but because the city had become impossible to audit without it.
 
-→ See [`Thorngate/README.md`](Thorngate/README.md)
+→ See [`thorngate/README.md`](thorngate/README.md)
 
 ---
 
@@ -60,14 +60,13 @@ Vagrant and a VMware hypervisor are required for all components.
 
 | Machine | Hypervisor |
 |---|---|
-| Windows | VMware Workstation Pro |
-| Mac (Intel or Apple Silicon) | VMware Fusion 13+ |
-| Linux | VMware Workstation |
+| Windows / Linux | VMware Workstation Pro |
+| Mac (Intel or Apple Silicon) | VMware Fusion |
 
 > **Apple Silicon compatibility:** Compatibility varies by project.
 >
-> - ❗ [`Ironhold`](Ironhold/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
-> - ⚠️ [`Thorngate`](Thorngate/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
+> - ❗ [`Ironhold`](ironhold/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
+> - ⚠️ [`Thorngate`](thorngate/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
 > - ⚠️ [`Hollowcrown`](hollowcrown/README.md) and [`darkhorn`](darkhorn/README.md) also require validation on Apple Silicon.
 >
 > See each project README for its requirements.
@@ -81,6 +80,16 @@ vagrant plugin install vagrant-vmware-desktop
 ```
 
 **Install the VMware Utility Service:** [developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility)
+
+---
+
+## Smoke test
+
+Verifies that all VMs started successfully:
+
+```powershell
+pwsh tests/smoke-test.ps1
+```
 
 ---
 

@@ -85,7 +85,7 @@ function generateUsers(groups) {
       email:      `${username}@darkhorn.local`,
       firstName,
       lastName,
-      password:   'Passw0rd!',
+      password:   'D4rkh0rn!',
       status:     Math.random() < 0.1 ? 'suspended' : 'active',
       department: pick(DEPARTMENTS),
       title:      pick(TITLES),

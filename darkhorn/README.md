@@ -185,7 +185,7 @@ curl -s -X POST http://<host>:3000/api/users \
     "email":      "test.user@darkhorn.local",
     "firstName":  "Test",
     "lastName":   "User",
-    "password":   "Passw0rd!",
+    "password":   "D4rkh0rn!",
     "department": "IT",
     "title":      "Engineer"
   }'
@@ -208,13 +208,13 @@ curl -s -X POST http://<host>:3000/api/users/$ID/restore  -u grimreaper:'Wh1sp3r
 curl -s -X POST http://<host>:3000/api/users/$ID/change-password \
   -u grimreaper:'Wh1sp3r0fD4rk!' \
   -H 'Content-Type: application/json' \
-  -d '{"currentPassword": "Passw0rd!", "newPassword": "N3wPassw0rd!"}'
+  -d '{"currentPassword": "D4rkh0rn!", "newPassword": "N3wD4rkh0rn!"}'
 
 # Reset password
 curl -s -X POST http://<host>:3000/api/users/$ID/reset-password \
   -u grimreaper:'Wh1sp3r0fD4rk!' \
   -H 'Content-Type: application/json' \
-  -d '{"newPassword": "N3wPassw0rd!"}'
+  -d '{"newPassword": "N3wD4rkh0rn!"}'
 
 # Get groups
 curl -s -u grimreaper:'Wh1sp3r0fD4rk!' \
@@ -258,7 +258,7 @@ SELECT * FROM users WHERE username = 'sql.user';
 -- Add a user
 INSERT INTO users (id, username, email, first_name, last_name, password, status, department, title)
 VALUES (gen_random_uuid(), 'sql.user', 'sql.user@darkhorn.local',
-        'SQL', 'User', crypt('Passw0rd!', gen_salt('bf')), 'active', 'IT', 'Engineer');
+        'SQL', 'User', crypt('D4rkh0rn!', gen_salt('bf')), 'active', 'IT', 'Engineer');
 
 -- Modify user
 UPDATE users SET title = 'Senior Engineer', department = 'DevOps', updated_at = NOW()
@@ -273,11 +273,11 @@ UPDATE users SET status = 'active', updated_at = NOW()
 WHERE username = 'sql.user';
 
 -- Change password (requires current password check in application logic — SQL sets directly)
-UPDATE users SET password = crypt('N3wPassw0rd!', gen_salt('bf')), updated_at = NOW()
+UPDATE users SET password = crypt('N3wD4rkh0rn!', gen_salt('bf')), updated_at = NOW()
 WHERE username = 'sql.user';
 
 -- Reset password
-UPDATE users SET password = crypt('N3wPassw0rd!', gen_salt('bf')), password_reset_at = NOW(), updated_at = NOW()
+UPDATE users SET password = crypt('N3wD4rkh0rn!', gen_salt('bf')), password_reset_at = NOW(), updated_at = NOW()
 WHERE username = 'sql.user';
 
 -- Get groups
@@ -335,7 +335,7 @@ cn: Test User
 sn: User
 givenName: Test
 mail: test.user@darkhorn.local
-userPassword: Passw0rd!
+userPassword: D4rkh0rn!
 departmentNumber: IT
 title: Engineer
 EOF
@@ -377,8 +377,8 @@ EOF
 ldappasswd -x \
   -H ldap://<host>:389 \
   -D 'uid=test.user,ou=Users,dc=darkhorn,dc=local' \
-  -w 'Passw0rd!' \
-  -s 'N3wPassw0rd!' \
+  -w 'D4rkh0rn!' \
+  -s 'N3wD4rkh0rn!' \
   'uid=test.user,ou=Users,dc=darkhorn,dc=local'
 
 # Reset password (admin sets directly)
@@ -387,7 +387,7 @@ ldapmodify -x -H ldap://<host>:389 \
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
 replace: userPassword
-userPassword: N3wPassw0rd!
+userPassword: N3wD4rkh0rn!
 EOF
 
 # Get groups
@@ -484,7 +484,7 @@ curl -s -X POST http://<host>:3002/soap \
       <tns:email>soap.user@darkhorn.local</tns:email>
       <tns:firstName>SOAP</tns:firstName>
       <tns:lastName>User</tns:lastName>
-      <tns:password>Passw0rd!</tns:password>
+      <tns:password>D4rkh0rn!</tns:password>
       <tns:department>IT</tns:department>
       <tns:title>Engineer</tns:title>
     </tns:AddUserRequest>
@@ -563,8 +563,8 @@ curl -s -X POST http://<host>:3002/soap \
   <soapenv:Body>
     <tns:ChangePasswordRequest>
       <tns:id>soap.user</tns:id>
-      <tns:currentPassword>Passw0rd!</tns:currentPassword>
-      <tns:newPassword>N3wPassw0rd!</tns:newPassword>
+      <tns:currentPassword>D4rkh0rn!</tns:currentPassword>
+      <tns:newPassword>N3wD4rkh0rn!</tns:newPassword>
     </tns:ChangePasswordRequest>
   </soapenv:Body>
 </soapenv:Envelope>"
@@ -580,7 +580,7 @@ curl -s -X POST http://<host>:3002/soap \
   <soapenv:Body>
     <tns:ResetPasswordRequest>
       <tns:id>soap.user</tns:id>
-      <tns:newPassword>N3wPassw0rd!</tns:newPassword>
+      <tns:newPassword>N3wD4rkh0rn!</tns:newPassword>
     </tns:ResetPasswordRequest>
   </soapenv:Body>
 </soapenv:Envelope>"
@@ -680,7 +680,7 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
       "email":      "mq.user@darkhorn.local",
       "firstName":  "MQ",
       "lastName":   "User",
-      "password":   "Passw0rd!",
+      "password":   "D4rkh0rn!",
       "department": "DevOps",
       "title":      "Engineer"
     }
@@ -709,12 +709,12 @@ docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls
 # ChangePassword
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
-  payload='{"operation":"ChangePassword","payload":{"id":"mq.user","currentPassword":"Passw0rd!","newPassword":"N3wPassw0rd!"}}'
+  payload='{"operation":"ChangePassword","payload":{"id":"mq.user","currentPassword":"D4rkh0rn!","newPassword":"N3wD4rkh0rn!"}}'
 
 # ResetPassword
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \
   exchange='amq.default' routing_key='darkhorn.requests' \
-  payload='{"operation":"ResetPassword","payload":{"id":"mq.user","newPassword":"N3wPassw0rd!"}}'
+  payload='{"operation":"ResetPassword","payload":{"id":"mq.user","newPassword":"N3wD4rkh0rn!"}}'
 
 # GetGroups
 docker exec darkhorn-rabbitmq rabbitmqadmin -H <host> -u darkhorn -p 'Wr41thPuls3!' publish \

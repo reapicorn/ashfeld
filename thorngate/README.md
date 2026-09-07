@@ -13,7 +13,7 @@ Thorngate was built to answer that question. It is the city's governance layer �
 The installer kit and license keys are not included. Obtain them separately and place them in the appropriate folders before running `vagrant up`:
 
 ```
-Thorngate/
+thorngate/
 ├── starter_kit/
 │   └── ivig_starter_kit_11.0.2/   ← starter kit folder from IBM
 └── license_files/
@@ -85,7 +85,7 @@ vagrant destroy -f && vagrant up
 | Provider | VMware Fusion 13.5+ |
 | macOS | 13 Ventura or later |
 
-The Vagrantfile detects the host architecture automatically (`uname -m`). On ARM hosts it selects the `debian/bookworm64` box and runs k3s natively on ARM64. IVIG images are amd64-only, so their execution relies on VMware Fusion's Rosetta translation support being available in the guest environment. This configuration has not been validated on Apple Silicon and is not a supported deployment path.
+The box `bento/debian-12` supports both `amd64` and `arm64` under `vmware_desktop`. On ARM hosts, k3s runs natively on ARM64. IVIG images are amd64-only, so their execution relies on VMware Fusion's Rosetta translation support being available in the guest environment. This configuration has not been validated on Apple Silicon and is not a supported deployment path.
 
 Run `vagrant up` and verify that all `ivig` pods are Ready and that the console is reachable before using the lab.
 
