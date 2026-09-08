@@ -56,6 +56,7 @@ Vagrant and a VMware hypervisor are required for all components.
 
 **Install VMware:** [vmware.com/products/desktop-hypervisor](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
 
+> [!NOTE]
 > VMware Workstation Pro and VMware Fusion downloads are provided through the Broadcom Support Portal and may require a free Broadcom account and sign-in.
 
 | Machine | Hypervisor |
@@ -63,6 +64,7 @@ Vagrant and a VMware hypervisor are required for all components.
 | Windows / Linux | VMware Workstation Pro |
 | Mac (Intel or Apple Silicon) | VMware Fusion |
 
+> [!WARNING]
 > **Apple Silicon compatibility:** Compatibility varies by project.
 >
 > - ❗ [`Ironhold`](ironhold/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
