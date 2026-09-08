@@ -4,9 +4,9 @@ vagrant/
 # Vagrant metadata (inside project subdirectories)
 **/.vagrant/
 
-# EMBERCRYPT - Secret Server installer binary (obtain separately)
-EMBERCRYPT/installer/*.exe
-EMBERCRYPT/installer/*.zip
+# Embercrypt - Secret Server installer binary (obtain separately)
+Embercrypt/installer/*.exe
+Embercrypt/installer/*.zip
 
 # thorngate - IVIG starter kit (obtain separately from IBM)
 thorngate/starter_kit/

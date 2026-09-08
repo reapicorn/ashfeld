@@ -10,7 +10,7 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 .
 ├── darkhorn/        # the district — six companies, six protocols, none of them compatible
 ├── hollowcrown/     # the bureau — citizen records, the only list anyone agrees to use
-├── EMBERCRYPT/        # the vault — privileged credentials, locked below the city
+├── Embercrypt/        # the vault — privileged credentials, locked below the city
 └── thorngate/       # the gate — who gets access, to what, and under what conditions
 ```
 
@@ -30,11 +30,11 @@ Hollowcrown was the council that governed Ashfeld before it dissolved. The name 
 
 → See [`hollowcrown/README.md`](hollowcrown/README.md)
 
-### EMBERCRYPT
+### Embercrypt
 
-Before the foundries closed, EMBERCRYPT was the most secure facility in the district. The guilds kept what they could not afford to lose there. The guilds are gone. The building is still standing. If something has a password that matters, it goes through EMBERCRYPT.
+Before the foundries closed, Embercrypt was the most secure facility in the district. The guilds kept what they could not afford to lose there. The guilds are gone. The building is still standing. If something has a password that matters, it goes through Embercrypt.
 
-→ See [`EMBERCRYPT/README.md`](EMBERCRYPT/README.md)
+→ See [`Embercrypt/README.md`](Embercrypt/README.md)
 
 ### Thorngate
 
@@ -83,7 +83,7 @@ Vagrant and a VMware hypervisor are required for all components.
 > [!WARNING]
 > **Apple Silicon compatibility:** Compatibility varies by project.
 >
-> - ❗ [`EMBERCRYPT`](EMBERCRYPT/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
+> - ❗ [`Embercrypt`](Embercrypt/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
 > - ⚠️ [`Thorngate`](thorngate/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
 > - ⚠️ [`Hollowcrown`](hollowcrown/README.md) and [`darkhorn`](darkhorn/README.md) also require validation on Apple Silicon.
 >
