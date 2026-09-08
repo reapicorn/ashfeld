@@ -1,8 +1,8 @@
-# Ironhold - The Vault
+# EMBERCRYPT - The Vault
 
-Before the foundries closed, Ironhold was the most secure facility in the district. The guilds kept what they could not afford to lose there — signing keys, access codes, the credentials for systems that had no other documentation. The guilds are gone. The building is still standing. The vault was never decommissioned.
+Before the foundries closed, EMBERCRYPT was the most secure facility in the district. The guilds kept what they could not afford to lose there — signing keys, access codes, the credentials for systems that had no other documentation. The guilds are gone. The building is still standing. The vault was never decommissioned.
 
-Today Ironhold is the privileged access vault for Ashfeld. If something has a password that matters, it goes through here.
+Today EMBERCRYPT is the privileged access vault for Ashfeld. If something has a password that matters, it goes through here.
 
 > **WARNING: This is a fictional lab environment. Do not use in production.**
 
@@ -75,7 +75,7 @@ After the DB wizard completes, the setup wizard will prompt for the admin accoun
 |------|-------|
 | Application admin | `admin` / `Ir0nhold#Lab!` |
 | RDP / VM | `vagrant` / `vagrant` |
-| Service account | `IRONHOLD\svc_ss` / `Ir0nhold#Lab!` |
+| Service account | `EMBERCRYPT\svc_ss` / `Ir0nhold#Lab!` |
 | Database | `SecretServer` on `localhost\SQLEXPRESS` (Windows Auth) |
 
 ## Re-provisioning

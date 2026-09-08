@@ -26,7 +26,7 @@ function log {
 "" | Set-Content -Path $Log
 
 $vms = @(
-    @{ label = "Ironhold";    dir = "$root\Ironhold" }
+    @{ label = "EMBERCRYPT";    dir = "$root\EMBERCRYPT" }
     @{ label = "Darkhorn";    dir = "$root\darkhorn" }
     @{ label = "Hollowcrown"; dir = "$root\hollowcrown" }
     @{ label = "Thorngate";   dir = "$root\Thorngate" }

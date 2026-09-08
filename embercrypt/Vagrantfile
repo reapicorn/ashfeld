@@ -1,5 +1,5 @@
 # =============================================================
-#  Ironhold - Vagrantfile
+#  EMBERCRYPT - Vagrantfile
 #  Provider: VMware Desktop (Fusion / Workstation / Player)
 #  Communicator: winssh (SSH - no WinRM)
 #
@@ -9,7 +9,7 @@
 # =============================================================
 
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
-ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/ironhold/.vagrant", __dir__)
+ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/EMBERCRYPT/.vagrant", __dir__)
 
 # -- Configurable parameters -----------------------------------
 SS_SERVICE_USER  = "svc_ss"
@@ -18,17 +18,17 @@ SS_DB            = "SecretServer"
 SS_TIMEZONE      = "E. South America Standard Time"
 SS_KEYBOARD      = "es-419"
 SS_INSTALL_MODE  = "installer"   # "installer" = ISVPsetup.exe silent | "extract" = ss_update.zip
-SS_HOSTNAME      = "ironhold"
+SS_HOSTNAME      = "EMBERCRYPT"
 
 # -- Pre-flight checks -----------------------------------------
 installer_dir = File.expand_path("installer", __dir__)
 [
-  { file: "ISVPsetup.exe", hint: "Download from the Delinea portal and place in ironhold/installer/" },
-  { file: "ss_update.zip", hint: "Download from the Delinea portal and place in ironhold/installer/" },
+  { file: "ISVPsetup.exe", hint: "Download from the Delinea portal and place in EMBERCRYPT/installer/" },
+  { file: "ss_update.zip", hint: "Download from the Delinea portal and place in EMBERCRYPT/installer/" },
 ].each do |req|
   path = File.join(installer_dir, req[:file])
   unless File.exist?(path)
-    abort "\n[Ironhold] Missing required file: installer/#{req[:file]}\n          #{req[:hint]}\n"
+    abort "\n[EMBERCRYPT] Missing required file: installer/#{req[:file]}\n          #{req[:hint]}\n"
   end
 end
 
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
     vmware.vmx["memsize"]     = "4096"
     vmware.vmx["numvcpus"]    = "2"
     vmware.vmx["gui"]         = "false"
-    vmware.clone_directory    = File.expand_path("../vagrant/ironhold/vm", __dir__)
+    vmware.clone_directory    = File.expand_path("../vagrant/EMBERCRYPT/vm", __dir__)
     vmware.vmx["isolation.tools.copy.disable"]  = "false"
     vmware.vmx["isolation.tools.paste.disable"] = "false"
     vmware.vmx["vhv.enable"]             = "TRUE"

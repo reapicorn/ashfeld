@@ -311,7 +311,7 @@ if (Test-Path $ffProfiles) {
 }
 
 # Self-delete this scheduled task
-Unregister-ScheduledTask -TaskName "IronholdFirstLogon" -Confirm:$false -ErrorAction SilentlyContinue
+Unregister-ScheduledTask -TaskName "EMBERCRYPTFirstLogon" -Confirm:$false -ErrorAction SilentlyContinue
 '@
     $firstLogonPath = "$LabDir\firstlogon.ps1"
     $firstLogonScript | Set-Content -Path $firstLogonPath -Encoding UTF8
@@ -321,7 +321,7 @@ Unregister-ScheduledTask -TaskName "IronholdFirstLogon" -Confirm:$false -ErrorAc
                    -Argument "-NonInteractive -ExecutionPolicy Bypass -File `"$firstLogonPath`""
     $trigger = New-ScheduledTaskTrigger -AtLogOn -User "vagrant"
     $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Minutes 5)
-    Register-ScheduledTask -TaskName "IronholdFirstLogon" `
+    Register-ScheduledTask -TaskName "EMBERCRYPTFirstLogon" `
         -Action $action -Trigger $trigger -Settings $settings `
         -RunLevel Highest -Force | Out-Null
     Log "First-logon task registered (taskbar pins + Firefox bookmark)."
@@ -337,7 +337,7 @@ if (ShouldRun "ss_install") {
     if (Test-Path "$InstallDir\web.config") {
         Log "Files already present - skipping install."
     } elseif (-not (Test-Path $installer)) {
-        throw "ISVPsetup.exe not found at $installer. Place it in ironhold/installer/ and re-run: vagrant provision"
+        throw "ISVPsetup.exe not found at $installer. Place it in EMBERCRYPT/installer/ and re-run: vagrant provision"
     } else {
         # Note: /l path must be separate from install.log - the installer's internal
         # Launcher.ps1 opens the same log file and conflicts if it's already open.
@@ -389,7 +389,7 @@ if (ShouldRun "ss_extract") {
     if (Test-Path "$InstallDir\web.config") {
         Log "SS files already present - skipping extraction."
     } elseif (-not (Test-Path $ssUpdateZip)) {
-        throw "ss_update.zip not found at $ssUpdateZip. Place it in ironhold/installer/ and re-run: vagrant provision"
+        throw "ss_update.zip not found at $ssUpdateZip. Place it in EMBERCRYPT/installer/ and re-run: vagrant provision"
     } else {
         $extractTemp = "$LabDir\ss_extract_temp"
         Remove-Item $extractTemp -Recurse -Force -ErrorAction SilentlyContinue
@@ -423,9 +423,9 @@ if (ShouldRun "ss_extract") {
 if (ShouldRun "iis_cert") {
     Step "IIS HTTPS certificate"
     Import-Module WebAdministration
-    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=ironhold" } | Select-Object -First 1
+    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=EMBERCRYPT" } | Select-Object -First 1
     if (-not $cert) {
-        $cert = New-SelfSignedCertificate -DnsName "ironhold" -CertStoreLocation "Cert:\LocalMachine\My"
+        $cert = New-SelfSignedCertificate -DnsName "EMBERCRYPT" -CertStoreLocation "Cert:\LocalMachine\My"
         Log "Self-signed certificate created: $($cert.Thumbprint)"
     } else {
         Log "Self-signed certificate already exists: $($cert.Thumbprint)"
@@ -502,7 +502,7 @@ if (ShouldRun "ss_iisapp") {
 # -- Banner ----------------------------------------------------
 Log ""
 Log "========================================================"
-Log "  Ironhold - Provisioning Complete"
+Log "  EMBERCRYPT - Provisioning Complete"
 Log "========================================================"
 Log ""
 Log "  NEXT STEP - Complete setup wizard from inside the VM:"
@@ -633,7 +633,7 @@ if (ShouldRun "uninstall_iis") {
         Remove-WebBinding -Name "Default Web Site" -Protocol "https" -Port 443
         Log "HTTPS binding removed."
     }
-    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=ironhold" } | Select-Object -First 1
+    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object { $_.Subject -match "CN=EMBERCRYPT" } | Select-Object -First 1
     if ($cert) {
         Remove-Item "Cert:\LocalMachine\My\$($cert.Thumbprint)" -Force
         Log "Certificate removed: $($cert.Thumbprint)"
