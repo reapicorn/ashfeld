@@ -1,6 +1,6 @@
 'use strict';
 /**
- * seed.js — populates users.csv and groups.csv on first start (if empty).
+ * seed.js - populates users.csv and groups.csv on first start (if empty).
  * Called from index.js before the server starts listening.
  */
 
@@ -48,7 +48,7 @@ function pickN(arr, n) { return [...arr].sort(() => Math.random() - 0.5).slice(0
 function seedIfEmpty() {
   const existing = store.getUsers();
   if (existing.length > 0) {
-    console.log(`[flatfile-seed] ${existing.length} users already loaded — skipping seed.`);
+    console.log(`[flatfile-seed] ${existing.length} users already loaded - skipping seed.`);
     return;
   }
 

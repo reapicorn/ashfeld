@@ -1,7 +1,7 @@
 {
   "name": "hollowcrown-api",
   "version": "1.0.0",
-  "description": "hollowcrown — HR system API",
+  "description": "hollowcrown - HR system API",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

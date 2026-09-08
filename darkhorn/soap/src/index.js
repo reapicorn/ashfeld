@@ -10,7 +10,7 @@ const store   = require('./store');
 const WSDL_PATH = path.resolve(__dirname, 'service.wsdl');
 const PORT      = parseInt(process.env.PORT || '3002', 10);
 
-// ── SOAP fault helper ─────────────────────────────────────────────────────────
+// - SOAP fault helper -
 
 function fault(faultCode, message) {
   const err = new Error(message);
@@ -21,7 +21,7 @@ function fault(faultCode, message) {
   throw err;
 }
 
-// ── Service implementation ────────────────────────────────────────────────────
+// - Service implementation -
 
 const serviceImpl = {
   DarkhornUserService: {
@@ -153,7 +153,7 @@ const serviceImpl = {
   },
 };
 
-// ── WS-Security basic auth check ──────────────────────────────────────────────
+// - WS-Security basic auth check -
 
 const SOAP_USER = process.env.SOAP_USER || 'banshee';
 const SOAP_PASS = process.env.SOAP_PASS || 'B4nsh33Sc4ms!';
@@ -169,13 +169,13 @@ function checkAuth(methodName, args, headers) {
   }
 }
 
-// ── Bootstrap ─────────────────────────────────────────────────────────────────
+// - Bootstrap -
 
 async function main() {
   const app = express();
   app.use(morgan('dev'));
 
-  // Health check (plain HTTP — no SOAP needed)
+  // Health check (plain HTTP - no SOAP needed)
   app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });

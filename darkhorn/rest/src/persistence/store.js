@@ -16,7 +16,7 @@ function getPool() {
   return _pool;
 }
 
-// ── Users ─────────────────────────────────────────────────────────────────────
+// - Users -
 
 async function getUsers(filters = {}) {
   const pool = getPool();
@@ -118,7 +118,7 @@ async function setUserPassword(id, password, extra = {}) {
   return rows.length ? dbToUser(rows[0]) : null;
 }
 
-// ── Groups ────────────────────────────────────────────────────────────────────
+// - Groups -
 
 async function getGroups() {
   const pool = getPool();
@@ -179,7 +179,7 @@ async function removeGroups(userId, groupIds) {
   return getUserGroups(user.id);
 }
 
-// ── Mappers ───────────────────────────────────────────────────────────────────
+// - Mappers -
 
 function dbToUser(row) {
   return {

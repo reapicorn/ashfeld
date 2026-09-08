@@ -19,7 +19,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// ── Stats endpoint for dashboard ──────────────────────────────────────────────
+// - Stats endpoint for dashboard -
 app.get('/api/stats', async (req, res, next) => {
   try {
     const pool = getPool();

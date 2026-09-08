@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * seed.js — generates 150 users and 50 groups in both darkhorn_rest and darkhorn_jdbc
+ * seed.js - generates 150 users and 50 groups in both darkhorn_rest and darkhorn_jdbc
  *
  * Usage:
  *   node seed.js
@@ -150,7 +150,7 @@ async function main() {
   await seedDatabase('darkhorn_jdbc');
   await seedDatabase('darkhorn_soap');
   await seedDatabase('darkhorn_mq');
-  console.log('[seed] All done! 🌑🦄');
+  console.log('[seed] All done! ');
 }
 
 main().catch(err => {

@@ -1,5 +1,5 @@
 # =============================================================
-#  Thorngate — Vagrantfile
+#  Thorngate - Vagrantfile
 #  IBM Verify Identity Governance (IVIG) on k3s / Debian 12
 #  Provider: VMware Desktop (vmware_desktop)
 #
@@ -27,17 +27,18 @@ Vagrant.configure("2") do |config|
   config.vm.box      = "bento/debian-12"
   config.vm.hostname = "thorngate"
 
-  # ── Network — private, fixed IP ───────────────────────────────
+  # -- Network - private, fixed IP ------------------------------
   # Visible to the host and other VMs on the 10.10.10.0/24 segment.
   config.vm.network "private_network", ip: "10.10.10.40"
 
-  # ── Port forwards — host access via localhost ─────────────────
+  # -- Port forwards - host access via localhost ----------------
   # Fallback for when the private network (VMnet) is not reachable from the host.
-  config.vm.network "forwarded_port", guest: 30943, host: 30943   # IVIG Console (HTTPS)
-  config.vm.network "forwarded_port", guest: 30543, host: 30543   # PostgreSQL
-  config.vm.network "forwarded_port", guest: 30636, host: 30636   # LDAP / LDAPS
+  config.vm.network "forwarded_port", guest: 22,    host: 2240,  id: "ssh"  # SSH
+  config.vm.network "forwarded_port", guest: 30943, host: 30943              # IVIG Console (HTTPS)
+  config.vm.network "forwarded_port", guest: 30543, host: 30543              # PostgreSQL
+  config.vm.network "forwarded_port", guest: 30636, host: 30636              # LDAP / LDAPS
 
-  # ── VMware Desktop provider ───────────────────────────────────
+  # -- VMware Desktop provider ----------------------------------
   config.vm.provider "vmware_desktop" do |vmware|
     vmware.vmx["displayName"]              = "Thorngate-IVIG"
     vmware.vmx["memsize"]                  = "12288"
@@ -57,7 +58,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # ── Provisioning ──────────────────────────────────────────────
+  # -- Provisioning ---------------------------------------------
   config.vm.provision "shell", inline: <<-SHELL
     set -euo pipefail
 
@@ -129,19 +130,13 @@ EOF
     # initialize. The stock starter kit does not include this delay, which causes LDAP
     # configuration failures on slow or emulated environments (e.g. UTM on Apple Silicon).
     INSTALL_SH="$TARGET_DIR/bin/install.sh"
-    if grep -q './sys/ldapConfig.sh install' "$INSTALL_SH" && ! grep -q 'sleep 120' "$INSTALL_SH"; then
-      python3 -c "
-path = '$TARGET_DIR/bin/install.sh'
-with open(path) as f: content = f.read()
-patch = (
-    'printf \"Waiting 120s for ISVD SSL to fully initialize'
-    ' (may be needed on low-resource VMs or ARM emulating x86_64)...\\\\n\"\n'
-    'sleep 120\n'
-    'printf \"Done waiting, proceeding with LDAP configuration...\\\\n\"\n'
-)
-content = content.replace('./sys/ldapConfig.sh install\n', patch + './sys/ldapConfig.sh install\n', 1)
-with open(path, 'w') as f: f.write(content)
-"
+    if grep -q './sys/ldapConfig.sh install' "$INSTALL_SH" && ! grep -q 'sleep 60' "$INSTALL_SH"; then
+      awk '/\.\/sys\/ldapConfig\.sh install/{
+        print "printf \"Waiting 60s for ISVD SSL to fully initialize (may be needed on low-resource VMs or ARM emulating x86_64)...\\n\""
+        print "sleep 60"
+        print "printf \"Done waiting, proceeding with LDAP configuration...\\n\""
+      }
+      { print }' "$INSTALL_SH" > "$INSTALL_SH.tmp" && mv "$INSTALL_SH.tmp" "$INSTALL_SH"
     fi
 
     chown -R vagrant:vagrant /home/vagrant/
@@ -170,7 +165,7 @@ with open(path, 'w') as f: f.write(content)
     sed -i 's/^  ldapserver\\.ip:$/  ldapserver.ip: isvd-replica-1/' "$CFG"
     sed -i 's/^  ldapserver\\.port:$/  ldapserver.port: 9636/' "$CFG"
 
-    # License keys from files — use python3 to avoid sed delimiter conflicts with key characters
+    # License keys from files - use python3 to avoid sed delimiter conflicts with key characters
     set_key() {
       local file="$1" field="$2"
       if [ -f "$file" ]; then
@@ -207,11 +202,11 @@ with open(path, 'w') as f: f.write(content)
     echo "==> Configuration complete."
   SHELL
 
-  # ── Print access info at the end ──────────────────────────────
+  # -- Print access info at the end -----------------------------
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     echo ""
     echo "======================================================"
-    echo "  Thorngate (IVIG) — Ready"
+    echo "  Thorngate (IVIG) - Ready"
     echo "======================================================"
     echo "  IVIG Console:  https://localhost:30943/itim/console/main"
     echo "  Username:      itim manager"

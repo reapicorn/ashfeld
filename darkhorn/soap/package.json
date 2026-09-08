@@ -1,7 +1,7 @@
 {
   "name": "darkhorn-soap",
   "version": "1.0.0",
-  "description": "darkhorn SOAP — SOAP/WSDL web service for IVIG UAS adapter development. PostgreSQL backend.",
+  "description": "darkhorn SOAP - SOAP/WSDL web service for IVIG UAS adapter development. PostgreSQL backend.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

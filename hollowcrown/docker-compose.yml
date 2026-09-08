@@ -1,6 +1,6 @@
 services:
 
-  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  # -- PostgreSQL ---------------------------------------------------------------
   hollowcrown-db:
     image: postgres:15-alpine@sha256:fe0737ba566a2c5b2a28f34433c0a423261900ec17b9bf7ad115e1aae7e57f1b
     container_name: hollowcrown-db
@@ -20,7 +20,7 @@ services:
     networks:
       - hollowcrown-net
 
-  # ── Seed (runs once, then exits) ─────────────────────────────────────────────
+  # -- Seed (runs once, then exits) ---------------------------------------------
   hollowcrown-seed:
     build:
       context: ./api
@@ -40,7 +40,7 @@ services:
     networks:
       - hollowcrown-net
 
-  # ── API ──────────────────────────────────────────────────────────────────────
+  # -- API ----------------------------------------------------------------------
   hollowcrown-api:
     build:
       context: ./api
@@ -68,7 +68,7 @@ services:
     networks:
       - hollowcrown-net
 
-  # ── Web UI ───────────────────────────────────────────────────────────────────
+  # -- Web UI -------------------------------------------------------------------
   hollowcrown-web:
     build:
       context: ./web

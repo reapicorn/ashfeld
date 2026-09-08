@@ -6,7 +6,7 @@ const { getPool } = require('../db/pool');
 
 const router = express.Router();
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// - Helpers -
 
 function dbToEmployee(row) {
   return {
@@ -36,7 +36,7 @@ function nextEmployeeId(existing) {
   return `HC-${String(max + 1).padStart(5, '0')}`;
 }
 
-// ── GET /api/employees ────────────────────────────────────────────────────────
+// - GET /api/employees -
 
 router.get('/', async (req, res, next) => {
   try {
@@ -77,7 +77,7 @@ router.get('/', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// ── POST /api/employees ───────────────────────────────────────────────────────
+// - POST /api/employees -
 
 router.post('/', async (req, res, next) => {
   try {
@@ -104,7 +104,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// ── GET /api/employees/:id ────────────────────────────────────────────────────
+// - GET /api/employees/:id -
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -120,7 +120,7 @@ router.get('/:id', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// ── PUT /api/employees/:id ────────────────────────────────────────────────────
+// - PUT /api/employees/:id -
 
 router.put('/:id', async (req, res, next) => {
   try {
@@ -155,7 +155,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// ── POST /api/employees/:id/terminate ─────────────────────────────────────────
+// - POST /api/employees/:id/terminate -
 
 router.post('/:id/terminate', async (req, res, next) => {
   try {
@@ -175,7 +175,7 @@ router.post('/:id/terminate', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// ── POST /api/employees/:id/set-status ───────────────────────────────────────
+// - POST /api/employees/:id/set-status -
 
 router.post('/:id/set-status', async (req, res, next) => {
   try {

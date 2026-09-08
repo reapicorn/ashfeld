@@ -3,7 +3,7 @@
 
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- ── Users ─────────────────────────────────────────────────────────────────────
+-- - Users -
 CREATE TABLE IF NOT EXISTS users (
     id                UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
     username          VARCHAR(64) NOT NULL UNIQUE,
@@ -23,7 +23,7 @@ CREATE INDEX IF NOT EXISTS idx_users_username  ON users (username);
 CREATE INDEX IF NOT EXISTS idx_users_email     ON users (email);
 CREATE INDEX IF NOT EXISTS idx_users_status    ON users (status);
 
--- ── Groups ────────────────────────────────────────────────────────────────────
+-- - Groups -
 CREATE TABLE IF NOT EXISTS groups (
     id          UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
     name        VARCHAR(128) NOT NULL UNIQUE,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS groups (
 
 CREATE INDEX IF NOT EXISTS idx_groups_name ON groups (name);
 
--- ── User ↔ Group membership ───────────────────────────────────────────────────
+-- - User <-> Group membership -
 CREATE TABLE IF NOT EXISTS user_groups (
     user_id   UUID NOT NULL REFERENCES users(id)  ON DELETE CASCADE,
     group_id  UUID NOT NULL REFERENCES groups(id) ON DELETE CASCADE,

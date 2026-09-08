@@ -73,7 +73,7 @@ function toCsvRow(fields) {
 
 function main() {
   if (fs.existsSync(USERS_FILE) && fs.statSync(USERS_FILE).size > 100) {
-    console.log('[sftp-seed] users.csv already exists — skipping.');
+    console.log('[sftp-seed] users.csv already exists - skipping.');
     return;
   }
 
@@ -122,7 +122,7 @@ function main() {
               u.password, u.status, u.department, u.title, u.createdAt, u.updatedAt])
   );
   fs.writeFileSync(USERS_FILE, [userHeader, ...userRows].join('\n') + '\n', 'utf8');
-  console.log(`[sftp-seed] ${users.length} users  → ${USERS_FILE}`);
+  console.log(`[sftp-seed] ${users.length} users  -> ${USERS_FILE}`);
 
   // Write groups.csv
   const groupHeader = 'id,name,description,createdAt';
@@ -130,7 +130,7 @@ function main() {
     toCsvRow([g.id, g.name, g.description, new Date().toISOString()])
   );
   fs.writeFileSync(GROUPS_FILE, [groupHeader, ...groupRows].join('\n') + '\n', 'utf8');
-  console.log(`[sftp-seed] ${groups.length} groups → ${GROUPS_FILE}`);
+  console.log(`[sftp-seed] ${groups.length} groups -> ${GROUPS_FILE}`);
 
   // Write user_groups.csv
   const memberHeader = 'userId,groupId';
@@ -139,7 +139,7 @@ function main() {
     for (const gid of u.groups) memberRows.push(`${u.id},${gid}`);
   }
   fs.writeFileSync(MEMBERSHIP_FILE, [memberHeader, ...memberRows].join('\n') + '\n', 'utf8');
-  console.log(`[sftp-seed] ${memberRows.length} memberships → ${MEMBERSHIP_FILE}`);
+  console.log(`[sftp-seed] ${memberRows.length} memberships -> ${MEMBERSHIP_FILE}`);
 }
 
 main();

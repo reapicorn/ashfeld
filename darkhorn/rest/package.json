@@ -1,7 +1,7 @@
 {
   "name": "darkhorn-rest",
   "version": "1.0.0",
-  "description": "darkhorn REST — HTTP REST API for IVIG UAS adapter development. PostgreSQL backend, Basic/APIKey/OIDC auth.",
+  "description": "darkhorn REST - HTTP REST API for IVIG UAS adapter development. PostgreSQL backend, Basic/APIKey/OIDC auth.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
