@@ -10,7 +10,7 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 .
 ├── darkhorn/        # the district — six companies, six protocols, none of them compatible
 ├── hollowcrown/     # the bureau — citizen records, the only list anyone agrees to use
-├── Embercrypt/        # the vault — privileged credentials, locked below the city
+├── embercrypt/      # the crypt — the guilds' keys, sealed and waiting
 └── thorngate/       # the gate — who gets access, to what, and under what conditions
 ```
 
