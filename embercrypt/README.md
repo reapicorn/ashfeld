@@ -1,10 +1,12 @@
-# Embercrypt - The Vault
+# Embercrypt
 
-Before the foundries closed, Embercrypt was the most secure facility in the district. The guilds kept what they could not afford to lose there â€” signing keys, access codes, the credentials for systems that had no other documentation. The guilds are gone. The building is still standing. The vault was never decommissioned.
+The Embercrypt was not built as a vault. It was the sealing chamber of the guilds - the place where credentials, signing keys, and access codes were deposited when a master retired or a guild dissolved. Nothing was destroyed. Nothing was returned. It went in and stayed.
 
-Today Embercrypt is the privileged access vault for Ashfeld. If something has a password that matters, it goes through here.
+When the guilds collapsed, the Embercrypt was left full of orphaned credentials. Nobody decommissioned it. Nobody reconnected it either. It has been sealed since.
 
-> **WARNING: This is a fictional lab environment. Do not use in production.**
+Reconnecting Embercrypt to the city is not a technical problem. It is a problem of trust. The guilds that still operate know what the Embercrypt is. Depositing credentials there means accepting that when they are gone, those credentials stay.
+
+> **This is a fictional lab environment. Do not use in production.**
 
 Runs on Windows Server 2025.
 
