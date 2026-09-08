@@ -65,6 +65,22 @@ Vagrant and a VMware hypervisor are required for all components.
 | Mac (Intel or Apple Silicon) | VMware Fusion |
 
 > [!WARNING]
+> **VMware Workstation 26h1 (Windows):** Vagrant cannot detect the installation due to a registry path change in this version. Apply this workaround by saving the following as a `.reg` file and importing it:
+>
+> ```reg
+> Windows Registry Editor Version 5.00
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\VMware, Inc.]
+> "Core"="VMware Workstation"
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\VMware, Inc.\VMware Workstation]
+> "InstallPath"="C:\\Program Files\\VMware\\VMware Workstation\\"
+> "ProductVersion"="26.0.0.25388281"
+> ```
+>
+> VMware Workstation 25h2 is known to work without this workaround.
+
+> [!WARNING]
 > **Apple Silicon compatibility:** Compatibility varies by project.
 >
 > - ❗ [`Ironhold`](ironhold/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
