@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-// ── Auth ─────────────────────────────────────────────────────────────────────
+// - Auth -
 
 function auth(req, res, next) {
   const key = req.headers['x-api-key'] || '';
@@ -38,13 +38,13 @@ function sanitize(u) {
   return safe;
 }
 
-// ── Health ────────────────────────────────────────────────────────────────────
+// - Health -
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// ── Users ─────────────────────────────────────────────────────────────────────
+// - Users -
 
 app.get('/api/users', auth, (req, res) => {
   const users = store.getUsers(req.query);
@@ -96,7 +96,7 @@ app.post('/api/users/:id/restore', auth, (req, res) => {
   res.json(sanitize(store.setUserStatus(req.params.id, 'active')));
 });
 
-// ── Passwords ─────────────────────────────────────────────────────────────────
+// - Passwords -
 
 app.post('/api/users/:id/change-password', auth, (req, res) => {
   const user = store.getUserById(req.params.id);
@@ -122,7 +122,7 @@ app.post('/api/users/:id/reset-password', auth, (req, res) => {
   res.json({ message: 'Password reset successfully.' });
 });
 
-// ── Groups ────────────────────────────────────────────────────────────────────
+// - Groups -
 
 app.get('/api/groups', auth, (req, res) => {
   const groups = store.getGroups();
@@ -175,13 +175,13 @@ app.delete('/api/users/:id/groups', auth, (req, res) => {
   res.json({ message: 'Groups removed successfully.', totalGroups: groups.length, resources: groups });
 });
 
-// ── 404 ───────────────────────────────────────────────────────────────────────
+// - 404 -
 
 app.use((req, res) => {
   res.status(404).json({ error: 'not_found', message: `Route ${req.method} ${req.path} not found.` });
 });
 
-// ── Start ─────────────────────────────────────────────────────────────────────
+// - Start -
 
 seedIfEmpty();
 app.listen(PORT, '0.0.0.0', () => {

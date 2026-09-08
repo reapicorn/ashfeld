@@ -1,0 +1,2313 @@
+
+[14:34:34] 
+[14:34:34] Phase 1 - destroy all
+[14:34:34] Ironhold - destroying...
+[14:34:46] ==> default: VM not created. Moving on...
+[14:34:46] Darkhorn - destroying...
+[14:34:48] ==> default: VM not created. Moving on...
+[14:34:48] Hollowcrown - destroying...
+[14:34:50] ==> default: VM not created. Moving on...
+[14:34:50] Thorngate - destroying...
+[14:34:52] ==> default: VM not created. Moving on...
+[14:34:52] 
+[14:34:52] Phase 2 - up all
+[14:34:52] 
+[14:34:52] Ironhold - starting...
+[14:34:54] Bringing machine 'default' up with 'vmware_desktop' provider...
+[14:34:54] ==> default: Cloning VMware VM: 'gusztavvargadr/windows-server-2025-standard'. This can take some time...
+[14:34:56] ==> default: Checking if box 'gusztavvargadr/windows-server-2025-standard' version '2607.0.0' is up to date...
+[14:34:59] ==> default: Verifying vmnet devices are healthy...
+[14:35:00] ==> default: Preparing network adapters...
+[14:35:03] ==> default: Starting the VMware VM...
+[14:35:04] ==> default: Waiting for the VM to receive an address...
+[14:35:50] ==> default: Forwarding ports...
+[14:35:50]     default: -- 22 => 2210
+[14:35:50]     default: -- 80 => 8010
+[14:35:50]     default: -- 443 => 4430
+[14:35:50]     default: -- 3389 => 53389
+[14:35:51] ==> default: Waiting for machine to boot. This may take a few minutes...
+[14:36:02]     default: SSH address: 127.0.0.1:2210
+[14:36:02]     default: SSH username: vagrant
+[14:36:02]     default: SSH auth method: private key
+[14:37:20]     default: 
+[14:37:20]     default: Vagrant insecure key detected. Vagrant will automatically replace
+[14:37:20]     default: this with a newly generated keypair for better security.
+[14:37:38]     default: 
+[14:37:38]     default: Inserting generated public key within guest...
+[14:38:02]     default: Removing insecure key from the guest if it's present...
+[14:38:28]     default: Key inserted! Disconnecting and reconnecting using new SSH key...
+[14:38:33] ==> default: Machine booted and ready!
+[14:38:33] ==> default: Configuring network adapters within the VM...
+[14:38:38] ==> default: Configuring secondary network adapters through VMware 
+[14:38:38] ==> default: on Windows is not yet supported. You will need to manually
+[14:38:38] ==> default: configure the network adapter.
+[14:38:44] ==> default: Enabling and configuring shared folders...
+[14:38:45]     default: -- C:/Users/LeandroValovits/.bob/playground/Ashfeld/ironhold/installer: C:\sslab\installer_src
+[14:38:59] ==> default: Running provisioner: sysconfig (shell)...
+[14:39:01]     default: Running: script: sysconfig
+[14:39:05]     default: 
+[14:39:08]     default: Timezone set: E. South America Standard Time
+[14:39:08]     default: WARNING: If the Windows Display Language has changed, it will take effect after the next sign-in.
+[14:40:08]     default: Keyboard set: es-419
+[14:40:09]     default: WARNING: The changes will take effect after you restart the computer WIN-HUMOLSU064K.
+[14:40:09]     default: Hostname set: ironhold (takes effect after reboot)
+[14:40:09] ==> default: Running provisioner: firewall (shell)...
+[14:40:10]     default: Running: script: firewall
+[14:40:13]     default: 
+[14:40:16]     default: Firewall rule added: SecretServer-HTTP
+[14:40:16]     default: Firewall rule added: SecretServer-HTTPS
+[14:40:16] ==> default: Running provisioner: install (shell)...
+[14:40:17]     default: Running: script: install
+[14:40:20]     default: 
+[14:40:23]     default: 14:40:24
+[14:40:23]     default: 14:40:24  ==> Starting Secret Server lab installation
+[14:40:23]     default: 14:40:24  Running steps: all
+[14:40:23]     default: 14:40:24  Progress:
+[14:40:23]     default: 14:40:24    [ ] serviceaccount
+[14:40:23]     default: 14:40:24    [ ] serviceaccount_admin
+[14:40:23]     default: 14:40:24    [ ] choco
+[14:40:23]     default: 14:40:24    [ ] sql_install
+[14:40:23]     default: 14:40:24    [ ] sql_auth
+[14:40:23]     default: 14:40:24    [ ] sql_db
+[14:40:23]     default: 14:40:24    [ ] tools
+[14:40:23]     default: 14:40:24    [ ] ss_install
+[14:40:23]     default: 14:40:24    [ ] ss_apppool
+[14:40:23]     default: 14:40:24    [ ] ss_iisapp
+[14:40:23]     default: 14:40:24    [ ] iis_cert
+[14:40:23]     default: 14:40:24
+[14:40:23]     default: 14:40:24  ==> Service account - create
+[14:40:23]     default: 14:40:24  Created local user: WIN-HUMOLSU064K\svc_ss
+[14:40:23]     default: 14:40:24  Progress:
+[14:40:23]     default: 14:40:24    [x] serviceaccount
+[14:40:23]     default: 14:40:24    [ ] serviceaccount_admin
+[14:40:23]     default: 14:40:24    [ ] choco
+[14:40:23]     default: 14:40:24    [ ] sql_install
+[14:40:23]     default: 14:40:24    [ ] sql_auth
+[14:40:23]     default: 14:40:24    [ ] sql_db
+[14:40:23]     default: 14:40:24    [ ] tools
+[14:40:23]     default: 14:40:24    [ ] ss_install
+[14:40:23]     default: 14:40:24    [ ] ss_apppool
+[14:40:23]     default: 14:40:24    [ ] ss_iisapp
+[14:40:23]     default: 14:40:24    [ ] iis_cert
+[14:40:23]     default: 14:40:24
+[14:40:23]     default: 14:40:24  ==> Service account - add to Administrators
+[14:40:23]     default: 14:40:24  Added svc_ss to Administrators.
+[14:40:23]     default: 14:40:24  Progress:
+[14:40:23]     default: 14:40:24    [x] serviceaccount
+[14:40:23]     default: 14:40:24    [x] serviceaccount_admin
+[14:40:23]     default: 14:40:24    [ ] choco
+[14:40:23]     default: 14:40:24    [ ] sql_install
+[14:40:23]     default: 14:40:24    [ ] sql_auth
+[14:40:23]     default: 14:40:24    [ ] sql_db
+[14:40:23]     default: 14:40:24    [ ] tools
+[14:40:23]     default: 14:40:24    [ ] ss_install
+[14:40:23]     default: 14:40:24    [ ] ss_apppool
+[14:40:23]     default: 14:40:24    [ ] ss_iisapp
+[14:40:23]     default: 14:40:24    [ ] iis_cert
+[14:40:24]     default: 14:40:24
+[14:40:24]     default: 14:40:24  ==> Chocolatey
+[14:40:25]     default: Forcing web requests to allow TLS v1.2 (Required for requests to Chocolatey.org)
+[14:40:25]     default: Getting latest version of the Chocolatey package for download.
+[14:40:25]     default: Not using proxy.
+[14:40:25]     default: Getting Chocolatey from https://community.chocolatey.org/api/v2/package/chocolatey/2.7.4.
+[14:40:25]     default: Downloading https://community.chocolatey.org/api/v2/package/chocolatey/2.7.4 to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip
+[14:40:25]     default: Not using proxy.
+[14:40:26]     default: Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocoInstall
+[14:40:27]     default: Installing Chocolatey on the local machine
+[14:40:28]     default: WARNING: It's very likely you will need to close and reopen your shell
+[14:40:28]     default:   before you can use choco.
+[14:40:28]     default: PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+[14:40:29]     default: WARNING: Not setting tab completion: Profile file does not exist at
+[14:40:29]     default: 'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+[14:40:31]     default: Ensuring Chocolatey commands are on the path
+[14:40:31]     default: Ensuring chocolatey.nupkg is in the lib folder
+[14:40:31]     default: 14:40:32  Chocolatey installed.
+[14:40:31]     default: 14:40:32  Progress:
+[14:40:31]     default: 14:40:32    [x] serviceaccount
+[14:40:31]     default: 14:40:32    [x] serviceaccount_admin
+[14:40:31]     default: 14:40:32    [x] choco
+[14:40:31]     default: 14:40:32    [ ] sql_install
+[14:40:31]     default: 14:40:32    [ ] sql_auth
+[14:40:31]     default: 14:40:32    [ ] sql_db
+[14:40:31]     default: 14:40:32    [ ] tools
+[14:40:31]     default: 14:40:32    [ ] ss_install
+[14:40:31]     default: 14:40:32    [ ] ss_apppool
+[14:40:31]     default: 14:40:32    [ ] ss_iisapp
+[14:40:31]     default: 14:40:32    [ ] iis_cert
+[14:40:31]     default: 14:40:32
+[14:40:31]     default: 14:40:32  ==> SQL Server Express - install
+[14:44:12]     default: 14:44:13  SQL Server Express installed.
+[14:44:12]     default: 14:44:13  Progress:
+[14:44:12]     default: 14:44:13    [x] serviceaccount
+[14:44:12]     default: 14:44:13    [x] serviceaccount_admin
+[14:44:12]     default: 14:44:13    [x] choco
+[14:44:12]     default: 14:44:13    [x] sql_install
+[14:44:12]     default: 14:44:13    [ ] sql_auth
+[14:44:12]     default: 14:44:13    [ ] sql_db
+[14:44:12]     default: 14:44:13    [ ] tools
+[14:44:12]     default: 14:44:13    [ ] ss_install
+[14:44:12]     default: 14:44:13    [ ] ss_apppool
+[14:44:12]     default: 14:44:13    [ ] ss_iisapp
+[14:44:12]     default: 14:44:13    [ ] iis_cert
+[14:44:12]     default: 14:44:13
+[14:44:12]     default: 14:44:13  ==> SQL Server - mixed-mode auth
+[14:47:17]     default: 14:47:18  WARN: SQL Server did not respond within 180 seconds.
+[14:47:17]     default: 14:47:18  Mixed-mode auth enabled and SQL Server restarted.
+[14:47:17]     default: 14:47:18  Progress:
+[14:47:17]     default: 14:47:18    [x] serviceaccount
+[14:47:17]     default: 14:47:18    [x] serviceaccount_admin
+[14:47:17]     default: 14:47:18    [x] choco
+[14:47:17]     default: 14:47:18    [x] sql_install
+[14:47:17]     default: 14:47:18    [x] sql_auth
+[14:47:17]     default: 14:47:18    [ ] sql_db
+[14:47:17]     default: 14:47:18    [ ] tools
+[14:47:17]     default: 14:47:18    [ ] ss_install
+[14:47:17]     default: 14:47:18    [ ] ss_apppool
+[14:47:17]     default: 14:47:18    [ ] ss_iisapp
+[14:47:17]     default: 14:47:18    [ ] iis_cert
+[14:47:17]     default: 14:47:18
+[14:47:17]     default: 14:47:18  ==> SQL Server - create DB and login
+[14:47:17]     default: 14:47:18  Database 'SecretServer' and login 'WIN-HUMOLSU064K\svc_ss' configured.
+[14:47:17]     default: 14:47:18  Progress:
+[14:47:17]     default: 14:47:18    [x] serviceaccount
+[14:47:17]     default: 14:47:18    [x] serviceaccount_admin
+[14:47:17]     default: 14:47:18    [x] choco
+[14:47:17]     default: 14:47:18    [x] sql_install
+[14:47:17]     default: 14:47:18    [x] sql_auth
+[14:47:17]     default: 14:47:18    [x] sql_db
+[14:47:17]     default: 14:47:18    [ ] tools
+[14:47:17]     default: 14:47:18    [ ] ss_install
+[14:47:17]     default: 14:47:18    [ ] ss_apppool
+[14:47:17]     default: 14:47:18    [ ] ss_iisapp
+[14:47:17]     default: 14:47:18    [ ] iis_cert
+[14:47:17]     default: 14:47:18
+[14:47:17]     default: 14:47:18  ==> Tools - Firefox, VS Code, PowerShell 7
+[14:47:47]     default: 14:47:47  Firefox installed.
+[14:48:42]     default: 14:48:43  VS Code installed.
+[14:49:11]     default: 14:49:11  PowerShell 7 installed.
+[14:49:11]     default: 14:49:11  Firefox bookmark configured.
+[14:49:11]     default: 14:49:11  Taskbar search and task view hidden.
+[14:49:11]     default: 14:49:12  First-logon task registered (taskbar pins + Firefox bookmark).
+[14:49:11]     default: 14:49:12  Progress:
+[14:49:11]     default: 14:49:12    [x] serviceaccount
+[14:49:11]     default: 14:49:12    [x] serviceaccount_admin
+[14:49:11]     default: 14:49:12    [x] choco
+[14:49:11]     default: 14:49:12    [x] sql_install
+[14:49:11]     default: 14:49:12    [x] sql_auth
+[14:49:11]     default: 14:49:12    [x] sql_db
+[14:49:11]     default: 14:49:12    [x] tools
+[14:49:11]     default: 14:49:12    [ ] ss_install
+[14:49:11]     default: 14:49:12    [ ] ss_apppool
+[14:49:11]     default: 14:49:12    [ ] ss_iisapp
+[14:49:11]     default: 14:49:12    [ ] iis_cert
+[14:49:11]     default: 14:49:12
+[14:49:11]     default: 14:49:12  ==> Vault - silent install
+[14:49:11]     default: 14:49:12  Stage 1: installing prerequisites... (log: C:\sslab-prereqs.log)
+[15:13:05]     default: 15:13:06  Prerequisites installed (exit 0).
+[15:13:05]     default: 15:13:06  Stage 2: installing application... (log: C:\sslab-install.log)
+[15:13:25]     default: 15:13:26  Application installed (exit 0).
+[15:13:25]     default: 15:13:26  Progress:
+[15:13:25]     default: 15:13:26    [x] serviceaccount
+[15:13:25]     default: 15:13:26    [x] serviceaccount_admin
+[15:13:25]     default: 15:13:26    [x] choco
+[15:13:25]     default: 15:13:26    [x] sql_install
+[15:13:25]     default: 15:13:26    [x] sql_auth
+[15:13:25]     default: 15:13:26    [x] sql_db
+[15:13:25]     default: 15:13:26    [x] tools
+[15:13:25]     default: 15:13:26    [x] ss_install
+[15:13:25]     default: 15:13:26    [ ] ss_apppool
+[15:13:25]     default: 15:13:26    [ ] ss_iisapp
+[15:13:25]     default: 15:13:26    [ ] iis_cert
+[15:13:25]     default: 15:13:26
+[15:13:25]     default: 15:13:26  ==> Secret Server - extract files
+[15:13:25]     default: 15:13:26  SS files already present - skipping extraction.
+[15:13:25]     default: 15:13:26  Progress:
+[15:13:25]     default: 15:13:26    [x] serviceaccount
+[15:13:25]     default: 15:13:26    [x] serviceaccount_admin
+[15:13:25]     default: 15:13:26    [x] choco
+[15:13:25]     default: 15:13:26    [x] sql_install
+[15:13:25]     default: 15:13:26    [x] sql_auth
+[15:13:25]     default: 15:13:26    [x] sql_db
+[15:13:25]     default: 15:13:26    [x] tools
+[15:13:25]     default: 15:13:26    [x] ss_install
+[15:13:25]     default: 15:13:26    [ ] ss_apppool
+[15:13:25]     default: 15:13:26    [ ] ss_iisapp
+[15:13:25]     default: 15:13:26    [ ] iis_cert
+[15:13:25]     default: 15:13:26
+[15:13:25]     default: 15:13:26  ==> IIS HTTPS certificate
+[15:13:26]     default: 15:13:27  Self-signed certificate created: 81FDA37BDCC31E303482B6BBF921AF7543593016
+[15:13:26]     default: 15:13:27  HTTPS binding already exists with certificate.
+[15:13:26]     default: 15:13:27  Progress:
+[15:13:26]     default: 15:13:27    [x] serviceaccount
+[15:13:26]     default: 15:13:27    [x] serviceaccount_admin
+[15:13:26]     default: 15:13:27    [x] choco
+[15:13:26]     default: 15:13:27    [x] sql_install
+[15:13:26]     default: 15:13:27    [x] sql_auth
+[15:13:26]     default: 15:13:27    [x] sql_db
+[15:13:26]     default: 15:13:27    [x] tools
+[15:13:26]     default: 15:13:27    [x] ss_install
+[15:13:26]     default: 15:13:27    [ ] ss_apppool
+[15:13:26]     default: 15:13:27    [ ] ss_iisapp
+[15:13:26]     default: 15:13:27    [x] iis_cert
+[15:13:26]     default: 15:13:27
+[15:13:26]     default: 15:13:27  ==> Secret Server - App Pool
+[15:13:32]     default: 15:13:33  App Pool SecretServer configured (identity: WIN-HUMOLSU064K\svc_ss)
+[15:13:32]     default: 15:13:33  Progress:
+[15:13:32]     default: 15:13:33    [x] serviceaccount
+[15:13:32]     default: 15:13:33    [x] serviceaccount_admin
+[15:13:32]     default: 15:13:33    [x] choco
+[15:13:33]     default: 15:13:33    [x] sql_install
+[15:13:33]     default: 15:13:33    [x] sql_auth
+[15:13:33]     default: 15:13:33    [x] sql_db
+[15:13:33]     default: 15:13:33    [x] tools
+[15:13:33]     default: 15:13:33    [x] ss_install
+[15:13:33]     default: 15:13:33    [x] ss_apppool
+[15:13:33]     default: 15:13:33    [ ] ss_iisapp
+[15:13:33]     default: 15:13:33    [x] iis_cert
+[15:13:33]     default: 15:13:33
+[15:13:33]     default: 15:13:33  ==> Secret Server - IIS application
+[15:13:33]     default: 15:13:34  Corrected Default Web Site physicalPath (was: %SystemDrive%\inetpub\wwwroot)
+[15:13:33]     default: 15:13:34  IIS application updated: Default Web Site/SecretServer -> C:\inetpub\wwwroot\SecretServer
+[15:13:33]     default: 15:13:34  Progress:
+[15:13:33]     default: 15:13:34    [x] serviceaccount
+[15:13:33]     default: 15:13:34    [x] serviceaccount_admin
+[15:13:33]     default: 15:13:34    [x] choco
+[15:13:33]     default: 15:13:34    [x] sql_install
+[15:13:33]     default: 15:13:34    [x] sql_auth
+[15:13:33]     default: 15:13:34    [x] sql_db
+[15:13:33]     default: 15:13:34    [x] tools
+[15:13:33]     default: 15:13:34    [x] ss_install
+[15:13:33]     default: 15:13:34    [x] ss_apppool
+[15:13:33]     default: 15:13:34    [x] ss_iisapp
+[15:13:33]     default: 15:13:34    [x] iis_cert
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34  ========================================================
+[15:13:33]     default: 15:13:34    Ironhold - Provisioning Complete
+[15:13:33]     default: 15:13:34  ========================================================
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34    NEXT STEP - Complete setup wizard from inside the VM:
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34    Step 1 - Database setup:
+[15:13:33]     default: 15:13:34      http://localhost/SecretServer/Setup/Database?FreshInstall=true
+[15:13:33]     default: 15:13:34      SQL Server:   localhost\SQLEXPRESS
+[15:13:33]     default: 15:13:34      Database:     SecretServer
+[15:13:33]     default: 15:13:34      Auth:         Windows Authentication
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34    Step 2 - Create initial administrator:
+[15:13:33]     default: 15:13:34      Username:     admin
+[15:13:33]     default: 15:13:34      Display name: Admin
+[15:13:33]     default: 15:13:34      Email:        admin@lab.local
+[15:13:33]     default: 15:13:34      Password:     Ir0nhold#Lab!
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34    Access (from host):
+[15:13:33]     default: 15:13:34      HTTP:   http://localhost:8010/SecretServer
+[15:13:33]     default: 15:13:34      HTTPS:  https://localhost:4430/SecretServer
+[15:13:33]     default: 15:13:34  ========================================================
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34
+[15:13:33]     default: 15:13:34  ==> Installation complete
+[15:13:34]   [OK]   Ironhold - vagrant up succeeded
+[15:13:34] 
+[15:13:34] Darkhorn - starting...
+[15:13:47] Bringing machine 'default' up with 'vmware_desktop' provider...
+[15:13:47] ==> default: Cloning VMware VM: 'bento/debian-12'. This can take some time...
+[15:13:50] ==> default: Checking if box 'bento/debian-12' version '202510.26.0' is up to date...
+[15:13:53] ==> default: Verifying vmnet devices are healthy...
+[15:13:55] ==> default: Preparing network adapters...
+[15:13:59] ==> default: Starting the VMware VM...
+[15:14:02] ==> default: Waiting for the VM to receive an address...
+[15:14:36] ==> default: Forwarding ports...
+[15:14:36]     default: -- 22 => 2220
+[15:14:36]     default: -- 3000 => 3000
+[15:14:36]     default: -- 3002 => 3002
+[15:14:36]     default: -- 5432 => 5432
+[15:14:36]     default: -- 389 => 389
+[15:14:36]     default: -- 2222 => 2223
+[15:14:36]     default: -- 5672 => 5672
+[15:14:36]     default: -- 15672 => 15672
+[15:14:37] ==> default: Waiting for machine to boot. This may take a few minutes...
+[15:14:48]     default: SSH address: 127.0.0.1:2220
+[15:14:48]     default: SSH username: vagrant
+[15:14:48]     default: SSH auth method: private key
+[15:14:50]     default: 
+[15:14:50]     default: Vagrant insecure key detected. Vagrant will automatically replace
+[15:14:50]     default: this with a newly generated keypair for better security.
+[15:14:52]     default: 
+[15:14:52]     default: Inserting generated public key within guest...
+[15:14:54]     default: Removing insecure key from the guest if it's present...
+[15:14:54]     default: Key inserted! Disconnecting and reconnecting using new SSH key...
+[15:14:56] ==> default: Machine booted and ready!
+[15:14:56] ==> default: Setting hostname...
+[15:15:02] ==> default: Configuring network adapters within the VM...
+[15:15:03] ==> default: Waiting for HGFS to become available...
+[15:15:05] ==> default: Enabling and configuring shared folders...
+[15:15:05]     default: -- C:/Users/LeandroValovits/.bob/playground/Ashfeld/darkhorn: /vagrant
+[15:15:09] ==> default: Running provisioner: shell...
+[15:15:10]     default: Running: inline script
+[15:15:16]     default: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+[15:15:16]     default: (Reading database ... 
+[15:15:16] (Reading database ... 5%
+[15:15:16] (Reading database ... 10%
+[15:15:16] (Reading database ... 15%
+[15:15:16] (Reading database ... 20%
+[15:15:16] (Reading database ... 25%
+[15:15:16] (Reading database ... 30%
+[15:15:16] (Reading database ... 35%
+[15:15:16] (Reading database ... 40%
+[15:15:16] (Reading database ... 45%
+[15:15:16] (Reading database ... 50%
+[15:15:16] (Reading database ... 55%
+[15:15:16] (Reading database ... 60%
+[15:15:16] (Reading database ... 65%
+[15:15:16] (Reading database ... 70%
+[15:15:16] (Reading database ... 75%
+[15:15:16] (Reading database ... 80%
+[15:15:16] (Reading database ... 85%
+[15:15:16] (Reading database ... 90%
+[15:15:16] (Reading database ... 95%
+[15:15:16] (Reading database ... 100%
+[15:15:16] (Reading database ... 57067 files and directories currently installed.)
+[15:15:16]     default: Preparing to unpack .../0-ca-certificates_20250419~deb12u1_all.deb ...
+[15:15:16]     default: Unpacking ca-certificates (20250419~deb12u1) over (20230311+deb12u1) ...
+[15:15:16]     default: Preparing to unpack .../1-curl_7.88.1-10+deb12u15_amd64.deb ...
+[15:15:16]     default: Unpacking curl (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:15:16]     default: Preparing to unpack .../2-libcurl4_7.88.1-10+deb12u15_amd64.deb ...
+[15:15:16]     default: Unpacking libcurl4:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:15:16]     default: Preparing to unpack .../3-libcurl3-gnutls_7.88.1-10+deb12u15_amd64.deb ...
+[15:15:16]     default: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:15:16]     default: Selecting previously unselected package liberror-perl.
+[15:15:16]     default: Preparing to unpack .../4-liberror-perl_0.17029-2_all.deb ...
+[15:15:16]     default: Unpacking liberror-perl (0.17029-2) ...
+[15:15:16]     default: Selecting previously unselected package git-man.
+[15:15:16]     default: Preparing to unpack .../5-git-man_1%3a2.39.5-0+deb12u3_all.deb ...
+[15:15:16]     default: Unpacking git-man (1:2.39.5-0+deb12u3) ...
+[15:15:16]     default: Selecting previously unselected package git.
+[15:15:16]     default: Preparing to unpack .../6-git_1%3a2.39.5-0+deb12u3_amd64.deb ...
+[15:15:16]     default: Unpacking git (1:2.39.5-0+deb12u3) ...
+[15:15:17]     default: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) ...
+[15:15:17]     default: Setting up liberror-perl (0.17029-2) ...
+[15:15:17]     default: Setting up ca-certificates (20250419~deb12u1) ...
+[15:15:19]     default: Updating certificates in /etc/ssl/certs...
+[15:15:20]     default: rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+[15:15:20]     default: 21 added, 13 removed; done.
+[15:15:20]     default: Setting up libcurl4:amd64 (7.88.1-10+deb12u15) ...
+[15:15:20]     default: Setting up git-man (1:2.39.5-0+deb12u3) ...
+[15:15:20]     default: Setting up curl (7.88.1-10+deb12u15) ...
+[15:15:20]     default: Setting up git (1:2.39.5-0+deb12u3) ...
+[15:15:20]     default: Processing triggers for man-db (2.11.2-2) ...
+[15:15:23]     default: Processing triggers for libc-bin (2.36-9+deb12u13) ...
+[15:15:23]     default: Processing triggers for ca-certificates (20250419~deb12u1) ...
+[15:15:23]     default: Updating certificates in /etc/ssl/certs...
+[15:15:23]     default: 0 added, 0 removed; done.
+[15:15:23]     default: Running hooks in /etc/ca-certificates/update.d...
+[15:15:23]     default: done.
+[15:15:28]     default: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+[15:15:28]     default: Selecting previously unselected package containerd.io.
+[15:15:28]     default: (Reading database ... 
+[15:15:28] (Reading database ... 5%
+[15:15:28] (Reading database ... 10%
+[15:15:28] (Reading database ... 15%
+[15:15:28] (Reading database ... 20%
+[15:15:28] (Reading database ... 25%
+[15:15:28] (Reading database ... 30%
+[15:15:28] (Reading database ... 35%
+[15:15:28] (Reading database ... 40%
+[15:15:28] (Reading database ... 45%
+[15:15:28] (Reading database ... 50%
+[15:15:28] (Reading database ... 55%
+[15:15:28] (Reading database ... 60%
+[15:15:28] (Reading database ... 65%
+[15:15:28] (Reading database ... 70%
+[15:15:28] (Reading database ... 75%
+[15:15:28] (Reading database ... 80%
+[15:15:28] (Reading database ... 85%
+[15:15:28] (Reading database ... 90%
+[15:15:28] (Reading database ... 95%
+[15:15:28] (Reading database ... 100%
+[15:15:28] (Reading database ... 58184 files and directories currently installed.)
+[15:15:28]     default: Preparing to unpack .../00-containerd.io_2.3.5-1~debian.12~bookworm_amd64.deb ...
+[15:15:28]     default: Unpacking containerd.io (2.3.5-1~debian.12~bookworm) ...
+[15:15:29]     default: Selecting previously unselected package docker-ce-cli.
+[15:15:29]     default: Preparing to unpack .../01-docker-ce-cli_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:15:29]     default: Unpacking docker-ce-cli (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:30]     default: Selecting previously unselected package libip6tc2:amd64.
+[15:15:30]     default: Preparing to unpack .../02-libip6tc2_1.8.9-2_amd64.deb ...
+[15:15:30]     default: Unpacking libip6tc2:amd64 (1.8.9-2) ...
+[15:15:30]     default: Selecting previously unselected package libnfnetlink0:amd64.
+[15:15:30]     default: Preparing to unpack .../03-libnfnetlink0_1.0.2-2_amd64.deb ...
+[15:15:30]     default: Unpacking libnfnetlink0:amd64 (1.0.2-2) ...
+[15:15:30]     default: Selecting previously unselected package libnetfilter-conntrack3:amd64.
+[15:15:30]     default: Preparing to unpack .../04-libnetfilter-conntrack3_1.0.9-3_amd64.deb ...
+[15:15:30]     default: Unpacking libnetfilter-conntrack3:amd64 (1.0.9-3) ...
+[15:15:30]     default: Selecting previously unselected package iptables.
+[15:15:30]     default: Preparing to unpack .../05-iptables_1.8.9-2_amd64.deb ...
+[15:15:30]     default: Unpacking iptables (1.8.9-2) ...
+[15:15:30]     default: Selecting previously unselected package docker-ce.
+[15:15:30]     default: Preparing to unpack .../06-docker-ce_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:15:30]     default: Unpacking docker-ce (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:31]     default: Selecting previously unselected package pigz.
+[15:15:31]     default: Preparing to unpack .../07-pigz_2.6-1_amd64.deb ...
+[15:15:31]     default: Unpacking pigz (2.6-1) ...
+[15:15:31]     default: Selecting previously unselected package docker-buildx-plugin.
+[15:15:31]     default: Preparing to unpack .../08-docker-buildx-plugin_0.37.0-1~debian.12~bookworm_amd64.deb ...
+[15:15:31]     default: Unpacking docker-buildx-plugin (0.37.0-1~debian.12~bookworm) ...
+[15:15:32]     default: Selecting previously unselected package docker-ce-rootless-extras.
+[15:15:32]     default: Preparing to unpack .../09-docker-ce-rootless-extras_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:15:32]     default: Unpacking docker-ce-rootless-extras (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:33]     default: Selecting previously unselected package docker-compose-plugin.
+[15:15:33]     default: Preparing to unpack .../10-docker-compose-plugin_5.5.1-1~debian.12~bookworm_amd64.deb ...
+[15:15:33]     default: Unpacking docker-compose-plugin (5.5.1-1~debian.12~bookworm) ...
+[15:15:33]     default: Selecting previously unselected package ldap-utils.
+[15:15:33]     default: Preparing to unpack .../11-ldap-utils_2.5.13+dfsg-5_amd64.deb ...
+[15:15:33]     default: Unpacking ldap-utils (2.5.13+dfsg-5) ...
+[15:15:33]     default: Selecting previously unselected package libpq5:amd64.
+[15:15:33]     default: Preparing to unpack .../12-libpq5_15.19-0+deb12u1_amd64.deb ...
+[15:15:33]     default: Unpacking libpq5:amd64 (15.19-0+deb12u1) ...
+[15:15:33]     default: Selecting previously unselected package postgresql-client-common.
+[15:15:33]     default: Preparing to unpack .../13-postgresql-client-common_248+deb12u1_all.deb ...
+[15:15:33]     default: Unpacking postgresql-client-common (248+deb12u1) ...
+[15:15:33]     default: Selecting previously unselected package postgresql-client-15.
+[15:15:33]     default: Preparing to unpack .../14-postgresql-client-15_15.19-0+deb12u1_amd64.deb ...
+[15:15:33]     default: Unpacking postgresql-client-15 (15.19-0+deb12u1) ...
+[15:15:33]     default: Selecting previously unselected package postgresql-client.
+[15:15:33]     default: Preparing to unpack .../15-postgresql-client_15+248+deb12u1_all.deb ...
+[15:15:33]     default: Unpacking postgresql-client (15+248+deb12u1) ...
+[15:15:33]     default: Selecting previously unselected package sshpass.
+[15:15:33]     default: Preparing to unpack .../16-sshpass_1.09-1+b1_amd64.deb ...
+[15:15:33]     default: Unpacking sshpass (1.09-1+b1) ...
+[15:15:33]     default: Setting up postgresql-client-common (248+deb12u1) ...
+[15:15:33]     default: Setting up libip6tc2:amd64 (1.8.9-2) ...
+[15:15:33]     default: Setting up libpq5:amd64 (15.19-0+deb12u1) ...
+[15:15:33]     default: Setting up postgresql-client-15 (15.19-0+deb12u1) ...
+[15:15:34]     default: update-alternatives: using /usr/share/postgresql/15/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+[15:15:34]     default: Setting up ldap-utils (2.5.13+dfsg-5) ...
+[15:15:34]     default: Setting up sshpass (1.09-1+b1) ...
+[15:15:34]     default: Setting up docker-buildx-plugin (0.37.0-1~debian.12~bookworm) ...
+[15:15:34]     default: Setting up containerd.io (2.3.5-1~debian.12~bookworm) ...
+[15:15:34]     default: Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service ΓåÆ /lib/systemd/system/containerd.service.
+[15:15:34]     default: Setting up docker-compose-plugin (5.5.1-1~debian.12~bookworm) ...
+[15:15:34]     default: Setting up docker-ce-cli (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:34]     default: Setting up pigz (2.6-1) ...
+[15:15:34]     default: Setting up libnfnetlink0:amd64 (1.0.2-2) ...
+[15:15:34]     default: Setting up docker-ce-rootless-extras (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:34]     default: Setting up postgresql-client (15+248+deb12u1) ...
+[15:15:34]     default: Setting up libnetfilter-conntrack3:amd64 (1.0.9-3) ...
+[15:15:34]     default: Setting up iptables (1.8.9-2) ...
+[15:15:35]     default: update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+[15:15:35]     default: update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+[15:15:35]     default: update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+[15:15:35]     default: update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+[15:15:35]     default: update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+[15:15:35]     default: update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+[15:15:35]     default: Setting up docker-ce (5:29.8.0-1~debian.12~bookworm) ...
+[15:15:35]     default: Created symlink /etc/systemd/system/multi-user.target.wants/docker.service ΓåÆ /lib/systemd/system/docker.service.
+[15:15:35]     default: Created symlink /etc/systemd/system/sockets.target.wants/docker.socket ΓåÆ /lib/systemd/system/docker.socket.
+[15:15:36]     default: Processing triggers for man-db (2.11.2-2) ...
+[15:15:36]     default: Processing triggers for libc-bin (2.36-9+deb12u13) ...
+[15:15:37]     default:  Image atmoz/sftp@sha256:0960390462a4441dbb63698d7c185b76a41ffcee7b78ff4adf275f3e66f9c475 Pulling
+[15:15:37]     default:  Image postgres:16-alpine@sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685 Pulling
+[15:15:37]     default:  Image rabbitmq:3.13-management-alpine@sha256:606d8c0d6b3c18d1da9afc53bc7cdb2a8d5486df91b5a9830e9e07626c9ae281 Pulling
+[15:15:37]     default:  Image vegardit/openldap@sha256:e19683621703b4cf35f1ef0a6dfbc2bca4a4cf08db7b6fd0ba31d18266edb853 Pulling
+[15:15:39]     default:  716226367eab Pulling fs layer 0B
+[15:15:39]     default:  c1c1a7d83fb1 Pulling fs layer 0B
+[15:15:39]     default:  c4368f297a17 Pulling fs layer 0B
+[15:15:39]     default:  b1088b603224 Pulling fs layer 0B
+[15:15:39]     default:  4b6889cc4ccf Pulling fs layer 0B
+[15:15:39]     default:  716226367eab Download complete 0B
+[15:15:40]     default:  c4368f297a17 Downloading 3.146MB
+[15:15:40]     default:  c4368f297a17 Downloading 6.291MB
+[15:15:40]     default:  c4368f297a17 Downloading 10.49MB
+[15:15:40]     default:  c4368f297a17 Downloading 13.63MB
+[15:15:40]     default:  b1088b603224 Download complete 0B
+[15:15:40]     default:  c4368f297a17 Download complete 0B
+[15:15:40]     default:  c1c1a7d83fb1 Downloading 4.194MB
+[15:15:40]     default:  c1c1a7d83fb1 Downloading 7.34MB
+[15:15:40]     default:  c1c1a7d83fb1 Downloading 11.53MB
+[15:15:40]     default:  4b6889cc4ccf Download complete 0B
+[15:15:40]     default:  c1c1a7d83fb1 Downloading 14.68MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 18.87MB
+[15:15:41]     default:  7f5de3d007ea Pulling fs layer 0B
+[15:15:41]     default:  55afa1ecc21d Pulling fs layer 0B
+[15:15:41]     default:  6a47e1b9b254 Pulling fs layer 0B
+[15:15:41]     default:  19a2a5ab27c1 Pulling fs layer 0B
+[15:15:41]     default:  5e81018bec01 Pulling fs layer 0B
+[15:15:41]     default:  be6f407f5414 Pulling fs layer 0B
+[15:15:41]     default:  f0e7204f9584 Pulling fs layer 0B
+[15:15:41]     default:  8225e2970a7f Pulling fs layer 0B
+[15:15:41]     default:  48d0d8b0e136 Pulling fs layer 0B
+[15:15:41]     default:  27d0ba4f668a Pulling fs layer 0B
+[15:15:41]     default:  b053c4426c4a Pulling fs layer 0B
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 23.07MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 27.26MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 31.46MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 34.6MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 39.85MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 44.04MB
+[15:15:41]     default:  d10e9ad2fcef Pulling fs layer 0B
+[15:15:41]     default:  276ee9c06a77 Pulling fs layer 0B
+[15:15:41]     default:  c039da15a7fb Pulling fs layer 0B
+[15:15:41]     default:  6310eb16bf42 Pulling fs layer 0B
+[15:15:41]     default:  ed5946e4c587 Pulling fs layer 0B
+[15:15:41]     default:  81db4b752daf Pulling fs layer 0B
+[15:15:41]     default:  aae1c6d692d3 Pulling fs layer 0B
+[15:15:41]     default:  d8970f5e380c Pulling fs layer 0B
+[15:15:41]     default:  8d995fca6948 Pulling fs layer 0B
+[15:15:41]     default:  d11bf8f151c2 Pulling fs layer 0B
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 48.23MB
+[15:15:41]     default:  c1c1a7d83fb1 Downloading 52.43MB
+[15:15:41]     default:  c1c1a7d83fb1 Download complete 0B
+[15:15:41]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  9ab46c560811 Pulling fs layer 0B
+[15:15:42]     default:  2d35ebdb57d9 Pulling fs layer 0B
+[15:15:42]     default:  7f4fe0a74327 Pulling fs layer 0B
+[15:15:42]     default:  fe0979840307 Pulling fs layer 0B
+[15:15:42]     default:  5541f4a1e9a3 Pulling fs layer 0B
+[15:15:42]     default:  f7900ae6286e Pulling fs layer 0B
+[15:15:42]     default:  64a815d19254 Pulling fs layer 0B
+[15:15:42]     default:  5a8ebb2679b2 Pulling fs layer 0B
+[15:15:42]     default:  3fdf1da6c087 Pulling fs layer 0B
+[15:15:42]     default:  3c428bdb4834 Pulling fs layer 0B
+[15:15:42]     default:  b053c4426c4a Download complete 0B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  7f5de3d007ea Download complete 0B
+[15:15:42]     default:  19a2a5ab27c1 Download complete 0B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  55afa1ecc21d Downloading 1.049MB
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 1B
+[15:15:42]     default:  6a47e1b9b254 Download complete 0B
+[15:15:42]     default:  55afa1ecc21d Download complete 0B
+[15:15:42]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:42]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  f0e7204f9584 Downloading 1.049MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  5e81018bec01 Download complete 0B
+[15:15:43]     default:  be6f407f5414 Download complete 0B
+[15:15:43]     default:  f0e7204f9584 Downloading 3.146MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  f0e7204f9584 Downloading 7.77MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  f0e7204f9584 Downloading 10.49MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  48d0d8b0e136 Downloading 129B
+[15:15:43]     default:  f0e7204f9584 Downloading 13.69MB
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  8225e2970a7f Download complete 0B
+[15:15:43]     default:  48d0d8b0e136 Download complete 0B
+[15:15:43]     default:  f0e7204f9584 Downloading 17.83MB
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  f0e7204f9584 Downloading 23.07MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  f0e7204f9584 Downloading 26.21MB
+[15:15:43]     default:  55afa1ecc21d Extracting 1B
+[15:15:43]     default:  c1c1a7d83fb1 Extracting 2B
+[15:15:43]     default:  f0e7204f9584 Downloading 28.66MB
+[15:15:43]     default:  27d0ba4f668a Download complete 0B
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  55afa1ecc21d Extracting 2B
+[15:15:44]     default:  f0e7204f9584 Downloading 30.41MB
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  55afa1ecc21d Extracting 2B
+[15:15:44]     default:  f0e7204f9584 Downloading 33.55MB
+[15:15:44]     default:  55afa1ecc21d Extracting 2B
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  f0e7204f9584 Downloading 36.7MB
+[15:15:44]     default:  d10e9ad2fcef Download complete 0B
+[15:15:44]     default:  d11bf8f151c2 Downloading 4.549kB
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  55afa1ecc21d Pull complete 0B
+[15:15:44]     default:  f0e7204f9584 Downloading 39.85MB
+[15:15:44]     default:  6a47e1b9b254 Pull complete 0B
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  d11bf8f151c2 Download complete 0B
+[15:15:44]     default:  f0e7204f9584 Downloading 44.04MB
+[15:15:44]     default:  19a2a5ab27c1 Pull complete 0B
+[15:15:44]     default:  c1c1a7d83fb1 Extracting 3B
+[15:15:44]     default:  f0e7204f9584 Downloading 46.94MB
+[15:15:44]     default:  c4368f297a17 Extracting 1B
+[15:15:44]     default:  5e81018bec01 Pull complete 0B
+[15:15:44]     default:  c1c1a7d83fb1 Pull complete 0B
+[15:15:44]     default:  be6f407f5414 Pull complete 0B
+[15:15:44]     default:  f0e7204f9584 Downloading 50.33MB
+[15:15:44]     default:  c039da15a7fb Download complete 0B
+[15:15:44]     default:  276ee9c06a77 Download complete 0B
+[15:15:44]     default:  c4368f297a17 Extracting 1B
+[15:15:44]     default:  f0e7204f9584 Downloading 54.53MB
+[15:15:44]     default:  c4368f297a17 Extracting 1B
+[15:15:44]     default:  f0e7204f9584 Downloading 58.63MB
+[15:15:44]     default:  c4368f297a17 Extracting 1B
+[15:15:44]     default:  f0e7204f9584 Downloading 62.91MB
+[15:15:44]     default:  ed5946e4c587 Download complete 0B
+[15:15:44]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  f0e7204f9584 Downloading 66.06MB
+[15:15:45]     default:  f0e7204f9584 Downloading 68.16MB
+[15:15:45]     default:  6310eb16bf42 Downloading 2.097MB
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  f0e7204f9584 Downloading 70.25MB
+[15:15:45]     default:  6310eb16bf42 Downloading 4.194MB
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  6310eb16bf42 Downloading 6.291MB
+[15:15:45]     default:  81db4b752daf Download complete 0B
+[15:15:45]     default:  f0e7204f9584 Downloading 72.35MB
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  6310eb16bf42 Downloading 8.389MB
+[15:15:45]     default:  f0e7204f9584 Downloading 74.45MB
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  c4368f297a17 Extracting 1B
+[15:15:45]     default:  6310eb16bf42 Downloading 10.49MB
+[15:15:45]     default:  f0e7204f9584 Downloading 76.55MB
+[15:15:45]     default:  f0e7204f9584 Downloading 76.55MB
+[15:15:45]     default:  6310eb16bf42 Downloading 12.46MB
+[15:15:45]     default:  c4368f297a17 Extracting 2B
+[15:15:45]     default:  f0e7204f9584 Downloading 78.64MB
+[15:15:45]     default:  6310eb16bf42 Downloading 13.63MB
+[15:15:45]     default:  c4368f297a17 Extracting 2B
+[15:15:45]     default:  6310eb16bf42 Downloading 16.78MB
+[15:15:45]     default:  f0e7204f9584 Downloading 80.74MB
+[15:15:45]     default:  c4368f297a17 Extracting 2B
+[15:15:45]     default:  f0e7204f9584 Downloading 81.69MB
+[15:15:45]     default:  6310eb16bf42 Downloading 18.61MB
+[15:15:45]     default:  c4368f297a17 Extracting 2B
+[15:15:46]     default:  6310eb16bf42 Downloading 22.02MB
+[15:15:46]     default:  716226367eab Extracting 1B
+[15:15:46]     default:  b1088b603224 Pull complete 0B
+[15:15:46]     default:  c4368f297a17 Pull complete 0B
+[15:15:46]     default:  f0e7204f9584 Downloading 83.89MB
+[15:15:46]     default:  4b6889cc4ccf Pull complete 0B
+[15:15:46]     default:  716226367eab Pull complete 0B
+[15:15:46]     default:  Image atmoz/sftp@sha256:0960390462a4441dbb63698d7c185b76a41ffcee7b78ff4adf275f3e66f9c475 Pulled
+[15:15:46]     default:  aae1c6d692d3 Downloading 1.049MB
+[15:15:46]     default:  6310eb16bf42 Downloading 24.12MB
+[15:15:46]     default:  f0e7204f9584 Downloading 85.81MB
+[15:15:46]     default:  f0e7204f9584 Downloading 87.03MB
+[15:15:46]     default:  6310eb16bf42 Downloading 26.21MB
+[15:15:46]     default:  aae1c6d692d3 Downloading 1.049MB
+[15:15:46]     default:  6310eb16bf42 Downloading 29.79MB
+[15:15:46]     default:  aae1c6d692d3 Downloading 1.049MB
+[15:15:46]     default:  f0e7204f9584 Downloading 88.08MB
+[15:15:46]     default:  aae1c6d692d3 Downloading 2.097MB
+[15:15:46]     default:  f0e7204f9584 Downloading 91.23MB
+[15:15:46]     default:  6310eb16bf42 Download complete 0B
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:46]     default:  aae1c6d692d3 Downloading 2.097MB
+[15:15:46]     default:  f0e7204f9584 Downloading 94.37MB
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:46]     default:  aae1c6d692d3 Downloading 3.146MB
+[15:15:46]     default:  f0e7204f9584 Downloading 97.52MB
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:46]     default:  aae1c6d692d3 Downloading 3.146MB
+[15:15:46]     default:  d8970f5e380c Download complete 0B
+[15:15:46]     default:  f0e7204f9584 Downloading 100.7MB
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:46]     default:  aae1c6d692d3 Downloading 4.194MB
+[15:15:46]     default:  f0e7204f9584 Downloading 103.6MB
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:46]     default:  aae1c6d692d3 Downloading 5.243MB
+[15:15:46]     default:  f0e7204f9584 Downloading 107MB
+[15:15:46]     default:  6310eb16bf42 Extracting 1B
+[15:15:47]     default:  aae1c6d692d3 Downloading 5.243MB
+[15:15:47]     default:  8d995fca6948 Download complete 0B
+[15:15:47]     default:  f0e7204f9584 Downloading 110.8MB
+[15:15:47]     default:  6310eb16bf42 Extracting 1B
+[15:15:47]     default:  aae1c6d692d3 Downloading 6.291MB
+[15:15:47]     default:  f0e7204f9584 Download complete 0B
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  6310eb16bf42 Extracting 1B
+[15:15:47]     default:  aae1c6d692d3 Downloading 8.389MB
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  6310eb16bf42 Extracting 1B
+[15:15:47]     default:  aae1c6d692d3 Downloading 11.53MB
+[15:15:47]     default:  6310eb16bf42 Extracting 1B
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  aae1c6d692d3 Downloading 13.63MB
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  6310eb16bf42 Extracting 2B
+[15:15:47]     default:  aae1c6d692d3 Downloading 16.01MB
+[15:15:47]     default:  6310eb16bf42 Extracting 2B
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  9ab46c560811 Downloading 1.049MB
+[15:15:47]     default:  aae1c6d692d3 Downloading 19.79MB
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  6310eb16bf42 Extracting 2B
+[15:15:47]     default:  9ab46c560811 Downloading 2.097MB
+[15:15:47]     default:  aae1c6d692d3 Download complete 0B
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  6310eb16bf42 Extracting 2B
+[15:15:47]     default:  9ab46c560811 Downloading 3.146MB
+[15:15:47]     default:  6310eb16bf42 Extracting 2B
+[15:15:47]     default:  f0e7204f9584 Extracting 1B
+[15:15:47]     default:  5541f4a1e9a3 Downloading 2.097MB
+[15:15:47]     default:  9ab46c560811 Downloading 4.194MB
+[15:15:48]     default:  f0e7204f9584 Extracting 1B
+[15:15:48]     default:  6310eb16bf42 Extracting 2B
+[15:15:48]     default:  9ab46c560811 Downloading 5.243MB
+[15:15:48]     default:  2d35ebdb57d9 Downloading 1.483MB
+[15:15:48]     default:  5541f4a1e9a3 Download complete 0B
+[15:15:48]     default:  f0e7204f9584 Extracting 1B
+[15:15:48]     default:  6310eb16bf42 Extracting 2B
+[15:15:48]     default:  9ab46c560811 Downloading 6.357MB
+[15:15:48]     default:  2d35ebdb57d9 Downloading 2.458MB
+[15:15:48]     default:  f0e7204f9584 Extracting 1B
+[15:15:48]     default:  6310eb16bf42 Extracting 2B
+[15:15:48]     default:  9ab46c560811 Downloading 8.389MB
+[15:15:48]     default:  2d35ebdb57d9 Download complete 0B
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  6310eb16bf42 Extracting 2B
+[15:15:48]     default:  7f4fe0a74327 Downloading 2.019MB
+[15:15:48]     default:  9ab46c560811 Downloading 10.35MB
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  6310eb16bf42 Extracting 2B
+[15:15:48]     default:  9ab46c560811 Downloading 12.05MB
+[15:15:48]     default:  7f4fe0a74327 Downloading 3.916MB
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  6310eb16bf42 Extracting 3B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  7f4fe0a74327 Downloading 6.504MB
+[15:15:48]     default:  9ab46c560811 Download complete 0B
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  6310eb16bf42 Extracting 3B
+[15:15:48]     default:  7f4fe0a74327 Downloading 9.224MB
+[15:15:48]     default:  fe0979840307 Downloading 2.097MB
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  6310eb16bf42 Extracting 3B
+[15:15:48]     default:  6310eb16bf42 Extracting 3B
+[15:15:48]     default:  7f4fe0a74327 Downloading 11.95MB
+[15:15:48]     default:  fe0979840307 Downloading 4.194MB
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  7f4fe0a74327 Downloading 13.63MB
+[15:15:48]     default:  fe0979840307 Downloading 5.747MB
+[15:15:48]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:48]     default:  f0e7204f9584 Extracting 2B
+[15:15:48]     default:  6310eb16bf42 Extracting 3B
+[15:15:48]     default:  7f4fe0a74327 Downloading 15.73MB
+[15:15:48]     default:  fe0979840307 Downloading 7.599MB
+[15:15:49]     default:  64a815d19254 Download complete 0B
+[15:15:49]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:49]     default:  f0e7204f9584 Extracting 2B
+[15:15:49]     default:  6310eb16bf42 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Downloading 20.97MB
+[15:15:49]     default:  fe0979840307 Download complete 0B
+[15:15:49]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:49]     default:  f0e7204f9584 Extracting 2B
+[15:15:49]     default:  6310eb16bf42 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Downloading 25.17MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 1B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Downloading 27.26MB
+[15:15:49]     default:  f7900ae6286e Downloading 1.049MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Downloading 30.41MB
+[15:15:49]     default:  f7900ae6286e Downloading 3.146MB
+[15:15:49]     default:  5a8ebb2679b2 Download complete 0B
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Downloading 33.55MB
+[15:15:49]     default:  f7900ae6286e Downloading 4.194MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 4B
+[15:15:49]     default:  f7900ae6286e Downloading 5.243MB
+[15:15:49]     default:  7f4fe0a74327 Downloading 36.7MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 4B
+[15:15:49]     default:  7f4fe0a74327 Downloading 38.8MB
+[15:15:49]     default:  f7900ae6286e Downloading 6.291MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  6310eb16bf42 Extracting 4B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  7f4fe0a74327 Download complete 0B
+[15:15:49]     default:  f7900ae6286e Downloading 9.437MB
+[15:15:49]     default:  3c428bdb4834 Download complete 0B
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 4B
+[15:15:49]     default:  f7900ae6286e Downloading 12.51MB
+[15:15:49]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:49]     default:  f0e7204f9584 Extracting 3B
+[15:15:49]     default:  6310eb16bf42 Extracting 4B
+[15:15:49]     default:  f7900ae6286e Downloading 14.68MB
+[15:15:50]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:50]     default:  f0e7204f9584 Extracting 3B
+[15:15:50]     default:  6310eb16bf42 Extracting 4B
+[15:15:50]     default:  f7900ae6286e Downloading 18.76MB
+[15:15:50]     default:  3fdf1da6c087 Downloading 616B
+[15:15:50]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:50]     default:  f0e7204f9584 Extracting 3B
+[15:15:50]     default:  6310eb16bf42 Extracting 4B
+[15:15:50]     default:  3fdf1da6c087 Download complete 0B
+[15:15:50]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  6310eb16bf42 Extracting 4B
+[15:15:50]     default:  f7900ae6286e Download complete 0B
+[15:15:50]     default:  2d35ebdb57d9 Extracting 2B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  6310eb16bf42 Pull complete 0B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  c58682903a2d Downloading 44.31kB
+[15:15:50]     default:  2d35ebdb57d9 Pull complete 0B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  c58682903a2d Download complete 0B
+[15:15:50]     default:  7dec47ad1967 Download complete 0B
+[15:15:50]     default:  7f4fe0a74327 Extracting 1B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  7f4fe0a74327 Extracting 1B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  7f4fe0a74327 Extracting 1B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  a430e3619464 Download complete 0B
+[15:15:50]     default:  0f7565f98475 Download complete 0B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  7f4fe0a74327 Extracting 1B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:50]     default:  f0e7204f9584 Extracting 4B
+[15:15:50]     default:  7f4fe0a74327 Extracting 1B
+[15:15:50]     default:  aae1c6d692d3 Extracting 1B
+[15:15:51]     default:  7f4fe0a74327 Extracting 1B
+[15:15:51]     default:  f0e7204f9584 Extracting 4B
+[15:15:51]     default:  aae1c6d692d3 Extracting 1B
+[15:15:51]     default:  63aa2505d58f Download complete 0B
+[15:15:51]     default:  f0e7204f9584 Extracting 4B
+[15:15:51]     default:  7f4fe0a74327 Extracting 1B
+[15:15:51]     default:  aae1c6d692d3 Extracting 1B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  7f4fe0a74327 Extracting 1B
+[15:15:51]     default:  aae1c6d692d3 Extracting 1B
+[15:15:51]     default:  7f4fe0a74327 Extracting 1B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  1fd50e0483ed Download complete 0B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  7f4fe0a74327 Extracting 1B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  7f4fe0a74327 Extracting 2B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  7f4fe0a74327 Extracting 2B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  7f4fe0a74327 Extracting 2B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  7f4fe0a74327 Pull complete 0B
+[15:15:51]     default:  aae1c6d692d3 Extracting 2B
+[15:15:51]     default:  d10e9ad2fcef Pull complete 0B
+[15:15:51]     default:  276ee9c06a77 Pull complete 0B
+[15:15:51]     default:  fe0979840307 Extracting 1B
+[15:15:51]     default:  d8970f5e380c Extracting 1B
+[15:15:51]     default:  f0e7204f9584 Extracting 5B
+[15:15:51]     default:  aae1c6d692d3 Pull complete 0B
+[15:15:52]     default:  d11bf8f151c2 Pull complete 0B
+[15:15:52]     default:  c039da15a7fb Extracting 1B
+[15:15:52]     default:  d8970f5e380c Pull complete 0B
+[15:15:52]     default:  fe0979840307 Extracting 1B
+[15:15:52]     default:  f0e7204f9584 Extracting 5B
+[15:15:52]     default:  c039da15a7fb Pull complete 0B
+[15:15:52]     default:  ed5946e4c587 Pull complete 0B
+[15:15:52]     default:  fe0979840307 Extracting 1B
+[15:15:52]     default:  81db4b752daf Extracting 1B
+[15:15:52]     default:  f0e7204f9584 Extracting 5B
+[15:15:52]     default:  81db4b752daf Pull complete 0B
+[15:15:52]     default:  8d995fca6948 Pull complete 0B
+[15:15:52]     default:  Image vegardit/openldap@sha256:e19683621703b4cf35f1ef0a6dfbc2bca4a4cf08db7b6fd0ba31d18266edb853 Pulled
+[15:15:52]     default:  fe0979840307 Extracting 1B
+[15:15:52]     default:  f0e7204f9584 Extracting 5B
+[15:15:52]     default:  5541f4a1e9a3 Extracting 1B
+[15:15:52]     default:  fe0979840307 Pull complete 0B
+[15:15:52]     default:  8225e2970a7f Pull complete 0B
+[15:15:52]     default:  48d0d8b0e136 Extracting 1B
+[15:15:52]     default:  f0e7204f9584 Pull complete 0B
+[15:15:52]     default:  b053c4426c4a Pull complete 0B
+[15:15:52]     default:  7f5de3d007ea Pull complete 0B
+[15:15:52]     default:  48d0d8b0e136 Pull complete 0B
+[15:15:52]     default:  27d0ba4f668a Pull complete 0B
+[15:15:52]     default:  Image postgres:16-alpine@sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685 Pulled
+[15:15:52]     default:  5541f4a1e9a3 Extracting 1B
+[15:15:52]     default:  5541f4a1e9a3 Pull complete 0B
+[15:15:52]     default:  f7900ae6286e Extracting 1B
+[15:15:52]     default:  f7900ae6286e Extracting 1B
+[15:15:52]     default:  9ab46c560811 Extracting 1B
+[15:15:52]     default:  64a815d19254 Pull complete 0B
+[15:15:52]     default:  5a8ebb2679b2 Pull complete 0B
+[15:15:52]     default:  3c428bdb4834 Pull complete 0B
+[15:15:52]     default:  3fdf1da6c087 Pull complete 0B
+[15:15:52]     default:  f7900ae6286e Pull complete 0B
+[15:15:52]     default:  9ab46c560811 Extracting 1B
+[15:15:52]     default:  9ab46c560811 Extracting 1B
+[15:15:52]     default:  9ab46c560811 Pull complete 0B
+[15:15:52]     default:  Image rabbitmq:3.13-management-alpine@sha256:606d8c0d6b3c18d1da9afc53bc7cdb2a8d5486df91b5a9830e9e07626c9ae281 Pulled
+[15:15:53]     default:  Image vagrant-darkhorn-soap Building
+[15:15:53]     default:  Image vagrant-darkhorn-rest Building
+[15:15:53]     default:  Image vagrant-seed Building
+[15:15:53]     default:  Image vagrant-sftp-seed Building
+[15:15:53]     default:  Image vagrant-darkhorn-mq Building
+[15:15:53]     default: #1 [internal] load local bake definitions
+[15:15:53]     default: #1 reading from stdin 2.12kB done
+[15:15:53]     default: #1 DONE 0.0s
+[15:15:53]     default: 
+[15:15:53]     default: #2 [darkhorn-rest internal] load build definition from Dockerfile
+[15:15:53]     default: #2 transferring dockerfile:
+[15:15:53]     default: #2 transferring dockerfile: 328B 0.0s done
+[15:15:53]     default: #2 DONE 0.1s
+[15:15:53]     default: 
+[15:15:53]     default: #3 [darkhorn-mq internal] load build definition from Dockerfile
+[15:15:53]     default: #3 transferring dockerfile: 244B 0.0s done
+[15:15:53]     default: #3 DONE 0.1s
+[15:15:53]     default: 
+[15:15:53]     default: #4 [seed internal] load build definition from Dockerfile.seed
+[15:15:53]     default: #4 transferring dockerfile: 244B 0.0s done
+[15:15:53]     default: #4 DONE 0.1s
+[15:15:53]     default: 
+[15:15:53]     default: #5 [sftp-seed internal] load build definition from Dockerfile.seed
+[15:15:53]     default: #5 transferring dockerfile: 241B 0.0s done
+[15:15:53]     default: #5 DONE 0.1s
+[15:15:53]     default: 
+[15:15:53]     default: #6 [darkhorn-soap internal] load build definition from Dockerfile
+[15:15:53]     default: #6 transferring dockerfile: 256B 0.0s done
+[15:15:53]     default: #6 DONE 0.1s
+[15:15:53]     default: 
+[15:15:53]     default: #7 [darkhorn-soap internal] load metadata for docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:15:55]     default: #7 DONE 2.3s
+[15:15:55]     default: 
+[15:15:55]     default: #8 [seed internal] load .dockerignore
+[15:15:55]     default: #8 transferring context: 2B done
+[15:15:55]     default: #8 DONE 0.0s
+[15:15:55]     default: 
+[15:15:55]     default: #9 [sftp-seed internal] load .dockerignore
+[15:15:55]     default: #9 transferring context: 2B done
+[15:15:55]     default: #9 DONE 0.0s
+[15:15:55]     default: 
+[15:15:55]     default: #10 [darkhorn-soap internal] load .dockerignore
+[15:15:55]     default: #10 transferring context: 2B done
+[15:15:55]     default: #10 DONE 0.0s
+[15:15:55]     default: 
+[15:15:55]     default: #11 [darkhorn-rest internal] load .dockerignore
+[15:15:55]     default: #11 transferring context: 2B done
+[15:15:55]     default: #11 DONE 0.1s
+[15:15:55]     default: 
+[15:15:55]     default: #12 [darkhorn-mq internal] load .dockerignore
+[15:15:55]     default: #12 transferring context: 2B done
+[15:15:55]     default: #12 DONE 0.1s
+[15:15:55]     default: 
+[15:15:55]     default: #13 [darkhorn-rest internal] load build context
+[15:15:56]     default: #13 DONE 0.0s
+[15:15:56]     default: 
+[15:15:56]     default: #14 [darkhorn-soap 1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:15:56]     default: #14 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:15:56]     default: #14 ...
+[15:15:56]     default: 
+[15:15:56]     default: #15 [seed internal] load build context
+[15:15:56]     default: #15 transferring context: 9.02kB 0.0s done
+[15:15:56]     default: #15 DONE 0.1s
+[15:15:56]     default: 
+[15:15:56]     default: #16 [sftp-seed internal] load build context
+[15:15:56]     default: #16 transferring context: 5.72kB 0.0s done
+[15:15:56]     default: #16 DONE 0.1s
+[15:15:56]     default: 
+[15:15:56]     default: #14 [darkhorn-soap 1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:15:56]     default: #14 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.1s done
+[15:15:56]     default: #14 ...
+[15:15:56]     default: 
+[15:15:56]     default: #17 [darkhorn-soap internal] load build context
+[15:15:56]     default: #17 transferring context: 34.52kB 0.1s done
+[15:15:56]     default: #17 DONE 0.2s
+[15:15:56]     default: 
+[15:15:56]     default: #18 [darkhorn-mq internal] load build context
+[15:15:56]     default: #18 transferring context: 17.58kB 0.1s done
+[15:15:56]     default: #18 DONE 0.2s
+[15:15:56]     default: 
+[15:15:56]     default: #13 [darkhorn-rest internal] load build context
+[15:15:56]     default: #13 transferring context: 34.85kB 0.3s done
+[15:15:56]     default: #13 DONE 0.4s
+[15:15:56]     default: 
+[15:15:56]     default: #14 [darkhorn-rest 1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:15:56]     default: #14 sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 0B / 446B 0.2s
+[15:15:56]     default: #14 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0B / 1.26MB 0.2s
+[15:15:56]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0B / 40.01MB 0.2s
+[15:15:56]     default: #14 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0B / 3.64MB 0.2s
+[15:15:56]     default: #14 sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 446B / 446B 0.3s done
+[15:15:57]     default: #14 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 1.26MB / 1.26MB 0.8s done
+[15:15:57]     default: #14 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 1.05MB / 3.64MB 0.9s
+[15:15:57]     default: #14 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB 1.1s done
+[15:15:57]     default: #14 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0.1s done
+[15:15:57]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 2.10MB / 40.01MB 1.4s
+[15:15:57]     default: #14 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0.1s done
+[15:15:57]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 4.19MB / 40.01MB 1.5s
+[15:15:57]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 6.29MB / 40.01MB 1.7s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 10.49MB / 40.01MB 1.8s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 14.68MB / 40.01MB 2.0s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 18.87MB / 40.01MB 2.1s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 24.12MB / 40.01MB 2.3s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 27.26MB / 40.01MB 2.4s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 33.55MB / 40.01MB 2.6s
+[15:15:58]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 38.80MB / 40.01MB 2.7s
+[15:15:59]     default: #14 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 40.01MB / 40.01MB 2.8s done
+[15:15:59]     default: #14 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e
+[15:15:59]     default: #14 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0.8s done
+[15:16:00]     default: #14 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0.8s done
+[15:16:00]     default: #14 extracting sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0.0s done
+[15:16:00]     default: #14 extracting sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 done
+[15:16:00]     default: #14 DONE 4.2s
+[15:16:00]     default: 
+[15:16:00]     default: #19 [sftp-seed 2/5] WORKDIR /app
+[15:16:00]     default: #19 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #20 [darkhorn-mq 3/5] COPY package.json .
+[15:16:00]     default: #20 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #21 [darkhorn-soap 3/5] COPY package.json .
+[15:16:00]     default: #21 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #22 [darkhorn-rest 3/6] COPY package.json ./
+[15:16:00]     default: #22 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #23 [seed 3/5] COPY package.json ./
+[15:16:00]     default: #23 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #24 [sftp-seed 3/5] COPY package.json .
+[15:16:00]     default: #24 DONE 0.1s
+[15:16:00]     default: 
+[15:16:00]     default: #25 [sftp-seed 4/5] RUN npm install --omit=dev
+[15:16:02]     default: #25 2.122 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:16:02]     default: #25 2.283
+[15:16:02]     default: #25 2.283 added 1 package, and audited 2 packages in 2s
+[15:16:02]     default: #25 2.284
+[15:16:02]     default: #25 2.284 1 package is looking for funding
+[15:16:02]     default: #25 2.284   run `npm fund` for details
+[15:16:02]     default: #25 2.285
+[15:16:02]     default: #25 2.285 1 moderate severity vulnerability
+[15:16:02]     default: #25 2.285
+[15:16:02]     default: #25 2.285 To address all issues (including breaking changes), run:
+[15:16:02]     default: #25 2.285   npm audit fix --force
+[15:16:02]     default: #25 2.285
+[15:16:02]     default: #25 2.285 Run `npm audit` for details.
+[15:16:02]     default: #25 2.287 npm notice
+[15:16:02]     default: #25 2.287 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:16:02]     default: #25 2.287 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:16:02]     default: #25 2.287 npm notice To update run: npm install -g npm@12.0.2
+[15:16:02]     default: #25 2.287 npm notice
+[15:16:02]     default: #25 DONE 2.3s
+[15:16:02]     default: 
+[15:16:02]     default: #26 [sftp-seed 5/5] COPY seed.js .
+[15:16:02]     default: #26 DONE 0.1s
+[15:16:02]     default: 
+[15:16:02]     default: #27 [darkhorn-rest 4/6] RUN npm install --omit=dev
+[15:16:03]     default: #27 ...
+[15:16:03]     default: 
+[15:16:03]     default: #28 [sftp-seed] exporting to image
+[15:16:03]     default: #28 exporting layers 0.2s done
+[15:16:03]     default: #28 exporting manifest sha256:fb307844ac13674465d9ffdf38baf6011f8d00fe5de670e5cb9b3527aa5c673b done
+[15:16:03]     default: #28 exporting config sha256:bcb0b5772a5ab960a54fb1a602bd1d469b550c49dc2b1e533bfe72f166884bc6 0.0s done
+[15:16:03]     default: #28 exporting attestation manifest sha256:c1b86e97bbf54244f29a4250dda2be30451b143fe697c2a88c34eb9c4f7e6c13 0.0s done
+[15:16:03]     default: #28 exporting manifest list sha256:bffbf3d7c5a7a2cf316dc14e88f46f27f6e0710900762971a3dde8871da6cdfc done
+[15:16:03]     default: #28 naming to docker.io/library/vagrant-sftp-seed:latest done
+[15:16:03]     default: #28 unpacking to docker.io/library/vagrant-sftp-seed:latest 0.1s done
+[15:16:03]     default: #28 DONE 0.4s
+[15:16:03]     default: 
+[15:16:03]     default: #29 [sftp-seed] resolving provenance for metadata file
+[15:16:03]     default: #29 DONE 0.0s
+[15:16:03]     default: 
+[15:16:03]     default: #30 [seed 4/5] RUN npm install --omit=dev
+[15:16:03]     default: #30 3.336 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:16:03]     default: #30 3.360
+[15:16:03]     default: #30 3.360 added 15 packages, and audited 16 packages in 3s
+[15:16:03]     default: #30 3.360
+[15:16:03]     default: #30 3.360 1 package is looking for funding
+[15:16:03]     default: #30 3.360   run `npm fund` for details
+[15:16:03]     default: #30 3.361
+[15:16:03]     default: #30 3.361 1 moderate severity vulnerability
+[15:16:03]     default: #30 3.361
+[15:16:03]     default: #30 3.361 To address all issues (including breaking changes), run:
+[15:16:03]     default: #30 3.361   npm audit fix --force
+[15:16:03]     default: #30 3.361
+[15:16:03]     default: #30 3.361 Run `npm audit` for details.
+[15:16:03]     default: #30 3.362 npm notice
+[15:16:03]     default: #30 3.362 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:16:03]     default: #30 3.362 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:16:03]     default: #30 3.362 npm notice To update run: npm install -g npm@12.0.2
+[15:16:03]     default: #30 3.362 npm notice
+[15:16:03]     default: #30 DONE 3.4s
+[15:16:03]     default: 
+[15:16:03]     default: #31 [seed 5/5] COPY . .
+[15:16:03]     default: #31 DONE 0.1s
+[15:16:03]     default: 
+[15:16:03]     default: #32 [darkhorn-soap 4/5] RUN npm install --omit=dev
+[15:16:04]     default: #32 ...
+[15:16:04]     default: 
+[15:16:04]     default: #33 [seed] exporting to image
+[15:16:04]     default: #33 exporting layers 0.2s done
+[15:16:04]     default: #33 exporting manifest sha256:b90656a5762e9042671a587fa05f29352068420d4d600d9806f5eef5f44da56e 0.0s done
+[15:16:04]     default: #33 exporting config sha256:20101f913e23723b77be864900614442452f704e085890cfa8d1f30d1c81a2e7 done
+[15:16:04]     default: #33 exporting attestation manifest sha256:a88b4a7e4a3d9c56e2df198a04abd2284867c250148f39b2b5f3a6e66a06760f 0.0s done
+[15:16:04]     default: #33 exporting manifest list sha256:0ef3d949e4cb4d870384eaffe7e25727cae35972dbb107b2d247ee2f115e39c5 0.0s done
+[15:16:04]     default: #33 naming to docker.io/library/vagrant-seed:latest done
+[15:16:04]     default: #33 unpacking to docker.io/library/vagrant-seed:latest 0.1s done
+[15:16:04]     default: #33 DONE 0.4s
+[15:16:04]     default: 
+[15:16:04]     default: #34 [seed] resolving provenance for metadata file
+[15:16:04]     default: #34 DONE 0.0s
+[15:16:04]     default: 
+[15:16:04]     default: #35 [darkhorn-mq 4/5] RUN npm install --omit=dev
+[15:16:05]     default: #35 5.254 npm warn EBADENGINE Unsupported engine {
+[15:16:05]     default: #35 5.254 npm warn EBADENGINE   package: 'brace-expansion@5.0.9',
+[15:16:05]     default: #35 5.254 npm warn EBADENGINE   required: { node: '20 || >=22' },
+[15:16:05]     default: #35 5.254 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+[15:16:05]     default: #35 5.254 npm warn EBADENGINE }
+[15:16:05]     default: #35 5.802 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:16:06]     default: #35 5.845
+[15:16:06]     default: #35 5.845 added 20 packages, and audited 21 packages in 5s
+[15:16:06]     default: #35 5.845
+[15:16:06]     default: #35 5.845 1 package is looking for funding
+[15:16:06]     default: #35 5.845   run `npm fund` for details
+[15:16:06]     default: #35 5.848 npm notice
+[15:16:06]     default: #35 5.848 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:16:06]     default: #35 5.848 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:16:06]     default: #35 5.848 npm notice To update run: npm install -g npm@12.0.2
+[15:16:06]     default: #35 5.848 npm notice
+[15:16:06]     default: #35 5.848
+[15:16:06]     default: #35 5.848 1 moderate severity vulnerability
+[15:16:06]     default: #35 5.848
+[15:16:06]     default: #35 5.848 To address all issues (including breaking changes), run:
+[15:16:06]     default: #35 5.848   npm audit fix --force
+[15:16:06]     default: #35 5.848
+[15:16:06]     default: #35 5.848 Run `npm audit` for details.
+[15:16:06]     default: #35 DONE 6.0s
+[15:16:06]     default: 
+[15:16:06]     default: #32 [darkhorn-soap 4/5] RUN npm install --omit=dev
+[15:16:06]     default: #32 ...
+[15:16:06]     default: 
+[15:16:06]     default: #36 [darkhorn-mq 5/5] COPY src/ ./src/
+[15:16:06]     default: #36 DONE 0.1s
+[15:16:06]     default: 
+[15:16:06]     default: #37 [darkhorn-mq] exporting to image
+[15:16:06]     default: #37 exporting layers 0.2s done
+[15:16:06]     default: #37 exporting manifest sha256:b1f4f99e8db2e7e21ff9c05b8f086a049c8c103c0d497a190d56e7ed659ec8c0
+[15:16:06]     default: #37 exporting manifest sha256:b1f4f99e8db2e7e21ff9c05b8f086a049c8c103c0d497a190d56e7ed659ec8c0 done
+[15:16:06]     default: #37 exporting config sha256:d0597afcadc87dfb430afed91f5830f305e8570c3abc7120196a3d1d5481dafa done
+[15:16:06]     default: #37 exporting attestation manifest sha256:0aa3db776fada6ba60ba3896d0acb4b3f2b12d7621e46aaa29212530ab2a453f 0.0s done
+[15:16:06]     default: #37 exporting manifest list sha256:fa99a057a86a59ceb08217841152d900b4bbf8d9c609be72918d0254cbba097e 0.0s done
+[15:16:06]     default: #37 naming to docker.io/library/vagrant-darkhorn-mq:latest done
+[15:16:06]     default: #37 unpacking to docker.io/library/vagrant-darkhorn-mq:latest 0.1s done
+[15:16:06]     default: #37 DONE 0.5s
+[15:16:06]     default: 
+[15:16:06]     default: #38 [darkhorn-mq] resolving provenance for metadata file
+[15:16:06]     default: #38 DONE 0.0s
+[15:16:06]     default: 
+[15:16:06]     default: #32 [darkhorn-soap 4/5] RUN npm install --omit=dev
+[15:16:09]     default: #32 9.385 npm warn EBADENGINE Unsupported engine {
+[15:16:09]     default: #32 9.385 npm warn EBADENGINE   package: 'brace-expansion@5.0.9',
+[15:16:09]     default: #32 9.385 npm warn EBADENGINE   required: { node: '20 || >=22' },
+[15:16:09]     default: #32 9.385 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+[15:16:09]     default: #32 9.385 npm warn EBADENGINE }
+[15:16:10]     default: #32 10.65 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 added 127 packages, and audited 128 packages in 11s
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 23 packages are looking for funding
+[15:16:11]     default: #32 11.05   run `npm fund` for details
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 3 moderate severity vulnerabilities
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 To address issues that do not require attention, run:
+[15:16:11]     default: #32 11.05   npm audit fix
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 To address all issues (including breaking changes), run:
+[15:16:11]     default: #32 11.05   npm audit fix --force
+[15:16:11]     default: #32 11.05
+[15:16:11]     default: #32 11.05 Run `npm audit` for details.
+[15:16:11]     default: #32 11.05 npm notice
+[15:16:11]     default: #32 11.05 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:16:11]     default: #32 11.05 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:16:11]     default: #32 11.05 npm notice To update run: npm install -g npm@12.0.2
+[15:16:11]     default: #32 11.05 npm notice
+[15:16:11]     default: #32 DONE 11.2s
+[15:16:11]     default: 
+[15:16:11]     default: #27 [darkhorn-rest 4/6] RUN npm install --omit=dev
+[15:16:11]     default: #27 11.03 npm warn EBADENGINE Unsupported engine {
+[15:16:11]     default: #27 11.03 npm warn EBADENGINE   package: 'brace-expansion@5.0.9',
+[15:16:11]     default: #27 11.03 npm warn EBADENGINE   required: { node: '20 || >=22' },
+[15:16:11]     default: #27 11.03 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+[15:16:11]     default: #27 11.03 npm warn EBADENGINE }
+[15:16:11]     default: #27 ...
+[15:16:11]     default: 
+[15:16:11]     default: #39 [darkhorn-soap 5/5] COPY src/ ./src/
+[15:16:11]     default: #39 DONE 0.1s
+[15:16:11]     default: 
+[15:16:11]     default: #40 [darkhorn-soap] exporting to image
+[15:16:11]     default: #40 exporting layers
+[15:16:12]     default: #40 exporting layers 0.9s done
+[15:16:12]     default: #40 exporting manifest sha256:70a46bf6a5882c2a72b25ed9a554cd28980ca388eac7c460402caadd8251d15f
+[15:16:12]     default: #40 exporting manifest sha256:70a46bf6a5882c2a72b25ed9a554cd28980ca388eac7c460402caadd8251d15f done
+[15:16:12]     default: #40 exporting config sha256:14459b468462191651fe17f4ea8bdb7c8288f5b7316c2f1ae8016077fbfcf4b4 0.0s done
+[15:16:12]     default: #40 exporting attestation manifest sha256:acc46c0d27c0d8b504569e81661e27f2a90402a367759dceca9c5cc273d3a28b done
+[15:16:12]     default: #40 exporting manifest list sha256:e2824ebbed108d8222dce4dae47099d4c3b84926814e9c99ff5632d0b64129ba done
+[15:16:12]     default: #40 naming to docker.io/library/vagrant-darkhorn-soap:latest done
+[15:16:12]     default: #40 unpacking to docker.io/library/vagrant-darkhorn-soap:latest
+[15:16:13]     default: #40 unpacking to docker.io/library/vagrant-darkhorn-soap:latest 0.6s done
+[15:16:13]     default: #40 DONE 1.6s
+[15:16:13]     default: 
+[15:16:13]     default: #41 [darkhorn-soap] resolving provenance for metadata file
+[15:16:13]     default: #41 DONE 0.0s
+[15:16:13]     default: 
+[15:16:13]     default: #27 [darkhorn-rest 4/6] RUN npm install --omit=dev
+[15:16:13]     default: #27 12.32 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[15:16:13]     default: #27 12.58 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+[15:16:13]     default: #27 12.64 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+[15:16:13]     default: #27 12.66 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+[15:16:13]     default: #27 12.71 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[15:16:13]     default: #27 12.79 npm warn deprecated gauge@3.0.2: This package is no longer supported.
+[15:16:13]     default: #27 12.94 npm warn deprecated tar@6.2.1: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+[15:16:13]     default: #27 12.99 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:16:14]     default: #27 13.96
+[15:16:14]     default: #27 13.96 added 171 packages, and audited 172 packages in 13s
+[15:16:14]     default: #27 13.96
+[15:16:14]     default: #27 13.96 25 packages are looking for funding
+[15:16:14]     default: #27 13.96   run `npm fund` for details
+[15:16:14]     default: #27 13.97
+[15:16:14]     default: #27 13.97 7 vulnerabilities (4 moderate, 2 high, 1 critical)
+[15:16:14]     default: #27 13.97
+[15:16:14]     default: #27 13.97 To address issues that do not require attention, run:
+[15:16:14]     default: #27 13.97   npm audit fix
+[15:16:14]     default: #27 13.97
+[15:16:14]     default: #27 13.97 To address all issues possible (including breaking changes), run:
+[15:16:14]     default: #27 13.97   npm audit fix --force
+[15:16:14]     default: #27 13.97
+[15:16:14]     default: #27 13.97 Some issues need review, and may require choosing
+[15:16:14]     default: #27 13.97 a different dependency.
+[15:16:14]     default: #27 13.97
+[15:16:14]     default: #27 13.97 Run `npm audit` for details.
+[15:16:14]     default: #27 13.97 npm notice
+[15:16:14]     default: #27 13.97 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:16:14]     default: #27 13.97 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:16:14]     default: #27 13.97 npm notice To update run: npm install -g npm@12.0.2
+[15:16:14]     default: #27 13.97 npm notice
+[15:16:14]     default: #27 DONE 14.2s
+[15:16:14]     default: 
+[15:16:14]     default: #42 [darkhorn-rest 5/6] COPY . .
+[15:16:14]     default: #42 DONE 0.1s
+[15:16:14]     default: 
+[15:16:14]     default: #43 [darkhorn-rest 6/6] RUN mkdir -p /app/data
+[15:16:14]     default: #43 DONE 0.2s
+[15:16:14]     default: 
+[15:16:14]     default: #44 [darkhorn-rest] exporting to image
+[15:16:15]     default: #44 exporting layers 0.9s done
+[15:16:15]     default: #44 exporting manifest sha256:fff40e249ad76ea5748b459fc52b07f28fbdfb5683145b9188c0cfcddfe3e12e
+[15:16:15]     default: #44 exporting manifest sha256:fff40e249ad76ea5748b459fc52b07f28fbdfb5683145b9188c0cfcddfe3e12e done
+[15:16:15]     default: #44 exporting config sha256:d3f949927b3b3543e4c727f4eb5ce62ac97165c16edf36e1aea8b0a2d3c1eb25 done
+[15:16:15]     default: #44 exporting attestation manifest sha256:ef26573e79e7d1639d643376fa1a943f04fe88b3dd099772c803c2471e9d4d5b done
+[15:16:15]     default: #44 exporting manifest list sha256:3f8abadcae541db266dc2e2e57b20a6a527719ba5c4b2a9792bf4e13f68f2f25 done
+[15:16:15]     default: #44 naming to docker.io/library/vagrant-darkhorn-rest:latest done
+[15:16:15]     default: #44 unpacking to docker.io/library/vagrant-darkhorn-rest:latest
+[15:16:16]     default: #44 unpacking to docker.io/library/vagrant-darkhorn-rest:latest 0.6s done
+[15:16:16]     default: #44 DONE 1.5s
+[15:16:16]     default: 
+[15:16:16]     default: #45 [darkhorn-rest] resolving provenance for metadata file
+[15:16:16]     default: #45 DONE 0.0s
+[15:16:16]     default:  Image vagrant-darkhorn-rest Built
+[15:16:16]     default:  Image vagrant-seed Built
+[15:16:16]     default:  Image vagrant-darkhorn-mq Built
+[15:16:16]     default:  Image vagrant-sftp-seed Built
+[15:16:16]     default:  Image vagrant-darkhorn-soap Built
+[15:16:16]     default:  Network vagrant_default Creating
+[15:16:16]     default:  Network vagrant_default Creating
+[15:16:16]     default:  Volume vagrant_ldap_config Creating
+[15:16:16]     default:  Volume vagrant_ldap_config Creating
+[15:16:16]     default:  Volume vagrant_ldap_data Creating
+[15:16:16]     default:  Volume vagrant_ldap_data Creating
+[15:16:16]     default:  Volume vagrant_postgres_data Creating
+[15:16:16]     default:  Volume vagrant_postgres_data Creating
+[15:16:16]     default:  Volume vagrant_rabbitmq_data Creating
+[15:16:16]     default:  Volume vagrant_rabbitmq_data Creating
+[15:16:16]     default:  Volume vagrant_rest_keystore Creating
+[15:16:16]     default:  Volume vagrant_rest_keystore Creating
+[15:16:16]     default:  Volume vagrant_sftp_data Creating
+[15:16:16]     default:  Volume vagrant_sftp_data Creating
+[15:16:16]     default:  Volume vagrant_sftp_data Created
+[15:16:16]     default:  Volume vagrant_sftp_data Created
+[15:16:16]     default:  Volume vagrant_postgres_data Created
+[15:16:16]     default:  Volume vagrant_postgres_data Created
+[15:16:16]     default:  Volume vagrant_ldap_config Created
+[15:16:16]     default:  Volume vagrant_ldap_config Created
+[15:16:16]     default:  Volume vagrant_rabbitmq_data Created
+[15:16:16]     default:  Volume vagrant_rabbitmq_data Created
+[15:16:16]     default:  Volume vagrant_rest_keystore Created
+[15:16:16]     default:  Volume vagrant_rest_keystore Created
+[15:16:16]     default:  Volume vagrant_ldap_data Created
+[15:16:16]     default:  Volume vagrant_ldap_data Created
+[15:16:16]     default:  Network vagrant_default Created
+[15:16:16]     default:  Network vagrant_default Created
+[15:16:16]     default:  Container darkhorn-sftp-seed Creating
+[15:16:16]     default:  Container darkhorn-postgres Creating
+[15:16:16]     default:  Container darkhorn-rabbitmq Creating
+[15:16:16]     default:  Container darkhorn-ldap Creating
+[15:16:16]     default:  Container darkhorn-sftp-seed Created
+[15:16:16]     default:  Container darkhorn-sftp Creating
+[15:16:16]     default:  Container darkhorn-postgres Created
+[15:16:16]     default:  Container darkhorn-seed Creating
+[15:16:16]     default:  Container darkhorn-rabbitmq Created
+[15:16:16]     default:  Container darkhorn-ldap Created
+[15:16:16]     default:  Container darkhorn-sftp Created
+[15:16:16]     default:  Container darkhorn-seed Created
+[15:16:16]     default:  Container darkhorn-soap Creating
+[15:16:16]     default:  Container darkhorn-mq Creating
+[15:16:16]     default:  Container darkhorn-rest Creating
+[15:16:16]     default:  Container darkhorn-soap Created
+[15:16:16]     default:  Container darkhorn-rest Created
+[15:16:16]     default:  Container darkhorn-mq Created
+[15:16:16]     default:  Container darkhorn-ldap Starting
+[15:16:16]     default:  Container darkhorn-sftp-seed Starting
+[15:16:16]     default:  Container darkhorn-postgres Starting
+[15:16:16]     default:  Container darkhorn-rabbitmq Starting
+[15:16:16]     default:  Container darkhorn-ldap Started
+[15:16:17]     default:  Container darkhorn-sftp-seed Started
+[15:16:17]     default:  Container darkhorn-sftp-seed Waiting
+[15:16:17]     default:  Container darkhorn-postgres Started
+[15:16:17]     default:  Container darkhorn-postgres Waiting
+[15:16:17]     default:  Container darkhorn-sftp-seed Exited
+[15:16:17]     default:  Container darkhorn-sftp Starting
+[15:16:17]     default:  Container darkhorn-rabbitmq Started
+[15:16:17]     default:  Container darkhorn-sftp Started
+[15:16:22]     default:  Container darkhorn-postgres Healthy
+[15:16:22]     default:  Container darkhorn-seed Starting
+[15:16:23]     default:  Container darkhorn-seed Started
+[15:16:23]     default:  Container darkhorn-seed Waiting
+[15:16:23]     default:  Container darkhorn-seed Waiting
+[15:16:23]     default:  Container darkhorn-rabbitmq Waiting
+[15:16:23]     default:  Container darkhorn-seed Waiting
+[15:16:24]     default:  Container darkhorn-seed Exited
+[15:16:24]     default:  Container darkhorn-seed Exited
+[15:16:24]     default:  Container darkhorn-soap Starting
+[15:16:24]     default:  Container darkhorn-seed Exited
+[15:16:24]     default:  Container darkhorn-rest Starting
+[15:16:24]     default:  Container darkhorn-soap Started
+[15:16:25]     default:  Container darkhorn-rest Started
+[15:16:29]     default:  Container darkhorn-rabbitmq Healthy
+[15:16:29]     default:  Container darkhorn-mq Starting
+[15:16:29]     default:  Container darkhorn-mq Started
+[15:16:29]     default: 
+[15:16:29]     default: ======================================================
+[15:16:29]     default:   Darkhorn - Ready
+[15:16:29]     default: ======================================================
+[15:16:29]     default:   REST:          http://localhost:3000
+[15:16:29]     default:   SOAP:          http://localhost:3002
+[15:16:29]     default:   JDBC:          localhost:5432
+[15:16:29]     default:   LDAP:          localhost:389
+[15:16:29]     default:   SFTP:          localhost:2222
+[15:16:29]     default:   MQ (AMQP):     localhost:5672
+[15:16:29]     default:   RabbitMQ mgmt: http://localhost:15672
+[15:16:29]     default: ======================================================
+[15:16:29]     default: 
+[15:16:29] ==> default: Running provisioner: smoke-test (shell)...
+[15:16:30]     default: Running: script: smoke-test
+[15:16:30]     default: 
+[15:16:30]     default: REST  http://10.10.10.20:3000
+[15:16:30]     default:   [OK]   GET /api/health -> ok
+[15:16:30]     default:   [OK]   POST /oauth/token -> token obtained
+[15:16:30]     default:   [OK]   GET /api/users -> 150 users
+[15:16:30]     default: 
+[15:16:30]     default: JDBC  10.10.10.20:5432
+[15:16:30]     default:   [OK]   SELECT COUNT(*) FROM users -> 150 rows
+[15:16:30]     default: 
+[15:16:30]     default: LDAP  10.10.10.20:389
+[15:16:40]     default:   [OK]   ldapsearch inetOrgPerson -> 154 entries
+[15:16:40]     default: 
+[15:16:40]     default: SFTP  10.10.10.20:2222
+[15:16:40]     default:   [OK]   sftp ls darkhorn/ -> users.csv present
+[15:16:40]     default: 
+[15:16:40]     default: SOAP  http://10.10.10.20:3002
+[15:16:41]     default:   [OK]   GET /soap?wsdl -> WSDL reachable
+[15:16:41]     default:   [OK]   SOAP GetGroups -> ok
+[15:16:41]     default: 
+[15:16:41]     default: MQ    10.10.10.20:5672 / mgmt 10.10.10.20:15672
+[15:16:41]     default:   [OK]   RabbitMQ node health -> ok
+[15:16:41]     default:   [OK]   queue darkhorn.requests exists
+[15:16:41]     default: 
+[15:16:41]     default: Results: 10 passed, 0 failed
+[15:16:41]     default: 
+[15:16:41]   [OK]   Darkhorn - vagrant up succeeded
+[15:16:41] 
+[15:16:41] Hollowcrown - starting...
+[15:16:43] Bringing machine 'default' up with 'vmware_desktop' provider...
+[15:16:43] ==> default: Cloning VMware VM: 'bento/debian-12'. This can take some time...
+[15:16:44] ==> default: Checking if box 'bento/debian-12' version '202510.26.0' is up to date...
+[15:16:45] ==> default: Verifying vmnet devices are healthy...
+[15:16:46] ==> default: Preparing network adapters...
+[15:16:48] ==> default: Starting the VMware VM...
+[15:16:50] ==> default: Waiting for the VM to receive an address...
+[15:17:24] ==> default: Forwarding ports...
+[15:17:24]     default: -- 22 => 2230
+[15:17:24]     default: -- 8080 => 8030
+[15:17:24]     default: -- 4000 => 4000
+[15:17:25] ==> default: Waiting for machine to boot. This may take a few minutes...
+[15:17:36]     default: SSH address: 127.0.0.1:2230
+[15:17:36]     default: SSH username: vagrant
+[15:17:36]     default: SSH auth method: private key
+[15:17:38]     default: 
+[15:17:38]     default: Vagrant insecure key detected. Vagrant will automatically replace
+[15:17:38]     default: this with a newly generated keypair for better security.
+[15:17:40]     default: 
+[15:17:40]     default: Inserting generated public key within guest...
+[15:17:41]     default: Removing insecure key from the guest if it's present...
+[15:17:42]     default: Key inserted! Disconnecting and reconnecting using new SSH key...
+[15:17:44] ==> default: Machine booted and ready!
+[15:17:44] ==> default: Setting hostname...
+[15:17:49] ==> default: Configuring network adapters within the VM...
+[15:17:51] ==> default: Waiting for HGFS to become available...
+[15:17:53] ==> default: Enabling and configuring shared folders...
+[15:17:53]     default: -- C:/Users/LeandroValovits/.bob/playground/Ashfeld/hollowcrown: /vagrant
+[15:17:57] ==> default: Running provisioner: shell...
+[15:17:58]     default: Running: inline script
+[15:18:03]     default: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+[15:18:03]     default: (Reading database ... 
+[15:18:03] (Reading database ... 5%
+[15:18:03] (Reading database ... 10%
+[15:18:03] (Reading database ... 15%
+[15:18:03] (Reading database ... 20%
+[15:18:03] (Reading database ... 25%
+[15:18:03] (Reading database ... 30%
+[15:18:03] (Reading database ... 35%
+[15:18:03] (Reading database ... 40%
+[15:18:03] (Reading database ... 45%
+[15:18:03] (Reading database ... 50%
+[15:18:03] (Reading database ... 55%
+[15:18:03] (Reading database ... 60%
+[15:18:03] (Reading database ... 65%
+[15:18:03] (Reading database ... 70%
+[15:18:03] (Reading database ... 75%
+[15:18:03] (Reading database ... 80%
+[15:18:03] (Reading database ... 85%
+[15:18:03] (Reading database ... 90%
+[15:18:03] (Reading database ... 95%
+[15:18:03] (Reading database ... 100%
+[15:18:03] (Reading database ... 57067 files and directories currently installed.)
+[15:18:03]     default: Preparing to unpack .../ca-certificates_20250419~deb12u1_all.deb ...
+[15:18:03]     default: Unpacking ca-certificates (20250419~deb12u1) over (20230311+deb12u1) ...
+[15:18:03]     default: Preparing to unpack .../curl_7.88.1-10+deb12u15_amd64.deb ...
+[15:18:03]     default: Unpacking curl (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:18:03]     default: Preparing to unpack .../libcurl4_7.88.1-10+deb12u15_amd64.deb ...
+[15:18:03]     default: Unpacking libcurl4:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:18:03]     default: Preparing to unpack .../libcurl3-gnutls_7.88.1-10+deb12u15_amd64.deb ...
+[15:18:03]     default: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:18:03]     default: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) ...
+[15:18:03]     default: Setting up ca-certificates (20250419~deb12u1) ...
+[15:18:06]     default: Updating certificates in /etc/ssl/certs...
+[15:18:07]     default: rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+[15:18:07]     default: 21 added, 13 removed; done.
+[15:18:07]     default: Setting up libcurl4:amd64 (7.88.1-10+deb12u15) ...
+[15:18:07]     default: Setting up curl (7.88.1-10+deb12u15) ...
+[15:18:07]     default: Processing triggers for man-db (2.11.2-2) ...
+[15:18:09]     default: Processing triggers for libc-bin (2.36-9+deb12u13) ...
+[15:18:09]     default: Processing triggers for ca-certificates (20250419~deb12u1) ...
+[15:18:09]     default: Updating certificates in /etc/ssl/certs...
+[15:18:10]     default: 0 added, 0 removed; done.
+[15:18:10]     default: Running hooks in /etc/ca-certificates/update.d...
+[15:18:10]     default: done.
+[15:18:15]     default: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+[15:18:15]     default: Selecting previously unselected package containerd.io.
+[15:18:15]     default: (Reading database ... 
+[15:18:15] (Reading database ... 5%
+[15:18:15] (Reading database ... 10%
+[15:18:15] (Reading database ... 15%
+[15:18:15] (Reading database ... 20%
+[15:18:15] (Reading database ... 25%
+[15:18:15] (Reading database ... 30%
+[15:18:15] (Reading database ... 35%
+[15:18:15] (Reading database ... 40%
+[15:18:15] (Reading database ... 45%
+[15:18:15] (Reading database ... 50%
+[15:18:15] (Reading database ... 55%
+[15:18:15] (Reading database ... 60%
+[15:18:15] (Reading database ... 65%
+[15:18:15] (Reading database ... 70%
+[15:18:15] (Reading database ... 75%
+[15:18:15] (Reading database ... 80%
+[15:18:15] (Reading database ... 85%
+[15:18:15] (Reading database ... 90%
+[15:18:15] (Reading database ... 95%
+[15:18:15] (Reading database ... 100%
+[15:18:15] (Reading database ... 57075 files and directories currently installed.)
+[15:18:15]     default: Preparing to unpack .../00-containerd.io_2.3.5-1~debian.12~bookworm_amd64.deb ...
+[15:18:15]     default: Unpacking containerd.io (2.3.5-1~debian.12~bookworm) ...
+[15:18:17]     default: Selecting previously unselected package docker-ce-cli.
+[15:18:17]     default: Preparing to unpack .../01-docker-ce-cli_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:18:17]     default: Unpacking docker-ce-cli (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:17]     default: Selecting previously unselected package libip6tc2:amd64.
+[15:18:17]     default: Preparing to unpack .../02-libip6tc2_1.8.9-2_amd64.deb ...
+[15:18:17]     default: Unpacking libip6tc2:amd64 (1.8.9-2) ...
+[15:18:18]     default: Selecting previously unselected package libnfnetlink0:amd64.
+[15:18:18]     default: Preparing to unpack .../03-libnfnetlink0_1.0.2-2_amd64.deb ...
+[15:18:18]     default: Unpacking libnfnetlink0:amd64 (1.0.2-2) ...
+[15:18:18]     default: Selecting previously unselected package libnetfilter-conntrack3:amd64.
+[15:18:18]     default: Preparing to unpack .../04-libnetfilter-conntrack3_1.0.9-3_amd64.deb ...
+[15:18:18]     default: Unpacking libnetfilter-conntrack3:amd64 (1.0.9-3) ...
+[15:18:18]     default: Selecting previously unselected package iptables.
+[15:18:18]     default: Preparing to unpack .../05-iptables_1.8.9-2_amd64.deb ...
+[15:18:18]     default: Unpacking iptables (1.8.9-2) ...
+[15:18:18]     default: Selecting previously unselected package docker-ce.
+[15:18:18]     default: Preparing to unpack .../06-docker-ce_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:18:18]     default: Unpacking docker-ce (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:19]     default: Selecting previously unselected package pigz.
+[15:18:19]     default: Preparing to unpack .../07-pigz_2.6-1_amd64.deb ...
+[15:18:19]     default: Unpacking pigz (2.6-1) ...
+[15:18:20]     default: Selecting previously unselected package docker-buildx-plugin.
+[15:18:20]     default: Preparing to unpack .../08-docker-buildx-plugin_0.37.0-1~debian.12~bookworm_amd64.deb ...
+[15:18:20]     default: Unpacking docker-buildx-plugin (0.37.0-1~debian.12~bookworm) ...
+[15:18:21]     default: Selecting previously unselected package docker-ce-rootless-extras.
+[15:18:21]     default: Preparing to unpack .../09-docker-ce-rootless-extras_5%3a29.8.0-1~debian.12~bookworm_amd64.deb ...
+[15:18:21]     default: Unpacking docker-ce-rootless-extras (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:21]     default: Selecting previously unselected package docker-compose-plugin.
+[15:18:21]     default: Preparing to unpack .../10-docker-compose-plugin_5.5.1-1~debian.12~bookworm_amd64.deb ...
+[15:18:21]     default: Unpacking docker-compose-plugin (5.5.1-1~debian.12~bookworm) ...
+[15:18:22]     default: Selecting previously unselected package liberror-perl.
+[15:18:22]     default: Preparing to unpack .../11-liberror-perl_0.17029-2_all.deb ...
+[15:18:22]     default: Unpacking liberror-perl (0.17029-2) ...
+[15:18:22]     default: Selecting previously unselected package git-man.
+[15:18:22]     default: Preparing to unpack .../12-git-man_1%3a2.39.5-0+deb12u3_all.deb ...
+[15:18:22]     default: Unpacking git-man (1:2.39.5-0+deb12u3) ...
+[15:18:22]     default: Selecting previously unselected package git.
+[15:18:22]     default: Preparing to unpack .../13-git_1%3a2.39.5-0+deb12u3_amd64.deb ...
+[15:18:22]     default: Unpacking git (1:2.39.5-0+deb12u3) ...
+[15:18:23]     default: Setting up libip6tc2:amd64 (1.8.9-2) ...
+[15:18:23]     default: Setting up liberror-perl (0.17029-2) ...
+[15:18:23]     default: Setting up docker-buildx-plugin (0.37.0-1~debian.12~bookworm) ...
+[15:18:23]     default: Setting up containerd.io (2.3.5-1~debian.12~bookworm) ...
+[15:18:23]     default: Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service ΓåÆ /lib/systemd/system/containerd.service.
+[15:18:23]     default: Setting up docker-compose-plugin (5.5.1-1~debian.12~bookworm) ...
+[15:18:23]     default: Setting up docker-ce-cli (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:23]     default: Setting up pigz (2.6-1) ...
+[15:18:23]     default: Setting up libnfnetlink0:amd64 (1.0.2-2) ...
+[15:18:23]     default: Setting up git-man (1:2.39.5-0+deb12u3) ...
+[15:18:23]     default: Setting up docker-ce-rootless-extras (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:23]     default: Setting up git (1:2.39.5-0+deb12u3) ...
+[15:18:23]     default: Setting up libnetfilter-conntrack3:amd64 (1.0.9-3) ...
+[15:18:23]     default: Setting up iptables (1.8.9-2) ...
+[15:18:23]     default: update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables (iptables) in auto mode
+[15:18:23]     default: update-alternatives: using /usr/sbin/ip6tables-legacy to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+[15:18:23]     default: update-alternatives: using /usr/sbin/iptables-nft to provide /usr/sbin/iptables (iptables) in auto mode
+[15:18:23]     default: update-alternatives: using /usr/sbin/ip6tables-nft to provide /usr/sbin/ip6tables (ip6tables) in auto mode
+[15:18:23]     default: update-alternatives: using /usr/sbin/arptables-nft to provide /usr/sbin/arptables (arptables) in auto mode
+[15:18:23]     default: update-alternatives: using /usr/sbin/ebtables-nft to provide /usr/sbin/ebtables (ebtables) in auto mode
+[15:18:23]     default: Setting up docker-ce (5:29.8.0-1~debian.12~bookworm) ...
+[15:18:24]     default: Created symlink /etc/systemd/system/multi-user.target.wants/docker.service ΓåÆ /lib/systemd/system/docker.service.
+[15:18:24]     default: Created symlink /etc/systemd/system/sockets.target.wants/docker.socket ΓåÆ /lib/systemd/system/docker.socket.
+[15:18:25]     default: Processing triggers for man-db (2.11.2-2) ...
+[15:18:25]     default: Processing triggers for libc-bin (2.36-9+deb12u13) ...
+[15:18:26]     default:  Image postgres:15-alpine@sha256:fe0737ba566a2c5b2a28f34433c0a423261900ec17b9bf7ad115e1aae7e57f1b Pulling
+[15:18:28]     default:  236e3b4c2204 Pulling fs layer 0B
+[15:18:28]     default:  55afa1ecc21d Pulling fs layer 0B
+[15:18:28]     default:  2521846a4c4b Pulling fs layer 0B
+[15:18:28]     default:  516ac23b2d22 Pulling fs layer 0B
+[15:18:28]     default:  d30adf595bd0 Pulling fs layer 0B
+[15:18:28]     default:  a5b616744b9f Pulling fs layer 0B
+[15:18:28]     default:  ecbc0f97fe87 Pulling fs layer 0B
+[15:18:28]     default:  26065aa66f8d Pulling fs layer 0B
+[15:18:28]     default:  4989bdaa0ad3 Pulling fs layer 0B
+[15:18:28]     default:  0141deae452e Pulling fs layer 0B
+[15:18:28]     default:  e7426913c582 Pulling fs layer 0B
+[15:18:29]     default:  e7426913c582 Download complete 0B
+[15:18:29]     default:  236e3b4c2204 Download complete 0B
+[15:18:29]     default:  55afa1ecc21d Download complete 0B
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:29]     default:  516ac23b2d22 Download complete 0B
+[15:18:29]     default:  2521846a4c4b Download complete 0B
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:29]     default:  d30adf595bd0 Download complete 0B
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:29]     default:  a5b616744b9f Download complete 0B
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:29]     default:  ecbc0f97fe87 Downloading 3.146MB
+[15:18:29]     default:  55afa1ecc21d Extracting 1B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 6.291MB
+[15:18:30]     default:  55afa1ecc21d Extracting 1B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 10.49MB
+[15:18:30]     default:  55afa1ecc21d Extracting 1B
+[15:18:30]     default:  26065aa66f8d Download complete 0B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 14.68MB
+[15:18:30]     default:  55afa1ecc21d Extracting 1B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 18.87MB
+[15:18:30]     default:  4989bdaa0ad3 Download complete 0B
+[15:18:30]     default:  55afa1ecc21d Extracting 1B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 23.07MB
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 26.21MB
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 29.36MB
+[15:18:30]     default:  0141deae452e Download complete 0B
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 32.51MB
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 36.7MB
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:30]     default:  ecbc0f97fe87 Downloading 38.8MB
+[15:18:30]     default:  55afa1ecc21d Extracting 2B
+[15:18:31]     default:  f67b1fb6e304 Downloading 44.39kB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 41.94MB
+[15:18:31]     default:  55afa1ecc21d Pull complete 0B
+[15:18:31]     default:  f67b1fb6e304 Download complete 0B
+[15:18:31]     default:  f9b271aad813 Download complete 0B
+[15:18:31]     default:  ecbc0f97fe87 Downloading 45.09MB
+[15:18:31]     default:  516ac23b2d22 Extracting 1B
+[15:18:31]     default:  2521846a4c4b Pull complete 0B
+[15:18:31]     default:  ecbc0f97fe87 Downloading 49.28MB
+[15:18:31]     default:  516ac23b2d22 Pull complete 0B
+[15:18:31]     default:  d30adf595bd0 Pull complete 0B
+[15:18:31]     default:  a5b616744b9f Pull complete 0B
+[15:18:31]     default:  ecbc0f97fe87 Downloading 53.48MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 56.62MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 60.82MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 65.01MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 69.21MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 73.4MB
+[15:18:31]     default:  ecbc0f97fe87 Downloading 77.59MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 81.79MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 85.98MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 89.13MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 93.32MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 96.47MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 100.7MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 103.8MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 108MB
+[15:18:32]     default:  ecbc0f97fe87 Downloading 110.5MB
+[15:18:32]     default:  ecbc0f97fe87 Download complete 0B
+[15:18:32]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:33]     default:  ecbc0f97fe87 Extracting 1B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 2B
+[15:18:34]     default:  ecbc0f97fe87 Extracting 3B
+[15:18:35]     default:  ecbc0f97fe87 Extracting 3B
+[15:18:35]     default:  ecbc0f97fe87 Extracting 3B
+[15:18:35]     default:  26065aa66f8d Pull complete 0B
+[15:18:35]     default:  4989bdaa0ad3 Pull complete 0B
+[15:18:35]     default:  0141deae452e Pull complete 0B
+[15:18:35]     default:  ecbc0f97fe87 Pull complete 0B
+[15:18:35]     default:  e7426913c582 Pull complete 0B
+[15:18:35]     default:  236e3b4c2204 Pull complete 0B
+[15:18:35]     default:  Image postgres:15-alpine@sha256:fe0737ba566a2c5b2a28f34433c0a423261900ec17b9bf7ad115e1aae7e57f1b Pulled
+[15:18:35]     default:  Image vagrant-hollowcrown-seed Building
+[15:18:35]     default:  Image vagrant-hollowcrown-api Building
+[15:18:35]     default:  Image vagrant-hollowcrown-web Building
+[15:18:35]     default: #1 [internal] load local bake definitions
+[15:18:35]     default: #1 reading from stdin 1.37kB done
+[15:18:35]     default: #1 DONE 0.0s
+[15:18:36]     default: 
+[15:18:36]     default: #2 [hollowcrown-web internal] load build definition from Dockerfile
+[15:18:36]     default: #2 transferring dockerfile: 518B 0.0s done
+[15:18:36]     default: #2 DONE 0.1s
+[15:18:36]     default: 
+[15:18:36]     default: #3 [hollowcrown-seed internal] load build definition from Dockerfile
+[15:18:36]     default: #3 transferring dockerfile: 285B 0.1s done
+[15:18:36]     default: #3 DONE 0.1s
+[15:18:36]     default: 
+[15:18:36]     default: #4 [hollowcrown-api internal] load metadata for docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:38]     default: #4 ...
+[15:18:38]     default: 
+[15:18:38]     default: #5 [hollowcrown-web internal] load metadata for docker.io/library/nginx:1.25-alpine@sha256:516475cc129da42866742567714ddc681e5eed7b9ee0b9e9c015e464b4221a00
+[15:18:38]     default: #5 DONE 2.3s
+[15:18:38]     default: 
+[15:18:38]     default: #4 [hollowcrown-web internal] load metadata for docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:38]     default: #4 DONE 2.3s
+[15:18:38]     default: 
+[15:18:38]     default: #6 [hollowcrown-web internal] load .dockerignore
+[15:18:38]     default: #6 transferring context: 2B done
+[15:18:38]     default: #6 DONE 0.0s
+[15:18:38]     default: 
+[15:18:38]     default: #7 [hollowcrown-seed internal] load .dockerignore
+[15:18:38]     default: #7 transferring context: 2B 0.0s done
+[15:18:38]     default: #7 DONE 0.0s
+[15:18:38]     default: 
+[15:18:38]     default: #8 [hollowcrown-seed builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:38]     default: #8 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:38]     default: #8 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.1s done
+[15:18:38]     default: #8 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.1s done
+[15:18:38]     default: #8 ...
+[15:18:38]     default: 
+[15:18:38]     default: #9 [hollowcrown-web stage-1 1/3] FROM docker.io/library/nginx:1.25-alpine@sha256:516475cc129da42866742567714ddc681e5eed7b9ee0b9e9c015e464b4221a00
+[15:18:38]     default: #9 resolve docker.io/library/nginx:1.25-alpine@sha256:516475cc129da42866742567714ddc681e5eed7b9ee0b9e9c015e464b4221a00 0.1s done
+[15:18:39]     default: #9 DONE 0.4s
+[15:18:39]     default: 
+[15:18:39]     default: #8 [hollowcrown-api builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:39]     default: #8 ...
+[15:18:39]     default: 
+[15:18:39]     default: #10 [hollowcrown-api internal] load build context
+[15:18:39]     default: #10 transferring context: 18.58kB 0.5s done
+[15:18:39]     default: #10 DONE 0.5s
+[15:18:39]     default: 
+[15:18:39]     default: #11 [hollowcrown-web internal] load build context
+[15:18:39]     default: #11 transferring context: 37.45kB 0.5s done
+[15:18:39]     default: #11 DONE 0.6s
+[15:18:39]     default: 
+[15:18:39]     default: #8 [hollowcrown-api builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:39]     default: #8 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0B / 1.26MB 0.2s
+[15:18:39]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0B / 40.01MB 0.2s
+[15:18:39]     default: #8 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0B / 3.64MB 0.2s
+[15:18:39]     default: #8 sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 0B / 446B 0.3s
+[15:18:39]     default: #8 sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 446B / 446B 0.3s done
+[15:18:39]     default: #8 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 1.26MB / 1.26MB 0.7s done
+[15:18:39]     default: #8 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 1.05MB / 3.64MB 0.9s
+[15:18:39]     default: #8 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.15MB / 3.64MB 1.1s
+[15:18:39]     default: #8 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB 1.1s done
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 3.15MB / 40.01MB 1.2s
+[15:18:40]     default: #8 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 8.39MB / 40.01MB 1.4s
+[15:18:40]     default: #8 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0.2s done
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 15.73MB / 40.01MB 1.5s
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 20.97MB / 40.01MB 1.7s
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 25.17MB / 40.01MB 1.8s
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 32.51MB / 40.01MB 2.0s
+[15:18:40]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 38.80MB / 40.01MB 2.1s
+[15:18:41]     default: #8 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 40.01MB / 40.01MB 2.2s done
+[15:18:41]     default: #8 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e
+[15:18:41]     default: #8 ...
+[15:18:41]     default: 
+[15:18:41]     default: #9 [hollowcrown-web stage-1 1/3] FROM docker.io/library/nginx:1.25-alpine@sha256:516475cc129da42866742567714ddc681e5eed7b9ee0b9e9c015e464b4221a00
+[15:18:41]     default: #9 sha256:0d0c16747d2c6b6c26c064652afcb964c15f1b1e596ec052b2aa19b83948ae27 13.04MB / 13.04MB 0.8s done
+[15:18:41]     default: #9 sha256:8a3742a9529dc5c00974dfcf5e465be9f1606ff8a1911527b3928cf86ad57465 1.40kB / 1.40kB 0.4s done
+[15:18:41]     default: #9 sha256:13fcfbc94648785b918ecc1af675ac5187cdfc30f4fdaf9afa8bd2e9dedf548b 954B / 954B 1.0s done
+[15:18:41]     default: #9 sha256:d4bca490e609acaaf54ca73363442d31a31fd136a47a20a12370cf2025f0a10b 393B / 393B 0.4s done
+[15:18:41]     default: #9 sha256:5406ed7b06d9a94b5bd15843d2a1c7e38796a3ec5dc7f40f16f70cc1d045f453 0B / 1.21kB 0.6s
+[15:18:41]     default: #9 sha256:e6ef242c157026935bf8a69e6cf19f8f6635e44507c813daf0cc644f2e22396b 629B / 629B 0.6s done
+[15:18:41]     default: #9 sha256:fc21a1d387f514f53589abea6d67cd6b329dfd3c9059bc96a552af3b3c97b413 3.99MB / 3.99MB 0.5s done
+[15:18:41]     default: #9 sha256:4abcf20661432fb2d719aaf90656f55c287f8ca915dc1c92ec14ff61e67fbaf8 3.41MB / 3.41MB 0.5s done
+[15:18:41]     default: #9 extracting sha256:4abcf20661432fb2d719aaf90656f55c287f8ca915dc1c92ec14ff61e67fbaf8 0.1s done
+[15:18:41]     default: #9 extracting sha256:fc21a1d387f514f53589abea6d67cd6b329dfd3c9059bc96a552af3b3c97b413
+[15:18:41]     default: #9 extracting sha256:fc21a1d387f514f53589abea6d67cd6b329dfd3c9059bc96a552af3b3c97b413 0.3s done
+[15:18:41]     default: #9 extracting sha256:e6ef242c157026935bf8a69e6cf19f8f6635e44507c813daf0cc644f2e22396b
+[15:18:42]     default: #9 extracting sha256:e6ef242c157026935bf8a69e6cf19f8f6635e44507c813daf0cc644f2e22396b 0.0s done
+[15:18:42]     default: #9 extracting sha256:13fcfbc94648785b918ecc1af675ac5187cdfc30f4fdaf9afa8bd2e9dedf548b 0.0s done
+[15:18:42]     default: #9 extracting sha256:d4bca490e609acaaf54ca73363442d31a31fd136a47a20a12370cf2025f0a10b 0.0s done
+[15:18:42]     default: #9 extracting sha256:5406ed7b06d9a94b5bd15843d2a1c7e38796a3ec5dc7f40f16f70cc1d045f453 0.0s done
+[15:18:42]     default: #9 extracting sha256:8a3742a9529dc5c00974dfcf5e465be9f1606ff8a1911527b3928cf86ad57465 0.0s done
+[15:18:42]     default: #9 extracting sha256:0d0c16747d2c6b6c26c064652afcb964c15f1b1e596ec052b2aa19b83948ae27
+[15:18:42]     default: #9 extracting sha256:0d0c16747d2c6b6c26c064652afcb964c15f1b1e596ec052b2aa19b83948ae27 0.6s done
+[15:18:42]     default: #9 DONE 4.1s
+[15:18:42]     default: 
+[15:18:42]     default: #8 [hollowcrown-web builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+[15:18:42]     default: #8 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 1.8s done
+[15:18:43]     default: #8 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 1.8s done
+[15:18:43]     default: #8 extracting sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0.1s done
+[15:18:43]     default: #8 extracting sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 done
+[15:18:43]     default: #8 DONE 4.4s
+[15:18:43]     default: 
+[15:18:43]     default: #12 [hollowcrown-api 2/6] RUN apk add --no-cache curl
+[15:18:43]     default: #12 ...
+[15:18:43]     default: 
+[15:18:43]     default: #13 [hollowcrown-web builder 2/6] WORKDIR /app
+[15:18:43]     default: #13 DONE 0.2s
+[15:18:43]     default: 
+[15:18:43]     default: #14 [hollowcrown-web builder 3/6] COPY package.json .
+[15:18:43]     default: #14 DONE 0.1s
+[15:18:43]     default: 
+[15:18:43]     default: #15 [hollowcrown-web builder 4/6] RUN npm install
+[15:18:45]     default: #15 ...
+[15:18:45]     default: 
+[15:18:45]     default: #12 [hollowcrown-seed 2/6] RUN apk add --no-cache curl
+[15:18:45]     default: #12 0.629 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+[15:18:45]     default: #12 1.061 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+[15:18:45]     default: #12 1.936 (1/9) Installing brotli-libs (1.1.0-r2)
+[15:18:45]     default: #12 1.971 (2/9) Installing c-ares (1.34.8-r0)
+[15:18:45]     default: #12 1.986 (3/9) Installing libunistring (1.2-r0)
+[15:18:45]     default: #12 2.058 (4/9) Installing libidn2 (2.3.7-r0)
+[15:18:45]     default: #12 2.078 (5/9) Installing nghttp2-libs (1.69.0-r0)
+[15:18:45]     default: #12 2.090 (6/9) Installing libpsl (0.21.5-r3)
+[15:18:45]     default: #12 2.111 (7/9) Installing zstd-libs (1.5.6-r2)
+[15:18:45]     default: #12 2.149 (8/9) Installing libcurl (8.14.1-r2)
+[15:18:45]     default: #12 2.176 (9/9) Installing curl (8.14.1-r2)
+[15:18:45]     default: #12 2.194 Executing busybox-1.37.0-r12.trigger
+[15:18:45]     default: #12 2.206 OK: 14 MiB in 26 packages
+[15:18:45]     default: #12 DONE 2.5s
+[15:18:45]     default: 
+[15:18:45]     default: #16 [hollowcrown-seed 3/6] WORKDIR /app
+[15:18:45]     default: #16 DONE 0.1s
+[15:18:45]     default: 
+[15:18:45]     default: #17 [hollowcrown-seed 4/6] COPY package.json .
+[15:18:45]     default: #17 DONE 0.1s
+[15:18:45]     default: 
+[15:18:45]     default: #18 [hollowcrown-seed 5/6] RUN npm install --omit=dev
+[15:18:53]     default: #18 7.976 npm warn EBADENGINE Unsupported engine {
+[15:18:53]     default: #18 7.976 npm warn EBADENGINE   package: 'brace-expansion@5.0.9',
+[15:18:53]     default: #18 7.976 npm warn EBADENGINE   required: { node: '20 || >=22' },
+[15:18:53]     default: #18 7.976 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+[15:18:53]     default: #18 7.976 npm warn EBADENGINE }
+[15:18:54]     default: #18 9.226 npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+[15:18:55]     default: #18 9.417
+[15:18:55]     default: #18 9.417 added 90 packages, and audited 91 packages in 9s
+[15:18:55]     default: #18 9.418
+[15:18:55]     default: #18 9.419 19 packages are looking for funding
+[15:18:55]     default: #18 9.419   run `npm fund` for details
+[15:18:55]     default: #18 9.442
+[15:18:55]     default: #18 9.442 3 moderate severity vulnerabilities
+[15:18:55]     default: #18 9.442
+[15:18:55]     default: #18 9.442 To address issues that do not require attention, run:
+[15:18:55]     default: #18 9.442   npm audit fix
+[15:18:55]     default: #18 9.442
+[15:18:55]     default: #18 9.442 To address all issues (including breaking changes), run:
+[15:18:55]     default: #18 9.442   npm audit fix --force
+[15:18:55]     default: #18 9.442
+[15:18:55]     default: #18 9.442 Run `npm audit` for details.
+[15:18:55]     default: #18 9.445 npm notice
+[15:18:55]     default: #18 9.445 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:18:55]     default: #18 9.445 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:18:55]     default: #18 9.445 npm notice To update run: npm install -g npm@12.0.2
+[15:18:55]     default: #18 9.445 npm notice
+[15:18:55]     default: #18 DONE 9.6s
+[15:18:55]     default: 
+[15:18:55]     default: #19 [hollowcrown-seed 6/6] COPY src/ ./src/
+[15:18:55]     default: #19 DONE 0.2s
+[15:18:55]     default: 
+[15:18:55]     default: #20 [hollowcrown-seed] exporting to image
+[15:18:55]     default: #20 exporting layers
+[15:18:56]     default: #20 exporting layers 1.1s done
+[15:18:56]     default: #20 exporting manifest sha256:dd31e19021fd31adf37ff2d95a14e8b7cb5ed4cf0bb4576fc1c7db045d862804 0.0s done
+[15:18:56]     default: #20 exporting config sha256:8311b3d9acb56bea148c2ac527347624da86df70d01c0eed80ee02f7c537175d 0.0s done
+[15:18:56]     default: #20 exporting attestation manifest sha256:aeb8526e69752c325017dfbf39ebf286f76eba1a3a5c368134cb59d734a92b06 0.1s done
+[15:18:56]     default: #20 exporting manifest list sha256:e046f116c2600939fc23659cc6808ab2c5e8c36c45a80c077b3022d911d23b00
+[15:18:56]     default: #20 exporting manifest list sha256:e046f116c2600939fc23659cc6808ab2c5e8c36c45a80c077b3022d911d23b00 0.0s done
+[15:18:56]     default: #20 naming to docker.io/library/vagrant-hollowcrown-seed:latest 0.1s done
+[15:18:56]     default: #20 unpacking to docker.io/library/vagrant-hollowcrown-seed:latest
+[15:18:57]     default: #20 unpacking to docker.io/library/vagrant-hollowcrown-seed:latest 0.9s done
+[15:18:57]     default: #20 DONE 2.3s
+[15:18:57]     default: 
+[15:18:57]     default: #21 [hollowcrown-api] exporting to image
+[15:18:57]     default: #21 exporting layers 1.1s done
+[15:18:57]     default: #21 exporting manifest sha256:4abe56e06645c67cc1bc319c417e9a34bb0401b5148478c94fb0cb465e140a42 0.0s done
+[15:18:57]     default: #21 exporting config sha256:97941322eb9677a7b0e53e44d662323711a12e5ce623776671fb24f2ebfdfa55 0.0s done
+[15:18:57]     default: #21 exporting attestation manifest sha256:2dbcfc05d77157fa612f38e8a637b7fe3017d3c7fa5fba30dae56d9c0da864a1 0.1s done
+[15:18:57]     default: #21 exporting manifest list sha256:f0715fdba4e18b477a8aecf69397c20cbe51c769fcef4e7d43e0fe1c499b1fd6 0.1s done
+[15:18:57]     default: #21 naming to docker.io/library/vagrant-hollowcrown-api:latest done
+[15:18:57]     default: #21 unpacking to docker.io/library/vagrant-hollowcrown-api:latest 0.9s done
+[15:18:57]     default: #21 DONE 2.2s
+[15:18:57]     default: 
+[15:18:57]     default: #15 [hollowcrown-web builder 4/6] RUN npm install
+[15:18:57]     default: #15 ...
+[15:18:57]     default: 
+[15:18:57]     default: #22 [hollowcrown-api] resolving provenance for metadata file
+[15:18:58]     default: #22 DONE 0.1s
+[15:18:58]     default: 
+[15:18:58]     default: #23 [hollowcrown-seed] resolving provenance for metadata file
+[15:18:58]     default: #23 DONE 0.0s
+[15:18:58]     default: 
+[15:18:58]     default: #15 [hollowcrown-web builder 4/6] RUN npm install
+[15:19:15]     default: #15 32.85
+[15:19:15]     default: #15 32.85 added 131 packages, and audited 132 packages in 32s
+[15:19:15]     default: #15 32.85
+[15:19:15]     default: #15 32.85 25 packages are looking for funding
+[15:19:15]     default: #15 32.85   run `npm fund` for details
+[15:19:15]     default: #15 32.88
+[15:19:15]     default: #15 32.88 4 vulnerabilities (3 moderate, 1 high)
+[15:19:15]     default: #15 32.88
+[15:19:15]     default: #15 32.88 To address all issues (including breaking changes), run:
+[15:19:15]     default: #15 32.88   npm audit fix --force
+[15:19:15]     default: #15 32.88
+[15:19:15]     default: #15 32.88 Run `npm audit` for details.
+[15:19:15]     default: #15 32.89 npm notice
+[15:19:15]     default: #15 32.89 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+[15:19:15]     default: #15 32.89 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+[15:19:15]     default: #15 32.89 npm notice To update run: npm install -g npm@12.0.2
+[15:19:16]     default: #15 32.89 npm notice
+[15:19:16]     default: #15 DONE 33.1s
+[15:19:16]     default: 
+[15:19:16]     default: #24 [hollowcrown-web builder 5/6] COPY . .
+[15:19:16]     default: #24 DONE 0.1s
+[15:19:16]     default: 
+[15:19:16]     default: #25 [hollowcrown-web builder 6/6] RUN npm run build
+[15:19:16]     default: #25 0.297
+[15:19:16]     default: #25 0.297 > hollowcrown-web@1.0.0 build
+[15:19:16]     default: #25 0.297 > vite build
+[15:19:16]     default: #25 0.297
+[15:19:16]     default: #25 0.463 [33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+[15:19:16]     default: #25 0.516 vite v5.4.21 building for production...
+[15:19:16]     default: #25 0.579 transforming...
+[15:19:18]     default: #25 2.736 Γ£ô 42 modules transformed.
+[15:19:18]     default: #25 2.892 rendering chunks...
+[15:19:19]     default: #25 2.901 computing gzip size...
+[15:19:19]     default: #25 2.912 dist/index.html                   0.41 kB Γöé gzip:  0.28 kB
+[15:19:19]     default: #25 2.913 dist/assets/index-BaqT4_Jv.css   16.31 kB Γöé gzip:  3.70 kB
+[15:19:19]     default: #25 2.913 dist/assets/index-Df5p_tTT.js   188.73 kB Γöé gzip: 59.47 kB
+[15:19:19]     default: #25 2.914 Γ£ô built in 2.37s
+[15:19:19]     default: #25 DONE 3.0s
+[15:19:19]     default: 
+[15:19:19]     default: #26 [hollowcrown-web stage-1 2/3] COPY --from=builder /app/dist /usr/share/nginx/html
+[15:19:19]     default: #26 DONE 0.0s
+[15:19:19]     default: 
+[15:19:19]     default: #27 [hollowcrown-web stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf
+[15:19:19]     default: #27 DONE 0.0s
+[15:19:19]     default: 
+[15:19:19]     default: #28 [hollowcrown-web] exporting to image
+[15:19:19]     default: #28 exporting layers 0.1s done
+[15:19:19]     default: #28 exporting manifest sha256:a73c25579648c80e1fa93b9d2b3b8a58bbe371b343df3b55fe7700238f202f44
+[15:19:19]     default: #28 exporting manifest sha256:a73c25579648c80e1fa93b9d2b3b8a58bbe371b343df3b55fe7700238f202f44 done
+[15:19:19]     default: #28 exporting config sha256:8bfd447bd492dc6e9016da3571c7312bd78f7eef79411f122e3e73824ad391ef done
+[15:19:19]     default: #28 exporting attestation manifest sha256:dbcc80fcc8011a8b37648959ff84798240ba13c270e9e4680f764500f31bf5ec done
+[15:19:19]     default: #28 exporting manifest list sha256:2299d2b5e44371814558dd3faf0c0f87062691a3fad9a7739c6941b9b5cb8d81 done
+[15:19:19]     default: #28 naming to docker.io/library/vagrant-hollowcrown-web:latest done
+[15:19:19]     default: #28 unpacking to docker.io/library/vagrant-hollowcrown-web:latest 0.0s done
+[15:19:19]     default: #28 DONE 0.2s
+[15:19:19]     default: 
+[15:19:19]     default: #29 [hollowcrown-web] resolving provenance for metadata file
+[15:19:19]     default: #29 DONE 0.0s
+[15:19:19]     default:  Image vagrant-hollowcrown-seed Built
+[15:19:19]     default:  Image vagrant-hollowcrown-api Built
+[15:19:19]     default:  Image vagrant-hollowcrown-web Built
+[15:19:19]     default:  Network vagrant_hollowcrown-net Creating
+[15:19:19]     default:  Network vagrant_hollowcrown-net Creating
+[15:19:19]     default:  Volume vagrant_hollowcrown-db-data Creating
+[15:19:19]     default:  Volume vagrant_hollowcrown-db-data Creating
+[15:19:19]     default:  Volume vagrant_hollowcrown-db-data Created
+[15:19:19]     default:  Volume vagrant_hollowcrown-db-data Created
+[15:19:19]     default:  Network vagrant_hollowcrown-net Created
+[15:19:19]     default:  Network vagrant_hollowcrown-net Created
+[15:19:19]     default:  Container hollowcrown-db Creating
+[15:19:19]     default:  Container hollowcrown-db Created
+[15:19:19]     default:  Container hollowcrown-seed Creating
+[15:19:19]     default:  Container hollowcrown-seed Created
+[15:19:19]     default:  Container hollowcrown-api Creating
+[15:19:19]     default:  Container hollowcrown-api Created
+[15:19:19]     default:  Container hollowcrown-web Creating
+[15:19:19]     default:  Container hollowcrown-web Created
+[15:19:19]     default:  Container hollowcrown-db Starting
+[15:19:19]     default:  Container hollowcrown-db Started
+[15:19:19]     default:  Container hollowcrown-db Waiting
+[15:19:30]     default:  Container hollowcrown-db Healthy
+[15:19:30]     default:  Container hollowcrown-seed Starting
+[15:19:30]     default:  Container hollowcrown-seed Started
+[15:19:30]     default:  Container hollowcrown-seed Waiting
+[15:19:30]     default:  Container hollowcrown-db Waiting
+[15:19:31]     default:  Container hollowcrown-db Healthy
+[15:19:31]     default:  Container hollowcrown-seed Exited
+[15:19:31]     default:  Container hollowcrown-api Starting
+[15:19:31]     default:  Container hollowcrown-api Started
+[15:19:31]     default:  Container hollowcrown-api Waiting
+[15:19:36]     default:  Container hollowcrown-api Healthy
+[15:19:36]     default:  Container hollowcrown-web Starting
+[15:19:36]     default:  Container hollowcrown-web Started
+[15:19:36]     default: 
+[15:19:36]     default: ======================================================
+[15:19:36]     default:   Hollowcrown - Ready
+[15:19:36]     default: ======================================================
+[15:19:37]     default:   Web UI:  http://localhost:8030
+[15:19:37]     default:   API:     http://localhost:4000
+[15:19:37]     default: ======================================================
+[15:19:37]     default: 
+[15:19:37]   [OK]   Hollowcrown - vagrant up succeeded
+[15:19:37] 
+[15:19:37] Thorngate - starting...
+[15:19:39] Bringing machine 'default' up with 'vmware_desktop' provider...
+[15:19:39] ==> default: Cloning VMware VM: 'bento/debian-12'. This can take some time...
+[15:19:41] ==> default: Checking if box 'bento/debian-12' version '202510.26.0' is up to date...
+[15:19:41] ==> default: Verifying vmnet devices are healthy...
+[15:19:42] ==> default: Preparing network adapters...
+[15:19:44] ==> default: Starting the VMware VM...
+[15:19:47] ==> default: Waiting for the VM to receive an address...
+[15:20:21] ==> default: Forwarding ports...
+[15:20:21]     default: -- 22 => 2240
+[15:20:21]     default: -- 30943 => 30943
+[15:20:21]     default: -- 30543 => 30543
+[15:20:21]     default: -- 30636 => 30636
+[15:20:22] ==> default: Waiting for machine to boot. This may take a few minutes...
+[15:20:33]     default: SSH address: 127.0.0.1:2240
+[15:20:33]     default: SSH username: vagrant
+[15:20:33]     default: SSH auth method: private key
+[15:20:35]     default: 
+[15:20:35]     default: Vagrant insecure key detected. Vagrant will automatically replace
+[15:20:35]     default: this with a newly generated keypair for better security.
+[15:20:37]     default: 
+[15:20:37]     default: Inserting generated public key within guest...
+[15:20:39]     default: Removing insecure key from the guest if it's present...
+[15:20:39]     default: Key inserted! Disconnecting and reconnecting using new SSH key...
+[15:20:41] ==> default: Machine booted and ready!
+[15:20:41] ==> default: Setting hostname...
+[15:20:47] ==> default: Configuring network adapters within the VM...
+[15:20:48] ==> default: Waiting for HGFS to become available...
+[15:20:49] ==> default: Enabling and configuring shared folders...
+[15:20:50]     default: -- C:/Users/LeandroValovits/.bob/playground/Ashfeld/thorngate: /vagrant
+[15:20:53] ==> default: Running provisioner: shell...
+[15:20:54]     default: Running: inline script
+[15:20:55]     default: ==> [1/6] Installing base packages and dependencies...
+[15:21:01]     default: (Reading database ... 
+[15:21:01] (Reading database ... 5%
+[15:21:01] (Reading database ... 10%
+[15:21:01] (Reading database ... 15%
+[15:21:01] (Reading database ... 20%
+[15:21:01] (Reading database ... 25%
+[15:21:01] (Reading database ... 30%
+[15:21:01] (Reading database ... 35%
+[15:21:01] (Reading database ... 40%
+[15:21:01] (Reading database ... 45%
+[15:21:01] (Reading database ... 50%
+[15:21:01] (Reading database ... 55%
+[15:21:01] (Reading database ... 60%
+[15:21:01] (Reading database ... 65%
+[15:21:01] (Reading database ... 70%
+[15:21:01] (Reading database ... 75%
+[15:21:01] (Reading database ... 80%
+[15:21:01] (Reading database ... 85%
+[15:21:01] (Reading database ... 90%
+[15:21:01] (Reading database ... 95%
+[15:21:01] (Reading database ... 100%
+[15:21:01] (Reading database ... 57067 files and directories currently installed.)
+[15:21:01]     default: Preparing to unpack .../0-curl_7.88.1-10+deb12u15_amd64.deb ...
+[15:21:01]     default: Unpacking curl (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:21:01]     default: Preparing to unpack .../1-libcurl4_7.88.1-10+deb12u15_amd64.deb ...
+[15:21:01]     default: Unpacking libcurl4:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:21:01]     default: Preparing to unpack .../2-libcurl3-gnutls_7.88.1-10+deb12u15_amd64.deb ...
+[15:21:01]     default: Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) over (7.88.1-10+deb12u14) ...
+[15:21:01]     default: Selecting previously unselected package liberror-perl.
+[15:21:01]     default: Preparing to unpack .../3-liberror-perl_0.17029-2_all.deb ...
+[15:21:01]     default: Unpacking liberror-perl (0.17029-2) ...
+[15:21:01]     default: Selecting previously unselected package git-man.
+[15:21:01]     default: Preparing to unpack .../4-git-man_1%3a2.39.5-0+deb12u3_all.deb ...
+[15:21:01]     default: Unpacking git-man (1:2.39.5-0+deb12u3) ...
+[15:21:01]     default: Selecting previously unselected package git.
+[15:21:01]     default: Preparing to unpack .../5-git_1%3a2.39.5-0+deb12u3_amd64.deb ...
+[15:21:01]     default: Unpacking git (1:2.39.5-0+deb12u3) ...
+[15:21:02]     default: Selecting previously unselected package libonig5:amd64.
+[15:21:02]     default: Preparing to unpack .../6-libonig5_6.9.8-1_amd64.deb ...
+[15:21:02]     default: Unpacking libonig5:amd64 (6.9.8-1) ...
+[15:21:02]     default: Selecting previously unselected package libjq1:amd64.
+[15:21:02]     default: Preparing to unpack .../7-libjq1_1.6-2.1+deb12u2_amd64.deb ...
+[15:21:02]     default: Unpacking libjq1:amd64 (1.6-2.1+deb12u2) ...
+[15:21:02]     default: Selecting previously unselected package jq.
+[15:21:02]     default: Preparing to unpack .../8-jq_1.6-2.1+deb12u2_amd64.deb ...
+[15:21:02]     default: Unpacking jq (1.6-2.1+deb12u2) ...
+[15:21:02]     default: Selecting previously unselected package unzip.
+[15:21:02]     default: Preparing to unpack .../9-unzip_6.0-28+deb12u1_amd64.deb ...
+[15:21:02]     default: Unpacking unzip (6.0-28+deb12u1) ...
+[15:21:02]     default: Setting up unzip (6.0-28+deb12u1) ...
+[15:21:02]     default: Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u15) ...
+[15:21:02]     default: Setting up liberror-perl (0.17029-2) ...
+[15:21:02]     default: Setting up libcurl4:amd64 (7.88.1-10+deb12u15) ...
+[15:21:02]     default: Setting up git-man (1:2.39.5-0+deb12u3) ...
+[15:21:02]     default: Setting up curl (7.88.1-10+deb12u15) ...
+[15:21:02]     default: Setting up libonig5:amd64 (6.9.8-1) ...
+[15:21:02]     default: Setting up libjq1:amd64 (1.6-2.1+deb12u2) ...
+[15:21:02]     default: Setting up git (1:2.39.5-0+deb12u3) ...
+[15:21:02]     default: Setting up jq (1.6-2.1+deb12u2) ...
+[15:21:02]     default: Processing triggers for libc-bin (2.36-9+deb12u13) ...
+[15:21:02]     default: Processing triggers for man-db (2.11.2-2) ...
+[15:21:04]     default: Processing triggers for mailcap (3.70+nmu1) ...
+[15:21:05]     default: ==> [2/6] Installing k3s...
+[15:21:05]     default: [INFO]  Using v1.36.4+k3s1 as release
+[15:21:05]     default: [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.36.4%2Bk3s1/sha256sum-amd64.txt
+[15:21:06]     default: [INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.36.4%2Bk3s1/k3s
+[15:21:09]     default: [INFO]  Verifying binary download
+[15:21:10]     default: [INFO]  Installing k3s to /usr/local/bin/k3s
+[15:21:10]     default: [INFO]  Skipping installation of SELinux RPM
+[15:21:10]     default: [INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+[15:21:10]     default: [INFO]  Creating /usr/local/bin/crictl symlink to k3s
+[15:21:10]     default: [INFO]  Creating /usr/local/bin/ctr symlink to k3s
+[15:21:10]     default: [INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+[15:21:10]     default: [INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+[15:21:10]     default: [INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+[15:21:10]     default: [INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+[15:21:10]     default: [INFO]  systemd: Enabling k3s unit
+[15:21:10]     default: Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service ΓåÆ /etc/systemd/system/k3s.service.
+[15:21:10]     default: [INFO]  Host iptables-save/iptables-restore tools not found
+[15:21:10]     default: [INFO]  Host ip6tables-save/ip6tables-restore tools not found
+[15:21:10]     default: [INFO]  systemd: Starting k3s
+[15:21:19]     default: Waiting for k3s node to be Ready...
+[15:21:19]     default: No resources found
+[15:21:21]     default: ==> [3/6] Installing Helm...
+[15:21:22]     default: Downloading https://get.helm.sh/helm-v3.21.4-linux-amd64.tar.gz
+[15:21:23]     default: Verifying checksum... Done.
+[15:21:23]     default: Preparing to install helm into /usr/local/bin
+[15:21:23]     default: helm installed into /usr/local/bin/helm
+[15:21:23]     default: ==> [4/6] Setting up IVIG starter kit and license keys...
+[15:21:26]     default: awk: 1: unexpected character '.'
+[15:21:26]     default: awk: line 2: syntax error at or near for
+[15:21:26]     default: awk: 4: unexpected character '.'
+[15:21:26]     default: ==> [5/6] Configuring config.yaml...
+[15:21:26]     default: ==> [6/6] Executing IVIG installer...
+[15:21:26]     default: Installing IVIG...
+[15:21:27]     default: Configuring for timezone UTC
+[15:21:27]     default: 
+[15:21:27]     default: ##### Deploying configuration pod #####
+[15:21:29]     default: namespace/ivig created
+[15:21:29]     default: Generating Configs
+[15:21:29]     default: configmap/isvgimconfig created
+[15:21:30]     default: configmap/isvgimconfig unchanged
+[15:21:30]     default: deployment.apps/isvgimconfig created
+[15:24:02]     default: Waiting for application to start...Done!
+[15:24:04]     default: 
+[15:24:04]     default: ##### Installing Verify Directory LDAP Server #####
+[15:24:07]     default: secret/isvdcred created
+[15:24:10]     default: Generating Configs
+[15:24:11]     default: configmap/isvgimldap created
+[15:24:11]     default: 
+[15:24:11]     default:   -- Deploying LDAP server --
+[15:24:11]     default: serviceaccount/isvd created
+[15:24:11]     default: role.rbac.authorization.k8s.io/isvd-role created
+[15:24:11]     default: rolebinding.rbac.authorization.k8s.io/isvd-role-bind created
+[15:24:12]     default: configmap/isvgimldap unchanged
+[15:24:12]     default: persistentvolumeclaim/replica-1-pvc created
+[15:24:13]     default: service/isvd-replica-1 created
+[15:24:13]     default: deployment.apps/isvd-replica-1 created
+[15:24:42]     default: Waiting for pod isvd-replica-1-58b8478df7-dvdtj to start......Done!
+[15:25:13]     default: Waiting for application to start........Done!
+[15:25:13]     default: 
+[15:25:13]     default: ##### Installing Postgresql Database Server #####
+[15:25:17]     default: Generating Configs
+[15:25:17]     default: configmap/isvgimdb created
+[15:25:18]     default: secret/pgcreds created
+[15:25:18]     default: 
+[15:25:18]     default:   -- Deploying Postgres --
+[15:25:18]     default: configmap/isvgimdb unchanged
+[15:25:19]     default: persistentvolumeclaim/postgres-pvc created
+[15:25:19]     default: service/postgres created
+[15:25:19]     default: deployment.apps/postgres created
+[15:25:42]     default: Waiting for pod postgres-795fc9878b-m8jhx to start.....Done!
+[15:25:47]     default: Waiting for application to start...Done!
+[15:25:48]     default: 
+[15:25:48]     default: ##### Generating Keystore #####
+[15:25:49]     default: [2026-09-08 18:25:50] Creating AES keystore as /opt/ibm/wlp/usr/servers/defaultServer/config/data/keystore/itimKeystore.jceks
+[15:25:50]     default: [2026-09-08 18:25:51] Creating /opt/ibm/wlp/usr/servers/defaultServer/config/data/encryptionKey.properties
+[15:25:50]     default: [2026-09-08 18:25:51] Finished setting up ciphers
+[15:25:52]     default: Generating Configs
+[15:25:53]     default: configmap/isvgimks created
+[15:25:53]     default: 
+[15:25:53]     default: ##### Updating Configuration Settings #####
+[15:25:54]     default: Generating Configs
+[15:25:55]     default: configmap/isvgimconfig configured
+[15:25:55]     default: Generating Configs
+[15:25:55]     default: configmap/isvgimdata created
+[15:25:55]     default: deployment.apps "isvgimconfig" deleted from ivig namespace
+[15:26:00]     default: deployment.apps/isvgimconfig created
+[15:26:11]     default: Waiting for application to start...Done!
+[15:26:11]     default: 
+[15:26:11]     default: ##### Configuring LDAP #####
+[15:26:41]     default: Loading schema........Done!
+[15:26:42]     default: Generating Configs
+[15:26:42]     default: configmap/isvgimdata configured
+[15:26:42]     default: 
+[15:26:42]     default: ##### Configuring DB #####
+[15:26:49]     default: Loading schema...Done!
+[15:26:50]     default: Generating Configs
+[15:26:50]     default: configmap/isvgimdata configured
+[15:26:50]     default: 
+[15:26:50]     default: ##### Deploying ISVDI Adapter Dispatcher #####
+[15:26:53]     default: Generating Configs
+[15:26:53]     default: configmap/isvgimsdi created
+[15:26:54]     default: configmap/isvgimsdi unchanged
+[15:26:54]     default: persistentvolumeclaim/isvdi-pvc created
+[15:26:55]     default: service/isvdi created
+[15:26:55]     default: deployment.apps/isvdi created
+[15:27:33]     default: Waiting for pod isvdi-9c96ccb66-r7d6g to start........Done!
+[15:27:39]     default: Waiting for application to start...Done!
+[15:27:39]     default: 
+[15:27:39]     default: ##### Deploying application #####
+[15:27:40]     default: Generating Configs
+[15:27:41]     default: configmap/isvgimconfig configured
+[15:27:41]     default: Generating Configs
+[15:27:41]     default: configmap/tlsmqcfg created
+[15:27:42]     default: configmap/mqcfg created
+[15:27:42]     default: deployment.apps "isvgimconfig" deleted from ivig namespace
+[15:27:42]     default: Generating Configs
+[15:27:42]     default: configmap/isvgimdata configured
+[15:27:43]     default: ibm-common-services not found.  Assuming IBM License Server is not installed yet.
+[15:27:43]     default: Generating Configs
+[15:27:47]     default: Evaluating templates.................................................Done!
+[15:27:47]     default: serviceaccount/hazelcast-sa created
+[15:27:47]     default: role.rbac.authorization.k8s.io/hazelcast-role created
+[15:27:47]     default: rolebinding.rbac.authorization.k8s.io/hazelcast-role-binding created
+[15:27:48]     default: configmap/isvgimconfig unchanged
+[15:27:48]     default: configmap/mqcfg unchanged
+[15:27:48]     default: secret/mqcreds created
+[15:27:49]     default: secret/oidccreds created
+[15:27:49]     default: persistentvolumeclaim/mqshare-pvc created
+[15:27:50]     default: service/isvgim created
+[15:27:50]     default: service/mq-headless created
+[15:27:51]     default: service/hazelcast-headless created
+[15:27:51]     default: service/mqshare created
+[15:27:52]     default: deployment.apps/mqshare created
+[15:27:54]     default: poddisruptionbudget.policy/isvgim created
+[15:27:54]     default: statefulset.apps/isvgim created
+[15:28:33]     default: Waiting for pod isvgim-0 to start........Done!
+[15:30:08]     default: Waiting for application to start....................Done!
+[15:30:08]     default: Generating Configs
+[15:30:08]     default: configmap/isvgimconfig configured
+[15:30:22]     default: statefulset.apps/isvgim restarted
+[15:32:35]     default: Waiting for application to start..................Done!
+[15:32:35]     default: 
+[15:32:35]     default: Installation complete!
+[15:32:35]     default: You can now login at https://192.168.21.220:30943/itim/console
+[15:32:35]     default: Waiting for IVIG workloads to become ready...
+[15:32:35]     default: deployment "isvd-replica-1" successfully rolled out
+[15:32:36]     default: deployment "isvdi" successfully rolled out
+[15:32:36]     default: deployment "mqshare" successfully rolled out
+[15:32:36]     default: deployment "postgres" successfully rolled out
+[15:32:36]     default: partitioned roll out complete: 1 new pods have been updated...
+[15:32:36]     default: ==> Configuration complete.
+[15:32:36] ==> default: Running provisioner: shell...
+[15:32:37]     default: Running: inline script
+[15:32:37]     default: 
+[15:32:37]     default: ======================================================
+[15:32:37]     default:   Thorngate (IVIG) - Ready
+[15:32:37]     default: ======================================================
+[15:32:37]     default:   IVIG Console:  https://localhost:30943/itim/console/main
+[15:32:37]     default:   Username:      itim manager
+[15:32:37]     default:   Password:      secret
+[15:32:37]     default: ======================================================
+[15:32:37]     default: 
+[15:32:37]   [OK]   Thorngate - vagrant up succeeded
+[15:32:37] 
+[15:32:37] Phase 3 - destroy all
+[15:32:37] Ironhold - destroying...
+[15:32:44] ==> default: Stopping the VMware VM...
+[15:32:46] ==> default: Deleting the VM...
+[15:32:48] Darkhorn - destroying...
+[15:32:54] ==> default: Stopping the VMware VM...
+[15:32:56] ==> default: Deleting the VM...
+[15:33:16] Hollowcrown - destroying...
+[15:33:21] ==> default: Stopping the VMware VM...
+[15:33:23] ==> default: Deleting the VM...
+[15:33:25] Thorngate - destroying...
+[15:33:31] ==> default: Stopping the VMware VM...
+[15:33:36] ==> default: Deleting the VM...
+[15:33:38] 
+[15:33:38] Results: 4 passed, 0 failed - duration: 00:59:03
+[15:33:38] 

@@ -59,7 +59,7 @@ async function main() {
 
   const { rows: existing } = await client.query('SELECT COUNT(*) FROM employees');
   if (parseInt(existing[0].count, 10) > 0) {
-    console.log(`[seed] ${existing[0].count} employees already exist — skipping.`);
+    console.log(`[seed] ${existing[0].count} employees already exist - skipping.`);
     await client.end();
     return;
   }
@@ -104,7 +104,7 @@ async function main() {
     });
   }
 
-  // Assign managers — first employee per department becomes manager
+  // Assign managers - first employee per department becomes manager
   const managerByDept = {};
   for (const e of employees) {
     if (!managerByDept[e.department]) managerByDept[e.department] = e.id;

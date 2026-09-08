@@ -14,7 +14,7 @@ const USER_COLUMNS = ['id','username','email','firstName','lastName','password',
 const GROUP_COLUMNS = ['id','name','description','createdAt'];
 const MEMBERSHIP_COLUMNS = ['userId','groupId'];
 
-// ── File helpers ──────────────────────────────────────────────────────────────
+// - File helpers -
 
 function ensureFile(filePath, columns) {
   if (!fs.existsSync(filePath)) {
@@ -35,7 +35,7 @@ function writeCsv(filePath, rows, columns) {
   fs.writeFileSync(filePath, out, 'utf8');
 }
 
-// ── Users ─────────────────────────────────────────────────────────────────────
+// - Users -
 
 function readUsers()            { return readCsv(USERS_FILE, USER_COLUMNS); }
 function writeUsers(rows)       { writeCsv(USERS_FILE, rows, USER_COLUMNS); }
@@ -125,7 +125,7 @@ function setUserPassword(id, newPassword, extra = {}) {
   return rows[idx];
 }
 
-// ── Groups ────────────────────────────────────────────────────────────────────
+// - Groups -
 
 function readGroups()       { return readCsv(GROUPS_FILE, GROUP_COLUMNS); }
 function writeGroups(rows)  { writeCsv(GROUPS_FILE, rows, GROUP_COLUMNS); }
@@ -149,7 +149,7 @@ function createGroup(group) {
   return newGroup;
 }
 
-// ── Memberships ───────────────────────────────────────────────────────────────
+// - Memberships -
 
 function readMemberships()       { return readCsv(MEMBERSHIP_FILE, MEMBERSHIP_COLUMNS); }
 function writeMemberships(rows)  { writeCsv(MEMBERSHIP_FILE, rows, MEMBERSHIP_COLUMNS); }

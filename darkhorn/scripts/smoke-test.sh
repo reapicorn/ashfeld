@@ -23,7 +23,7 @@ wait_for() {
   return 1
 }
 
-# ── REST ──────────────────────────────────────────────────────────────────────
+# -- REST --------------------------------------------------------------------------
 echo ""
 echo "REST  http://$IP:3000"
 
@@ -43,7 +43,7 @@ count=$(echo "$out" | grep -o '"totalResults":[0-9]*' | grep -o '[0-9]*')
 if [ -n "$count" ]; then ok "GET /api/users -> $count users"
 else fail "GET /api/users: $out"; fi
 
-# ── JDBC ──────────────────────────────────────────────────────────────────────
+# -- JDBC --------------------------------------------------------------------------
 echo ""
 echo "JDBC  $IP:5432"
 
@@ -52,7 +52,7 @@ count=$(echo "$out" | grep -E '^[0-9]+$' | head -1)
 if [ -n "$count" ]; then ok "SELECT COUNT(*) FROM users -> $count rows"
 else fail "psql: $out"; fi
 
-# ── LDAP ──────────────────────────────────────────────────────────────────────
+# -- LDAP --------------------------------------------------------------------------
 echo ""
 echo "LDAP  $IP:389"
 
@@ -76,7 +76,7 @@ count=$(ldapsearch -x -H "ldap://$IP:389" \
 if [ "$count" -gt 0 ] 2>/dev/null; then ok "ldapsearch inetOrgPerson -> $count entries"
 else fail "ldapsearch returned $count entries"; fi
 
-# ── SFTP ──────────────────────────────────────────────────────────────────────
+# -- SFTP --------------------------------------------------------------------------
 echo ""
 echo "SFTP  $IP:2222"
 
@@ -85,7 +85,7 @@ out=$(sshpass -p 'Sp3ctr4lF1l3!' sftp -o StrictHostKeyChecking=no -P 2222 \
 if echo "$out" | grep -q "users.csv"; then ok "sftp ls darkhorn/ -> users.csv present"
 else fail "sftp: $out"; fi
 
-# ── SOAP ──────────────────────────────────────────────────────────────────────
+# -- SOAP --------------------------------------------------------------------------
 echo ""
 echo "SOAP  http://$IP:3002"
 
@@ -103,7 +103,7 @@ out=$(curl -sf -X POST "http://$IP:3002/soap" \
 if echo "$out" | grep -q "GetGroupsResponse"; then ok "SOAP GetGroups -> ok"
 else fail "SOAP GetGroups: $out"; fi
 
-# ── MQ ────────────────────────────────────────────────────────────────────────
+# -- MQ ----------------------------------------------------------------------------
 echo ""
 echo "MQ    $IP:5672 / mgmt $IP:15672"
 
@@ -115,7 +115,7 @@ out=$(curl -sf -u 'darkhorn:Wr41thPuls3!' "http://$IP:15672/api/queues/%2F/darkh
 if echo "$out" | grep -q "darkhorn.requests"; then ok "queue darkhorn.requests exists"
 else fail "queue check: $out"; fi
 
-# ── Summary ───────────────────────────────────────────────────────────────────
+# -- Summary -----------------------------------------------------------------------
 echo ""
 echo "Results: $PASS passed, $FAIL failed"
 echo ""

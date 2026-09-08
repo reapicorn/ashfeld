@@ -1,7 +1,7 @@
 {
   "name": "darkhorn-mq",
   "version": "1.0.0",
-  "description": "darkhorn MQ — RabbitMQ request/reply worker for IVIG UAS adapter development. PostgreSQL backend.",
+  "description": "darkhorn MQ - RabbitMQ request/reply worker for IVIG UAS adapter development. PostgreSQL backend.",
   "main": "src/worker.js",
   "scripts": {
     "start": "node src/worker.js",

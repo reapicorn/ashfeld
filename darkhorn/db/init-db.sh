@@ -1,6 +1,6 @@
 #!/bin/bash
 # darkhorn/db/init-db.sh
-# PostgreSQL init script — runs inside the postgres container on first start.
+# PostgreSQL init script - runs inside the postgres container on first start.
 # Creates all databases, the shared user, and applies the schema to each.
 
 set -e

@@ -14,7 +14,7 @@ router.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// GET /api/users — search / reconcile
+// GET /api/users - search / reconcile
 router.get('/users', async (req, res, next) => {
   try {
     const users = await store.getUsers(req.query);
@@ -25,7 +25,7 @@ router.get('/users', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// POST /api/users — add
+// POST /api/users - add
 router.post('/users', async (req, res, next) => {
   try {
     const { username, email, firstName, lastName, password, department, title } = req.body;
@@ -37,7 +37,7 @@ router.post('/users', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// GET /api/users/:id — lookup
+// GET /api/users/:id - lookup
 router.get('/users/:id', async (req, res, next) => {
   try {
     const user = await store.getUserById(req.params.id);
@@ -46,7 +46,7 @@ router.get('/users/:id', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// PUT /api/users/:id — modify
+// PUT /api/users/:id - modify
 router.put('/users/:id', async (req, res, next) => {
   try {
     const user = await store.getUserById(req.params.id);
@@ -56,7 +56,7 @@ router.put('/users/:id', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// DELETE /api/users/:id — delete
+// DELETE /api/users/:id - delete
 router.delete('/users/:id', async (req, res, next) => {
   try {
     const ok = await store.deleteUser(req.params.id);

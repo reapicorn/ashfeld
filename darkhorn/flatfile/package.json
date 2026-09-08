@@ -1,7 +1,7 @@
 {
   "name": "darkhorn-flatfile",
   "version": "1.0.0",
-  "description": "darkhorn flat-file — HTTP REST API backed by CSV files. For IVIG UAS adapter development.",
+  "description": "darkhorn flat-file - HTTP REST API backed by CSV files. For IVIG UAS adapter development.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

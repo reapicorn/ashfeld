@@ -6,7 +6,7 @@
  * Replies to:        message.properties.replyTo  (per-message reply queue)
  * Correlation:       message.properties.correlationId  (echoed back)
  *
- * Simulates an asynchronous target system — each message is processed after a
+ * Simulates an asynchronous target system - each message is processed after a
  * random delay between 1 and 60 seconds before the response is sent.
  *
  * Message format (JSON):
@@ -49,7 +49,7 @@ function randomDelay() {
   return new Promise(r => setTimeout(r, ms));
 }
 
-// ── Handlers ──────────────────────────────────────────────────────────────────
+// - Handlers -
 
 async function handle(operation, payload) {
   switch (operation) {
@@ -189,7 +189,7 @@ async function handle(operation, payload) {
   }
 }
 
-// ── Worker loop ───────────────────────────────────────────────────────────────
+// - Worker loop -
 
 async function startWorker() {
   console.log(`[darkhorn-mq] Connecting to ${MQ_URL.replace(/:\/\/[^@]+@/, '://***@')}...`);
@@ -243,15 +243,15 @@ async function startWorker() {
   });
 }
 
-// ── Entry point with retry ────────────────────────────────────────────────────
+// - Entry point with retry -
 
 (async function main() {
   for (;;) {
     try {
       await startWorker();
-      break; // connected — loop is maintained by amqplib callbacks
+      break; // connected - loop is maintained by amqplib callbacks
     } catch (err) {
-      console.error(`[darkhorn-mq] Connection failed: ${err.message} — retrying in ${RETRY_DELAY_MS / 1000}s`);
+      console.error(`[darkhorn-mq] Connection failed: ${err.message} - retrying in ${RETRY_DELAY_MS / 1000}s`);
       await new Promise(r => setTimeout(r, RETRY_DELAY_MS));
     }
   }

@@ -33,7 +33,7 @@ router.get('/users/:id/groups', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// POST /api/users/:id/groups — assign
+// POST /api/users/:id/groups - assign
 router.post('/users/:id/groups', async (req, res, next) => {
   try {
     const { groupIds, groupNames } = req.body;
@@ -57,7 +57,7 @@ router.post('/users/:id/groups', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
-// DELETE /api/users/:id/groups — remove
+// DELETE /api/users/:id/groups - remove
 router.delete('/users/:id/groups', async (req, res, next) => {
   try {
     const { groupIds, groupNames } = req.body;

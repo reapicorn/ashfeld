@@ -8,7 +8,7 @@
   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
   xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
 
-  <!-- ── Types ──────────────────────────────────────────────────────────────── -->
+  <!-- - Types - -->
   <types>
     <xsd:schema targetNamespace="http://darkhorn.local/userservice">
 
@@ -245,7 +245,7 @@
     </xsd:schema>
   </types>
 
-  <!-- ── Messages ───────────────────────────────────────────────────────────── -->
+  <!-- - Messages - -->
   <message name="AddUserIn">       <part name="parameters" element="tns:AddUserRequest"/></message>
   <message name="AddUserOut">      <part name="parameters" element="tns:AddUserResponse"/></message>
   <message name="ModifyUserIn">    <part name="parameters" element="tns:ModifyUserRequest"/></message>
@@ -273,7 +273,7 @@
   <message name="RemoveGroupsIn">    <part name="parameters" element="tns:RemoveGroupsRequest"/></message>
   <message name="RemoveGroupsOut">   <part name="parameters" element="tns:RemoveGroupsResponse"/></message>
 
-  <!-- ── Port Type ──────────────────────────────────────────────────────────── -->
+  <!-- - Port Type - -->
   <portType name="UserServicePortType">
     <operation name="AddUser">      <input message="tns:AddUserIn"/>      <output message="tns:AddUserOut"/></operation>
     <operation name="ModifyUser">   <input message="tns:ModifyUserIn"/>   <output message="tns:ModifyUserOut"/></operation>
@@ -290,7 +290,7 @@
     <operation name="RemoveGroups">   <input message="tns:RemoveGroupsIn"/>   <output message="tns:RemoveGroupsOut"/></operation>
   </portType>
 
-  <!-- ── Binding ─────────────────────────────────────────────────────────────── -->
+  <!-- - Binding - -->
   <binding name="UserServiceBinding" type="tns:UserServicePortType">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <operation name="AddUser">
@@ -360,7 +360,7 @@
     </operation>
   </binding>
 
-  <!-- ── Service ─────────────────────────────────────────────────────────────── -->
+  <!-- - Service - -->
   <service name="DarkhornUserService">
     <port name="UserServicePort" binding="tns:UserServiceBinding">
       <soap:address location="http://localhost:3002/soap"/>
