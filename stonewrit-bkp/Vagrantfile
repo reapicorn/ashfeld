@@ -1,5 +1,5 @@
 # =============================================================
-#  Thorngate - Vagrantfile
+#  Stonewrit - Vagrantfile
 #  IBM Verify Identity Governance (IVIG) on k3s / Debian 12
 #  Provider: VMware Desktop (vmware_desktop)
 #
@@ -14,7 +14,7 @@
 # =============================================================
 
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
-ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/thorngate/.vagrant", __dir__)
+ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/stonewrit-bkp/.vagrant", __dir__)
 
 # Detect host CPU architecture
 IS_MAC   = RUBY_PLATFORM =~ /darwin/i
@@ -25,7 +25,7 @@ ARM_HOST = MAC_ARM || SYS_ARCH == "arm64" || SYS_ARCH == "aarch64"
 Vagrant.configure("2") do |config|
 
   config.vm.box      = "bento/debian-12"
-  config.vm.hostname = "thorngate"
+  config.vm.hostname = "stonewrit-bkp"
 
   # -- Network - private, fixed IP ------------------------------
   # Visible to the host and other VMs on the 10.10.10.0/24 segment.
@@ -40,13 +40,13 @@ Vagrant.configure("2") do |config|
 
   # -- VMware Desktop provider ----------------------------------
   config.vm.provider "vmware_desktop" do |vmware|
-    vmware.vmx["displayName"]              = "Thorngate-IVIG"
+    vmware.vmx["displayName"]              = "Stonewrit-IVIG"
     vmware.vmx["memsize"]                  = "12288"
     vmware.vmx["numvcpus"]                 = "4"
     vmware.vmx["gui"]                      = "false"
     vmware.vmx["ethernet0.pcislotnumber"]  = "160"
     vmware.vmx["ethernet1.pcislotnumber"]  = "224"
-    vmware.clone_directory = File.expand_path("../vagrant/thorngate/vm", __dir__)
+    vmware.clone_directory = File.expand_path("../vagrant/stonewrit-bkp/vm", __dir__)
 
     if ARM_HOST
       # ARM64 guest settings for VMware Fusion. amd64 IVIG image execution relies
@@ -206,7 +206,7 @@ with open(path, 'w') as f: f.write(content)
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     echo ""
     echo "======================================================"
-    echo "  Thorngate (IVIG) - Ready"
+    echo "  Stonewrit (IVIG) - Ready"
     echo "======================================================"
     echo "  IVIG Console:  https://localhost:30943/itim/console/main"
     echo "  Username:      itim manager"
