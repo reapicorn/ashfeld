@@ -6,12 +6,9 @@
 #  Usage:   vagrant up
 #  Access:  https://localhost:9443/itim/console/main
 #
-#  Installer files required in installer/ before running vagrant up:
-#    - IBM Verify Identity Governance installer (zip)
-#    - IBM Security Verify Directory installer folder (ivd-*/
-#    - IBM Security Verify Directory Integrator installer folder (SVDI_*/
-#    - IBM MQ for Linux x86-64 (tar.gz)
-#    - IVIG Enterprise license key (txt)
+#  Re-run individual steps from inside the VM:
+#    /vagrant/scripts/install.sh base
+#    /vagrant/scripts/install.sh base,postgres
 # =============================================================
 
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "vmware_desktop"
@@ -20,16 +17,11 @@ ENV["VAGRANT_DOTFILE_PATH"]     = File.expand_path("../vagrant/stonewrit/.vagran
 # -- Pre-flight checks -----------------------------------------
 installer_dir = File.expand_path("installer", __dir__)
 
-ivig_zip = Dir.glob(File.join(installer_dir, "ivig_imsw_*.zip")).first
-ivd_dir  = Dir.glob(File.join(installer_dir, "ivd-*")).select { |f| File.directory?(f) }.first
-mq_tar   = Dir.glob(File.join(installer_dir, "*-IBM-MQ-LinuxX64.tar.gz")).first
-ivig_key = Dir.glob(File.join(installer_dir, "ivig_Enterprise_*.txt")).first
-
 {
-  "IVIG installer zip (ivig_imsw_*.zip)"              => ivig_zip,
-  "ISVD installer directory (ivd-*/)"                  => ivd_dir,
-  "IBM MQ tarball (*-IBM-MQ-LinuxX64.tar.gz)"         => mq_tar,
-  "IVIG license key (ivig_Enterprise_*.txt)"           => ivig_key,
+  "IVIG installer zip (ivig_imsw_*.zip)"      => Dir.glob(File.join(installer_dir, "ivig_imsw_*.zip")).first,
+  "ISVD installer directory (ivd-*/)"          => Dir.glob(File.join(installer_dir, "ivd-*")).select { |f| File.directory?(f) }.first,
+  "IBM MQ tarball (*-IBM-MQ-LinuxX64.tar.gz)" => Dir.glob(File.join(installer_dir, "*-IBM-MQ-LinuxX64.tar.gz")).first,
+  "IVIG license key (ivig_Enterprise_*.txt)"   => Dir.glob(File.join(installer_dir, "ivig_Enterprise_*.txt")).first,
 }.each do |desc, path|
   if path.nil?
     abort "\n[Stonewrit] Missing required installer file: #{desc}\n" \
@@ -43,13 +35,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "stonewrit"
 
   # -- Network ------------------------------------------------------------------
-  # Private network — shared segment with other lab VMs (10.10.10.0/24)
   config.vm.network "private_network", ip: "10.10.10.40"
 
-  # Port forwards — host access via localhost
   config.vm.network "forwarded_port", guest: 22,   host: 2240,  id: "ssh"   # SSH
-  config.vm.network "forwarded_port", guest: 9080, host: 9080               # IVIG console (HTTP)
-  config.vm.network "forwarded_port", guest: 9443, host: 9443               # IVIG console (HTTPS)
+  config.vm.network "forwarded_port", guest: 9080, host: 9080               # IVIG console HTTP
+  config.vm.network "forwarded_port", guest: 9443, host: 9443               # IVIG console HTTPS
   config.vm.network "forwarded_port", guest: 5432, host: 30543              # PostgreSQL
   config.vm.network "forwarded_port", guest: 389,  host: 30389              # LDAP
   config.vm.network "forwarded_port", guest: 636,  host: 30636              # LDAPS
@@ -66,230 +56,9 @@ Vagrant.configure("2") do |config|
   end
 
   # -- Provisioning -------------------------------------------------------------
-  config.vm.provision "shell", inline: <<-SHELL
-    set -euo pipefail
-
-    IVIG_HOME="/opt/IBM/ivig"
-    IDS_INST_HOME="/opt/IBM/ldap/V11.0"
-    SVDI_HOME="/opt/IBM/svdi"
-    MQ_HOME="/opt/mqm"
-    PG_DB="ivig"
-    PG_USER="ivig"
-    PG_PASS="St0n3writ#DB!"
-    LDAP_SUFFIX="dc=ivig"
-    LDAP_ADMIN_DN="cn=root,dc=ivig"
-    LDAP_ADMIN_PASS="St0n3writ#LD!"
-    IVIG_ADMIN_PASS="secret"
-
-    # ----------------------------------------------------------------
-    echo "==> [1/7] Installing base packages..."
-    zypper --non-interactive refresh
-    zypper --non-interactive install -y \
-      curl wget unzip tar gzip python3 hostname net-tools \
-      libstdc++6 libgcc_s1 libpam0 libpam-modules \
-      java-11-openjdk java-11-openjdk-devel \
-      postgresql15 postgresql15-server postgresql15-contrib \
-      libtool-ltdl
-
-    # ----------------------------------------------------------------
-    echo "==> [2/7] Configuring PostgreSQL..."
-    systemctl enable postgresql
-    systemctl start postgresql
-
-    sudo -u postgres psql -c "CREATE USER ${PG_USER} WITH PASSWORD '${PG_PASS}';" 2>/dev/null || true
-    sudo -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};" 2>/dev/null || true
-    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${PG_DB} TO ${PG_USER};" 2>/dev/null || true
-
-    # Allow local connections with password
-    PG_HBA=$(sudo -u postgres psql -t -c "SHOW hba_file;" | tr -d '[:space:]')
-    if ! grep -q "host.*${PG_DB}.*${PG_USER}" "${PG_HBA}" 2>/dev/null; then
-      echo "host    ${PG_DB}    ${PG_USER}    127.0.0.1/32    md5" >> "${PG_HBA}"
-      echo "host    ${PG_DB}    ${PG_USER}    ::1/128         md5" >> "${PG_HBA}"
-      systemctl reload postgresql
-    fi
-
-    # ----------------------------------------------------------------
-    echo "==> [3/7] Installing IBM Security Verify Directory (ISVD)..."
-    IVD_DIR=$(ls -d /vagrant/installer/ivd-* 2>/dev/null | head -1)
-    if [ -z "${IVD_DIR}" ]; then
-      echo "ERROR: ISVD installer directory not found in /vagrant/installer/"
-      exit 1
-    fi
-
-    # Install GSKit first (required by ISVD)
-    if [ -x "${IVD_DIR}/gskinstall" ]; then
-      "${IVD_DIR}/gskinstall" -i || true
-    fi
-
-    # Install ISVD RPMs
-    rpm --install --nodeps \
-      "${IVD_DIR}/images/idsldap-license"*".rpm" \
-      "${IVD_DIR}/images/idsldap-cltbase"*".rpm" \
-      "${IVD_DIR}/images/idsldap-clt64bit"*".rpm" \
-      "${IVD_DIR}/images/idsldap-cltjava"*".rpm" \
-      "${IVD_DIR}/images/idsldap-srvbase64bit"*".rpm" \
-      "${IVD_DIR}/images/idsldap-srv64bit"*".rpm" 2>/dev/null || \
-    rpm --upgrade --nodeps \
-      "${IVD_DIR}/images/idsldap-license"*".rpm" \
-      "${IVD_DIR}/images/idsldap-cltbase"*".rpm" \
-      "${IVD_DIR}/images/idsldap-clt64bit"*".rpm" \
-      "${IVD_DIR}/images/idsldap-cltjava"*".rpm" \
-      "${IVD_DIR}/images/idsldap-srvbase64bit"*".rpm" \
-      "${IVD_DIR}/images/idsldap-srv64bit"*".rpm"
-
-    # Create LDAP instance
-    /opt/IBM/ldap/V11.0/sbin/idsadduser -u idsldap -g idsldap -l /home/idsldap 2>/dev/null || true
-    sudo -u idsldap /opt/IBM/ldap/V11.0/sbin/idscfgsuf \
-      -I ivig \
-      -s "${LDAP_SUFFIX}" \
-      -a "${LDAP_ADMIN_DN}" \
-      -p "${LDAP_ADMIN_PASS}" \
-      -t 389 \
-      -B 636 2>/dev/null || true
-
-    # Start LDAP server
-    sudo -u idsldap /opt/IBM/ldap/V11.0/sbin/ibmslapd -I ivig -n 2>/dev/null || true
-
-    # ----------------------------------------------------------------
-    echo "==> [4/7] Installing IBM MQ..."
-    MQ_TAR=$(ls /vagrant/installer/*-IBM-MQ-LinuxX64.tar.gz 2>/dev/null | head -1)
-    if [ -z "${MQ_TAR}" ]; then
-      echo "ERROR: IBM MQ tarball not found in /vagrant/installer/"
-      exit 1
-    fi
-
-    mkdir -p /tmp/mq_install
-    tar -xzf "${MQ_TAR}" -C /tmp/mq_install --strip-components=1
-
-    cd /tmp/mq_install
-    ./mqlicense.sh -text_only -accept
-    rpm --install --nodeps MQSeriesRuntime-*.rpm MQSeriesServer-*.rpm MQSeriesJava-*.rpm 2>/dev/null || \
-    rpm --upgrade --nodeps MQSeriesRuntime-*.rpm MQSeriesServer-*.rpm MQSeriesJava-*.rpm
-    cd /
-
-    # Create MQ queue manager
-    /opt/mqm/bin/crtmqm ISVGQMgr 2>/dev/null || true
-    /opt/mqm/bin/strmqm ISVGQMgr 2>/dev/null || true
-
-    # Apply IVIG MQ configuration
-    MQSC_FILE=$(ls /vagrant/installer/ivig_imsw*/wlp/usr/servers/defaultServer/config/config/mq/plain/ISVGQMgr.mqsc 2>/dev/null | head -1)
-    if [ -n "${MQSC_FILE}" ]; then
-      /opt/mqm/bin/runmqsc ISVGQMgr < "${MQSC_FILE}" 2>/dev/null || true
-    fi
-
-    # ----------------------------------------------------------------
-    echo "==> [5/7] Installing IBM Verify Identity Governance (IVIG)..."
-    IVIG_ZIP=$(ls /vagrant/installer/ivig_imsw_*.zip 2>/dev/null | head -1)
-    if [ -z "${IVIG_ZIP}" ]; then
-      echo "ERROR: IVIG installer zip not found in /vagrant/installer/"
-      exit 1
-    fi
-
-    mkdir -p "${IVIG_HOME}"
-    unzip -q "${IVIG_ZIP}" -d "${IVIG_HOME}"
-
-    # Set JAVA_HOME for Liberty
-    export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
-    echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/environment
-
-    # Copy PostgreSQL datasource config
-    cp "${IVIG_HOME}/wlp/usr/servers/defaultServer/config/server/datasource.xml.postgresql" \
-       "${IVIG_HOME}/wlp/usr/servers/defaultServer/config/server/datasource.xml"
-
-    # Copy MQ non-SSL config
-    cp "${IVIG_HOME}/wlp/usr/servers/defaultServer/config/server/IBMMQJmsConfig.xml.nonssl" \
-       "${IVIG_HOME}/wlp/usr/servers/defaultServer/config/server/IBMMQJmsConfig.xml"
-
-    # Configure enRoleDatabase.properties for PostgreSQL
-    CFG_DATA="${IVIG_HOME}/wlp/usr/servers/defaultServer/config/data"
-    sed -i "s|^database.db.type=.*|database.db.type=POSTGRESQL|"  "${CFG_DATA}/enRoleDatabase.properties"
-    sed -i "s|^database.db.owner=.*|database.db.owner=${PG_USER}|" "${CFG_DATA}/enRoleDatabase.properties"
-    sed -i "s|^database.db.user=.*|database.db.user=${PG_USER}|"   "${CFG_DATA}/enRoleDatabase.properties"
-    sed -i "s|^database.db.password=.*|database.db.password=${PG_PASS}|" "${CFG_DATA}/enRoleDatabase.properties"
-    sed -i "s|^database.jdbc.driverUrl=.*|database.jdbc.driverUrl=jdbc:postgresql://localhost:5432/${PG_DB}|" \
-        "${CFG_DATA}/enRoleDatabase.properties"
-    sed -i "s|^database.jdbc.driver=.*|database.jdbc.driver=org.postgresql.Driver|" \
-        "${CFG_DATA}/enRoleDatabase.properties"
-
-    # Configure LDAP connection
-    sed -i "s|^java.naming.provider.url=.*|java.naming.provider.url=ldap://localhost:389|" \
-        "${CFG_DATA}/enRoleLDAPConnection.properties"
-    sed -i "s|^java.naming.security.principal=.*|java.naming.security.principal=${LDAP_ADMIN_DN}|" \
-        "${CFG_DATA}/enRoleLDAPConnection.properties"
-    sed -i "s|^java.naming.security.credentials=.*|java.naming.security.credentials=${LDAP_ADMIN_PASS}|" \
-        "${CFG_DATA}/enRoleLDAPConnection.properties"
-
-    # Load enterprise license key
-    IVIG_KEY=$(ls /vagrant/installer/ivig_Enterprise_*.txt 2>/dev/null | head -1)
-    if [ -n "${IVIG_KEY}" ]; then
-      cp "${IVIG_KEY}" "${CFG_DATA}/ivig_license.key"
-    fi
-
-    # Run IVIG installer
-    cd "${IVIG_HOME}/wlp/bin"
-    chmod +x im_installer.sh
-    ./im_installer.sh \
-      -db.type POSTGRESQL \
-      -db.host localhost \
-      -db.port 5432 \
-      -db.name "${PG_DB}" \
-      -db.user "${PG_USER}" \
-      -db.password "${PG_PASS}" \
-      -ldap.url "ldap://localhost:389" \
-      -ldap.dn "${LDAP_ADMIN_DN}" \
-      -ldap.password "${LDAP_ADMIN_PASS}" \
-      -ldap.suffix "${LDAP_SUFFIX}" \
-      -org.name "Stonewrit" \
-      -tenant.id "default" \
-      -admin.password "${IVIG_ADMIN_PASS}"
-    cd /
-
-    # ----------------------------------------------------------------
-    echo "==> [6/7] Configuring IVIG as a system service..."
-    cat > /etc/systemd/system/ivig.service << 'EOF'
-[Unit]
-Description=IBM Verify Identity Governance (Liberty)
-After=network.target postgresql.service
-
-[Service]
-Type=forking
-User=root
-Environment=JAVA_HOME=/usr/lib64/jvm/java-11-openjdk
-ExecStart=/opt/IBM/ivig/wlp/bin/server start defaultServer
-ExecStop=/opt/IBM/ivig/wlp/bin/server stop defaultServer
-PIDFile=/opt/IBM/ivig/wlp/usr/servers/defaultServer/.pid/server.pid
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-    systemctl daemon-reload
-    systemctl enable ivig
-    systemctl start ivig
-
-    # ----------------------------------------------------------------
-    echo "==> [7/7] Waiting for IVIG to become available..."
-    for i in $(seq 1 30); do
-      if curl -kfsS -o /dev/null "https://localhost:9443/itim/console/main" 2>/dev/null; then
-        echo "IVIG is ready."
-        break
-      fi
-      echo "  Waiting... (${i}/30)"
-      sleep 20
-    done
-
-    echo ""
-    echo "======================================================"
-    echo "  Stonewrit (IVIG) - Ready"
-    echo "======================================================"
-    echo "  Console:   https://localhost:9443/itim/console/main"
-    echo "  Username:  itim manager"
-    echo "  Password:  ${IVIG_ADMIN_PASS}"
-    echo "  LDAP:      localhost:30389 (host) / 389 (VM)"
-    echo "  PostgreSQL:localhost:30543 (host) / 5432 (VM)"
-    echo "======================================================"
-    echo ""
-  SHELL
+  config.vm.provision "shell",
+    name:       "install",
+    path:       "scripts/install.sh",
+    privileged: true
 
 end
