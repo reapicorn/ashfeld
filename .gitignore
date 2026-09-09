@@ -15,7 +15,8 @@ thorngate/starter_kit/
 thorngate/license_files/
 
 # stonewrit - installer files (obtain separately from IBM)
-stonewrit/installer/
+stonewrit/installer/*
+!stonewrit/installer/.gitkeep
 
 # OS
 .DS_Store
