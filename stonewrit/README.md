@@ -105,7 +105,7 @@ Run `vagrant up` and verify that all `ivig` pods are Ready and that the console 
 | Port | `30543` |
 | Database | `ivig` |
 | User | `ivig` |
-| Password | `Thr0ng4t3DB!` |
+| Password | `St0n3writ#DB!` |
 
 ### LDAP
 
@@ -116,7 +116,7 @@ Run `vagrant up` and verify that all `ivig` pods are Ready and that the console 
 | Protocol | LDAPS |
 | Base DN | `dc=ivig` |
 | Bind DN | `cn=root` |
-| Password | `Thr0ng4t3LD!` |
+| Password | `St0n3writ#LD!` |
 
 The installer generates self-signed certificates. Import the root CA in your LDAP client if needed:
 
