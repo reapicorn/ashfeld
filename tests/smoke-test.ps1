@@ -27,9 +27,10 @@ function log {
 
 $vms = @(
     @{ label = "Embercrypt";    dir = "$root\Embercrypt" }
-    @{ label = "Darkhorn";    dir = "$root\darkhorn" }
-    @{ label = "Hollowcrown"; dir = "$root\hollowcrown" }
-    @{ label = "Thorngate";   dir = "$root\Thorngate" }
+    @{ label = "Darkhorn";      dir = "$root\darkhorn" }
+    @{ label = "Hollowcrown";   dir = "$root\hollowcrown" }
+    @{ label = "Stonewrit";     dir = "$root\stonewrit" }
+    @{ label = "Warden's Post"; dir = "$root\wardens-post" }
 )
 
 function run-vagrant {
