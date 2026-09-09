@@ -1,11 +1,13 @@
 # tests/smoke-test.ps1
-# Destroys and re-provisions all Ashfeld VMs, verifying each vagrant up exits successfully.
+# Destroys and re-provisions Ashfeld VMs, verifying each vagrant up exits successfully.
 #
-# Usage (foreground): pwsh tests/smoke-test.ps1
+# Usage (all VMs):    pwsh tests/smoke-test.ps1
+# Usage (single VM):  pwsh tests/smoke-test.ps1 -VM darkhorn
 # Usage (background): Start-Process pwsh -ArgumentList "-File tests/smoke-test.ps1" -RedirectStandardOutput tests/smoke-test.log -RedirectStandardError tests/smoke-test.log -NoNewWindow
 
 param(
-    [string]$Log = "$PSScriptRoot\smoke-test.log"
+    [string]$Log = "$PSScriptRoot\smoke-test.log",
+    [string]$VM  = ""
 )
 
 $root  = Split-Path $PSScriptRoot -Parent
@@ -25,13 +27,27 @@ function log {
 # Truncate log at start
 "" | Set-Content -Path $Log
 
-$vms = @(
+$allVms = @(
     @{ label = "Embercrypt";    dir = "$root\Embercrypt" }
     @{ label = "Darkhorn";      dir = "$root\darkhorn" }
     @{ label = "Hollowcrown";   dir = "$root\hollowcrown" }
     @{ label = "Stonewrit";     dir = "$root\stonewrit" }
     @{ label = "Warden's Post"; dir = "$root\wardens-post" }
 )
+
+if ($VM -ne "") {
+    $vms = [System.Collections.ArrayList]@()
+    foreach ($v in $allVms) {
+        if ($v.label -eq $VM -or $v.dir -like "*\$VM") { [void]$vms.Add($v) }
+    }
+    if ($vms.Count -eq 0) {
+        $labels = ($allVms | ForEach-Object { $_.label }) -join ', '
+        Write-Host "Unknown VM: '$VM'. Valid values: $labels" -ForegroundColor Red
+        exit 1
+    }
+} else {
+    $vms = $allVms
+}
 
 function run-vagrant {
     param($dir, $cmd, $logFile)
@@ -50,24 +66,24 @@ function run-vagrant {
 # Phase 1 - destroy all
 log ""
 log "Phase 1 - destroy all" Cyan
-foreach ($vm in $vms) {
-    log "$($vm.label) - destroying..." Cyan
-    run-vagrant $vm.dir @("destroy", "-f") (Join-Path $vm.dir "vagrant.log") | Out-Null
+foreach ($entry in $vms) {
+    log "$($entry.label) - destroying..." Cyan
+    run-vagrant $entry.dir @("destroy", "-f") (Join-Path $entry.dir "vagrant.log") | Out-Null
 }
 
 # Phase 2 - up all
 log ""
 log "Phase 2 - up all" Cyan
-foreach ($vm in $vms) {
+foreach ($entry in $vms) {
     log ""
-    log "$($vm.label) - starting..." Cyan
-    $vagrantLog = Join-Path $vm.dir "vagrant.log"
-    $exit = run-vagrant $vm.dir @("up") $vagrantLog
+    log "$($entry.label) - starting..." Cyan
+    $vagrantLog = Join-Path $entry.dir "vagrant.log"
+    $exit = run-vagrant $entry.dir @("up") $vagrantLog
     if ($exit -eq 0) {
-        log "  [OK]   $($vm.label) - vagrant up succeeded" Green
+        log "  [OK]   $($entry.label) - vagrant up succeeded" Green
         $PASS++
     } else {
-        log "  [FAIL] $($vm.label) - vagrant up exited with code $exit (see $vagrantLog)" Red
+        log "  [FAIL] $($entry.label) - vagrant up exited with code $exit (see $vagrantLog)" Red
         $FAIL++
     }
 }
@@ -75,9 +91,9 @@ foreach ($vm in $vms) {
 # Phase 3 - destroy all
 log ""
 log "Phase 3 - destroy all" Cyan
-foreach ($vm in $vms) {
-    log "$($vm.label) - destroying..." Cyan
-    run-vagrant $vm.dir @("destroy", "-f") (Join-Path $vm.dir "vagrant.log") | Out-Null
+foreach ($entry in $vms) {
+    log "$($entry.label) - destroying..." Cyan
+    run-vagrant $entry.dir @("destroy", "-f") (Join-Path $entry.dir "vagrant.log") | Out-Null
 }
 
 $elapsed = (Get-Date) - $start

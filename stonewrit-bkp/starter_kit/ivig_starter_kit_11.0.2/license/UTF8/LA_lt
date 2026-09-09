@@ -1,0 +1,470 @@
+LICENCIJOS INFORMACIJA
+
+Toliau nurodytos Programos licencijuojamos pagal šias Licencijos informacijos sąlygas, kurios papildo Programos licencijos sąlygas, dėl kurių susitarė Klientas ir IBM. Jei Klientas anksčiau nėra sutikęs su Programai taikomomis licencijos sąlygomis, taikoma Išankstinio programų leidimo tarptautinė licencinė sutartis (i125-5544-07).
+
+Programos pavadinimas (Programos numeris):
+IBM Verify Identity Governance (Early Release)
+
+Šios standartinės sąlygos taikomos Licenciato Programos naudojimui.
+
+Bandymo laikotarpis
+
+Bandymo laikotarpis prasideda nuo Licenciato sutikimo su šios Sutarties sąlygomis dienos ir baigiasi po 90 dienų.
+
+Konfidencialumas
+
+Licenciatas sutinka laikyti toliau pateiktą informaciją „IBM konfidencialia informacija“, neatsižvelgdamas į tai, ar yra konfidencialumą nurodančių apribojimo žymėjimų ir ar ji buvo nurodyta kaip IBM konfidenciali informacija prieš paskelbiant: (a) Programą, (b) bet kokią informaciją, kurią IBM pateikia Licenciatui, susijusią su Programa, įskaitant, bet neapsiribojant, su Programa susijusią medžiagą, pavyzdžiui, specifikacijas, planus, kryptis, strategijas, gaires, veikimo charakteristikas, palyginimus ir kitus Programos vertinimus, (c) bet kokią su Licenciato prieiga prie Programos susijusią informaciją, įskaitant, bet neapsiribojant, slaptažodžius arba kitus prieigos kodus, ir (d) visus duomenis, atsiliepimus, pasiūlymus ir (arba) rašytinę medžiagą, susijusią su Programa, kurią Licenciatas pateikia IBM. Licenciatas yra įgaliotas naudoti IBM konfidencialią informaciją tam tikslui, kuriam ji buvo pateikta, arba kitam tikslui IBM naudai. Nepaisant kitų šios Sutarties sąlygų, Licenciatas sutinka neperduoti, neskelbti, neplatinti arba kitaip neaptarinėti su trečiąja šalimi ir jai neatskleisti IBM konfidencialios informacijos (įskaitant, bet neapsiribojant, straipsnius, spaudinius arba kitą rašytinę medžiagą, susijusią su IBM konfidencialia informacija) prieš IBM nurodant, kad tokia IBM konfidenciali informacija yra viešai pasiekiama be įsipareigojimo neatskleisti.
+
+Licenciatas sutinka būti toks pat atsargus ir diskretiškas, kad neatskleistų IBM konfidencialios informacijos, kaip kad elgiasi su panašia savo informacija, kurios Licenciatas nenori atskleisti, tačiau jokiu atveju negali būti mažiau atsargus, nei dera. Licenciato įsipareigojimai, susiję su IBM konfidencialia informacija, galios dvejus metus nuo Licenciato IBM konfidencialios informacijos gavimo. Licenciatas sutinka neatskleisti IBM jokios konfidencialia arba Licenciato ar trečiosios šalies nuosavybe laikomos informacijos, išskyrus jei pasirašoma atskira rašytinė konfidenciali sutartis.
+
+Nepaisant konfidencialumo arba kitokios sutarties, kurią Licenciatas gali turėti su IBM dėl konfidencialios informacijos, IBM konfidenciali informacija tvarkoma remiantis anksčiau pateiktose pastraipose esančiais nurodymais.
+
+Pagalbinės programos
+
+Licenciatas įgaliotas diegti ir naudoti toliau nurodytas Pagalbines programas tik Licenciato Pagrindinės programos naudojimui palaikyti pagal šią Sutartį. Frazė „palaikyti Licenciato naudojimą“ apima tik tą naudojimą, kuris reikalingas ar kitaip tiesiogiai susijęs su Pagrindinės ar kitos Pagalbinės Programos licencijuotu naudojimu. Pagalbinių programų negalima naudoti jokiam kitam tikslui. Pagalbinė programa gali būti pateikiama su licencijos sąlygomis ir šios sąlygos, jei tokių yra, taikomos Pagalbinę programą naudojančiam Licencijos turėtojui. Įvykus ginčui šiame Licencijos informacijos dokumente pateiktos sąlygos pakeičia Pagalbinės programos sąlygas. Licenciatas turi gauti pakankamai Programos, kaip visumos, teisių, kad jų pakaktų visų Licenciato Pagalbinių programų diegimui ir naudojimui padengti, nebent šiuo Licencijos informacijos dokumentu suteikiama papildomų teisių. Pavyzdžiui, jei ši Programa buvo licencijuota VPC (Virtualiojo procesoriaus branduolio) pagrindu, ir Licenciatas turėtų įdiegti Pagrindinę programą arba Pagalbinę programą 10 VPC įrenginyje, o antrame 10 VPC įrenginyje – kitą Pagalbinę programą, Licenciatui reikės įsigyti 20 Programos VPC teisių.
+
+Pagalbinės programos:
+IBM Db2 Standard Edition 12.1
+IBM Security Verify Directory 10.0.4 (Limited Edition)
+IBM MQ
+WebSphere Application Server Liberty 25.0.0.9
+
+Keičiamas trečiosios šalies kodas
+
+Jei PRANEŠIMŲ faile IBM trečiosios šalies kodą atpažįsta kaip modifikuojamą trečiosios šalies kodą, IBM leidžia Licenciatui 1) modifikuoti modifikuojamą trečiosios šalies kodą ir 2) nukopijuoti Programos modulius, kurie tiesiogiai siejasi su modifikuojamu trečiosios šalies kodu, su sąlyga, kad tai daroma tik Licenciato atliktų tokio trečiosios šalies kodo modifikacijų klaidų šalinimo tikslais. IBM aptarnavimo ir palaikymo įsipareigojimai, jei tokių yra, taikomi tik nemodifikuotai Programai.
+
+Atskirai licencijuojamas kodas
+
+Kiekvienas iš komponentų, išvardytų faile NON_IBM_LICENSE, laikomas „Atskirai licencijuojamu kodu“, kuris yra licencijuojamas Licenciatui remiantis taikomomis trečiosios šalies licencijos sutarties (-čių) sąlygomis, kurios išdėstytos kartu su Programa pateikiamame faile (-uose) NON_IBM_LICENSE, o ne šia Sutartimi. Būsimuose Programos naujinimuose arba taisymuose gali būti papildomų Atskirai licencijuotų kodų. Tokie papildomi Atskirai licencijuoti kodai ir susijusios licencijos išvardijami taikomame NON_IBM_LICENSE faile, kuris pateikiamas su Programos naujinimu arba taisymu. 
+
+Pastaba: nepaisant jokių trečiosios šalies sutarties, šios Sutarties ar kitos sutarties, kurią Licenciatas gali sudaryti su IBM, sąlygų, susijusių su Atskirai licencijuojamu kodu:
+(a) IBM pateikia jį Licenciatui NETAIKYDAMA JOKIŲ GARANTIJŲ IR PANEIGIA BET KOKIAS, VISAS APIBRĖŽTAS IR NUMANOMAS GARANTIJAS IR SĄLYGAS, ĮSKAITANT, BET NEAPSIRIBOJANT, NUOSAVYBĖS, NEPAŽEIDŽIAMUMO AR NESIKIŠIMO GARANTIJAS IR NUMANOMAS TINKAMUMO PREKYBAI IR TAM TIKRAM TIKSLUI GARANTIJAS BEI SĄLYGAS;
+(b) IBM neatsako už jokius tiesioginius, netiesioginius, atsitiktinius, ypatingus, pavyzdinius, baudžiamuosius ar priežastinius nuostolius, įskaitant, bet neapsiribojant, prarastus duomenis, prarastas santaupas ir prarastą pelną.
+
+Šaltinio komponentai ir pavyzdinė medžiaga
+
+Į Programą yra įtrauktų komponentų išeitinio kodo forma („Šaltinio komponentai“) arba kita medžiaga, apibrėžta kaip Pavyzdinė medžiaga, arba abu šie elementai. Licenciatas gali kopijuoti ir modifikuoti Šaltinio komponentus ir Pavyzdinę medžiagą tik naudoti viduje, nepažeisdamas šios Sutarties licencijos teisių; tačiau Licenciatas negali keisti ar naikinti jokios Šaltinio komponentuose ir Pavyzdinėje medžiagoje esančios autoriaus teisių informacijos ar pranešimų. IBM pateikia Šaltinio komponentus ir Pavyzdinę medžiagą be palaikymo įsipareigojimo ir TOKIĄ, KOKIA YRA, NESUTEIKIANT JOKIŲ AIŠKIAI NURODYTŲ AR NENURODYTŲ GARANTIJŲ, ĮSKAITANT NUOSAVYBĖS TEISĖS, NEPAŽEIDŽIAMUMO AR NEĮSIKIŠIMO GARANTIJAS IR NENURODYTAS TINKAMUMO PREKIAUTI IR TAM TIKRAM TIKSLUI GARANTIJAS IR SĄLYGAS.
+
+
+L/N: L-ZMLT-LRAYV3
+D/N: L-ZMLT-LRAYV3
+P/N: L-ZMLT-LRAYV3
+
+Išankstinio programų leidimo tarptautinė licencinė sutartis
+
+1 dalis. Bendrosios sąlygos
+
+ATSISIŲSDAMAS, DIEGDAMAS, KOPIJUODAMAS, PASIEKDAMAS PROGRAMĄ, SPAUSDAMAS MYGTUKĄ „SUTINKU“ AR KITAIS BŪDAIS NAUDODAMAS PROGRAMĄ, LICENCIATAS SUTINKA SU ŠIOS SUTARTIES SĄLYGOMIS. JEIGU SU ŠIOS LICENCIJOS SĄLYGOMIS SUTINKATE LICENCIATO VARDU, JŪS PAREIŠKIATE, KAD TURITE VISUS ĮGALIOJIMUS PRISIIMTI SU ŠIOMIS SĄLYGOMIS SUSIJUSIUS ĮSIPAREIGOJIMUS LICENCIATO VARDU.
+
+JEI SU ŠIOMIS SĄLYGOMIS NESUTINKATE ARBA NETURITE ĮGALIOJIMO: i) NEATSISIŲSKITE, NEDIEKITE, NEKOPIJUOKITE, NEBANDYKITE PASIEKTI IR NENAUDOKITE PROGRAMOS, NESPAUSKITE MYGTUKO „SUTINKU“ IR ii) NEDELSDAMI GRĄŽINKITE NENAUDOTAS LAIKMENAS, DOKUMENTACIJĄ IR NUOSAVYBĖS TEISĖS DOKUMENTĄ ŠALIAI, IŠ KURIOS JUOS GAVOTE, KAD SUSIGRĄŽINTUMĖTE UŽ PROGRAMĄ SUMOKĖTUS PINIGUS. JEI PROGRAMA BUVO ATSISIŲSTA, SUNAIKINKITE VISAS PROGRAMOS KOPIJAS.
+
+Ši Išankstinio programų leidimo tarptautinė licencinė sutartis (angl. „International Program License Agreement for Early Release of Programs“ - ILAR) ir taikomi operacijų dokumentai (visi kartu - „Sutartis“) yra visa Licenciato ir IBM sutartis dėl Programos naudojimo. Šalių sąlygos, įtrauktos į 2 šios ILAR dalį, pakeičia arba modifikuoja 1 dalies sąlygas.
+
+Operacijų dokumentuose (OD) pateikiamas aprašas, informacija ir sąlygos susijusios su Programa ir teisėtu jos naudojimu. Programos OD pavyzdžiuose įtraukta licencijos informacija (LI), licencijuotos programos specifikacijos (LPS), pasiūlymas, teisių suteikimo dokumentas (TSD) arba sąskaita faktūra. Atsiradus bet kokiems prieštaravimams, OD turi viršenybę prieš ILAR.
+
+1. Programos licencija
+
+a. Programa yra vykdoma IBM prekės ženklo kompiuterio programa ir su ja susijusi medžiaga ir apima visos ir dalies programos kopijas. Programos išsami informacija aprašyta OD, kuris pasiekiamas adresu http://www.ibm.com/software/sla (programoms „Passport Advantage Program“) arba http://www.ibm.com/support/knowledgecenter (kitoms IBM Programoms) Programos sistemos komandų kataloge arba kitaip, kaip nurodė IBM. IBM Programinės įrangos politika (pvz., atsarginė kopija, laikinas naudojimas ir IBM patvirtinta debesies aplinka), pasiekiama adresu http://www.ibm.com/softwarepolicies, taikoma Licenciato Programos naudojimui.
+
+b. Programos kopijoms taikomos autorinės teisės ir reikalauja licencijos.
+
+c. Licenciatui suteikiama neišimtinė ribotoji licencija:
+
+(1) naudoti kiekvieną Programos kopiją Bandymo laikotarpiu tik testavimo ir atsiliepimų teikimo IBM tikslais prieš padarant Programą bendrai pasiekiamą (kaip apibrėžta taikomame Programos OD) („Teisėtas naudojimas“);
+
+(2) kurti ir diegti kopijas, skirtas tokiam Teisėtam naudojimui palaikyti; ir
+
+(3) kurti atsarginę kopiją.
+
+d. Programas gali naudoti Licenciatas, jo darbuotojai ir rangovai. Licenciatas negali naudoti Programos gamybos tikslais, nuomoti Programos ar leisti ją naudoti išperkamosios nuomos pagrindu arba teikti komercines IT, išteklių nuomos ar laiko išteklių paskirstymo paslaugas bet kuriąi trečiajai šaliai. Licenciatas negali eksportuoti Programos, kuri licencijuojama remiantis šia ILAR. Už papildomą mokestį ir pagal kitas sąlygas galima įsigyti papildomų teisių.
+
+e. Programai suteikta licencija galioja su sąlyga, kad Licenciatas:
+
+(1) atgamina autorių teisių informaciją ir kitus ženklus bet kokioje kopijoje;
+
+(2) užtikrina, kad kiekvienas Programos naudotojas i) ja naudojasi Licenciato vardu Licenciato Teisėto naudojimo būdu ir ii) laikosi šios Sutarties sąlygų;
+
+(3) neišjungia jokio išjungimo įrenginio, neišmontuoja, nedekompiliuoja, neverčia Programos ir netaiko jai atvirkštinės inžinerijos būdų, nebent teisės aktai tai aiškiai leidžia be sutartinės atsisakymo galimybės; ir
+
+(4) nė vieno iš Programos elementų ar susijusios licencijuotos medžiagos nenaudoja atskirai nuo Programos.
+
+f. Jei Programos (Pagrindinės programos) OD nurodyta, kad „Pagalbinė programa“ įtraukta į Pagrindinę programą, Licenciatas gali naudoti Pagalbinę programą bet kokiems Pagrindinės programos licencijos apribojimams taikyti arba tik Pagrindinei programai palaikyti.
+
+g. Ši licencija taikoma kiekvienai Licenciato padarytai Programos kopijai.
+
+h. Programos atnaujinimui, pakeitimui ar pataisai taikomos Programos sąlygos, nebent naujos sąlygos pateikiamos atnaujintame OD. Licenciatas sutinka su naujomis sąlygomis įdiegti atnaujinimą, pakeitimą ar pataisą. Jei Programa pakeičiama atnaujinimu, Licenciatas sutinka nedelsdamas nutraukti pakeistos Programos naudojimą.
+
+2. Garantijos
+
+a. Remiantis taikomais teisės aktais, Programos teikiamos tokios, kokos yra, be jokių garantijų, įskaitant: i) be nepertraukiamo Programos veikimo ir veikimo be klaidų garantijų arba ii) be jokių kitų garantijų, pavyzdžiui, neapibrėžtų patenkinamos kokybės, tinkamumo parduoti, nepažeidžiamumo ir tinkamumo konkrečiam tikslui garantijų.
+
+b. IBM neteikia jokio palaikymo, nebent OD nurodyta kitaip.
+
+3. Mokesčiai, mokėjimas ir patikrinimas
+
+a. Naudojant Programą Bandymo laikotarpiu, naudojimo mokesčių nėra, nebent OD nurodyta kitaip. Jeigu bet kuri valdžios institucija taiko muitą, mokestį (įskaitant pajamų mokestį), rinkliavą arba importo ar eksporto mokestį, Programos perleidimo, prieigos arba naudojimo mokestį, už bet kokio tokio mokesčio sumokėjimą atsako Licenciatas.
+
+3.1 Licencijavimo patvirtinimas
+
+a. Licenciatas visoms Programoms visose vietose ir visose aplinkose kurs, išlaikys ir pateiks IBM pagal užklausą: i) ataskaitą IBM pageidaujamu formatu apie įrašų, sistemos įrankių išvesties ir kitos sistemos informacijos naudojimą; ir ii) palaikymo dokumentus (bendrai, „Diegimo duomenys“).
+
+b. Priimtinai perspėjusi IBM ir nepriklausomi auditoriai gali patikrinti, kaip Licenciatas laikosi šios Sutarties visose svetainėse ir visose aplinkose, kuriose Licenciatas naudoja (bet kokiais tikslais) Programas. Patikrinimas bus atliktas taip, kad kuo mažiau sutrikdytų Licenciato veiklą, ir gali būti atliekamas Licenciato patalpose darbo valandomis. IBM pateiks rašytinę sutartį su nepriklausomu auditoriumi. Bet anksčiau aprašytų Diegimo duomenų, Licenciatas pagal užklausą sutinka pateikti IBM ir jos auditoriams papildomos tikslios informacijos ir Diegimo duomenis.
+
+c. Licenciatas nedelsdamas sutvarkys ir sumokės mokesčius pagal IBM dabartinius įkainius, susijusius su i) bet kokiais diegimais ar naudojimu, viršijančiu nurodytus įgaliojimus arba pažeidžiančiu šią Sutartį pagal bet kokį patvirtinimą; ii) tokiems pertekliniams diegimams taikomomis prenumeratos ir palaikymo paslaugomis (S&S); šio perteklinio naudojimo laikotarpiu arba dvejus metus, atsižvelgiant į tai, kuris laikotarpis trumpesnis, ir iii) kitas išlaidas bei įsipareigojimus, nustatytus per tikrinimą, įskaitant, bet neapsiribojant, mokesčius, rinkliavas ir reguliacinius mokesčius.
+
+4. Atsakomybė
+
+a. IBM atsakomybė dėl visų pretenzijų, susijusių su šia Sutartimi, neviršys Licenciato patirtos faktinės tiesioginės žalos sumos: neviršys i) 10 000 JAV dolerių (arba atitikmens vietos valiuta) arba ii) sumos, kuri buvo sumokėta (periodinio mokesčio atveju - ne daugiau nei 12 mėnesių mokesčių suma) už teises į Programą, dėl kurių pateikta pretenzija, neatsižvelgiant į pretenzijos pagrindą. IBM neprisiima atsakomybės už ypatingą, atsitiktinę, baudinę, netiesioginę žalą ar ekonominius šalutinius nuostolius arba už prarastą pelną, verslą, vertę, pajamas, prestižą ar numatomas santaupas. Šie apribojimai taikomi bendrai IBM, jos susijusioms įmonėms, rangovams ir tiekėjams.
+
+b. Toliau nurodytoms sumoms netaikoma anksčiau nurodyta viršutinė riba: nuostoliai, kurių neleidžia apriboti galiojantys įstatymai.
+
+c. IBM nėra atsakinga už pretenzijas, pagrįstas ne IBM produktais, IBM neteikiamomis prekėmis arba bet kokiu teisės ar trečiosios šalies teisių pažeidimu, atsiradusiu dėl Turinio ar bet kokių Licenciato medžiagų, konstrukcijų, specifikacijų. Turinį sudaro visi duomenys, programinė įranga ir informacija, kurią Licenciatas ar jo teisėti vartotojai pateikia, suteikia teisę pasiekti arba įtraukia į Programą.
+
+5. Nutraukimas
+
+a. Bandymo laikotarpis prasideda tada, kai Licenciatas sutinka su šios Sutarties sąlygomis, ir pasibaigia ankščiausiai i) taikomame Programos OD nurodytai datai, ii) Programos automatinio išsijungimo datai arba iii) datai, kai IBM padaro Programą komerciškai prieinamą. Licenciatas turi per dešimt dienų nuo Bandymo laikotarpio pabaigos sunaikinti Programą ir visas jos kopijas. Licenciatas turi pašalinti bet kokį Turinį iki Bandymo laikotarpio galiojimo pabaigos, nes pasibaigus galiojimo laikui kuris nors išjungimo įrenginys gali neleisti juo naudotis.
+
+b. IBM gali nutraukti Licenciato Programos naudojimo licenciją, jei Licenciatas nesilaiko šios ILAR, OD ar pirkimo sutarties, pvz., Tarptautinės „Passport Advantage“ sutarties (angl. „International Passport Advantage Agreement“ - IPAA) sąlygų. Nutraukus licenciją, Licenciatas turi nedelsdamas sunaikinti visas Programos kopijas.Bet kurios sąlygos, kurios dėl savo pobūdžio tęsiasi po nutraukimo, lieka galioti iki jų įvykdymo ir taikomos įpėdiniams ir teisių perėmėjams.
+
+6. Taikoma teisė ir geografinė aprėptis
+
+a. Abi šalys sutinka, kad būtų taikomi šalies, kurioje vykdomas sandoris dėl licencijos teisių, teisės aktai, neatsižvelgiant į teisės principų prieštaravimus. Kiekvienos šalies teisės ir įsipareigojimai galioja tik toje šalyje, kurioje vykdomas sandoris licencijos teisėms įsigyti arba, jei IBM sutinka, šalyje, kurioje Programa yra produktyviai naudojama, išskyrus visas licencijas - jos galioja ten, kur konkrečiai nurodyta.
+
+b. Kiekviena šalis taip pat atsako už: 1) jos verslui ir Turiniui taikomų įstatymų ir kitų teisės aktų laikymąsi; 2) importo, eksporto ir ekonominių sankcijų įstatymų ir kitų teisės aktų, įskaitant Jungtinių Amerikos Valstijų ir bet kokių taikomų jurisdikcijų gynybos prekybos kontrolės režimo įstatymus ir kitus teisės aktus, kuriais draudžiamas ar ribojamas tiesioginis ar netiesioginis gaminių, technologijų, paslaugų ar duomenų importas, eksportas, reeksportas ar perdavimas į tam tikras šalis, tam tikram galutiniam naudojimui ar tam tikriems galutiniams naudotojams, laikymąsi.
+
+c. Jeigu kuri nors šios Programos Sutarties nuostata negalioja arba yra neįgyvendinama, kitos nuostatos lieka galioti. Joks šios Sutarties punktas neturi įtakos įstatymų numatytoms vartotojų teisėms, kurių sutartis negali panaikinti ar apriboti. Jungtinių Tautų konvencija „Dėl tarptautinio prekių pirkimo-pardavimo sutarčių“ pagal šį Susitarimą sudaromiems sandoriams netaikoma.
+
+7. Bendrosios nuostatos
+
+a. IBM yra nepriklausomas rangovas, o ne Licenciato atstovas, bendros įmonės dalininkas, partneris ar patikėtinis ir ji neįsipareigoja vykdyti reglamentuose numatytus Licenciato įsipareigojimus ir neprisiima atsakomybės už Licenciato verslą ar veiklą. Licenciatas atsako už savo naudojimąsi IBM Programomis ir Ne IBM Programomis. IBM veikia tik kaip informacijos technologijos teikėjas. IBM pateikiamos instrukcijos, siūlomas Programos naudojimas ar patarimai nėra medicininis, klinikinis, teisinis, apskaitos arba kitoks licencijuoto profesionalo patarimas. Licenciatas privalo gauti savo eksperto patarimą.
+
+b. Tais atvejais, kai Licenciatui IBM Programas pateikia materialios formos, IBM savo siuntimo ir pristatymo įsipareigojimus įvykdo, perdavusi Programas IBM paskirtam vežėjui, nebent Licenciatas ir IBM raštiškai susitarė kitaip.
+
+c. Licenciatas negali naudoti Programos, jei jos gedimas gali sukelti mirtį, sunkų kūno sužalojimų, nuosavybės ar aplinkos pažeidimą.
+
+d. IBM, jos antrinės įmonės ir jų rangovai turi naudoti savo įmonės informaciją ir tam tikrą paskyros naudojimo informaciją. Ši informacija nėra Turinys. Verslo kontaktinė informacija naudojama ryšiams su Licenciatu ir verslo sandoriams su juo valdyti. Verslo kontaktinės informacijos pavyzdžiai: vardas, pavardė, darbo telefonas, adresas, el. paštas, vartotojo ID ir mokesčių registracijos informacija. Paskyros naudojimo informaciją būtina pateikti norint įgalinti, teikti, valdyti, palaikyti, administruoti ir tobulinti Programas. Paskyros naudojimo informacija apima pateikiamas klaidas ir skaitmeninę informaciją, kuri Programos naudojimo metu renkama, naudojant sekimo technologijas, tokias kaip slapukai ir žiniatinklio indikatoriai.IBM privatumo nuostatos, pateikiamos http://www.ibm.com/privacy, suteikia papildomos informacijos apie tai, kaip IBM renka, naudoja ir tvarko verslo kontaktinę informaciją ir paskyros naudojimo informaciją.Kai Licenciatas pateiks informaciją IBM, ir praneš apie tokį tvarkymą reikia informuoti asmenį arba gauti jo sutikimą, Licenciatas informuos asmenį ir gaus jo sutikimą.
+
+e. IBM verslo partneriai, naudojantys ar teikiantys Programą, veikia nepriklausomai nuo IBM ir vienašališkai nustato savo kainas ir sąlygas. IBM neatsako už jų veiksmus, neveikimą, pareiškimus ar pasiūlymus.
+
+f. IBM gali siūlyti ne IBM Programas arba IBM Programa gali sudaryti sąlygas pasiekti ne IBM Programą, dėl kurios gali tekti sutikti su OD arba Licenciato pateiktomis trečiųjų šalių sąlygomis. Ne IBM Programų susiejimas arba jų naudojimas rodo, kad Licenciatas sutinka su tomis sąlygomis. IBM nėra tokių trečiųjų šalių sutarčių dalyvė ir nėra atsakinga už ne IBM programas.
+
+g. Programos Licencijos teises suteikia įmonė Niujorke „International Business Machines Corporation“ („IBM Corporation“). IBM įmonė, iš kurios Licenciatas įsigyja teises (IBM) veikia kaip platintojas, teikia Programas ir yra atsakinga už šios Sutarties sąlygų laikymąsi. Jei teisės įsigyjamos iš IBM verslo partnerio, įsigijimo šalies IBM įmonė yra atsakinga už šios Sutarties sąlygų laikymąsi. Nesukuriama jokia teisė arba ieškinio pagrindas Licencijos naudai prieš „IBM Corporation“. Licenciatas atsisako bet kokių pretenzijų ir ieškinio pagrindo prieš „IBM Corporation“ bei sutinka dėl su Programomis susijusių teisių ir teisių gynimo priemonių kreiptis išskirtinai į IBM.
+
+h. Licenciatas negali suteikti, perleisti ar perduoti jokios Programos licencijos (išskyrus atvejus, kai perleidimas ar perdavimas nėra teisiškai ribojamas arba aiškiai leidžiamas OD arba dėl jo kitaip susitarta su IBM). IBM gali perleisti teises ir įsipareigojimus pagal šią Sutartį, jei perleidimas susijęs su IBM verslo dalies, apimančios Programą, pardavimu.IBM gali bendrinti šią Sutartį ir su ja susijusius dokumentus kartu su bet kokiu perleidimu.
+
+i. Visi pranešimai, susiję su Sutartimi, turi būti pateikti raštu ir siunčiami Sutartyje, pagal kurią Licenciatas įsigijo licencijos teises, nurodytu įmonės adresu, nebent šalis raštu nurodo kitą adresą.Šalys sutinka naudoti elektronines priemones bei faksimilinį ryšį pranešimams siųsti ir tokiu būdu siųsti pranešimai prilygintini rašytiniams, pasirašytiems pranešimams. Bet kokia patikimomis priemonėmis padaryta šios Sutarties kopija laikoma originalu. Sutartis pakeičia visus šalių dalykinius svarstymus, diskusijas ar pareiškimus.
+
+j. Sutartis nesukuria jokiai trečiajai šaliai jokios teisės arba ieškinio pagrindo. Nė viena šalis neiškels iš Sutarties kylančios ar su ja susijusios teismo bylos nuo bylos priežasties atsiradimo praėjus daugiau nei dvejiems metams. Nė viena šalis nėra atsakinga už tai, jog dėl nuo jos valios nepriklausančių priežasčių nevykdo kurio nors nepiniginio įsipareigojimo. Kiekviena šalis suteiks kitai šaliai pagrįstas galimybes įvykdyti įsipareigojimus prieš pateikdama reikalavimą dėl to, kad kita šalis neįvykdė jos įsipareigojimų.
+
+k. IBM gali naudoti personalą ir išteklius visame pasaulyje, įskaitant trečiųjų šalių rangovus, kad palaikytų Programų teikimą ir Programos palaikymą. Licenciatui naudojant Programas, siekiant palaikyti Programą, kaip aprašyta IBM programinės įrangos palaikymo vadove, už šalies ribų gali būti perkeliamas Turinys, įskaitant asmenis identifikuojančią informaciją.
+
+2 dalis. Pagal šalį taikomos sąlygos
+
+Šios sąlygos pakeičia arba modifikuoja toliau išvardytose šalyse įsigytų licencijų sąlygas, nurodytas šioje ILAR. Sąlygos, kurių šios pataisos nepakeičia, išlieka nepakeistos ir galiojančios.
+
+1. AMERIKA
+
+4 skyrius. Atsakomybė
+
+Šį atsakomybės atsisakymą įterpti a pastraipos pabaigoje:
+
+Peru: pagal Peru civilinio kodekso 1328 straipsnį, šie apribojimai ir išimtys nebus taikomi tyčinio aplaidumo („dolo“) arba didelio neatsargumo („culpa inexcusable“) atvejais.
+
+6 skyrius. Taikoma teisė ir geografinė aprėptis
+
+a pastraipoje pakeisti pirmąjį sakinį tik į:
+
+Argentinoje: abi šalys sutinka laikytis Argentinos Respublikos įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Visi teismo procesai, susiję su teisėmis, prievolėmis ir įsipareigojimais, kylančiais iš šios Sutarties, turi būti perduoti Ciudad Autónoma de Buenos Aires miesto teismui, įprastai nagrinėjančiam komercinius ginčus.
+
+Čilėje: abi šalys sutinka laikytis Čilės įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Bet koks konfliktas, šios Sutarties interpretavimas ar pažeidimas, kurio Šalys negali išspręsti, turi būti perduotas Santjago miesto ir rajono bendrosios kompetencijos teismų jurisdikcijai.
+
+Kolumbijoje: abi šalys sutinka laikytis Kolumbijos Respublikos įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Visos teisės, prievolės ir įsipareigojimai yra pavaldūs Kolumbijos Respublikos teisėjams.
+
+Ekvadore: abi šalys sutinka laikytis Ekvadoro Respublikos įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Visi iš šios Sutarties kylantys ar su ja susiję ginčai turi būti pateikiami Kito civilinio teismo teisėjams ir žodiniams supaprastintiems teismo procesams.
+
+Venesueloje: abi šalys sutinka laikytis Venesuelos įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Šalys sutinka bet kokius su šia Sutartimi susijusius konfliktus, kurie tarp jų kyla, pateikti Karakaso miesto regiono teismams.
+
+Peru: abi šalys sutinka laikytis Peru įstatymų, neatsižvelgiant į jurisdikcijų kolizijų principus. Bet kokie tarp šalių kylantys nesutarimai dėl šios Sutarties vykdymo, interpretavimo ar atitikties, kurių negalima tiesiogiai išspręsti, turi būti pateikiami Cercado de Lima teismo apygardos teisėjų ir tribunolų jurisdikcijai ir kompetencijai.
+
+Urugvajuje: abi šalys sutinka laikytis Urugvajaus įstatymų. Bet kokie tarp šalių kylantys nesutarimai dėl šios Sutarties vykdymo, interpretavimo ar atitikties, kurių negalima tiesiogiai išspręsti, turi būti pateikiami Montevidėjaus teismams (Tribunales Ordinarios de Montevideo).
+
+a pastraipoje tik pirmame sakinyje pakeisti frazę „šalies, kurioje vykdomas sandoris dėl licencijos teisių“ fraze:
+
+Jungtinėse Valstijose, Angilijoje, Antigvoje ir Barbudoje, Aruboje, Bahamose, Barbadosase, Bermuduose, Bonere, Didžiosios Britanijos Mergelių Salose, Kaimanų Salose, Kiurasao, Dominikoje, Grenadoje, Gajanoje, Jamaikoje, Montserate, Saboje, Sent Eustatijuje, Sent Kitse ir Nevyje, Sent Lusijoje, Sent Martene, Sent Vinsente ir Grenadinuose, Surinamyje, Tortoloje, Trinidade ir Tobage, Terkso ir Kaikoso Salose: Niujorko valstija, Jungtinės Valstijos.
+
+Kanadoje: Ontarijo provincija ir ten taikomi federaliniai Kanados teisės aktai.
+
+a pastraipoje antrame sakinyje pakeisti frazę „šalies, kurioje vykdomas sandoris licencijos teisėms įsigyti“ fraze:
+
+Argentinoje: Argentinos
+
+Čilėje: Čilės
+
+Kolumbijoje: Kolumbijos
+
+Ekvadore: Ekvadoro
+
+Meksikoje: Meksikos
+
+Peru: Peru
+
+Uruguvajuje: Urugvajaus
+
+Venesueloje: Venesuelos
+
+b pastraipos pabaigoje pridėti šiuos sakinius:
+
+Brazilijoje: visi iš šios Sutarties kylantys arba su ja susiję ginčai, įskaitant supaprastintus procesus, turi būti pateikiami ir svarstomi San Paulo miesto (San Paulo valstija, Brazilija) išimtinėje teismų jurisdikcijoje, o šalys neatšaukiamai sutinka su šia specifine jurisdikcija, atsisakydamos bet kokios kitos, kad ir kokių privilegijų jos turėtų:
+
+Meksikoje: šalys sutinka būti atsakingos Meksiko miesto teismų jurisdikcijai, siekdamos išspręsti bet kokius iš šios Sutarties kylančius ginčus. Šalys atsisako bet kokios jurisdikcijos, kuriai atsako pagal savo dabartinę ar būsimą gyvenamąją vietą arba dėl bet kokios kitos priežasties.
+
+7 skyrius. Bendrosios nuostatos
+
+g pastraipoje:
+
+Jungtinėse Valstijose: ištrinti paskutinius 2 sakinius.
+
+i pastraipoje pridėti šį naują sakinį po pirmojo sakinio:
+
+Meksikoje: apie bet kokius adreso pakeitimus turi būti pranešta prieš 10 (dešimt) dienų, kitu atveju teisiškai galios paskutiniu nurodytu adresu pateikti pranešimai.
+
+j pastraipoje:
+
+Brazilijoje: panaikinti visą antrą sakinį „Nė viena šalis neiškels iš Sutarties kylančios ar su ja susijusios teismo bylos nuo bylos priežasties atsiradimo praėjus daugiau nei dvejiems metams“.
+
+Į šį skyrių įraukti naują l pastraipą:
+
+Kanadoje: abi šalys sutaria rašyti šį dokumentą anglų kalba. Les parties ont convenu de rédiger le présent document en langue anglaise.
+
+2. AZIJA IR RAMUSIS VANDENYNAS
+
+2 skyrius. Garantijos
+
+Įtraukti šio skyriaus pabaigoje naują c pastraipą:
+
+Australijoje: šios garantijos papildo visas teises ir yra apribojamos tik iki 2010 m. Konkurencijos ir vartotojų teisių apsaugos įstatymo leidžiamos ribos.
+
+Japonijoje: IBM atsakomybė ribojama šia pastraipa ir skyriaus „Atsakomybė“ nuostatomis, taikomais OD, nes Licenciato vienintelė kompensacinė priemonė už garantijų nesilaikymą nurodyta šiame skyriuje.
+
+Naujojoje Zelandijoje: garantijos papildo visas teises pagal 1993 m. Vartotojų teisių apsaugos įstatymą ar kitą teisės aktą ir kurių negalima apriboti pagal įstatymus.
+
+4 skyrius. Atsakomybė
+
+a pastraipoje pirmojo sakinio pabaigoje pridėti toliau nurodytą tekstą:
+
+Australijoje: (pavyzdžiui, ar pagrįsta sutartimi, civilinės teisės pažeidimu, aplaidumu, pagal statutą ar kitaip)
+
+a pastraipos antrame sakinyje po žodžio „ypatingąją“ ir prieš žodį „atsitiktinę“ įtraukti šį tekstą:
+
+Filipinuose: (įskaitant nominalią ir pavyzdinę žalą), moralinę,
+
+5 skyrius. Nutraukimas
+
+Įtraukti skyriaus pabaigoje kaip naują d pastraipą:
+
+Indonezijoje: abi šalys atsisako laikytis Indonezijos civilinio kodekso 1266 straipsnio tokia apimtimi, kiek jis reikalauja teismo nutarties dėl abipusius įsipareigojimus sukuriančios sutarties nutraukimo.
+
+6 skyrius. Taikoma teisė ir geografinė aprėptis
+
+a pastraipoje tik pirmame sakinyje pakeisti frazę „šalies, kurioje vykdomas sandoris dėl licencijos teisių“ fraze:
+
+Kambodžoje, Laose: Niujorko Valstijos, JAV;
+
+Australijoje: valstijos arba teritorijos, kurioje vykdomas sandoris
+
+Honkonge: Kinijos Liaudies Respublikos Honkongo Ypatingajame Administraciniame Regione
+
+Makau: Kinijos Liaudies Respublikos Honkongo Ypatingojo Administracinio Regiono
+
+Korėjoje: Korėjos Respublikos (taikoma Korėjos Respublikos Seulo centrinio apylinkės teismo praktika).
+
+Taivane: Taivano
+
+Indijoje: Indijos
+
+b pastraipos pirmame sakinyje punkte ii), po žodžio „įskaitant“ ir prieš žodį „Jungtinių“ pridėti:
+
+Japonijoje: Japonijos teisės aktus ir
+
+a pastraipos antrame sakinyje pakeisti frazę „šalyje, kurioje vykdomas sandoris licencijos teisėms įsigyti arba, jei IBM sutinka, šalyje, kurioje Programa yra produktyviai naudojama“ fraze:
+
+Honkonge: Kinijos Liaudies Respublikos Honkongo Ypatingajame Administraciniame Regione
+
+Makau: Kinijos Liaudies Respublikos Makau Ypatingajame Administraciniame Regione
+
+Taivane: Taivane
+
+Įtraukti skyriaus pabaigoje kaip naują d pastraipą:
+
+Kambodžoje, Laose, Filipinuose ir Šri Lankoje: ginčai bus galutinai sprendžiami arbitražo, kuris vyks Singapūre pagal Singapūro tarptautinio arbitražo centro arbitražo taisykles („SIAC taisyklės“).
+
+Indijoje: Ginčai bus galutinai sprendžiami pagal tuo metu galiojantį 1996 m. Arbitražo ir taikinimo aktą anglų kalba Bengalūre, Indijoje. Jei ginčo suma yra mažesnė arba lygi penkioms kroroms Indijos rupijų, dalyvaus vienas arbitras ir trys arbitrai, jei ši suma didesnė. Pakeitus arbitrą, teismo procesas tęsis nuo to etapo, kuriame jis buvo prieš atsirandant laisvai vietai.
+
+Indonezijoje: ginčai bus galutinai sprendžiami arbitražo, kuris vyks Džakartoje (Indonezija) ir kurį administruos Indonezijos nacionalinė arbitražo taryba („Badan Arbitrase Nasional Indonesia“ arba BANI), įkurta 1977 metais, pagal Indonezijos nacionalinės arbitražo tarybos taisykles. Arbitražo sprendimas bus galutinis, privalomas abiem šalims be apeliacijos teisės, pateikiamas raštu, turi būti išdėstytos nustatytos bylos faktinės aplinkybės ir teisinės išvados.
+
+Kinijos Liaudies Respublikoje: bet kuri šalis gali kreiptis į Kinijos tarptautinės ekonomikos ir prekybos arbitražo komisiją Pekine (KLR), kad arbitražas priimtų galutinį sprendimą. Šalys sutaria, kad sprendžiant bet kokius ginčus dalyvaus trys arbitrai.
+
+Vietname: ginčai bus galutinai sprendžiami arbitražo, kuris vyks Vietname pagal Vietnamo tarptautinio arbitražo centro arbitražo taisykles (VIAC taisykles).Visi teismo procesai vyks ir dokumentai bus pateikiami anglų kalba.
+
+7 skyrius. Bendrosios nuostatos
+
+j pastraipoje antrame sakinyje pakeisti frazę „dvejiems metams“ fraze:
+
+Indijoje: trejiems metams
+
+Įtraukti šio skyriaus pabaigoje šią naują l pastraipą:
+
+Indonezijoje: ši sutartis sudaryta anglų ir indoneziečių kalbų versijomis. Tiek, kiek leidžia taikomi teisės aktai, anglų kalbos versija turi viršenybę, jei tarp versijų aptinkami neatitikimai.
+
+3. EUROPA, VIDURINIAI RYTAI IR AFRIKA
+
+4 skyrius. Atsakomybė
+
+a pastraipos pirmame sakinyje, prieš žodžius „sumos, kuri buvo sumokėta“ įterpti:
+
+Belgijoje, Prancūzijoje, Vokietijoje, Italijoje, Liuksemburge, Maltoje, Portugalijoje ir Ispanijoje: didesniosios iš 500 000 EUR (penkių šimtų tūkstančių eurų) arba
+
+Airijoje ir Jungtinėje Karalystėje: 125 %
+
+a pastraipoje pirmame sakinyje pakeisti frazę „Licenciato patirtos faktinės tiesioginės žalos“ fraze:
+
+Ispanijoje: įrodytos Licenciato patirtos žalos kaip tiesioginio IBM pažeidimo rezultato
+
+Po pirmojo a pastraipos sakinio įterpti toliau nurodytą naują sakinį:
+
+Slovakijoje: Pagal pataisytą prekybos kodekso § 379 Aktą Nr. 513/1991 ir atsižvelgiant į visas sąlygas, susijusias su sutarties sudarymu, abi šalys pareiškia, kad bendra numatoma žala, kuri gali susikaupti, neviršys anksčiau nurodytos sumos ir tai maksimali suma, kurią IBM privalo sumokėti.
+
+Prieš antrąjį a pastraipos sakinį įterpti toliau nurodytą naują sakinį:
+
+Rusijoje: IBM nebus atsakinga už negautą naudą.
+
+a pastraipos antrame sakinyje pašalinti žodį:
+
+Airijoje ir Jungtinėje Karalystėje: ekonominius
+
+a pastraipoje pakeisti antrąjį sakinį į:
+
+Belgijoje, Nyderlanduose ir Liuksemburge: IBM nebus laikoma atsakinga už netiesioginę ar šalutinę žalą, prarastą pelną, verslo veiklą, vertę, pajamas, reputaciją, žalą reputacijai ar numatomus sutaupymus, bet kokias trečiosios šalies pretenzijas Klientui ir duomenų praradimą (arba žalą jiems).
+
+Prancūzijoje: IBM nebus laikoma atsakinga už žalą reputacijai, netiesioginę žalą arba prarastą pelną, verslo veiklą, vertę, pajamas, reputaciją ar numatomus sutaupymus.
+
+Portugalijoje: IBM nebus atsakinga už netiesioginius nuostolius, įskaitant pelno praradimą.
+
+Ispanijoje: IBM nebus laikoma atsakinga už žalą reputacijai, prarastą pelną, verslo veiklą, vertę, pajamas, reputaciją ar numatomus sutaupymus.
+
+a pastraipos pabaigoje pridėti:
+
+Prancūzijoje: Sutarties sąlygos, įskaitant finansines sąlygas nustatytos, atsižvelgiant į dabartinį punktą, kuris yra sudėtinės bendrosios Sutarties ekonomijos dalis.
+
+b pastraipoje frazę „nuostoliai, kurių neleidžia apriboti galiojantys įstatymai“ pakeisti šia fraze:
+
+Vokietijoje: i) žala dėl kūno sužeidimų (įskaitant mirtį); ii) nuostoliai ar žala, kurią sukėlė numanomas IBM garantijos sąlygų pažeidimas, susijęs su bet kuria operacija, atlikta laikantis šios Sutarties; iii) nuostoliai dėl tyčios arba didelio neatsargumo.
+
+6 skyrius. Taikoma teisė ir geografinė aprėptis
+
+a pastraipoje tik pirmame sakinyje pakeisti frazę „šalies, kurioje įvyko sandoris dėl licencijos teisių“ fraze:
+
+Albanijoje, Armėnijoje, Azerbaidžane, Baltarusijoje, Bosnijoje ir Hercegovinoje, Bulgarijoje, Kroatijoje, Buvusiojoje Jugoslavijos Respublikoje Makedonijoje, Gruzijoje, Kazachstane, Kirgizijoje, Moldavijoje, Juodkalnijoje, Rumunijoje, Rusijoje, Serbijoje, Tadžikijoje, Turkmėnijoje, Ukrainoje ir Uzbekijoje: Austrijos
+
+Estijoje, Latvijoje ir Lietuvoje: Suomijos
+
+Alžyre, Andoroje, Benine, Burkina Fase, Burundyje, Kamerūne, Žaliajame Kyšulyje, Centrinėje Afrikos Respublikoje, Čade, Komoruose, Konge, Džibutyje, Kongo Demokratinėje Respublikoje, Pusiaujo Gvinėjoje, Prancūzų Gvianoje, Prancūzijos Polinezijoje, Gabone, Gvinėjoje, Bisau Gvinėjoje, Dramblio Kaulo Krante, Libane, Madagaskare, Malyje, Mauritanijoje, Mauricijuje, Majote, Maroke, Naujojoje Kaledonijoje, Nigeryje, Reunjone, Senegale, Seišeliuose, Toge, Tunise, Vanuatu ir Volise ir Futūnoje: Prancūzijos
+
+Angoloje, Bahreine, Botsvanoje, Egipte, Eritrėjoje, Etiopijoje, Ganoje, Gambijoje, Irake, Jordanijoje, Kenijoje, Kuveite, Liberijoje, Malavyje, Maltoje, Mozambike, Nigerijoje, Omane, Pakistane, Katare, Ruandoje, San Tomėje ir Prinsipėje, Saudo Arabijoje, Siera Leonėje, Somalyje, Tanzanijoje, Ugandoje, Jungtiniuose Arabų Emyratuose, Vakarų krante / Gazos ruože, Jemene, Zambijoje, Zimbabvėje: Anglijos
+
+Lichtenšteine: Šveicarijos
+
+Pietų Afrikos Respublikoje, Namibijoje, Lesote ir Svazilande: Pietų Afrikos Respublikos.
+
+Jungtinėje Karalystėje: Anglijos
+
+a pastraipos pirmo sakinio pabaigoje įtraukti:
+
+Prancūzijoje: Šalys sutinka, kad Prancūzijos civilinio kodekso 1222 ir 1223 straipsniai yra netaikomi.
+
+a pastraipos pabaigoje pridėti:
+
+Albanijoje, Armėnijoje, Azerbaidžane, Baltarusijoje, Bosnijoje ir Hercegovinoje, Bulgarijoje, Kroatijoje, Buvusiojoje Jugoslavijos Respublikoje Makedonijoje, Gruzijoje, Kazachstane, Kosove, Kirgizijoje, Moldavijoje, Juodkalnijoje, Rumunijoje, Rusijoje, Serbijoje, Tadžikijoje, Turkmėnijoje, Ukrainoje ir Uzbekijoje: visi dėl šios Sutarties kylantys ginčai bus galutinai sprendžiami Austrijos federalinių ekonomikos rūmų Tarptautinio arbitražo centre (Arbitražo institucijoje) pagal šio Arbitražo centro Arbitražo taisykles (Vienos taisyklės), Vienoje, Austrija (oficiali kalba - anglų), trijų nešališkų arbitrų, paskirtų pagal Vienos taisykles. Kiekviena šalis paskirs vieną arbitrą, kurie bendru sutarimu per 30 dienų paskirs nepriklausomą pirmininką. Kitu atveju pagal Vienos taisykles pirmininką paskirs Arbitražo institucija. Arbitrai neturės teisės priteisti nuostolių, išskirtų šia Sutartimi ar viršijančių šioje Sutartyje nurodytus apribojimus, ar priimti teismo nutartį dėl laikinųjų apsaugos priemonių taikymo. Jokios sąlygos nedraudžia bet kuriai šaliai pradėti teismo proceso, siekiant (1) laikinųjų apsaugos priemonių taikymo norint išvengti materialinės žalos, konfidencialumo sąlygų ar intelektinės nuosavybės teisių pažeidimo, arba (2) nustatyti, ar bet kokios autorių teisės, patentai arba prekės ženklai yra galiojantys ir priklauso šaliai arba bet kuriai patronuojančiai įmonei arba (3) surinkti skolas, neviršijančias 500 000,00 USD.
+
+Estijoje, Latvijoje ir Lietuvoje: visi ginčai, kylantys iš šios Sutarties, bus galutinai sprendžiami Suomijos Prekybos Rūmų Arbitražo Instituto (FAI) (Arbitražo institucijos) pagal Suomijos Prekybos Rūmų Arbitražo Taisykles (Taisykles), Helsinkyje, Suomijoje, naudojant anglų kalbą, kaip oficialią kalbą, trijų nešališkų arbitrų, paskirtų pagal šias Taisykles. Kiekviena šalis paskirs vieną arbitrą, kurie bendru sutarimu per 30 dienų paskirs nepriklausomą pirmininką. Kitu atveju pirmininką paskirs Arbitražo institucija pagal Taisykles. Arbitrai neturės teisės priteisti nuostolių, išskirtų šia Sutartimi ar viršijančių šioje Sutartyje nurodytus apribojimus, ar priimti teismo nutartį dėl laikinųjų apsaugos priemonių taikymo. Jokios sąlygos nedraudžia bet kuriai šaliai pradėti teismo proceso, siekiant (1) laikinųjų apsaugos priemonių taikymo norint išvengti materialinės žalos, konfidencialumo sąlygų ar intelektinės nuosavybės teisių pažeidimo, arba (2) nustatyti, ar bet kokios autorių teisės, patentai arba prekės ženklai yra galiojantys ir priklauso šaliai arba bet kuriai patronuojančiai įmonei arba (3) surinkti skolas, neviršijančias 500 000,00 USD.
+
+Afganistane, Angoloje, Bahreine, Botsvanoje, Burundyje, Žaliajame Kyšulyje, Džibutyje, Egipte, Eritrėjoje, Etiopijoje, Gambijoje, Ganoje, Irake, Jordanijoje, Kenijoje, Kuveite, Libane, Liberijoje, Libijoje, Madagaskare, Malavyje, Mozambike, Nigerijoje, Omane, Pakistane, Palestinos Teritorijoje, Katare, Ruandoje, San Tomėje ir Prinsipėje, Saudo Arabijoje, Seišeliuose, Siera Leonėje, Somalyje, Pietų Sudane, Tanzanijoje, Ugandoje, Jungtiniuose Arabų Emyratuose, Vakarų Sacharoje, Jemene, Zambijoje ir Zimbabvėje: visi ginčai, kylantys dėl šios Sutarties, bus galutinai sprendžiami Londono tarptautinio arbitražo teisme (LCIA) (Arbitražo institucija) pagal LCIA arbitražo taisykles (Taisyklės), Londone, JK, naudojant anglų kalbą, kaip oficialią kalbą, trijų nešališkų arbitrų paskirtų pagal šias Taisykles.Kiekviena šalis paskirs vieną arbitrą, kurie bendru sutarimu per 30 dienų paskirs nepriklausomą pirmininką. Kitu atveju pirmininką paskirs Arbitražo institucija pagal Taisykles. Arbitrai neturės teisės priteisti nuostolių, išskirtų šia Sutartimi ar viršijančių šioje Sutartyje nurodytus apribojimus, ar priimti teismo nutartį dėl laikinųjų apsaugos priemonių taikymo. Jokios sąlygos nedraudžia bet kuriai šaliai pradėti teismo proceso, siekiant (1) laikinųjų apsaugos priemonių taikymo norint išvengti materialinės žalos, konfidencialumo sąlygų ar intelektinės nuosavybės teisių pažeidimo, arba (2) nustatyti, ar bet kokios autorių teisės, patentai arba prekės ženklai yra galiojantys ir priklauso šaliai arba bet kuriai patronuojančiai įmonei arba (3) surinkti skolas, neviršijančias 500 000,00 USD.
+
+Alžyre, Benine, Burkina Fase, Kamerūne, Centrinėje Afrikos Respublikoje, Čade, Konge, Kongo Demokratinėje Respublikoje, Pusiaujo Gvinėjoje, Prancūzų Gvianoje, Prancūzijos Polinezijoje, Gabone, Gvinėjoje, Bisau Gvinėjoje, Dramblio Kaulo Krante, Malyje, Mauritanijoje, Mauricijuje, Maroke, Nigeryje, Senegale, Toge ir Tunise: visi ginčai, kylantys dėl šios Sutarties, bus galutinai sprendžiami Paryžiaus ICC tarptautiniame arbitražo teisme (arbitražo institucija) pagal jo arbitražo taisykles (Taisyklės), Paryžiuje, Prancūzijoje, naudojant prancūzų kalbą, kaip oficialią kalbą, trijų nešališkų arbitrų, paskirtų pagal šias Taisykles. Kiekviena šalis paskirs vieną arbitrą, kurie bendru sutarimu per 30 dienų paskirs nepriklausomą pirmininką. Kitu atveju pirmininką paskirs Arbitražo institucija pagal Taisykles. Arbitrai neturės teisės priteisti nuostolių, išskirtų šia Sutartimi ar viršijančių šioje Sutartyje nurodytus apribojimus, ar priimti teismo nutartį dėl laikinųjų apsaugos priemonių taikymo. Jokios sąlygos nedraudžia bet kuriai šaliai pradėti teismo proceso, siekiant (1) laikinųjų apsaugos priemonių taikymo norint išvengti materialinės žalos, konfidencialumo sąlygų ar intelektinės nuosavybės teisių pažeidimo, arba (2) nustatyti, ar bet kokios autorių teisės, patentai arba prekės ženklai yra galiojantys ir priklauso šaliai arba bet kuriai patronuojančiai įmonei arba (3) surinkti skolas, neviršijančias 250 000,00 USD.
+
+Pietų Afrikoje, Namibijoje, Lesote ir Svazilande: visi ginčai, kylantys dėl šios Sutarties, bus galutinai sprendžiami Pietų Afrikos Arbitražo Įstaigos (AFSA) (arbitražo institucija) pagal AFSA Arbitražo Taisykles (Taisykles), Johanesburge, Pietų Afrikoje, naudojant anglų kalbą, kaip oficialią kalbą, trijų nešališkų arbitrų, paskirtų pagal Taisykles. Kiekviena šalis paskirs vieną arbitrą, kurie bendru sutarimu per 30 dienų paskirs nepriklausomą pirmininką. Kitu atveju pirmininką paskirs Arbitražo institucija pagal Taisykles. Arbitrai neturės teisės priteisti nuostolių, išskirtų šia Sutartimi ar viršijančių šioje Sutartyje nurodytus apribojimus, ar priimti teismo nutartį dėl laikinųjų apsaugos priemonių taikymo. Jokios sąlygos nedraudžia bet kuriai šaliai pradėti teismo proceso, siekiant (1) laikinųjų apsaugos priemonių taikymo norint išvengti materialinės žalos, konfidencialumo sąlygų ar intelektinės nuosavybės teisių pažeidimo, arba (2) nustatyti, ar bet kokios autorių teisės, patentai arba prekės ženklai yra galiojantys ir priklauso šaliai arba bet kuriai patronuojančiai įmonei arba (3) surinkti skolas, neviršijančias 250 000,00 USD.
+
+Andoroje, Austrijoje, Kipre, Prancūzijoje, Vokietijoje, Graikijoje, Izraelyje, Italijoje, Portugalijoje, Ispanijoje, Šveicarijoje ir Turkijoje: visi ginčai bus pateikti ir svarstomi šių išskirtinių jurisdikcijų kompetentinguose teismuose:
+
+Andoroje: Paryžiaus komerciniame teisme.
+
+Austrijoje: Vienos teisme, Austrija (centrinėje miesto dalyje).
+
+Kipre: Nikosijos kompetentingame teisme.
+
+Prancūzijoje: Paryžiaus komerciniame teisme.
+
+Vokietijoje: Štutgarto teismuose.
+
+Graikijoje: Atėnų kompetentingame teisme.
+
+Izraelyje: Tel Avivo Jafa teismuose.
+
+Italijoje: Milano teismuose.
+
+Portugalijoje: Lisabonos teismuose.
+
+Ispanijoje: Madrido teismuose.
+
+Šveicarijoje: Ciuricho kantono komerciniame teisme.
+
+Turkijoje: Stambulo centriniuose („Caglayan“) teismuose ir vykdomuosiuose direktoratuose, Turkijos Respublikoje.
+
+Nyderlanduose: Šalys atsisako savo teisių pagal Olandijos civilinio kodekso 7.1 skyriaus („Koop“) ir Olandijos civilinio kodekso 7:401 ir 402 straipsnius, taip pat savo teisių taikyti visišką arba dalinį šios Sutarties anuliavimą („gehele of partiele ontbinding“) pagal Olandijos civilinio kodekso 6:265 skyrių.
+
+7 skyrius. Bendrosios nuostatos
+
+d pastraipos pabaigoje įtraukti:
+
+Ispanijoje: IBM vykdys prašymus pasiekti, atnaujinti ar panaikinti kontaktinę informaciją, jei jie bus pateikti šiuo adresu: IBM, c/ Santa Hortensia 26-28, 28002 Madrid, Departamento de Privacidad de Datos.
+
+j pastraipos pabaigoje įtraukti:
+
+Čekijos Respublikoje: laikantis įstatymų rinkinio 89/2012 1801 (Civilinis kodeksas). („Civilinis kodeksas“), Civilinio kodekso (su pakeitimais) 1799 ir 1800 skyrių nuostatos netaikomos operacijoms pagal šią Sutartį. Licenciatas prisiima riziką dėl pasikeitusių aplinkybių remiantis Civilinio kodekso 1765 skyriumi.
+
+j pastraipoje:
+
+Bulgarijoje, Kroatijoje, Rusijoje, Serbijoje ir Slovėnijoje: panaikinti antrą sakinį, kuriuo nurodoma „Nė viena šalis neiškels iš Sutarties kylančios ar su ja susijusios teismo bylos nuo bylos priežasties atsiradimo praėjus daugiau nei dvejiems metams“.
+
+j pastraipos antro sakinio pabaigoje įtraukti:
+
+Lietuvoje: , išskyrus tuomet, kai įstatymai numato kitaip
+
+j pastraipoje pakeisti antrąjį sakinį į:
+
+Lenkijoje: nė viena iš šalių nesiims teisinių veiksmų dėl Sutarties ar su ja susijusių veiksmų praėjus daugiau nei trejiems metams nuo ieškinio pagrindo atsiradimo, išskyrus nesumokėjimo atvejus, dėl kurių nebus imamasi veiksmų praėjus daugiau nei dvejiems metams po mokėjimo termino.
+
+j pastraipos antrame sakinyje žodį „dvejiems“ keisti:
+
+Latvijoje ir Ukrainoje: trejiems
+
+Slovakijoje: ketveriems
+
+j pastraipos trečio sakinio pabaigoje įtraukti sakinį, nurodantį: „Nė viena šalis nėra atsakinga už tai, jog dėl nuo jos valios nepriklausančių priežasčių nevykdo kurio nors nepiniginio įsipareigojimo“:
+
+Rusijoje: , įskaitant, bet neapsiribojant, dėl žemės drebėjimų, potvynių, gaisrų, nenugalimos jėgos, streikų (neįtraukiant šalių darbuotojų streikų), karo, karinių veiksmų, embargo, blokadų, tarptautinių ar valdžios sankcijų, taikomos jurisdikcijos institucijų veiksmų.
+
+j pastraipos trečiame sakinyje pakeisti sakinį, nurodantį: „Nė viena šalis nėra atsakinga už tai, jog dėl nuo jos valios nepriklausančių priežasčių nevykdo kurio nors nepiniginio įsipareigojimo“ šitaip:
+
+Ukrainoje: Nė viena šalis nėra atsakinga už tai, jog dėl nuo jos valios nepriklausančių priežasčių arba reguliacinių pakeitimų nevykdo kurio nors nepiniginio įsipareigojimo, įskaitant, bet neapsiribojant, dėl JAV importo, eksporto ir ekonominių sankcijų reikalavimų.
+
+Skyriaus pabaigoje kaip naują l pastraipą įtraukti šią:
+
+Vengrijoje: Sudaręs šią Sutartį, Licenciatas patvirtina, kad jam pakankamai pranešta apie visas šios Sutarties sąlygas ir jis turėjo galimybę dėl jų derėtis. Toliau nurodytos sąlygos gali gerokai skirtis nuo sąlygų, kurios paprastai taikomos pagal Vengrijos įstatymus, ir abi šalys sutinka su tomis sąlygomis pasirašydamos Sutartį: Programos licencija; Garantijos; Rinkliavos, mokesčiai, mokėjimas ir patvirtinimas; Atsakomybė; Nutraukimas; Taikoma teisė ir geografinė aprėptis; Bendrosios nuostatos.
+
+Čekijos Respublikoje: Licenciatas aiškiai sutinka su šios sutarties sąlygomis, kurios apima šias svarbias komercines sąlygas: i) atsakomybės už defektus apribojimas ir atsisakymas (Garantijos); ii) Licenciato teisės į žalą apribojimas (Atsakomybė); iii) įpareigojantis importo ir eksporto nuostatų pobūdis (Taikoma teisė ir Geografinė aprėptis); iv) trumpesni apribojimo laikotarpiai (Bendrosios nuostatos); v) nuostatų taikymo išimtys prisijungimo sutartyse (Bendrosios nuostatos); vi) aplinkybių pasikeitimo rizikos priėmimas (Bendrosios nuostatos).
+
+Rumunija: Licenciatas aiškiai sutinka su toliau nurodytomis standartinėmis sąlygomis, kurios gali būti laikomos „neįprastomis sąlygomis“ pagal Rumunijos civilinio kodekso 1203 straipsnio nuostatas: sąlygos 2, 4, 5, 8j. Licenciatas šiuo pripažįsta, kad jam tinkamai pranešta apie visas šios Sutarties nuostatas, įskaitant anksčiau minėtas sąlygas, jis tinkamai išanalizavo ir suprato šias nuostatas ir turėjo galimybę derėtis dėl kiekvienos iš šių sąlygų.
+
+i125-5544-07 (10-2021)
+

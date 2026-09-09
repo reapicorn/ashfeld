@@ -71,6 +71,28 @@ else              log "Running steps: ${STEPS}"
 fi
 
 # ==============================================================
+# STEP: repos
+# ==============================================================
+if should_run "repos"; then
+    step "[repos] Configuring zypper repositories..."
+
+    # OSS + Non-OSS + Updates for openSUSE Leap 15.6 (binary compatible with SLES 15 SP6)
+    zypper --non-interactive addrepo --refresh \
+        https://download.opensuse.org/distribution/leap/15.6/repo/oss/ \
+        repo-oss 2>>"${LOG_FILE}" || true
+    zypper --non-interactive addrepo --refresh \
+        https://download.opensuse.org/distribution/leap/15.6/repo/non-oss/ \
+        repo-non-oss 2>>"${LOG_FILE}" || true
+    zypper --non-interactive addrepo --refresh \
+        https://download.opensuse.org/update/leap/15.6/oss/ \
+        repo-update 2>>"${LOG_FILE}" || true
+
+    zypper --non-interactive --gpg-auto-import-keys refresh
+
+    log "[repos] Done."
+fi
+
+# ==============================================================
 # STEP: base
 # ==============================================================
 if should_run "base"; then

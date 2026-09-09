@@ -59,6 +59,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",
     name:       "install",
     path:       "scripts/install.sh",
+    args:       ["isvd"],
     privileged: true
 
 end

@@ -41,3 +41,8 @@ setup-guides/
 
 # Smoke test log (local only)
 tests/smoke-test.log
+
+# stonewrit-bkp - keep the backup directory and its runtime files tracked
+!stonewrit-bkp/vagrant.log
+!stonewrit-bkp/.vagrant/
+!stonewrit-bkp/.vagrant/**
