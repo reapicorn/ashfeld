@@ -1,3 +1,6 @@
+# Default: LF for everything not explicitly mapped below
+* text=auto eol=lf
+
 # Force LF for files that run on Linux (shell scripts, Node.js sources)
 *.sh    text eol=lf
 *.js    text eol=lf
