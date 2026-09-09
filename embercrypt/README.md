@@ -1,6 +1,6 @@
 # Embercrypt
 
-The Embercrypt was not built as a vault. It was the sealing chamber of the guilds - the place where credentials, signing keys, and access codes were deposited when a master retired or a guild dissolved. Nothing was destroyed. Nothing was returned. It went in and stayed.
+The Embercrypt was not built as a strongroom. It was the sealing chamber of the guilds - the place where credentials, signing keys, and access codes were deposited when a master retired or a guild dissolved. Nothing was destroyed. Nothing was returned. It went in and stayed.
 
 When the guilds collapsed, the Embercrypt was left full of orphaned credentials. Nobody decommissioned it. Nobody reconnected it either. It has been sealed since.
 

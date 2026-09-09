@@ -4,8 +4,8 @@
 
 - [ ] Update the site to make its repository URL clear: `https://reapicorn.github.io/ashfeld/`.
 - [ ] Generate project artwork for the site and project documentation.
-- [ ] Reorder the project cards and sections as Hollowcrown, Darkhorn, Thorngate, and Embercrypt.
-- [ ] Reorder the project sections in `README.md` as Hollowcrown, Darkhorn, Thorngate, and Embercrypt.
+- [ ] Reorder the project cards and sections as Hollowcrown, Darkhorn, Stonewrit, and Embercrypt.
+- [ ] Reorder the project sections in `README.md` as Hollowcrown, Darkhorn, Stonewrit, and Embercrypt.
 
 ## Hollowcrown
 
@@ -21,12 +21,12 @@
 - [ ] Test Darkhorn on Apple Silicon with VMware Fusion.
 - [x] Validate the complete provisioning and smoke test.
 
-## Thorngate
+## Stonewrit
 
-- [ ] Create a `docs/` exercise guide series for Thorngate, following the Embercrypt documentation structure.
+- [ ] Create a `docs/` exercise guide series for Stonewrit, following the Embercrypt documentation structure.
 - [x] Validate IVIG workload readiness and HTTPS console availability after provisioning.
-- [ ] Validate Thorngate with 12 GiB RAM through a clean provision or `vagrant reload`.
-- [ ] Test Thorngate ARM64 on VMware Fusion/Rosetta with the full IVIG deployment.
+- [ ] Validate Stonewrit with 12 GiB RAM through a clean provision or `vagrant reload`.
+- [ ] Test Stonewrit ARM64 on VMware Fusion/Rosetta with the full IVIG deployment.
 
 ## Embercrypt
 
