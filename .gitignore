@@ -38,3 +38,6 @@ setup-guides/
 
 # Vagrant debug logs (local only)
 **/vagrant.log
+
+# Smoke test log (local only)
+tests/smoke-test.log
