@@ -1,2 +1,0 @@
-# Here is the activationKey value to copy into your config.yaml file:
-MU4PB-7CTHX-WLN8V-GAXNY-D6KQF

@@ -14,6 +14,9 @@ thorngate/starter_kit/
 # thorngate - license key files (obtain separately)
 thorngate/license_files/
 
+# stonewrit - installer files (obtain separately from IBM)
+stonewrit/installer/
+
 # OS
 .DS_Store
 Thumbs.db

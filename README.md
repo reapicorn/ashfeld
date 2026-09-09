@@ -11,8 +11,7 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 ├── darkhorn/        # the district — six companies, six protocols, none of them compatible
 ├── hollowcrown/     # the bureau — citizen records, the only list anyone agrees to use
 ├── embercrypt/      # the crypt — the guilds' keys, sealed and waiting
-├── stonewrit/       # the law — birthright, roles, and the corrections nobody carved
-└── wardens-post/     # the post — credentials from outside, rules written on the wall
+└── thorngate/       # the gate — who gets access, to what, and under what conditions
 ```
 
 ---
@@ -37,19 +36,11 @@ Before the foundries closed, Embercrypt was the most secure facility in the dist
 
 → See [`Embercrypt/README.md`](Embercrypt/README.md)
 
-### Stonewrit
+### Thorngate
 
-The building had an engraving room. Norms were inscribed into limestone slabs — birthright access, role restrictions, revocation conditions. The ones the council considered permanent. The building is still standing. The slabs are still there. Nobody has reviewed them in decades, because correcting a norm means admitting the previous version was wrong.
+Ashfeld was always a city where nobody agreed on who had access to what. Thorngate was built to answer that question — the gate that decides who gets access, to what, and under what conditions. Not because anyone asked for it, but because the city had become impossible to audit without it.
 
-That cost is now due.
-
-→ See [`stonewrit/README.md`](stonewrit/README.md)
-
-### Warden's Post
-
-The Warden's Post was not designed as an institution. It was a guardhouse at the edge of the city — one warden, one set of rules written on the wall, and everyone arriving from outside had to pass through it. The rules accumulated. The post became policy. The institution outlasted the guilds that made it necessary.
-
-→ See [`wardens-post/README.md`](wardens-post/README.md)
+→ See [`thorngate/README.md`](thorngate/README.md)
 
 ---
 
@@ -93,7 +84,7 @@ Vagrant and a VMware hypervisor are required for all components.
 > **Apple Silicon compatibility:** Compatibility varies by project.
 >
 > - ❗ [`Embercrypt`](Embercrypt/README.md) is not supported on Apple Silicon with VMware Fusion. It requires an x86_64 Windows Server guest and therefore an Intel/AMD host.
-> - ⚠️ [`Stonewrit`](stonewrit/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
+> - ⚠️ [`Thorngate`](thorngate/README.md) uses an ARM64 Debian guest on Apple Silicon, but its amd64-only IVIG images require VMware Fusion Rosetta translation. This path is experimental and unvalidated.
 > - ⚠️ [`Hollowcrown`](hollowcrown/README.md) and [`darkhorn`](darkhorn/README.md) also require validation on Apple Silicon.
 >
 > See each project README for its requirements.
@@ -126,6 +117,6 @@ pwsh tests/smoke-test.ps1
 > Do not clone this repository inside a OneDrive-synced folder. Vagrant and VMware use files that OneDrive locks or modifies mid-operation, which will cause VM provisioning to fail. Clone to a local path such as `~/ashfeld` or `C:\Labs\ashfeld`.
 
 ```bash
-git clone https://github.com/reapicorn/ashfeld
+git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ```
 
