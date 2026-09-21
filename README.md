@@ -66,7 +66,9 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 - [Docker](https://docs.docker.com/get-docker/) (with Compose plugin — included in Docker Desktop)
 - [Git](https://git-scm.com/downloads)
 
-**Required to run the full smoke test (Linux / macOS):**
+**Required to run the full smoke test:**
+
+Option A — run directly (Linux / macOS):
 
 ```bash
 # Debian / Ubuntu
@@ -76,7 +78,17 @@ apt-get install -y curl postgresql-client ldap-utils openssh-client sshpass
 brew install postgresql libldap openssh sshpass
 ```
 
-On Windows the smoke test runs via `docker run` automatically — no additional tools needed.
+Option B — run via Docker (any OS, nothing extra needed):
+
+```bash
+# Linux / macOS
+docker run --rm --network darkhorn_default \
+  -v "$(pwd)/darkhorn/scripts/smoke-test.sh:/smoke-test.sh:ro" \
+  alpine:3 \
+  sh -c "apk add --no-cache curl bash postgresql-client openldap-clients openssh-client sshpass 2>/dev/null && bash /smoke-test.sh"
+
+# Windows (PowerShell) — use .\scripts\test-from-host.ps1
+```
 
 > [!WARNING]
 > Do not clone this repository inside a OneDrive-synced folder. Docker bind mounts and volume operations can fail when files are locked by OneDrive. Clone to a local path such as `~/ashfeld` or `C:\Labs\ashfeld`.
