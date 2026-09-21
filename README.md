@@ -18,15 +18,15 @@ This lab puts you in the city and gives you the keys. The backends are real, the
 
 ### Hollowcrown
 
-Hollowcrown was the council that governed Ashfeld before it dissolved. The name passed to the bureau that kept its records. Every citizen who was ever hired, transferred, or terminated has an entry here. What the bureau records, the rest of the city is supposed to reflect.
+The HR feed. Every citizen who was ever hired, transferred, or terminated has an entry here. What the bureau records, the rest of the city is supposed to reflect.
 
 → See [`hollowcrown/README.md`](hollowcrown/README.md)
 
 ### Darkhorn
 
-Six companies settled in the Darkhorn district after the foundries closed. None of them inherited the same systems. None of them agreed to standardize. They each handle the same three questions — who works here, what do they have access to, are they still active — and they each answer in a different language.
+Six companies, six protocols. The same thirteen operations — who works here, what they have access to, are they still active — answered six different ways.
 
-→ See [`darkhorn/README.md`](darkhorn/README.md) — the six companies, their doors, and what moves across the wire.
+→ See [`darkhorn/README.md`](darkhorn/README.md)
 
 ---
 
@@ -36,14 +36,7 @@ Six companies settled in the Darkhorn district after the foundries closed. None 
 Hollowcrown (HR feed)  →  Identity Manager  →  Darkhorn (six target systems)
 ```
 
-Hollowcrown is the authoritative source of identity. When a citizen joins, leaves, or changes roles, Hollowcrown records it. The Identity Manager reads those events and propagates them — as the correct operation, over the correct protocol — to each of the six backends in Darkhorn.
-
-| JLM event | Business event | IAM action |
-|---|---|---|
-| **Joiner** | New hire | Provision |
-| **Leaver** | Resignation or termination | Deprovision |
-| **Mover** | Leave of absence | Suspend |
-| **Mover** | Role or department change | Modify |
+Hollowcrown is the authoritative source of identity. The Identity Manager reads joiner/leaver/mover events and propagates them — as the correct operation, over the correct protocol — to each of the six backends in Darkhorn.
 
 ---
 
@@ -61,8 +54,6 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 
 ## Prerequisites
 
-**Required to run the lab:**
-
 - [Docker](https://docs.docker.com/get-docker/) (with Compose plugin — included in Docker Desktop)
 - [Git](https://git-scm.com/downloads)
 
@@ -75,40 +66,18 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 
 Each project is independent. Start them in any order.
 
-### Hollowcrown
-
 ```bash
-cd hollowcrown
-docker compose up -d
+cd hollowcrown && docker compose up -d
+cd darkhorn    && docker compose up -d
 ```
 
-| Service | URL |
-|---|---|
-| Web UI | `http://localhost:8080` |
-| API | `http://localhost:4000` |
-
-### Darkhorn
-
-```bash
-cd darkhorn
-docker compose up -d
-```
-
-| Service | URL / Host |
-|---|---|
-| REST | `http://localhost:3000` |
-| JDBC | `localhost:5432` |
-| LDAP | `localhost:389` |
-| SFTP | `localhost:2222` |
-| SOAP | `http://localhost:3002` |
-| MQ (AMQP) | `localhost:5672` |
-| RabbitMQ mgmt | `http://localhost:15672` |
+See [`hollowcrown/README.md`](hollowcrown/README.md) and [`darkhorn/README.md`](darkhorn/README.md) for endpoint URLs, credentials, and day-to-day commands.
 
 ---
 
 ## Smoke test
 
-Verifies that all Darkhorn backends are up and seeded correctly. Requires only Docker — runs in a temporary Alpine container on the Darkhorn network.
+Verifies that all Darkhorn backends are up and seeded correctly. Requires only Docker.
 
 ```bash
 # Linux / macOS
@@ -119,12 +88,4 @@ docker run --rm --network darkhorn_default \
 
 # Windows (PowerShell)
 cd darkhorn; .\scripts\test-from-host.ps1
-```
-
----
-
-## Clone
-
-```bash
-git clone https://github.com/reapicorn/ashfeld ~/ashfeld
 ```
