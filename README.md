@@ -61,9 +61,22 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 
 ## Prerequisites
 
-Docker and Docker Compose are required.
+**Required to run the lab:**
 
-**Install Docker Desktop:** [docs.docker.com/get-docker](https://docs.docker.com/get-docker/)
+- [Docker](https://docs.docker.com/get-docker/) (with Compose plugin — included in Docker Desktop)
+- [Git](https://git-scm.com/downloads)
+
+**Required to run the full smoke test (Linux / macOS):**
+
+```bash
+# Debian / Ubuntu
+apt-get install -y curl postgresql-client ldap-utils openssh-client sshpass
+
+# macOS
+brew install postgresql libldap openssh sshpass
+```
+
+On Windows the smoke test runs via `docker run` automatically — no additional tools needed.
 
 > [!WARNING]
 > Do not clone this repository inside a OneDrive-synced folder. Docker bind mounts and volume operations can fail when files are locked by OneDrive. Clone to a local path such as `~/ashfeld` or `C:\Labs\ashfeld`.
