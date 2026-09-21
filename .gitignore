@@ -1,0 +1,48 @@
+# Vagrant runtime state (VMs, metadata - all centralized under vagrant/)
+vagrant/
+
+# Vagrant metadata (inside project subdirectories)
+**/.vagrant/
+
+# Embercrypt - Secret Server installer binary (obtain separately)
+Embercrypt/installer/*.exe
+Embercrypt/installer/*.zip
+
+# thorngate - IVIG starter kit (obtain separately from IBM)
+thorngate/starter_kit/
+
+# thorngate - license key files (obtain separately)
+thorngate/license_files/
+
+# stonewrit - installer files (obtain separately from IBM)
+stonewrit/installer/*
+!stonewrit/installer/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Bob context (local tool config, not part of the lab)
+.bob/
+
+# Setup guides - manual installation notes, not part of the lab repo
+setup-guides/
+
+# VS Code workspace file (local only)
+*.code-workspace
+
+# Vagrant debug logs (local only)
+**/vagrant.log
+
+# Smoke test log (local only)
+tests/smoke-test.log
+
+# stonewrit-bkp - keep the backup directory and its runtime files tracked
+!stonewrit-bkp/vagrant.log
+!stonewrit-bkp/.vagrant/
+!stonewrit-bkp/.vagrant/**
