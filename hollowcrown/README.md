@@ -4,6 +4,16 @@ Hollowcrown was the name of the council that governed Ashfeld before it fell apa
 
 ---
 
+## Role in the lab
+
+Hollowcrown is the **HR feed** — the authoritative source of identity that drives the Identity Manager.
+
+```
+Hollowcrown (HR feed)  →  Identity Manager  →  Darkhorn (six target systems)
+```
+
+The Identity Manager polls or subscribes to Hollowcrown's API, detects joiner/leaver/mover events, and propagates the corresponding operations to each backend in Darkhorn.
+
 ## Integration scenarios
 
 What the Bureau records, the backends are expected to mirror. A new citizen joining the city means a new entry in the system. A termination means the opposite.

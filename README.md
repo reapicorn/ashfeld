@@ -33,10 +33,10 @@ Six companies settled in the Darkhorn district after the foundries closed. None 
 ## The flow
 
 ```
-Hollowcrown (HR feed)  →  adapter  →  Darkhorn (six target systems)
+Hollowcrown (HR feed)  →  Identity Manager  →  Darkhorn (six target systems)
 ```
 
-Hollowcrown is the authoritative source of identity. When a citizen joins, leaves, or changes roles, Hollowcrown records it. Your adapter reads those events and propagates them — as the correct operation, over the correct protocol — to each of the six backends in Darkhorn.
+Hollowcrown is the authoritative source of identity. When a citizen joins, leaves, or changes roles, Hollowcrown records it. The Identity Manager reads those events and propagates them — as the correct operation, over the correct protocol — to each of the six backends in Darkhorn.
 
 | JLM event | Business event | IAM action |
 |---|---|---|
