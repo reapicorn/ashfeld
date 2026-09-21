@@ -66,19 +66,7 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 - [Docker](https://docs.docker.com/get-docker/) (with Compose plugin — included in Docker Desktop)
 - [Git](https://git-scm.com/downloads)
 
-**Required to run the full smoke test:**
-
-Option A — run directly (Linux / macOS):
-
-```bash
-# Debian / Ubuntu
-apt-get install -y curl postgresql-client ldap-utils openssh-client sshpass
-
-# macOS
-brew install postgresql libldap openssh sshpass
-```
-
-Option B — run via Docker (any OS, nothing extra needed):
+**To run the smoke test** (Docker required, nothing else):
 
 ```bash
 # Linux / macOS
@@ -87,7 +75,8 @@ docker run --rm --network darkhorn_default \
   alpine:3 \
   sh -c "apk add --no-cache curl bash postgresql-client openldap-clients openssh-client sshpass 2>/dev/null && bash /smoke-test.sh"
 
-# Windows (PowerShell) — use .\scripts\test-from-host.ps1
+# Windows (PowerShell)
+cd darkhorn; .\scripts\test-from-host.ps1
 ```
 
 > [!WARNING]
