@@ -958,8 +958,11 @@ docker compose ps
 # Logs
 docker compose logs -f
 
-# Run smoke tests
+# Run smoke tests (Linux/macOS host)
 bash scripts/smoke-test.sh
+
+# Run smoke tests (Windows host, via Docker)
+.\scripts\test-from-host.ps1
 
 # Destroy and start fresh (removes volumes)
 docker compose down -v && docker compose up -d

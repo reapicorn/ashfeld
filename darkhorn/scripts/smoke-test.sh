@@ -1,11 +1,20 @@
 #!/bin/bash
 # darkhorn/scripts/smoke-test.sh
-# Smoke-tests all six darkhorn backends. Runs inside the VM against 10.10.10.20.
-# Called by the Vagrantfile provisioner after docker compose up.
+# Smoke-tests all six darkhorn backends.
+#
+# Run from the host (Linux/macOS with curl installed):
+#   bash darkhorn/scripts/smoke-test.sh
+#
+# JDBC and LDAP checks require psql and ldap-utils. If not installed locally,
+# run via a container that has them:
+#   docker compose exec darkhorn-rest bash /scripts/smoke-test.sh
+#
+# HOST can be overridden for remote targets:
+#   HOST=10.10.10.20 bash darkhorn/scripts/smoke-test.sh
 
 set -euo pipefail
 
-IP="10.10.10.20"
+IP="${HOST:-localhost}"
 PASS=0
 FAIL=0
 
@@ -47,43 +56,54 @@ else fail "GET /api/users: $out"; fi
 echo ""
 echo "JDBC  $IP:5432"
 
-out=$(PGPASSWORD='darkhorn' psql -h "$IP" -p 5432 -U darkhorn -d darkhorn_jdbc -tAc 'SELECT COUNT(*) FROM users;' 2>&1) || true
-count=$(echo "$out" | grep -E '^[0-9]+$' | head -1)
-if [ -n "$count" ]; then ok "SELECT COUNT(*) FROM users -> $count rows"
-else fail "psql: $out"; fi
+if command -v psql &>/dev/null; then
+  out=$(PGPASSWORD='darkhorn' psql -h "$IP" -p 5432 -U darkhorn -d darkhorn_jdbc -tAc 'SELECT COUNT(*) FROM users;' 2>&1) || true
+  count=$(echo "$out" | grep -E '^[0-9]+$' | head -1)
+  if [ -n "$count" ]; then ok "SELECT COUNT(*) FROM users -> $count rows"
+  else fail "psql: $out"; fi
+else
+  echo "  [SKIP] psql not found — skipping JDBC check"
+fi
 
 # -- LDAP --------------------------------------------------------------------------
 echo ""
 echo "LDAP  $IP:389"
 
-# Wait for LDAP to finish loading LDIFs (vegardit loads them on first start)
-retries=12
-until ldapsearch -x -H "ldap://$IP:389" \
-  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
-  -w 'Sp3ctr3Qu13t!' \
-  -b 'ou=Users,dc=darkhorn,dc=local' \
-  '(objectClass=inetOrgPerson)' dn 2>/dev/null | grep -q '^dn:'; do
-  retries=$((retries-1))
-  [ $retries -eq 0 ] && break
-  sleep 5
-done
+if command -v ldapsearch &>/dev/null; then
+  retries=12
+  until ldapsearch -x -H "ldap://$IP:389" \
+    -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
+    -w 'Sp3ctr3Qu13t!' \
+    -b 'ou=Users,dc=darkhorn,dc=local' \
+    '(objectClass=inetOrgPerson)' dn 2>/dev/null | grep -q '^dn:'; do
+    retries=$((retries-1))
+    [ $retries -eq 0 ] && break
+    sleep 5
+  done
 
-count=$(ldapsearch -x -H "ldap://$IP:389" \
-  -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
-  -w 'Sp3ctr3Qu13t!' \
-  -b 'ou=Users,dc=darkhorn,dc=local' \
-  '(objectClass=inetOrgPerson)' dn 2>&1 | grep -c '^dn:') || true
-if [ "$count" -gt 0 ] 2>/dev/null; then ok "ldapsearch inetOrgPerson -> $count entries"
-else fail "ldapsearch returned $count entries"; fi
+  count=$(ldapsearch -x -H "ldap://$IP:389" \
+    -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' \
+    -w 'Sp3ctr3Qu13t!' \
+    -b 'ou=Users,dc=darkhorn,dc=local' \
+    '(objectClass=inetOrgPerson)' dn 2>&1 | grep -c '^dn:') || true
+  if [ "$count" -gt 0 ] 2>/dev/null; then ok "ldapsearch inetOrgPerson -> $count entries"
+  else fail "ldapsearch returned $count entries"; fi
+else
+  echo "  [SKIP] ldapsearch not found — skipping LDAP check"
+fi
 
 # -- SFTP --------------------------------------------------------------------------
 echo ""
 echo "SFTP  $IP:2222"
 
-out=$(sshpass -p 'Sp3ctr4lF1l3!' sftp -o StrictHostKeyChecking=no -P 2222 \
-  "spectral@$IP" <<< 'ls darkhorn' 2>&1) || true
-if echo "$out" | grep -q "users.csv"; then ok "sftp ls darkhorn/ -> users.csv present"
-else fail "sftp: $out"; fi
+if command -v sshpass &>/dev/null && command -v sftp &>/dev/null; then
+  out=$(sshpass -p 'Sp3ctr4lF1l3!' sftp -o StrictHostKeyChecking=no -P 2222 \
+    "spectral@$IP" <<< 'ls darkhorn' 2>&1) || true
+  if echo "$out" | grep -q "users.csv"; then ok "sftp ls darkhorn/ -> users.csv present"
+  else fail "sftp: $out"; fi
+else
+  echo "  [SKIP] sshpass/sftp not found — skipping SFTP check"
+fi
 
 # -- SOAP --------------------------------------------------------------------------
 echo ""
