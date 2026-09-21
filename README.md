@@ -66,19 +66,6 @@ Disk includes Docker images and data volumes. All containers have explicit memor
 - [Docker](https://docs.docker.com/get-docker/) (with Compose plugin — included in Docker Desktop)
 - [Git](https://git-scm.com/downloads)
 
-**To run the smoke test** (Docker required, nothing else):
-
-```bash
-# Linux / macOS
-docker run --rm --network darkhorn_default \
-  -v "$(pwd)/darkhorn/scripts/smoke-test.sh:/smoke-test.sh:ro" \
-  alpine:3 \
-  sh -c "apk add --no-cache curl bash postgresql-client openldap-clients openssh-client sshpass 2>/dev/null && bash /smoke-test.sh"
-
-# Windows (PowerShell)
-cd darkhorn; .\scripts\test-from-host.ps1
-```
-
 > [!WARNING]
 > Do not clone this repository inside a OneDrive-synced folder. Docker bind mounts and volume operations can fail when files are locked by OneDrive. Clone to a local path such as `~/ashfeld` or `C:\Labs\ashfeld`.
 
@@ -116,6 +103,23 @@ docker compose up -d
 | SOAP | `http://localhost:3002` |
 | MQ (AMQP) | `localhost:5672` |
 | RabbitMQ mgmt | `http://localhost:15672` |
+
+---
+
+## Smoke test
+
+Verifies that all Darkhorn backends are up and seeded correctly. Requires only Docker — runs in a temporary Alpine container on the Darkhorn network.
+
+```bash
+# Linux / macOS
+docker run --rm --network darkhorn_default \
+  -v "$(pwd)/darkhorn/scripts/smoke-test.sh:/smoke-test.sh:ro" \
+  alpine:3 \
+  sh -c "apk add --no-cache curl bash postgresql-client openldap-clients openssh-client sshpass 2>/dev/null && bash /smoke-test.sh"
+
+# Windows (PowerShell)
+cd darkhorn; .\scripts\test-from-host.ps1
+```
 
 ---
 
