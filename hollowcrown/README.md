@@ -86,6 +86,25 @@ Base URL: `http://<host>:4000`
 
 ---
 
+## Requirements
+
+| Resource | Value |
+|---|---|
+| RAM | 512 MB |
+| CPU | 1 vCPU |
+| Disk | 5 GB |
+
+Container memory limits:
+
+| Container | Limit |
+|---|---|
+| `hollowcrown-db` | 128 MB |
+| `hollowcrown-api` | 128 MB |
+| `hollowcrown-web` | 32 MB |
+| **Total** | **288 MB** |
+
+---
+
 ## Docker
 
 ### Start

@@ -47,6 +47,18 @@ Hollowcrown is the authoritative source of identity. When a citizen joins, leave
 
 ---
 
+## Requirements
+
+| | RAM | CPU | Disk |
+|---|---|---|---|
+| Hollowcrown | 512 MB | 1 vCPU | 5 GB |
+| Darkhorn | 1 GB | 1 vCPU | 10 GB |
+| **Both together** | **2 GB** | **2 vCPU** | **15 GB** |
+
+Disk includes Docker images and data volumes. All containers have explicit memory limits defined in their `docker-compose.yml`.
+
+---
+
 ## Prerequisites
 
 Docker and Docker Compose are required.

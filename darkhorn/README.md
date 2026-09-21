@@ -922,6 +922,29 @@ One company in the district never upgraded their systems to accept direct connec
 
 ---
 
+## Requirements
+
+| Resource | Value |
+|---|---|
+| RAM | 1 GB |
+| CPU | 1 vCPU |
+| Disk | 10 GB |
+
+Container memory limits:
+
+| Container | Limit |
+|---|---|
+| `darkhorn-postgres` | 256 MB |
+| `darkhorn-rest` | 128 MB |
+| `darkhorn-soap` | 128 MB |
+| `darkhorn-mq` | 128 MB |
+| `darkhorn-rabbitmq` | 256 MB |
+| `darkhorn-ldap` | 64 MB |
+| `darkhorn-sftp` | 64 MB |
+| **Total** | **1024 MB** |
+
+---
+
 ## Docker
 
 ### Start

@@ -21,6 +21,10 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   # - Seed (runs once, then exits) -
   seed:
@@ -64,6 +68,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
 
   # - darkhorn-sftp seed (runs once, then exits) -
   sftp-seed:
@@ -95,6 +103,10 @@ services:
       - sftp_data:/home/${SFTP_USER:-spectral}/darkhorn
     ports:
       - "${SFTP_PORT:-2222}:2222"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
 
   # - darkhorn-soap -
   darkhorn-soap:
@@ -122,6 +134,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
 
   # - RabbitMQ -
   rabbitmq:
@@ -141,6 +157,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   # - darkhorn-mq worker -
   darkhorn-mq:
@@ -162,6 +182,10 @@ services:
       PGDATABASE: darkhorn_mq
       PGUSER:     darkhorn
       PGPASSWORD: ${DARKHORN_DB_PASSWORD:-darkhorn}
+    deploy:
+      resources:
+        limits:
+          memory: 128M
 
   # - OpenLDAP -
   darkhorn-ldap:
@@ -180,6 +204,10 @@ services:
       - ./ldap/bootstrap:/opt/ldifs/custom:ro
     ports:
       - "${LDAP_PORT:-389}:389"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
 
 volumes:
   postgres_data:
