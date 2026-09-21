@@ -79,18 +79,22 @@ services:
 
   # - darkhorn-sftp -
   darkhorn-sftp:
-    image: atmoz/sftp
+    image: lscr.io/linuxserver/openssh-server
     container_name: darkhorn-sftp
     restart: unless-stopped
     depends_on:
       sftp-seed:
         condition: service_completed_successfully
     environment:
-      SFTP_USERS: ${SFTP_USER:-spectral}:${SFTP_PASS:-Sp3ctr4lF1l3!}:1001
+      PUID: 1000
+      PGID: 1000
+      USER_NAME:     ${SFTP_USER:-spectral}
+      USER_PASSWORD: ${SFTP_PASS:-Sp3ctr4lF1l3!}
+      PASSWORD_ACCESS: "true"
     volumes:
       - sftp_data:/home/${SFTP_USER:-spectral}/darkhorn
     ports:
-      - "${SFTP_PORT:-2222}:22"
+      - "${SFTP_PORT:-2222}:2222"
 
   # - darkhorn-soap -
   darkhorn-soap:
