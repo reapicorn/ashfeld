@@ -356,21 +356,21 @@ replace: departmentNumber
 departmentNumber: DevOps
 EOF
 
-# Suspend (add description: suspended)
+# Suspend (delete userPassword)
 ldapmodify -x -H ldap://localhost:389 \
   -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
-add: description
-description: suspended
+delete: userPassword
 EOF
 
-# Restore (remove description attribute)
+# Restore (set userPassword)
 ldapmodify -x -H ldap://localhost:389 \
   -D 'cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local' -w 'Sp3ctr3Qu13t!' << 'EOF'
 dn: uid=test.user,ou=Users,dc=darkhorn,dc=local
 changetype: modify
-delete: description
+replace: userPassword
+userPassword: D4rkh0rn!
 EOF
 
 # Change password (requires current password via ldappasswd)
@@ -792,15 +792,15 @@ Key columns on `users`: `id`, `username`, `email`, `first_name`, `last_name`, `p
 | Delete | `ldapdelete` — remove entry by DN |
 | Lookup | `ldapsearch` — filter `(uid=<username>)` |
 | Search / Reconcile | `ldapsearch` — filter `(objectClass=inetOrgPerson)` with optional attributes |
-| Suspend | `ldapmodify` — add `description: suspended` |
-| Restore | `ldapmodify` — remove `description` attribute |
+| Suspend | `ldapmodify` — delete `userPassword` attribute |
+| Restore | `ldapmodify` — replace/set `userPassword` attribute |
 | Change / Reset Password | `ldapmodify` — replace `userPassword` |
 | Get Groups | `ldapsearch` — base `ou=Groups`, filter `(objectClass=groupOfNames)` |
 | Get User Groups | `ldapsearch` — filter `(member=uid=<user>,ou=Users,...)` |
 | Assign Groups | `ldapmodify` — add `member` to group |
 | Remove Groups | `ldapmodify` — remove `member` from group |
 
-User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`, `description`.
+User object attributes (`inetOrgPerson`): `uid`, `cn`, `sn`, `givenName`, `mail`, `userPassword`, `departmentNumber`, `title`.
 
 ### darkhorn-sftp
 

@@ -77,7 +77,7 @@ function seedIfEmpty() {
 
     const user = store.createUser({
       id: uuidv4(), username,
-      email:      `${username}@darkhorn.local`,
+      email:      `${username}@ashfeld.gov`,
       firstName, lastName,
       password:   'D4rkh0rn!',
       status:     Math.random() < 0.1 ? 'suspended' : 'active',

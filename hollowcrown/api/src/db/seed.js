@@ -74,8 +74,8 @@ async function main() {
     const department = pick(DEPARTMENTS);
     const jobTitle   = pick(TITLES[department]);
 
-    let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@hollowcrown.local`;
-    if (usedEmails.has(email)) email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i}@hollowcrown.local`;
+    let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@ashfeld.gov`;
+    if (usedEmails.has(email)) email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i}@ashfeld.gov`;
     usedEmails.add(email);
 
     let num;

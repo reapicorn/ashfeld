@@ -7,10 +7,8 @@ cn: James Smith
 sn: Smith
 givenName: James
 mail: james.smith@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
-description: suspended
 
 dn: uid=mary.johnson,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -47,7 +45,6 @@ cn: Patricia Brown
 sn: Brown
 givenName: Patricia
 mail: patricia.brown@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -86,7 +83,6 @@ cn: Michael Miller
 sn: Miller
 givenName: Michael
 mail: michael.miller@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -125,7 +121,6 @@ cn: Barbara Martinez
 sn: Martinez
 givenName: Barbara
 mail: barbara.martinez@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -164,7 +159,6 @@ cn: Richard Gonzalez
 sn: Gonzalez
 givenName: Richard
 mail: richard.gonzalez@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -180,7 +174,6 @@ mail: jessica.wilson@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Design
 title: Associate
-description: suspended
 
 dn: uid=joseph.anderson,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -204,7 +197,6 @@ cn: Sarah Thomas
 sn: Thomas
 givenName: Sarah
 mail: sarah.thomas@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -243,7 +235,6 @@ cn: Charles Jackson
 sn: Jackson
 givenName: Charles
 mail: charles.jackson@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -282,7 +273,6 @@ cn: Nancy Perez
 sn: Perez
 givenName: Nancy
 mail: nancy.perez@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -321,7 +311,6 @@ cn: Matthew Harris
 sn: Harris
 givenName: Matthew
 mail: matthew.harris@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -350,7 +339,6 @@ mail: anthony.clark@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: DevOps
 title: Advisor
-description: suspended
 
 dn: uid=sandra.ramirez,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -361,7 +349,6 @@ cn: Sandra Ramirez
 sn: Ramirez
 givenName: Sandra
 mail: sandra.ramirez@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -400,7 +387,6 @@ cn: Donald Walker
 sn: Walker
 givenName: Donald
 mail: donald.walker@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -439,7 +425,6 @@ cn: Kimberly King
 sn: King
 givenName: Kimberly
 mail: kimberly.king@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -478,7 +463,6 @@ cn: Andrew Torres
 sn: Torres
 givenName: Andrew
 mail: andrew.torres@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -517,10 +501,8 @@ cn: Michelle Flores
 sn: Flores
 givenName: Michelle
 mail: michelle.flores@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
-description: suspended
 
 dn: uid=kenneth.green,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -557,7 +539,6 @@ cn: Kevin Nelson
 sn: Nelson
 givenName: Kevin
 mail: kevin.nelson@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -596,7 +577,6 @@ cn: Melissa Rivera
 sn: Rivera
 givenName: Melissa
 mail: melissa.rivera@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -635,7 +615,6 @@ cn: Timothy Carter
 sn: Carter
 givenName: Timothy
 mail: timothy.carter@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -674,7 +653,6 @@ cn: Mary Johnson 51
 sn: Johnson
 givenName: Mary
 mail: mary.johnson51@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -690,7 +668,6 @@ mail: john.williams52@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Operations
 title: Administrator
-description: suspended
 
 dn: uid=patricia.brown53,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -714,7 +691,6 @@ cn: Robert Jones 54
 sn: Jones
 givenName: Robert
 mail: robert.jones54@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -753,7 +729,6 @@ cn: Linda Davis 57
 sn: Davis
 givenName: Linda
 mail: linda.davis57@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -792,7 +767,6 @@ cn: David Hernandez 60
 sn: Hernandez
 givenName: David
 mail: david.hernandez60@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -831,7 +805,6 @@ cn: Jessica Wilson 63
 sn: Wilson
 givenName: Jessica
 mail: jessica.wilson63@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -860,7 +833,6 @@ mail: sarah.thomas65@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Sales
 title: Coordinator
-description: suspended
 
 dn: uid=thomas.taylor66,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -871,7 +843,6 @@ cn: Thomas Taylor 66
 sn: Taylor
 givenName: Thomas
 mail: thomas.taylor66@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -910,7 +881,6 @@ cn: Lisa Martin 69
 sn: Martin
 givenName: Lisa
 mail: lisa.martin69@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -949,7 +919,6 @@ cn: Daniel Thompson 72
 sn: Thompson
 givenName: Daniel
 mail: daniel.thompson72@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -988,7 +957,6 @@ cn: Margaret Sanchez 75
 sn: Sanchez
 givenName: Margaret
 mail: margaret.sanchez75@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -1027,10 +995,8 @@ cn: Mark Lewis 78
 sn: Lewis
 givenName: Mark
 mail: mark.lewis78@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
-description: suspended
 
 dn: uid=ashley.robinson79,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1067,7 +1033,6 @@ cn: Dorothy Young 81
 sn: Young
 givenName: Dorothy
 mail: dorothy.young81@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -1106,7 +1071,6 @@ cn: Paul Wright 84
 sn: Wright
 givenName: Paul
 mail: paul.wright84@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -1145,7 +1109,6 @@ cn: Donna Nguyen 87
 sn: Nguyen
 givenName: Donna
 mail: donna.nguyen87@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -1184,7 +1147,6 @@ cn: Kenneth Green 90
 sn: Green
 givenName: Kenneth
 mail: kenneth.green90@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -1200,7 +1162,6 @@ mail: carol.adams91@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: IT
 title: Analyst
-description: suspended
 
 dn: uid=kevin.nelson92,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1224,7 +1185,6 @@ cn: Amanda Baker 93
 sn: Baker
 givenName: Amanda
 mail: amanda.baker93@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -1263,7 +1223,6 @@ cn: George Campbell 96
 sn: Campbell
 givenName: George
 mail: george.campbell96@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -1302,7 +1261,6 @@ cn: Stephanie Roberts 99
 sn: Roberts
 givenName: Stephanie
 mail: stephanie.roberts99@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -1341,7 +1299,6 @@ cn: John Williams 102
 sn: Williams
 givenName: John
 mail: john.williams102@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -1370,7 +1327,6 @@ mail: robert.jones104@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Procurement
 title: Executive
-description: suspended
 
 dn: uid=jennifer.garcia105,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1381,7 +1337,6 @@ cn: Jennifer Garcia 105
 sn: Garcia
 givenName: Jennifer
 mail: jennifer.garcia105@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -1420,7 +1375,6 @@ cn: William Rodriguez 108
 sn: Rodriguez
 givenName: William
 mail: william.rodriguez108@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -1459,7 +1413,6 @@ cn: Susan Lopez 111
 sn: Lopez
 givenName: Susan
 mail: susan.lopez111@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -1498,7 +1451,6 @@ cn: Joseph Anderson 114
 sn: Anderson
 givenName: Joseph
 mail: joseph.anderson114@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -1537,10 +1489,8 @@ cn: Karen Moore 117
 sn: Moore
 givenName: Karen
 mail: karen.moore117@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
-description: suspended
 
 dn: uid=charles.jackson118,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1577,7 +1527,6 @@ cn: Christopher Lee 120
 sn: Lee
 givenName: Christopher
 mail: christopher.lee120@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -1616,7 +1565,6 @@ cn: Betty White 123
 sn: White
 givenName: Betty
 mail: betty.white123@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -1655,7 +1603,6 @@ cn: Anthony Clark 126
 sn: Clark
 givenName: Anthony
 mail: anthony.clark126@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -1694,7 +1641,6 @@ cn: Ashley Robinson 129
 sn: Robinson
 givenName: Ashley
 mail: ashley.robinson129@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -1710,7 +1656,6 @@ mail: donald.walker130@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Security
 title: Lead
-description: suspended
 
 dn: uid=dorothy.young131,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1734,7 +1679,6 @@ cn: Steven Allen 132
 sn: Allen
 givenName: Steven
 mail: steven.allen132@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 
@@ -1773,7 +1717,6 @@ cn: Emily Scott 135
 sn: Scott
 givenName: Emily
 mail: emily.scott135@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Engineering
 title: Engineer
 
@@ -1812,7 +1755,6 @@ cn: Joshua Hill 138
 sn: Hill
 givenName: Joshua
 mail: joshua.hill138@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: HR
 title: Director
 
@@ -1851,7 +1793,6 @@ cn: Carol Adams 141
 sn: Adams
 givenName: Carol
 mail: carol.adams141@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Legal
 title: Consultant
 
@@ -1880,7 +1821,6 @@ mail: amanda.baker143@darkhorn.local
 userPassword: D4rkh0rn!
 departmentNumber: Research
 title: Developer
-description: suspended
 
 dn: uid=brian.hall144,ou=Users,dc=darkhorn,dc=local
 objectClass: inetOrgPerson
@@ -1891,7 +1831,6 @@ cn: Brian Hall 144
 sn: Hall
 givenName: Brian
 mail: brian.hall144@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Support
 title: Architect
 
@@ -1930,7 +1869,6 @@ cn: Deborah Mitchell 147
 sn: Mitchell
 givenName: Deborah
 mail: deborah.mitchell147@darkhorn.local
-userPassword: D4rkh0rn!
 departmentNumber: Product
 title: Officer
 

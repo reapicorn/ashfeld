@@ -8,3 +8,8 @@ uid: svc-darkhorn
 mail: svc-darkhorn@darkhorn.local
 userPassword: Sp3ctr3Qu13t!
 description: LDAP service account for darkhorn adapter
+
+dn: cn=ldap-admins,ou=Groups,dc=darkhorn,dc=local
+changetype: modify
+add: uniqueMember
+uniqueMember: cn=svc-darkhorn,ou=Users,dc=darkhorn,dc=local

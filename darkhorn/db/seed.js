@@ -82,7 +82,7 @@ function generateUsers(groups) {
     users.push({
       id:         uuidv4(),
       username,
-      email:      `${username}@darkhorn.local`,
+      email:      `${username}@ashfeld.gov`,
       firstName,
       lastName,
       password:   'D4rkh0rn!',

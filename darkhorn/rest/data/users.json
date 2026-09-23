@@ -2,7 +2,7 @@
   {
     "id": "a1b2c3d4-0001-0001-0001-000000000001",
     "username": "jdoe",
-    "email": "jdoe@example.com",
+    "email": "jdoe@ashfeld.gov",
     "firstName": "John",
     "lastName": "Doe",
     "password": "D4rkh0rn!",
@@ -16,7 +16,7 @@
   {
     "id": "a1b2c3d4-0002-0002-0002-000000000002",
     "username": "asmith",
-    "email": "asmith@example.com",
+    "email": "asmith@ashfeld.gov",
     "firstName": "Alice",
     "lastName": "Smith",
     "password": "D4rkh0rn!",
@@ -30,7 +30,7 @@
   {
     "id": "a1b2c3d4-0003-0003-0003-000000000003",
     "username": "bwilson",
-    "email": "bwilson@example.com",
+    "email": "bwilson@ashfeld.gov",
     "firstName": "Bob",
     "lastName": "Wilson",
     "password": "D4rkh0rn!",
